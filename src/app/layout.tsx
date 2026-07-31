@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import { StoreProvider } from "@/components/shared/store-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -31,14 +32,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

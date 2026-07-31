@@ -2,14 +2,62 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight, Eye, EyeOff, Fingerprint, KeyRound, Lock, Mail } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Fingerprint,
+  KeyRound,
+  Loader2,
+  Lock,
+  Mail,
+} from "lucide-react";
 import { AuthBrand } from "@/components/layout/auth-brand";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { createLoginSchema, type LoginFormValues } from "@/lib/schemas/auth.schema";
+import { useLoginMutation } from "@/lib/api/auth.api";
+import { useAppDispatch } from "@/store/hooks";
+import { setCredentials } from "@/store/authSlice";
+import { cn } from "@/lib/utils";
 
 export default function LoginPage() {
   const t = useTranslations("auth.login");
+  const tCommon = useTranslations("common");
+  const tValidation = useTranslations("validation");
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [login, { isLoading }] = useLoginMutation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(
+      createLoginSchema({
+        invalidEmail: tValidation("invalidEmail"),
+        required: tValidation("required"),
+      })
+    ),
+  });
+
+  const onSubmit = async (values: LoginFormValues) => {
+    try {
+      const result = await login(values).unwrap();
+      dispatch(setCredentials(result));
+      router.push("/dashboard");
+    } catch (error) {
+      const status = (error as { status?: number })?.status;
+      toast.error(
+        status === 401 ? t("invalidCredentials") : tCommon("error.generic")
+      );
+    }
+  };
 
   return (
     <div className="mx-auto w-full max-w-md">
@@ -19,7 +67,7 @@ export default function LoginPage() {
         <h2 className="text-xl font-semibold text-text-primary">{t("title")}</h2>
         <p className="mt-1 text-sm text-text-secondary">{t("subtitle")}</p>
 
-        <form className="mt-6 space-y-5">
+        <form className="mt-6 space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="space-y-2">
             <label className="text-xs font-medium tracking-wide text-text-tertiary uppercase">
               {t("emailLabel")}
@@ -30,9 +78,16 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 placeholder={t("emailPlaceholder")}
-                className="w-full rounded-xl border border-border-subtle bg-background py-2.5 pr-4 pl-10 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none"
+                className={cn(
+                  "w-full rounded-xl border border-border-subtle bg-background py-2.5 pr-4 pl-10 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none",
+                  errors.email && "border-danger/60"
+                )}
+                {...register("email")}
               />
             </div>
+            {errors.email && (
+              <p className="text-xs text-danger">{errors.email.message}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -50,7 +105,11 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-border-subtle bg-background py-2.5 pr-10 pl-10 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none"
+                className={cn(
+                  "w-full rounded-xl border border-border-subtle bg-background py-2.5 pr-10 pl-10 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none",
+                  errors.password && "border-danger/60"
+                )}
+                {...register("password")}
               />
               <button
                 type="button"
@@ -60,6 +119,9 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-xs text-danger">{errors.password.message}</p>
+            )}
           </div>
 
           <label className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary">
@@ -69,10 +131,17 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="bg-accent-gradient flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            disabled={isLoading}
+            className="bg-accent-gradient flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
           >
-            {t("submit")}
-            <ArrowRight className="size-4" />
+            {isLoading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <>
+                {t("submit")}
+                <ArrowRight className="size-4" />
+              </>
+            )}
           </button>
 
           <div className="flex items-center gap-3 pt-1">

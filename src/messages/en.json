@@ -1,6 +1,20 @@
 {
   "common": {
-    "comingSoon": "This section is coming soon."
+    "comingSoon": "This section is coming soon.",
+    "error": {
+      "generic": "Something went wrong. Please try again.",
+      "conflict": "That already exists.",
+      "forbidden": "You don't have permission to do that."
+    },
+    "logout": "Log out"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "invalidEmail": "Enter a valid email address.",
+    "companyNameMin": "Company name must be at least 2 characters.",
+    "nameMin": "Name must be at least 2 characters.",
+    "passwordMin": "Password must be at least 8 characters.",
+    "agreeToTerms": "You must agree to the terms to continue."
   },
   "brand": {
     "name": "Business OS",
@@ -41,7 +55,8 @@
       "sso": "SSO",
       "biometric": "Biometric",
       "noAccount": "Don't have an account?",
-      "signUp": "Sign up"
+      "signUp": "Sign up",
+      "invalidCredentials": "Incorrect email or password."
     },
     "register": {
       "title": "Create your account",
@@ -57,7 +72,8 @@
       "terms": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
       "submit": "Create account",
       "haveAccount": "Already have an account?",
-      "logIn": "Log in"
+      "logIn": "Log in",
+      "emailTaken": "An account with this email already exists."
     }
   },
   "pages": {

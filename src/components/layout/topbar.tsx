@@ -1,8 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Bell, CircleHelp, Search, Sparkles, User } from "lucide-react";
+import { Bell, CircleHelp, Search, Sparkles } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { UserMenu } from "./user-menu";
 
 export function Topbar() {
   const t = useTranslations("topbar");
@@ -41,9 +42,7 @@ export function Topbar() {
 
         <div className="mx-2 h-6 w-px bg-border-subtle" />
 
-        <div className="flex size-9 items-center justify-center rounded-full bg-surface-elevated text-text-secondary">
-          <User className="size-[18px]" />
-        </div>
+        <UserMenu />
       </div>
     </header>
   );
