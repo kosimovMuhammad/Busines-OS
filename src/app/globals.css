@@ -1,26 +1,190 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+
+  /* Business OS design tokens (TZ §2) */
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-glow: var(--border-glow);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Light theme (TZ §2.3b) — used when no explicit dark class is present */
+:root {
+  --background: #f7f7fb;
+  --surface: #ffffff;
+  --surface-elevated: #f0f0f7;
+  --border-subtle: #e4e4ee;
+  --border-glow: rgba(124, 92, 255, 0.25);
+
+  --accent-primary: #6a45f0;
+  --accent-secondary: #3f74e6;
+  --accent-gradient: linear-gradient(135deg, #6a45f0 0%, #3f74e6 100%);
+
+  --text-primary: #17171f;
+  --text-secondary: #55556b;
+  --text-tertiary: #8a8aa0;
+
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-elevated);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--surface-elevated);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--danger);
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--border-glow);
+  --chart-1: #7c5cff;
+  --chart-2: #4f8cff;
+  --chart-3: #34d399;
+  --chart-4: #fbbf24;
+  --chart-5: var(--accent-secondary);
+  --radius: 0.75rem;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--accent-primary);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--surface-elevated);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border-subtle);
+  --sidebar-ring: var(--border-glow);
+}
+
+/* Dark theme (TZ §2.1) — default for new users, matches the Nexus OS mockups */
+.dark {
+  --background: #0a0a0f;
+  --surface: #13131c;
+  --surface-elevated: #1a1a26;
+  --border-subtle: #26263a;
+  --border-glow: rgba(124, 92, 255, 0.35);
+
+  --accent-primary: #7c5cff;
+  --accent-secondary: #4f8cff;
+  --accent-gradient: linear-gradient(135deg, #7c5cff 0%, #4f8cff 100%);
+
+  --text-primary: #f4f4f8;
+  --text-secondary: #9d9db0;
+  --text-tertiary: #6b6b80;
+
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-elevated);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--surface-elevated);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--danger);
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--border-glow);
+  --chart-1: #7c5cff;
+  --chart-2: #4f8cff;
+  --chart-3: #34d399;
+  --chart-4: #fbbf24;
+  --chart-5: var(--accent-secondary);
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--accent-primary);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--surface-elevated);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border-subtle);
+  --sidebar-ring: var(--border-glow);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .bg-accent-gradient {
+    background-image: var(--accent-gradient);
+  }
+  .glow-accent {
+    box-shadow: 0 0 0 1px var(--border-glow), 0 0 24px -4px var(--border-glow);
+  }
 }

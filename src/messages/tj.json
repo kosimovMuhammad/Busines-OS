@@ -1,0 +1,83 @@
+{
+  "common": {
+    "comingSoon": "Ин бахш ба зудӣ дастрас мешавад."
+  },
+  "brand": {
+    "name": "Business OS",
+    "tagline": "Ақл дар маркази он"
+  },
+  "nav": {
+    "dashboard": "Дашборд",
+    "aiAssistant": "Ёрдамчии AI",
+    "contacts": "Тамосҳо",
+    "deals": "Муомилот",
+    "tasks": "Вазифаҳо",
+    "communications": "Алоқаҳо",
+    "whatsapp": "WhatsApp",
+    "email": "Почта",
+    "invoicing": "Ҳисобҳо",
+    "files": "Файлҳо",
+    "calendar": "Тақвим",
+    "settings": "Танзимот",
+    "workspaceSection": "Фазои корӣ",
+    "collapse": "Пахш кардан"
+  },
+  "topbar": {
+    "searchPlaceholder": "Ҷустуҷӯи фармонҳо, муомилот ё тамосҳо...",
+    "themeToggleLight": "Гузариш ба мавзӯи равшан",
+    "themeToggleDark": "Гузариш ба мавзӯи торик"
+  },
+  "auth": {
+    "login": {
+      "title": "Хуш омадед",
+      "subtitle": "Лутфан маълумоти воридшавии худро ворид кунед.",
+      "emailLabel": "Суроғаи почтаи электронӣ",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Рамз",
+      "forgotPassword": "Рамзро фаромӯш кардед?",
+      "remember": "Ин дастгоҳро 30 рӯз дар хотир нигоҳ доред",
+      "submit": "Ворид шудан",
+      "orDivider": "ё",
+      "sso": "SSO",
+      "biometric": "Биометрӣ",
+      "noAccount": "Ҳисоб надоред?",
+      "signUp": "Бақайдгирӣ"
+    },
+    "register": {
+      "title": "Ҳисоби худро созед",
+      "subtitle": "Ба насли нави идоракунии бизнес ҳамроҳ шавед",
+      "companyNameLabel": "Номи ширкат",
+      "companyNamePlaceholder": "Acme Corp",
+      "fullNameLabel": "Номи пурра",
+      "fullNamePlaceholder": "Исм Насаб",
+      "emailLabel": "Суроғаи почтаи электронӣ",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Рамз",
+      "passwordHint": "Ҳадди ақал 8 аломат лозим аст.",
+      "terms": "Ман бо <terms>шартҳои истифода</terms> ва <privacy>сиёсати махфият</privacy> розӣ ҳастам.",
+      "submit": "Сохтани ҳисоб",
+      "haveAccount": "Аллакай ҳисоб доред?",
+      "logIn": "Ворид шудан"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Дашбордиумумӣ",
+      "subtitle": "Маркази фармондиҳии амалиёти бизнеси шумо"
+    },
+    "contacts": { "title": "Тамосҳо", "subtitle": "Ҳамаи муносибатҳо дар як ҷо" },
+    "deals": { "title": "Қуттии муомилот", "subtitle": "Тақсимоти ҷории муомилот" },
+    "tasks": { "title": "Вазифаҳо", "subtitle": "Пайгирии кор ва вақти дастаи шумо" },
+    "communications": { "title": "Алоқаҳо", "subtitle": "Лентаи ягона аз ҳамаи каналҳо" },
+    "whatsapp": { "title": "Идоракунии WhatsApp", "subtitle": "Идоракунии марказонидашудаи инфраструктураи паёмрасонии бизнеси шумо." },
+    "email": { "title": "Почта", "subtitle": "Пайваст кунед ва аз қуттии худ мактуб фиристед" },
+    "ai": { "title": "Ёрдамчии AI", "subtitle": "Савол диҳед, мактуб ва пешниҳоди нарх созед" },
+    "invoices": { "title": "Ҳисобҳо", "subtitle": "Пайгирии ҳисобҳо ва пардохтҳо" },
+    "files": { "title": "Файлҳо", "subtitle": "Ҳуҷҷатҳои марбут ба тамосҳо, муомилот ва ҳисобҳо" },
+    "calendar": { "title": "Тақвим", "subtitle": "Вохӯриҳо ва ҷадвалбандӣ" },
+    "settings": { "title": "Танзимот", "subtitle": "Идоракунии танзимоти ширкат, тарифи баланд ва интегратсияҳо." },
+    "settingsTeam": { "title": "Дастаи корӣ", "subtitle": "Идоракунии корбарон ва нақшҳо" },
+    "settingsIntegrations": { "title": "Интегратсияҳо", "subtitle": "Ҳолати хидматҳои пайвастшуда" },
+    "settingsPlan": { "title": "Тариф ва пардохт", "subtitle": "Идоракунии обуна" }
+  }
+}

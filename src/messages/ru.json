@@ -1,0 +1,83 @@
+{
+  "common": {
+    "comingSoon": "Этот раздел скоро появится."
+  },
+  "brand": {
+    "name": "Business OS",
+    "tagline": "Интеллект в основе"
+  },
+  "nav": {
+    "dashboard": "Дашборд",
+    "aiAssistant": "AI-ассистент",
+    "contacts": "Контакты",
+    "deals": "Сделки",
+    "tasks": "Задачи",
+    "communications": "Коммуникации",
+    "whatsapp": "WhatsApp",
+    "email": "Почта",
+    "invoicing": "Счета",
+    "files": "Файлы",
+    "calendar": "Календарь",
+    "settings": "Настройки",
+    "workspaceSection": "Рабочее пространство",
+    "collapse": "Свернуть"
+  },
+  "topbar": {
+    "searchPlaceholder": "Поиск команд, сделок или контактов...",
+    "themeToggleLight": "Включить светлую тему",
+    "themeToggleDark": "Включить тёмную тему"
+  },
+  "auth": {
+    "login": {
+      "title": "С возвращением",
+      "subtitle": "Введите свои учётные данные для доступа к рабочему пространству.",
+      "emailLabel": "Электронная почта",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Пароль",
+      "forgotPassword": "Забыли пароль?",
+      "remember": "Запомнить это устройство на 30 дней",
+      "submit": "Войти",
+      "orDivider": "или",
+      "sso": "SSO",
+      "biometric": "Биометрия",
+      "noAccount": "Нет аккаунта?",
+      "signUp": "Зарегистрироваться"
+    },
+    "register": {
+      "title": "Создайте аккаунт",
+      "subtitle": "Присоединяйтесь к новому поколению управления бизнесом",
+      "companyNameLabel": "Название компании",
+      "companyNamePlaceholder": "Acme Corp",
+      "fullNameLabel": "Полное имя",
+      "fullNamePlaceholder": "Иван Иванов",
+      "emailLabel": "Электронная почта",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Пароль",
+      "passwordHint": "Минимум 8 символов.",
+      "terms": "Я согласен с <terms>условиями использования</terms> и <privacy>политикой конфиденциальности</privacy>.",
+      "submit": "Создать аккаунт",
+      "haveAccount": "Уже есть аккаунт?",
+      "logIn": "Войти"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Обзор дашборда",
+      "subtitle": "Командный центр для вашего бизнеса"
+    },
+    "contacts": { "title": "Контакты", "subtitle": "Все ваши отношения в одном месте" },
+    "deals": { "title": "Воронка сделок", "subtitle": "Текущее распределение сделок" },
+    "tasks": { "title": "Задачи", "subtitle": "Учёт работы и времени команды" },
+    "communications": { "title": "Коммуникации", "subtitle": "Единая лента по всем каналам" },
+    "whatsapp": { "title": "Управление WhatsApp", "subtitle": "Централизованное управление бизнес-мессенджером." },
+    "email": { "title": "Почта", "subtitle": "Подключите и отправляйте письма из своего ящика" },
+    "ai": { "title": "AI-ассистент", "subtitle": "Задавайте вопросы, создавайте письма и коммерческие предложения" },
+    "invoices": { "title": "Счета", "subtitle": "Учёт выставленных счетов и платежей" },
+    "files": { "title": "Файлы", "subtitle": "Документы, привязанные к контактам, сделкам и счетам" },
+    "calendar": { "title": "Календарь", "subtitle": "Встречи и планирование" },
+    "settings": { "title": "Настройки", "subtitle": "Управление настройками компании, тарифом и интеграциями." },
+    "settingsTeam": { "title": "Команда", "subtitle": "Управление пользователями и ролями" },
+    "settingsIntegrations": { "title": "Интеграции", "subtitle": "Статус подключённых сервисов" },
+    "settingsPlan": { "title": "Тариф и оплата", "subtitle": "Управление подпиской" }
+  }
+}

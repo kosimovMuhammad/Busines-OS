@@ -1,0 +1,83 @@
+{
+  "common": {
+    "comingSoon": "This section is coming soon."
+  },
+  "brand": {
+    "name": "Business OS",
+    "tagline": "Intelligence at the core"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "aiAssistant": "AI Assistant",
+    "contacts": "Contacts",
+    "deals": "Deals",
+    "tasks": "Tasks",
+    "communications": "Communications",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "invoicing": "Invoicing",
+    "files": "Files",
+    "calendar": "Calendar",
+    "settings": "Settings",
+    "workspaceSection": "Workspace",
+    "collapse": "Collapse"
+  },
+  "topbar": {
+    "searchPlaceholder": "Search commands, deals, or contacts...",
+    "themeToggleLight": "Switch to light theme",
+    "themeToggleDark": "Switch to dark theme"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Please enter your credentials to access your workspace.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "remember": "Remember this workstation for 30 days",
+      "submit": "Sign in",
+      "orDivider": "or",
+      "sso": "SSO",
+      "biometric": "Biometric",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join the next generation of business management",
+      "companyNameLabel": "Company name",
+      "companyNamePlaceholder": "Acme Corp",
+      "fullNameLabel": "Full name",
+      "fullNamePlaceholder": "John Doe",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@company.com",
+      "passwordLabel": "Password",
+      "passwordHint": "Must be at least 8 characters.",
+      "terms": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "logIn": "Log in"
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard Overview",
+      "subtitle": "Command center for your business operations"
+    },
+    "contacts": { "title": "Contacts", "subtitle": "Every relationship, in one place" },
+    "deals": { "title": "Deals Pipeline", "subtitle": "Current deal distribution" },
+    "tasks": { "title": "Tasks", "subtitle": "Track work and time across your team" },
+    "communications": { "title": "Communications", "subtitle": "Unified feed across every channel" },
+    "whatsapp": { "title": "WhatsApp Management", "subtitle": "Centralized control for your business messaging infrastructure." },
+    "email": { "title": "Email", "subtitle": "Connect and send from your inbox" },
+    "ai": { "title": "AI Assistant", "subtitle": "Ask questions, draft emails, generate quotations" },
+    "invoices": { "title": "Invoicing", "subtitle": "Track billing and payments" },
+    "files": { "title": "Files", "subtitle": "Documents linked to contacts, deals, and invoices" },
+    "calendar": { "title": "Calendar", "subtitle": "Meetings and scheduling" },
+    "settings": { "title": "Settings", "subtitle": "Manage your workspace configuration, billing, and system integrations." },
+    "settingsTeam": { "title": "Team", "subtitle": "Manage users and roles" },
+    "settingsIntegrations": { "title": "Integrations", "subtitle": "Connected services status" },
+    "settingsPlan": { "title": "Billing & Plan", "subtitle": "Manage your subscription" }
+  }
+}
