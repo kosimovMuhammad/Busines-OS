@@ -283,19 +283,42 @@ export type AiDraftEmailRequest = { contactId: string; context?: string };
 export type QuotationItem = { description: string; quantity: number; unitPrice: number };
 export type AiGenerateQuotationRequest = { dealId: string; items: QuotationItem[] };
 
-export type AiJobPending = { status: "PENDING" };
-export type AiJobFailed = { status: "FAILED"; error: string };
-
 export type SummarizeRequest = { communicationId: string };
-// The "COMPLETED" shape is inferred from TZ §8.4's generic async-job
-// pattern, not verified against a real response - GEMINI_API_KEY isn't
-// configured in this environment (POST /ai/summarize always 500s with
-// "GEMINI_API_KEY not configured"), so summarization never reaches a
-// completed state to observe. Revisit once the key is provisioned.
-export type AiSummaryResult =
-  | AiJobPending
-  | AiJobFailed
-  | { status: "COMPLETED"; summary: string };
+
+// Every AI "enqueue" endpoint (verified via POST /ai/generate-quotation,
+// which is the only one that queues successfully in this environment -
+// /ai/summarize, /ai/query and /ai/draft-email all 500 synchronously here
+// because GEMINI_API_KEY isn't configured, so their queued-response shape
+// is inferred by symmetry with the description text rather than observed
+// directly) returns this shape, not a 200 body.
+export type AiJobQueued = { queued: true; id: string };
+
+// Every AI "result" endpoint follows the same real, verified envelope:
+// 200 = done (shape below, per endpoint), 404 = not ready yet (poll again),
+// 422 = failed (standard Nest error body, e.g. verified real
+// "AWS S3 not configured" for quotations) - there is no embedded
+// PENDING/FAILED status field in a 200 body as TZ's generic description
+// might suggest.
+export type AiSummaryRecord = {
+  id: string;
+  communicationId: string;
+  summary: string;
+  createdAt: string;
+};
+
+export type AiQueryResult = { rows: unknown[]; answer: string };
+
+export type AiDraftEmailResult = { subject: string; body: string };
+
+// Inferred from the endpoint's Swagger description ("totals + FileAsset +
+// presigned download URL") - never observed as a real 200 in this
+// environment since AWS S3 isn't configured (verified real 422 instead).
+// Revisit once S3 is provisioned.
+export type AiQuotationResult = {
+  subtotal: number;
+  total: number;
+  file: FileAsset;
+};
 
 // ---- Files ----
 

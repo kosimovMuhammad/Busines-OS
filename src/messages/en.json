@@ -280,7 +280,42 @@
     },
     "ai": {
       "title": "AI Assistant",
-      "subtitle": "Ask questions, draft emails, generate quotations"
+      "subtitle": "Ask questions, draft emails, generate quotations",
+      "tabs": { "query": "Ask", "draftEmail": "Draft Email", "quotation": "Quotation" },
+      "query": {
+        "empty": "Ask a question about your contacts, deals, or revenue.",
+        "placeholder": "Show clients who haven't replied in 14 days...",
+        "working": "AI is working...",
+        "failed": "AI features are being activated. Try again later."
+      },
+      "draftEmail": {
+        "contact": "Contact",
+        "selectContact": "Select a contact",
+        "context": "Context (optional)",
+        "contextPlaceholder": "e.g. follow up about the unpaid invoice",
+        "draft": "Draft Email",
+        "working": "AI is working...",
+        "failed": "AI features are being activated. Try again later.",
+        "subject": "Subject",
+        "body": "Body",
+        "openInEmail": "Open in Email compose"
+      },
+      "quotation": {
+        "deal": "Deal",
+        "selectDeal": "Select a deal",
+        "items": "Line items",
+        "description": "Description",
+        "quantity": "Qty",
+        "unitPrice": "Unit price",
+        "addItem": "Add item",
+        "subtotal": "Subtotal",
+        "generate": "Generate Quotation",
+        "working": "AI is working...",
+        "failed": "Quotation generation isn't available yet. Try again later.",
+        "tryAgain": "Try again",
+        "total": "Total",
+        "download": "Download quotation"
+      }
     },
     "invoices": {
       "title": "Invoicing",

@@ -28,7 +28,7 @@ export function AiSummaryBadge({
     }
   };
 
-  const summary = existingSummary ?? (data?.status === "COMPLETED" ? data.summary : null);
+  const summary = existingSummary ?? data?.summary ?? null;
 
   if (summary) {
     return (

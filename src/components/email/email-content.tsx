@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -23,8 +24,14 @@ const ALL = "__all__";
 
 export function EmailContent() {
   const t = useTranslations("pages.email");
-  const [contactId, setContactId] = useState("");
-  const [composeOpen, setComposeOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const prefillContactId = searchParams.get("contactId") ?? "";
+  const prefillSubject = searchParams.get("subject") ?? "";
+  const prefillBody = searchParams.get("body") ?? "";
+  const hasPrefill = !!(prefillSubject || prefillBody);
+
+  const [contactId, setContactId] = useState(prefillContactId);
+  const [composeOpen, setComposeOpen] = useState(hasPrefill);
 
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const { data: communications, isLoading } = useGetCommunicationsQuery(
@@ -96,7 +103,9 @@ export function EmailContent() {
     <EmailComposeSheet
       open={composeOpen}
       onOpenChange={setComposeOpen}
-      defaultContactId={contactId || undefined}
+      defaultContactId={prefillContactId || contactId || undefined}
+      defaultSubject={prefillSubject || undefined}
+      defaultBody={prefillBody || undefined}
     />
     </>
   );

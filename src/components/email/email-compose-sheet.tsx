@@ -30,18 +30,22 @@ export function EmailComposeSheet({
   open,
   onOpenChange,
   defaultContactId,
+  defaultSubject,
+  defaultBody,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   defaultContactId?: string;
+  defaultSubject?: string;
+  defaultBody?: string;
 }) {
   const t = useTranslations("pages.email.composeSheet");
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const [sendEmail, { isLoading }] = useSendEmailMutation();
 
-  const [contactId, setContactId] = useState("");
-  const [subject, setSubject] = useState("");
-  const [body, setBody] = useState("");
+  const [contactId, setContactId] = useState(defaultContactId ?? "");
+  const [subject, setSubject] = useState(defaultSubject ?? "");
+  const [body, setBody] = useState(defaultBody ?? "");
   const [guidance, setGuidance] = useState<"badRequest" | "unavailable" | null>(null);
 
   const [wasOpen, setWasOpen] = useState(open);
@@ -49,8 +53,8 @@ export function EmailComposeSheet({
     setWasOpen(open);
     if (open) {
       setContactId(defaultContactId ?? "");
-      setSubject("");
-      setBody("");
+      setSubject(defaultSubject ?? "");
+      setBody(defaultBody ?? "");
       setGuidance(null);
     }
   }

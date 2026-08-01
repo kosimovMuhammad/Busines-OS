@@ -1,6 +1,14 @@
-import { Bot } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { AiContent } from "@/components/ai/ai-content";
 
-export default function AiPage() {
-  return <PlaceholderPage namespace="pages.ai" icon={Bot} />;
+export default async function AiPage() {
+  const t = await getTranslations("pages.ai");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <AiContent />
+    </>
+  );
 }
