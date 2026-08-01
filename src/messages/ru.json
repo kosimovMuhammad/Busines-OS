@@ -14,7 +14,8 @@
     "companyNameMin": "Название компании — минимум 2 символа.",
     "nameMin": "Имя — минимум 2 символа.",
     "passwordMin": "Пароль — минимум 8 символов.",
-    "agreeToTerms": "Необходимо согласиться с условиями."
+    "agreeToTerms": "Необходимо согласиться с условиями.",
+    "invalidPhone": "Введите номер в международном формате, например +992901234567."
   },
   "brand": {
     "name": "Business OS",
@@ -116,7 +117,50 @@
         "confidence": "Уверенность"
       }
     },
-    "contacts": { "title": "Контакты", "subtitle": "Все ваши отношения в одном месте" },
+    "contacts": {
+      "title": "Контакты",
+      "subtitle": "Все ваши отношения в одном месте",
+      "searchPlaceholder": "Поиск по имени, email или телефону...",
+      "tagPlaceholder": "Тег",
+      "allOwners": "Все владельцы",
+      "createContact": "Добавить контакт",
+      "columnContact": "Контакт",
+      "columnCompany": "Компания",
+      "columnDetails": "Детали",
+      "columnActions": "",
+      "empty": "Контакты не найдены.",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "backToList": "Назад к списку",
+      "form": {
+        "createTitle": "Новый контакт",
+        "editTitle": "Редактировать контакт",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "email": "Email",
+        "phone": "Телефон",
+        "position": "Должность",
+        "companyName": "Компания",
+        "owner": "Владелец",
+        "unassigned": "Не назначен",
+        "tags": "Теги",
+        "tagsPlaceholder": "через запятую",
+        "notes": "Заметки",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "timeline": {
+        "title": "Хронология",
+        "notePlaceholder": "Добавить заметку...",
+        "addNote": "Добавить",
+        "empty": "Пока нет записей."
+      },
+      "deleteDialog": {
+        "title": "Удалить контакт?",
+        "description": "Вы уверены, что хотите удалить {name}? Это действие необратимо.",
+        "cancel": "Отмена"
+      }
+    },
     "deals": { "title": "Воронка сделок", "subtitle": "Текущее распределение сделок" },
     "tasks": {
       "title": "Задачи",

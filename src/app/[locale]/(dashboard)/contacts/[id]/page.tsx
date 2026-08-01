@@ -1,6 +1,10 @@
-import { Contact } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { ContactDetailContent } from "@/components/contacts/contact-detail-content";
 
-export default function ContactDetailPage() {
-  return <PlaceholderPage namespace="pages.contacts" icon={Contact} />;
+export default async function ContactDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <ContactDetailContent id={id} />;
 }

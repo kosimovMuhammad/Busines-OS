@@ -14,7 +14,8 @@
     "companyNameMin": "Номи ширкат бояд ҳадди ақал 2 ҳарф бошад.",
     "nameMin": "Ном бояд ҳадди ақал 2 ҳарф бошад.",
     "passwordMin": "Рамз бояд ҳадди ақал 8 аломат бошад.",
-    "agreeToTerms": "Шумо бояд бо шартҳо розӣ шавед."
+    "agreeToTerms": "Шумо бояд бо шартҳо розӣ шавед.",
+    "invalidPhone": "Рақами телефонро дар формати байналмилалӣ ворид кунед, масалан +992901234567."
   },
   "brand": {
     "name": "Business OS",
@@ -116,7 +117,50 @@
         "confidence": "Эътимод"
       }
     },
-    "contacts": { "title": "Тамосҳо", "subtitle": "Ҳамаи муносибатҳо дар як ҷо" },
+    "contacts": {
+      "title": "Тамосҳо",
+      "subtitle": "Ҳамаи муносибатҳо дар як ҷо",
+      "searchPlaceholder": "Ҷустуҷӯ бо ном, email ё телефон...",
+      "tagPlaceholder": "Тег",
+      "allOwners": "Ҳамаи соҳибон",
+      "createContact": "Иловаи тамос",
+      "columnContact": "Тамос",
+      "columnCompany": "Ширкат",
+      "columnDetails": "Тафсилот",
+      "columnActions": "",
+      "empty": "Тамос ёфт нашуд.",
+      "edit": "Таҳрир",
+      "delete": "Нест кардан",
+      "backToList": "Бозгашт ба рӯйхат",
+      "form": {
+        "createTitle": "Тамоси нав",
+        "editTitle": "Таҳрири тамос",
+        "firstName": "Ном",
+        "lastName": "Насаб",
+        "email": "Email",
+        "phone": "Телефон",
+        "position": "Вазифа",
+        "companyName": "Ширкат",
+        "owner": "Соҳиб",
+        "unassigned": "Таъин нашуда",
+        "tags": "Тегҳо",
+        "tagsPlaceholder": "бо вергул ҷудо кунед",
+        "notes": "Ёддоштҳо",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан"
+      },
+      "timeline": {
+        "title": "Хронология",
+        "notePlaceholder": "Ёддошт илова кунед...",
+        "addNote": "Илова",
+        "empty": "Ҳанӯз фаъолият нест."
+      },
+      "deleteDialog": {
+        "title": "Тамос нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед {name}-ро нест кунед? Ин амал баргарданок нест.",
+        "cancel": "Бекор кардан"
+      }
+    },
     "deals": { "title": "Қуттии муомилот", "subtitle": "Тақсимоти ҷории муомилот" },
     "tasks": {
       "title": "Вазифаҳо",

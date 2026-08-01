@@ -14,7 +14,8 @@
     "companyNameMin": "Company name must be at least 2 characters.",
     "nameMin": "Name must be at least 2 characters.",
     "passwordMin": "Password must be at least 8 characters.",
-    "agreeToTerms": "You must agree to the terms to continue."
+    "agreeToTerms": "You must agree to the terms to continue.",
+    "invalidPhone": "Enter a phone number in international format, e.g. +992901234567."
   },
   "brand": {
     "name": "Business OS",
@@ -116,7 +117,50 @@
         "confidence": "Confidence"
       }
     },
-    "contacts": { "title": "Contacts", "subtitle": "Every relationship, in one place" },
+    "contacts": {
+      "title": "Contacts",
+      "subtitle": "Every relationship, in one place",
+      "searchPlaceholder": "Search by name, email, or phone...",
+      "tagPlaceholder": "Tag",
+      "allOwners": "All Owners",
+      "createContact": "Add Contact",
+      "columnContact": "Contact",
+      "columnCompany": "Company",
+      "columnDetails": "Details",
+      "columnActions": "",
+      "empty": "No contacts found.",
+      "edit": "Edit",
+      "delete": "Delete",
+      "backToList": "Back to list",
+      "form": {
+        "createTitle": "New Contact",
+        "editTitle": "Edit Contact",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phone": "Phone",
+        "position": "Position",
+        "companyName": "Company",
+        "owner": "Owner",
+        "unassigned": "Unassigned",
+        "tags": "Tags",
+        "tagsPlaceholder": "comma-separated",
+        "notes": "Notes",
+        "save": "Save",
+        "create": "Create"
+      },
+      "timeline": {
+        "title": "Timeline",
+        "notePlaceholder": "Add a note...",
+        "addNote": "Add",
+        "empty": "No activity yet."
+      },
+      "deleteDialog": {
+        "title": "Delete contact?",
+        "description": "Are you sure you want to delete {name}? This action cannot be undone.",
+        "cancel": "Cancel"
+      }
+    },
     "deals": { "title": "Deals Pipeline", "subtitle": "Current deal distribution" },
     "tasks": {
       "title": "Tasks",

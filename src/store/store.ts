@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "@/lib/api/baseApi";
 import authReducer from "./authSlice";
+import { errorToastMiddleware } from "./errorMiddleware";
 
 export function makeStore() {
   return configureStore({
@@ -9,7 +10,7 @@ export function makeStore() {
       [baseApi.reducerPath]: baseApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(baseApi.middleware),
+      getDefaultMiddleware().concat(baseApi.middleware, errorToastMiddleware),
   });
 }
 

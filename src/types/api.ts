@@ -197,8 +197,11 @@ export type Communication = {
   channel: CommChannel;
   content: string;
   direction: "INBOUND" | "OUTBOUND";
+  attachments: string[] | null;
+  providerMessageId: string | null;
+  status: string;
   aiSummary: string | null;
-  createdAt: string;
+  timestamp: string;
 };
 
 export type CreateNoteRequest = {
