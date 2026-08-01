@@ -1,6 +1,14 @@
-import { CircleCheck } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { TasksContent } from "@/components/tasks/tasks-content";
 
-export default function TasksPage() {
-  return <PlaceholderPage namespace="pages.tasks" icon={CircleCheck} />;
+export default async function TasksPage() {
+  const t = await getTranslations("pages.tasks");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <TasksContent />
+    </>
+  );
 }

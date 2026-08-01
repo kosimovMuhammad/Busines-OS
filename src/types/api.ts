@@ -154,6 +154,14 @@ export type UpdateDealRequest = Partial<
 
 // ---- Tasks & Time Tracking ----
 
+export type TaskAssignee = {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+  role: UserRole;
+};
+
 export type Task = {
   id: string;
   companyId: string;
@@ -167,6 +175,7 @@ export type Task = {
   contactId: string | null;
   createdAt: string;
   updatedAt: string;
+  assignee: TaskAssignee | null;
 };
 
 export type CreateTaskRequest = {
@@ -184,13 +193,19 @@ export type UpdateTaskRequest = Partial<Omit<CreateTaskRequest, "status">>;
 
 export type TimeEntry = {
   id: string;
+  companyId: string;
   taskId: string;
   userId: string;
   note: string | null;
   startedAt: string;
   stoppedAt: string | null;
   durationSec: number | null;
+  createdAt: string;
+  // Only present on the POST .../time/stop response.
+  totalTimeSec?: number;
 };
+
+export type ActiveTimeEntry = TimeEntry & { task: Task };
 
 // ---- Communications ----
 

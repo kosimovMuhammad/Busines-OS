@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Bell, CircleHelp, Search, Sparkles } from "lucide-react";
+import { ActiveTimerWidget } from "@/components/tasks/active-timer-widget";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
 
@@ -19,7 +20,8 @@ export function Topbar() {
         />
       </div>
 
-      <div className="ml-auto flex items-center gap-1">
+      <div className="ml-auto flex items-center gap-2">
+        <ActiveTimerWidget />
         <button
           type="button"
           className="flex size-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"

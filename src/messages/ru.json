@@ -164,7 +164,45 @@
     "deals": { "title": "Воронка сделок", "subtitle": "Текущее распределение сделок" },
     "tasks": {
       "title": "Задачи",
-      "subtitle": "Учёт работы и времени команды"
+      "subtitle": "Учёт работы и времени команды",
+      "allStatuses": "Все статусы",
+      "allAssignees": "Все исполнители",
+      "createTask": "Новая задача",
+      "empty": "Задачи не найдены.",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "startTimer": "Старт",
+      "stopTimer": "Стоп",
+      "form": {
+        "createTitle": "Новая задача",
+        "editTitle": "Редактировать задачу",
+        "title": "Название",
+        "description": "Описание",
+        "priority": "Приоритет",
+        "dueDate": "Срок выполнения",
+        "assignee": "Исполнитель",
+        "unassigned": "Не назначен",
+        "relatedContact": "Связанный контакт",
+        "relatedDeal": "Связанная сделка",
+        "none": "Нет",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "deleteDialog": {
+        "title": "Удалить задачу?",
+        "description": "Вы уверены, что хотите удалить «{title}»? Это действие необратимо.",
+        "cancel": "Отмена"
+      },
+      "detail": {
+        "startTimer": "Начать отсчёт",
+        "stopTimer": "Остановить",
+        "timeEntries": "Учёт времени",
+        "total": "Всего",
+        "noEntries": "Пока нет записей времени.",
+        "deleteEntry": "Удалить запись",
+        "deleteTask": "Удалить задачу",
+        "editTask": "Редактировать"
+      }
     },
     "communications": {
       "title": "Коммуникации",
@@ -225,6 +263,12 @@
       "IN_PROGRESS": "В работе",
       "COMPLETED": "Завершено",
       "ARCHIVED": "Архив"
+    },
+    "taskPriority": {
+      "LOW": "Низкий",
+      "MEDIUM": "Средний",
+      "HIGH": "Высокий",
+      "URGENT": "Срочный"
     },
     "activityType": {
       "task": "Задача",

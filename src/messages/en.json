@@ -164,7 +164,45 @@
     "deals": { "title": "Deals Pipeline", "subtitle": "Current deal distribution" },
     "tasks": {
       "title": "Tasks",
-      "subtitle": "Track work and time across your team"
+      "subtitle": "Track work and time across your team",
+      "allStatuses": "All Statuses",
+      "allAssignees": "All Assignees",
+      "createTask": "New Task",
+      "empty": "No tasks found.",
+      "edit": "Edit",
+      "delete": "Delete",
+      "startTimer": "Start",
+      "stopTimer": "Stop",
+      "form": {
+        "createTitle": "New Task",
+        "editTitle": "Edit Task",
+        "title": "Title",
+        "description": "Description",
+        "priority": "Priority",
+        "dueDate": "Due date",
+        "assignee": "Assignee",
+        "unassigned": "Unassigned",
+        "relatedContact": "Related contact",
+        "relatedDeal": "Related deal",
+        "none": "None",
+        "save": "Save",
+        "create": "Create"
+      },
+      "deleteDialog": {
+        "title": "Delete task?",
+        "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+        "cancel": "Cancel"
+      },
+      "detail": {
+        "startTimer": "Start timer",
+        "stopTimer": "Stop timer",
+        "timeEntries": "Time entries",
+        "total": "Total",
+        "noEntries": "No time entries yet.",
+        "deleteEntry": "Delete entry",
+        "deleteTask": "Delete task",
+        "editTask": "Edit"
+      }
     },
     "communications": {
       "title": "Communications",
@@ -225,6 +263,12 @@
       "IN_PROGRESS": "In Progress",
       "COMPLETED": "Completed",
       "ARCHIVED": "Archived"
+    },
+    "taskPriority": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High",
+      "URGENT": "Urgent"
     },
     "activityType": {
       "task": "Task",

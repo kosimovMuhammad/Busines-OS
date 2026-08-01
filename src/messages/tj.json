@@ -164,7 +164,45 @@
     "deals": { "title": "Қуттии муомилот", "subtitle": "Тақсимоти ҷории муомилот" },
     "tasks": {
       "title": "Вазифаҳо",
-      "subtitle": "Пайгирии кор ва вақти дастаи шумо"
+      "subtitle": "Пайгирии кор ва вақти дастаи шумо",
+      "allStatuses": "Ҳамаи ҳолатҳо",
+      "allAssignees": "Ҳамаи иҷрокунандагон",
+      "createTask": "Вазифаи нав",
+      "empty": "Вазифа ёфт нашуд.",
+      "edit": "Таҳрир",
+      "delete": "Нест кардан",
+      "startTimer": "Оғоз",
+      "stopTimer": "Қатъ",
+      "form": {
+        "createTitle": "Вазифаи нав",
+        "editTitle": "Таҳрири вазифа",
+        "title": "Ном",
+        "description": "Тавсиф",
+        "priority": "Аҳамият",
+        "dueDate": "Мӯҳлат",
+        "assignee": "Иҷрокунанда",
+        "unassigned": "Таъин нашуда",
+        "relatedContact": "Тамоси марбут",
+        "relatedDeal": "Муомилаи марбут",
+        "none": "Нест",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан"
+      },
+      "deleteDialog": {
+        "title": "Вазифа нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед «{title}»-ро нест кунед? Ин амал баргарданок нест.",
+        "cancel": "Бекор кардан"
+      },
+      "detail": {
+        "startTimer": "Сар кардани вақт",
+        "stopTimer": "Қатъ кардан",
+        "timeEntries": "Сабтҳои вақт",
+        "total": "Ҳамагӣ",
+        "noEntries": "Ҳанӯз сабти вақт нест.",
+        "deleteEntry": "Нест кардани сабт",
+        "deleteTask": "Нест кардани вазифа",
+        "editTask": "Таҳрир"
+      }
     },
     "communications": {
       "title": "Алоқаҳо",
@@ -225,6 +263,12 @@
       "IN_PROGRESS": "Дар ҷараён",
       "COMPLETED": "Иҷрошуда",
       "ARCHIVED": "Бойгонӣ"
+    },
+    "taskPriority": {
+      "LOW": "Паст",
+      "MEDIUM": "Миёна",
+      "HIGH": "Баланд",
+      "URGENT": "Таъҷилӣ"
     },
     "activityType": {
       "task": "Вазифа",
