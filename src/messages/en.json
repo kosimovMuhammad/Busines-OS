@@ -424,19 +424,52 @@
     },
     "settings": {
       "title": "Settings",
-      "subtitle": "Manage your workspace configuration, billing, and system integrations."
+      "subtitle": "Manage your workspace configuration, billing, and system integrations.",
+      "name": "Company name",
+      "industry": "Industry",
+      "timezone": "Timezone",
+      "save": "Save",
+      "tabs": {
+        "company": "Company",
+        "team": "Team",
+        "integrations": "Integrations",
+        "plan": "Plan"
+      }
     },
     "settingsTeam": {
       "title": "Team",
-      "subtitle": "Manage users and roles"
+      "subtitle": "Manage users and roles",
+      "invite": "Invite User",
+      "empty": "No team members found.",
+      "columnUser": "User",
+      "columnRole": "Role",
+      "columnStatus": "Status",
+      "columnActions": "",
+      "activate": "Activate",
+      "suspend": "Suspend",
+      "remove": "Remove",
+      "inviteSheet": {
+        "title": "Invite User",
+        "name": "Full name",
+        "email": "Email address",
+        "role": "Role",
+        "invite": "Send Invite"
+      }
     },
     "settingsIntegrations": {
       "title": "Integrations",
-      "subtitle": "Connected services status"
+      "subtitle": "Connected services status",
+      "connected": "Connected",
+      "notConnected": "Not connected",
+      "comingSoon": "Coming soon"
     },
     "settingsPlan": {
       "title": "Billing & Plan",
-      "subtitle": "Manage your subscription"
+      "subtitle": "Manage your subscription",
+      "currentPlan": "Current plan",
+      "changePlan": "Change plan",
+      "save": "Save",
+      "ownerOnly": "Only the workspace owner can change the plan."
     }
   },
   "enums": {
@@ -483,6 +516,25 @@
       "SCHEDULED": "Scheduled",
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled"
+    },
+    "userRole": {
+      "OWNER": "Owner",
+      "ADMIN": "Admin",
+      "MANAGER": "Manager",
+      "SALES": "Sales",
+      "SUPPORT": "Support",
+      "EMPLOYEE": "Employee",
+      "READ_ONLY": "Read Only"
+    },
+    "userStatus": {
+      "ACTIVE": "Active",
+      "INVITED": "Invited",
+      "SUSPENDED": "Suspended"
+    },
+    "plan": {
+      "STARTER": "Starter",
+      "PROFESSIONAL": "Professional",
+      "ENTERPRISE": "Enterprise"
     },
     "activityType": {
       "task": "Task",

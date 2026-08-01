@@ -1,6 +1,16 @@
-import { Building2 } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { SettingsTabs } from "@/components/settings/settings-tabs";
+import { CompanySettingsContent } from "@/components/settings/company-settings-content";
 
-export default function SettingsPage() {
-  return <PlaceholderPage namespace="pages.settings" icon={Building2} />;
+export default async function SettingsPage() {
+  const t = await getTranslations("pages.settings");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <SettingsTabs />
+      <CompanySettingsContent />
+    </>
+  );
 }

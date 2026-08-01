@@ -424,19 +424,52 @@
     },
     "settings": {
       "title": "Настройки",
-      "subtitle": "Управление настройками компании, тарифом и интеграциями."
+      "subtitle": "Управление настройками компании, тарифом и интеграциями.",
+      "name": "Название компании",
+      "industry": "Отрасль",
+      "timezone": "Часовой пояс",
+      "save": "Сохранить",
+      "tabs": {
+        "company": "Компания",
+        "team": "Команда",
+        "integrations": "Интеграции",
+        "plan": "Тариф"
+      }
     },
     "settingsTeam": {
       "title": "Команда",
-      "subtitle": "Управление пользователями и ролями"
+      "subtitle": "Управление пользователями и ролями",
+      "invite": "Пригласить",
+      "empty": "Участники не найдены.",
+      "columnUser": "Пользователь",
+      "columnRole": "Роль",
+      "columnStatus": "Статус",
+      "columnActions": "",
+      "activate": "Активировать",
+      "suspend": "Приостановить",
+      "remove": "Удалить",
+      "inviteSheet": {
+        "title": "Пригласить пользователя",
+        "name": "Полное имя",
+        "email": "Электронная почта",
+        "role": "Роль",
+        "invite": "Отправить приглашение"
+      }
     },
     "settingsIntegrations": {
       "title": "Интеграции",
-      "subtitle": "Статус подключённых сервисов"
+      "subtitle": "Статус подключённых сервисов",
+      "connected": "Подключено",
+      "notConnected": "Не подключено",
+      "comingSoon": "Скоро"
     },
     "settingsPlan": {
       "title": "Тариф и оплата",
-      "subtitle": "Управление подпиской"
+      "subtitle": "Управление подпиской",
+      "currentPlan": "Текущий тариф",
+      "changePlan": "Изменить тариф",
+      "save": "Сохранить",
+      "ownerOnly": "Только владелец рабочего пространства может изменить тариф."
     }
   },
   "enums": {
@@ -483,6 +516,25 @@
       "SCHEDULED": "Запланировано",
       "COMPLETED": "Завершено",
       "CANCELLED": "Отменено"
+    },
+    "userRole": {
+      "OWNER": "Владелец",
+      "ADMIN": "Администратор",
+      "MANAGER": "Менеджер",
+      "SALES": "Продажи",
+      "SUPPORT": "Поддержка",
+      "EMPLOYEE": "Сотрудник",
+      "READ_ONLY": "Только чтение"
+    },
+    "userStatus": {
+      "ACTIVE": "Активен",
+      "INVITED": "Приглашён",
+      "SUSPENDED": "Приостановлен"
+    },
+    "plan": {
+      "STARTER": "Starter",
+      "PROFESSIONAL": "Professional",
+      "ENTERPRISE": "Enterprise"
     },
     "activityType": {
       "task": "Задача",

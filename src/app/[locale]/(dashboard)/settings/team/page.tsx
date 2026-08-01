@@ -1,6 +1,16 @@
-import { Users } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { SettingsTabs } from "@/components/settings/settings-tabs";
+import { TeamContent } from "@/components/settings/team-content";
 
-export default function SettingsTeamPage() {
-  return <PlaceholderPage namespace="pages.settingsTeam" icon={Users} />;
+export default async function SettingsTeamPage() {
+  const t = await getTranslations("pages.settingsTeam");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <SettingsTabs />
+      <TeamContent />
+    </>
+  );
 }

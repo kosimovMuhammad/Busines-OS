@@ -66,6 +66,8 @@ export type UpdateUserRequest = {
   status?: UserStatus;
 };
 
+export type UpdateRoleRequest = { role: UserRole };
+
 // ---- Company ----
 
 export type Company = {
@@ -83,6 +85,10 @@ export type UpdateCompanyRequest = {
   industry?: string;
   timezone?: string;
 };
+
+export type PlanInfo = { plan: Plan };
+
+export type UpdatePlanRequest = { plan: Plan };
 
 // ---- Contacts ----
 

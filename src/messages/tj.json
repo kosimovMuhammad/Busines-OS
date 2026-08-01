@@ -424,19 +424,52 @@
     },
     "settings": {
       "title": "Танзимот",
-      "subtitle": "Идоракунии танзимоти ширкат, тарифи баланд ва интегратсияҳо."
+      "subtitle": "Идоракунии танзимоти ширкат, тарифи баланд ва интегратсияҳо.",
+      "name": "Номи ширкат",
+      "industry": "Соҳа",
+      "timezone": "Минтақаи вақт",
+      "save": "Нигоҳ доштан",
+      "tabs": {
+        "company": "Ширкат",
+        "team": "Дастаи корӣ",
+        "integrations": "Интегратсияҳо",
+        "plan": "Тариф"
+      }
     },
     "settingsTeam": {
       "title": "Дастаи корӣ",
-      "subtitle": "Идоракунии корбарон ва нақшҳо"
+      "subtitle": "Идоракунии корбарон ва нақшҳо",
+      "invite": "Даъват кардан",
+      "empty": "Аъзои дастаи корӣ ёфт нашуд.",
+      "columnUser": "Корбар",
+      "columnRole": "Нақш",
+      "columnStatus": "Ҳолат",
+      "columnActions": "",
+      "activate": "Фаъол кардан",
+      "suspend": "Боздоштан",
+      "remove": "Нест кардан",
+      "inviteSheet": {
+        "title": "Даъвати корбар",
+        "name": "Номи пурра",
+        "email": "Суроғаи почтаи электронӣ",
+        "role": "Нақш",
+        "invite": "Фиристодани даъват"
+      }
     },
     "settingsIntegrations": {
       "title": "Интегратсияҳо",
-      "subtitle": "Ҳолати хидматҳои пайвастшуда"
+      "subtitle": "Ҳолати хидматҳои пайвастшуда",
+      "connected": "Пайваст аст",
+      "notConnected": "Пайваст нашудааст",
+      "comingSoon": "Ба зудӣ"
     },
     "settingsPlan": {
       "title": "Тариф ва пардохт",
-      "subtitle": "Идоракунии обуна"
+      "subtitle": "Идоракунии обуна",
+      "currentPlan": "Тарифи ҷорӣ",
+      "changePlan": "Тағйири тариф",
+      "save": "Нигоҳ доштан",
+      "ownerOnly": "Танҳо соҳиби фазои корӣ метавонад тарифро тағйир диҳад."
     }
   },
   "enums": {
@@ -483,6 +516,25 @@
       "SCHEDULED": "Ба нақша гирифташуда",
       "COMPLETED": "Анҷомёфта",
       "CANCELLED": "Бекоршуда"
+    },
+    "userRole": {
+      "OWNER": "Соҳиб",
+      "ADMIN": "Маъмур",
+      "MANAGER": "Менеҷер",
+      "SALES": "Фурӯш",
+      "SUPPORT": "Дастгирӣ",
+      "EMPLOYEE": "Корманд",
+      "READ_ONLY": "Танҳо хондан"
+    },
+    "userStatus": {
+      "ACTIVE": "Фаъол",
+      "INVITED": "Даъватшуда",
+      "SUSPENDED": "Боздошташуда"
+    },
+    "plan": {
+      "STARTER": "Starter",
+      "PROFESSIONAL": "Professional",
+      "ENTERPRISE": "Enterprise"
     },
     "activityType": {
       "task": "Вазифа",
