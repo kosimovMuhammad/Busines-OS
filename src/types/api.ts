@@ -366,6 +366,65 @@ export type UpdateMeetingRequest = Partial<CreateMeetingRequest>;
 export type DashboardOverview = {
   contactsCount: number;
   openTasksCount: number;
-  dealsByStage: { stage: DealStage; count: number; totalValue: number }[];
+  dealsByStage: { stage: DealStage; count: number }[];
   todayTimeTrackedSec: number;
+};
+
+export type SalesAnalytics = {
+  byStage: { stage: DealStage; count: number; totalValue: number }[];
+  wonCount: number;
+  wonValue: number;
+  lostCount: number;
+  winRate: number;
+};
+
+export type MonthlyValue = { month: string; value: number };
+
+export type RevenueAnalytics = {
+  totalWonValue: number;
+  byMonth: MonthlyValue[];
+};
+
+export type TaskAnalytics = {
+  byStatus: { status: TaskStatus; count: number }[];
+  byPriority: { priority: TaskPriority; count: number }[];
+  overdueCount: number;
+};
+
+export type ActivityFeedItem = {
+  type: string;
+  timestamp: string;
+  data: {
+    id: string;
+    title?: string;
+    status?: string;
+    stage?: string;
+    updatedAt?: string;
+    [key: string]: unknown;
+  };
+};
+
+export type FinanceAnalytics = {
+  totalOutstanding: number;
+  totalPaid: number;
+  overdueCount: number;
+  overdueAmount: number;
+  revenueByMonth: MonthlyValue[];
+};
+
+export type ForecastAnalytics = {
+  estimatedRevenue: number;
+  confidencePercentage: number;
+  breakdown: {
+    weightedDealValue: number;
+    weightedInvoiceValue: number;
+    openDealsCount: number;
+    dueSoonInvoicesCount: number;
+  };
+  summary: string;
+};
+
+export type UpcomingMeeting = Meeting & {
+  contact?: Contact | null;
+  deal?: Deal | null;
 };

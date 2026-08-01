@@ -79,21 +79,116 @@
   "pages": {
     "dashboard": {
       "title": "Dashboard Overview",
-      "subtitle": "Command center for your business operations"
+      "subtitle": "Command center for your business operations",
+      "kpi": {
+        "revenue": "Total Revenue",
+        "openDeals": "Open Deals",
+        "openTasks": "Open Tasks",
+        "outstanding": "Outstanding Invoices"
+      },
+      "revenueChart": {
+        "title": "Revenue Over Time",
+        "subtitle": "Won deals over time",
+        "empty": "No revenue data yet."
+      },
+      "pipeline": {
+        "title": "Sales Pipeline",
+        "subtitle": "Current deal distribution",
+        "total": "Total",
+        "empty": "No active deals yet."
+      },
+      "tasksBreakdown": {
+        "title": "Task Status",
+        "subtitle": "Breakdown by status",
+        "overdue": "{count} overdue",
+        "empty": "No tasks yet."
+      },
+      "activityFeed": {
+        "title": "Activity Feed",
+        "empty": "No activity yet."
+      },
+      "upcomingMeetings": {
+        "title": "Upcoming Meetings",
+        "empty": "No meetings scheduled."
+      },
+      "forecast": {
+        "title": "30-Day Forecast",
+        "confidence": "Confidence"
+      }
     },
     "contacts": { "title": "Contacts", "subtitle": "Every relationship, in one place" },
     "deals": { "title": "Deals Pipeline", "subtitle": "Current deal distribution" },
-    "tasks": { "title": "Tasks", "subtitle": "Track work and time across your team" },
-    "communications": { "title": "Communications", "subtitle": "Unified feed across every channel" },
-    "whatsapp": { "title": "WhatsApp Management", "subtitle": "Centralized control for your business messaging infrastructure." },
-    "email": { "title": "Email", "subtitle": "Connect and send from your inbox" },
-    "ai": { "title": "AI Assistant", "subtitle": "Ask questions, draft emails, generate quotations" },
-    "invoices": { "title": "Invoicing", "subtitle": "Track billing and payments" },
-    "files": { "title": "Files", "subtitle": "Documents linked to contacts, deals, and invoices" },
-    "calendar": { "title": "Calendar", "subtitle": "Meetings and scheduling" },
-    "settings": { "title": "Settings", "subtitle": "Manage your workspace configuration, billing, and system integrations." },
-    "settingsTeam": { "title": "Team", "subtitle": "Manage users and roles" },
-    "settingsIntegrations": { "title": "Integrations", "subtitle": "Connected services status" },
-    "settingsPlan": { "title": "Billing & Plan", "subtitle": "Manage your subscription" }
+    "tasks": {
+      "title": "Tasks",
+      "subtitle": "Track work and time across your team"
+    },
+    "communications": {
+      "title": "Communications",
+      "subtitle": "Unified feed across every channel"
+    },
+    "whatsapp": {
+      "title": "WhatsApp Management",
+      "subtitle": "Centralized control for your business messaging infrastructure."
+    },
+    "email": {
+      "title": "Email",
+      "subtitle": "Connect and send from your inbox"
+    },
+    "ai": {
+      "title": "AI Assistant",
+      "subtitle": "Ask questions, draft emails, generate quotations"
+    },
+    "invoices": {
+      "title": "Invoicing",
+      "subtitle": "Track billing and payments"
+    },
+    "files": {
+      "title": "Files",
+      "subtitle": "Documents linked to contacts, deals, and invoices"
+    },
+    "calendar": {
+      "title": "Calendar",
+      "subtitle": "Meetings and scheduling"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your workspace configuration, billing, and system integrations."
+    },
+    "settingsTeam": {
+      "title": "Team",
+      "subtitle": "Manage users and roles"
+    },
+    "settingsIntegrations": {
+      "title": "Integrations",
+      "subtitle": "Connected services status"
+    },
+    "settingsPlan": {
+      "title": "Billing & Plan",
+      "subtitle": "Manage your subscription"
+    }
+  },
+  "enums": {
+    "dealStage": {
+      "LEAD": "Lead",
+      "QUALIFIED": "Qualified",
+      "PROPOSAL": "Proposal",
+      "NEGOTIATION": "Negotiation",
+      "WON": "Won",
+      "LOST": "Lost"
+    },
+    "taskStatus": {
+      "TODO": "To Do",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed",
+      "ARCHIVED": "Archived"
+    },
+    "activityType": {
+      "task": "Task",
+      "deal": "Deal",
+      "contact": "Contact",
+      "invoice": "Invoice",
+      "meeting": "Meeting",
+      "communication": "Communication"
+    }
   }
 }

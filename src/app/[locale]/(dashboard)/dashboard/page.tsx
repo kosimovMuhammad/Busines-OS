@@ -1,6 +1,14 @@
-import { LayoutGrid } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { DashboardContent } from "@/components/dashboard/dashboard-content";
 
-export default function DashboardPage() {
-  return <PlaceholderPage namespace="pages.dashboard" icon={LayoutGrid} />;
+export default async function DashboardPage() {
+  const t = await getTranslations("pages.dashboard");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <DashboardContent />
+    </>
+  );
 }
