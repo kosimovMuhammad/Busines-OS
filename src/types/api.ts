@@ -144,7 +144,11 @@ export type CreateDealRequest = {
   ownerId?: string;
 };
 
-export type UpdateDealRequest = Partial<Omit<CreateDealRequest, "contactId">> & {
+// PATCH /deals/:id rejects `stage` (422 "property stage should not exist") -
+// stage changes only go through PATCH /deals/:id/stage (see updateDealStage).
+export type UpdateDealRequest = Partial<
+  Omit<CreateDealRequest, "contactId" | "stage">
+> & {
   contactId?: string;
 };
 
