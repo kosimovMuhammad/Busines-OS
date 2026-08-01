@@ -285,30 +285,64 @@ export type AiGenerateQuotationRequest = { dealId: string; items: QuotationItem[
 
 export type SummarizeRequest = { communicationId: string };
 
-// Every AI "enqueue" endpoint (verified via POST /ai/generate-quotation,
-// which is the only one that queues successfully in this environment -
-// /ai/summarize, /ai/query and /ai/draft-email all 500 synchronously here
-// because GEMINI_API_KEY isn't configured, so their queued-response shape
-// is inferred by symmetry with the description text rather than observed
-// directly) returns this shape, not a 200 body.
+// Verified live once GEMINI_API_KEY was provisioned: /ai/query,
+// /ai/draft-email and /ai/generate-quotation all return {queued:true, id}
+// from their POST. /ai/summarize is the one exception - it echoes back
+// {queued:true, communicationId} instead of an `id` (see
+// AiSummarizeQueued below), since its result is looked up by
+// communicationId, not a separate job id.
 export type AiJobQueued = { queued: true; id: string };
+
+export type AiSummarizeQueued = { queued: true; communicationId: string };
 
 // Every AI "result" endpoint follows the same real, verified envelope:
 // 200 = done (shape below, per endpoint), 404 = not ready yet (poll again),
 // 422 = failed (standard Nest error body, e.g. verified real
-// "AWS S3 not configured" for quotations) - there is no embedded
+// "AWS S3 not configured" for quotations, or "couldn't understand the
+// question" for an unclassifiable query) - there is no embedded
 // PENDING/FAILED status field in a 200 body as TZ's generic description
 // might suggest.
 export type AiSummaryRecord = {
   id: string;
   communicationId: string;
   summary: string;
-  createdAt: string;
+  sentiment: "POSITIVE" | "NEUTRAL" | "NEGATIVE";
+  actionItems: {
+    tasks: string[];
+    dealStage: string | null;
+    importantDates: string[];
+  };
+  nextFollowUp: string | null;
+  generatedAt: string;
 };
 
-export type AiQueryResult = { rows: unknown[]; answer: string };
+// `resultRows` shape varies by `intent` (e.g. REVENUE_BY_PERIOD above) -
+// the UI only relies on `answer`, a ready-to-display sentence.
+export type AiQueryResult = {
+  id: string;
+  companyId: string;
+  question: string;
+  intent: string;
+  status: "COMPLETED";
+  resultRows: unknown;
+  answer: string;
+  errorMessage: string | null;
+  createdAt: string;
+  completedAt: string;
+};
 
-export type AiDraftEmailResult = { subject: string; body: string };
+export type AiDraftEmailResult = {
+  id: string;
+  companyId: string;
+  contactId: string;
+  context: string | null;
+  status: "COMPLETED";
+  subject: string;
+  body: string;
+  errorMessage: string | null;
+  createdAt: string;
+  completedAt: string;
+};
 
 // Inferred from the endpoint's Swagger description ("totals + FileAsset +
 // presigned download URL") - never observed as a real 200 in this

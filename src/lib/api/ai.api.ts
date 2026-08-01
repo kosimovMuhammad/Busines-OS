@@ -7,13 +7,14 @@ import type {
   AiQueryRequest,
   AiQueryResult,
   AiQuotationResult,
+  AiSummarizeQueued,
   AiSummaryRecord,
   SummarizeRequest,
 } from "@/types/api";
 
 export const aiApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    summarize: builder.mutation<AiJobQueued, SummarizeRequest>({
+    summarize: builder.mutation<AiSummarizeQueued, SummarizeRequest>({
       query: (body) => ({ url: "/ai/summarize", method: "POST", body }),
     }),
     getSummary: builder.query<AiSummaryRecord, string>({
