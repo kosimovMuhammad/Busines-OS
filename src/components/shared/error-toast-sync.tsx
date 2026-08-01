@@ -12,6 +12,7 @@ export function ErrorToastSync() {
       generic: t("generic"),
       conflict: t("conflict"),
       forbidden: t("forbidden"),
+      aiUnavailable: t("aiUnavailable"),
     });
   }, [t]);
 

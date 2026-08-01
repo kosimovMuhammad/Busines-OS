@@ -212,7 +212,8 @@ export type ActiveTimeEntry = TimeEntry & { task: Task };
 export type Communication = {
   id: string;
   companyId: string;
-  contactId: string;
+  // null when the contact was later deleted.
+  contactId: string | null;
   channel: CommChannel;
   content: string;
   direction: "INBOUND" | "OUTBOUND";
@@ -269,6 +270,17 @@ export type AiGenerateQuotationRequest = { dealId: string; items: QuotationItem[
 
 export type AiJobPending = { status: "PENDING" };
 export type AiJobFailed = { status: "FAILED"; error: string };
+
+export type SummarizeRequest = { communicationId: string };
+// The "COMPLETED" shape is inferred from TZ §8.4's generic async-job
+// pattern, not verified against a real response - GEMINI_API_KEY isn't
+// configured in this environment (POST /ai/summarize always 500s with
+// "GEMINI_API_KEY not configured"), so summarization never reaches a
+// completed state to observe. Revisit once the key is provisioned.
+export type AiSummaryResult =
+  | AiJobPending
+  | AiJobFailed
+  | { status: "COMPLETED"; summary: string };
 
 // ---- Files ----
 

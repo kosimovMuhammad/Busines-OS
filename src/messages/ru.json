@@ -4,7 +4,8 @@
     "error": {
       "generic": "Что-то пошло не так. Попробуйте ещё раз.",
       "conflict": "Это уже существует.",
-      "forbidden": "У вас нет прав для этого действия."
+      "forbidden": "У вас нет прав для этого действия.",
+      "aiUnavailable": "Функции AI подключаются. Попробуйте позже."
     },
     "logout": "Выйти"
   },
@@ -206,7 +207,21 @@
     },
     "communications": {
       "title": "Коммуникации",
-      "subtitle": "Единая лента по всем каналам"
+      "subtitle": "Единая лента по всем каналам",
+      "allContacts": "Все контакты",
+      "allChannels": "Все каналы",
+      "addNote": "Добавить заметку",
+      "empty": "Пока нет сообщений.",
+      "unknownContact": "Без контакта",
+      "summarize": "Резюмировать",
+      "noteSheet": {
+        "title": "Новая заметка",
+        "contact": "Контакт",
+        "selectContact": "Выберите контакт",
+        "content": "Текст",
+        "contentPlaceholder": "Введите текст заметки...",
+        "save": "Сохранить"
+      }
     },
     "whatsapp": {
       "title": "Управление WhatsApp",
@@ -226,7 +241,21 @@
     },
     "files": {
       "title": "Файлы",
-      "subtitle": "Документы, привязанные к контактам, сделкам и счетам"
+      "subtitle": "Документы, привязанные к контактам, сделкам и счетам",
+      "allContacts": "Все контакты",
+      "uploadFile": "Загрузить файл",
+      "empty": "Файлы не найдены.",
+      "delete": "Удалить",
+      "upload": {
+        "title": "Загрузка файла",
+        "relatedContact": "Связанный контакт",
+        "relatedDeal": "Связанная сделка",
+        "none": "Нет",
+        "relationRequired": "Выберите контакт или сделку.",
+        "chooseFile": "Выбрать файл",
+        "uploaded": "Файл загружен.",
+        "storageUnavailable": "Хранилище файлов ещё настраивается. Попробуйте позже."
+      }
     },
     "calendar": {
       "title": "Календарь",
@@ -269,6 +298,12 @@
       "MEDIUM": "Средний",
       "HIGH": "Высокий",
       "URGENT": "Срочный"
+    },
+    "commChannel": {
+      "WHATSAPP": "WhatsApp",
+      "EMAIL": "Email",
+      "MANUAL_NOTE": "Заметка",
+      "PHONE_CALL": "Звонок"
     },
     "activityType": {
       "task": "Задача",

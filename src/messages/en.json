@@ -4,7 +4,8 @@
     "error": {
       "generic": "Something went wrong. Please try again.",
       "conflict": "That already exists.",
-      "forbidden": "You don't have permission to do that."
+      "forbidden": "You don't have permission to do that.",
+      "aiUnavailable": "AI features are being activated. Try again later."
     },
     "logout": "Log out"
   },
@@ -206,7 +207,21 @@
     },
     "communications": {
       "title": "Communications",
-      "subtitle": "Unified feed across every channel"
+      "subtitle": "Unified feed across every channel",
+      "allContacts": "All Contacts",
+      "allChannels": "All Channels",
+      "addNote": "Add Note",
+      "empty": "No messages yet.",
+      "unknownContact": "No contact",
+      "summarize": "Summarize",
+      "noteSheet": {
+        "title": "New Note",
+        "contact": "Contact",
+        "selectContact": "Select a contact",
+        "content": "Content",
+        "contentPlaceholder": "Type the note...",
+        "save": "Save"
+      }
     },
     "whatsapp": {
       "title": "WhatsApp Management",
@@ -226,7 +241,21 @@
     },
     "files": {
       "title": "Files",
-      "subtitle": "Documents linked to contacts, deals, and invoices"
+      "subtitle": "Documents linked to contacts, deals, and invoices",
+      "allContacts": "All Contacts",
+      "uploadFile": "Upload File",
+      "empty": "No files found.",
+      "delete": "Delete",
+      "upload": {
+        "title": "Upload File",
+        "relatedContact": "Related contact",
+        "relatedDeal": "Related deal",
+        "none": "None",
+        "relationRequired": "Select a contact or deal.",
+        "chooseFile": "Choose File",
+        "uploaded": "File uploaded.",
+        "storageUnavailable": "File storage is still being set up. Try again later."
+      }
     },
     "calendar": {
       "title": "Calendar",
@@ -269,6 +298,12 @@
       "MEDIUM": "Medium",
       "HIGH": "High",
       "URGENT": "Urgent"
+    },
+    "commChannel": {
+      "WHATSAPP": "WhatsApp",
+      "EMAIL": "Email",
+      "MANUAL_NOTE": "Note",
+      "PHONE_CALL": "Phone Call"
     },
     "activityType": {
       "task": "Task",
