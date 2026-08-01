@@ -386,7 +386,41 @@
     },
     "calendar": {
       "title": "Calendar",
-      "subtitle": "Meetings and scheduling"
+      "subtitle": "Meetings and scheduling",
+      "today": "Today",
+      "allContacts": "All Contacts",
+      "allOrganizers": "All Organizers",
+      "createMeeting": "New Meeting",
+      "form": {
+        "createTitle": "New Meeting",
+        "editTitle": "Edit Meeting",
+        "status": "Status",
+        "title": "Title",
+        "startAt": "Start",
+        "endAt": "End",
+        "endAfterStart": "End time must be after the start time.",
+        "location": "Location",
+        "description": "Description",
+        "relatedContact": "Related contact",
+        "relatedDeal": "Related deal",
+        "none": "None",
+        "attendees": "Attendees",
+        "save": "Save",
+        "create": "Create",
+        "delete": "Delete"
+      },
+      "deleteDialog": {
+        "title": "Delete meeting?",
+        "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+        "cancel": "Cancel"
+      },
+      "connect": {
+        "title": "Google Calendar",
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "connect": "Connect",
+        "disconnect": "Disconnect"
+      }
     },
     "settings": {
       "title": "Settings",
@@ -444,6 +478,11 @@
       "BANK_TRANSFER": "Bank Transfer",
       "CARD": "Card",
       "OTHER": "Other"
+    },
+    "meetingStatus": {
+      "SCHEDULED": "Scheduled",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
     },
     "activityType": {
       "task": "Task",

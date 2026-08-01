@@ -386,7 +386,41 @@
     },
     "calendar": {
       "title": "Календарь",
-      "subtitle": "Встречи и планирование"
+      "subtitle": "Встречи и планирование",
+      "today": "Сегодня",
+      "allContacts": "Все контакты",
+      "allOrganizers": "Все организаторы",
+      "createMeeting": "Новая встреча",
+      "form": {
+        "createTitle": "Новая встреча",
+        "editTitle": "Редактировать встречу",
+        "status": "Статус",
+        "title": "Название",
+        "startAt": "Начало",
+        "endAt": "Окончание",
+        "endAfterStart": "Время окончания должно быть позже времени начала.",
+        "location": "Место",
+        "description": "Описание",
+        "relatedContact": "Связанный контакт",
+        "relatedDeal": "Связанная сделка",
+        "none": "Нет",
+        "attendees": "Участники",
+        "save": "Сохранить",
+        "create": "Создать",
+        "delete": "Удалить"
+      },
+      "deleteDialog": {
+        "title": "Удалить встречу?",
+        "description": "Вы уверены, что хотите удалить «{title}»? Это действие необратимо.",
+        "cancel": "Отмена"
+      },
+      "connect": {
+        "title": "Google Calendar",
+        "connected": "Подключено",
+        "notConnected": "Не подключено",
+        "connect": "Подключить",
+        "disconnect": "Отключить"
+      }
     },
     "settings": {
       "title": "Настройки",
@@ -444,6 +478,11 @@
       "BANK_TRANSFER": "Банковский перевод",
       "CARD": "Карта",
       "OTHER": "Другое"
+    },
+    "meetingStatus": {
+      "SCHEDULED": "Запланировано",
+      "COMPLETED": "Завершено",
+      "CANCELLED": "Отменено"
     },
     "activityType": {
       "task": "Задача",

@@ -386,7 +386,41 @@
     },
     "calendar": {
       "title": "Тақвим",
-      "subtitle": "Вохӯриҳо ва ҷадвалбандӣ"
+      "subtitle": "Вохӯриҳо ва ҷадвалбандӣ",
+      "today": "Имрӯз",
+      "allContacts": "Ҳамаи тамосҳо",
+      "allOrganizers": "Ҳамаи ташкилкунандагон",
+      "createMeeting": "Вохӯрии нав",
+      "form": {
+        "createTitle": "Вохӯрии нав",
+        "editTitle": "Таҳрири вохӯрӣ",
+        "status": "Ҳолат",
+        "title": "Ном",
+        "startAt": "Оғоз",
+        "endAt": "Анҷом",
+        "endAfterStart": "Вақти анҷом бояд аз вақти оғоз дертар бошад.",
+        "location": "Ҷой",
+        "description": "Тавсиф",
+        "relatedContact": "Тамоси марбут",
+        "relatedDeal": "Муомилаи марбут",
+        "none": "Нест",
+        "attendees": "Иштирокчиён",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан",
+        "delete": "Нест кардан"
+      },
+      "deleteDialog": {
+        "title": "Вохӯрӣ нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед «{title}»-ро нест кунед? Ин амал баргарданок нест.",
+        "cancel": "Бекор кардан"
+      },
+      "connect": {
+        "title": "Google Calendar",
+        "connected": "Пайваст аст",
+        "notConnected": "Пайваст нашудааст",
+        "connect": "Пайваст кардан",
+        "disconnect": "Қатъ кардан"
+      }
     },
     "settings": {
       "title": "Танзимот",
@@ -444,6 +478,11 @@
       "BANK_TRANSFER": "Гузаронии бонкӣ",
       "CARD": "Корт",
       "OTHER": "Дигар"
+    },
+    "meetingStatus": {
+      "SCHEDULED": "Ба нақша гирифташуда",
+      "COMPLETED": "Анҷомёфта",
+      "CANCELLED": "Бекоршуда"
     },
     "activityType": {
       "task": "Вазифа",

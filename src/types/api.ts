@@ -450,6 +450,13 @@ export type CreatePaymentRequest = {
 
 // ---- Calendar ----
 
+// Verified live: GET /meetings (list), the single-meeting GET, and
+// /dashboard/upcoming-meetings all return this same shape - contact/deal
+// are always populated (never omitted on the list like Invoicing does),
+// and Google Calendar sync metadata is present on every record even when
+// never connected (all null/NOT_SYNCED).
+export type CalendarSyncStatus = "NOT_SYNCED" | "SYNCED" | "ERROR";
+
 export type Meeting = {
   id: string;
   companyId: string;
@@ -463,8 +470,15 @@ export type Meeting = {
   location: string | null;
   description: string | null;
   status: MeetingStatus;
+  googleEventId: string | null;
+  googleCalendarId: string | null;
+  syncStatus: CalendarSyncStatus;
+  syncError: string | null;
+  lastSyncedAt: string | null;
   createdAt: string;
   updatedAt: string;
+  contact: Contact | null;
+  deal: Deal | null;
 };
 
 export type CreateMeetingRequest = {
@@ -479,6 +493,19 @@ export type CreateMeetingRequest = {
 };
 
 export type UpdateMeetingRequest = Partial<CreateMeetingRequest>;
+
+export type UpdateMeetingStatusRequest = { status: MeetingStatus };
+
+// GET /calendar/status - `connected: false` verified live; the shape of
+// additional fields once connected is inferred from the endpoint's
+// "connection status and sync health" description.
+export type CalendarConnectionStatus = {
+  connected: boolean;
+  lastSyncedAt?: string | null;
+  syncError?: string | null;
+};
+
+export type CalendarConnectResponse = { url: string };
 
 // ---- Analytics / Dashboard ----
 
@@ -543,7 +570,6 @@ export type ForecastAnalytics = {
   summary: string;
 };
 
-export type UpcomingMeeting = Meeting & {
-  contact?: Contact | null;
-  deal?: Deal | null;
-};
+// contact/deal are already part of Meeting itself (verified always
+// populated) - this alias just documents intent at dashboard call sites.
+export type UpcomingMeeting = Meeting;

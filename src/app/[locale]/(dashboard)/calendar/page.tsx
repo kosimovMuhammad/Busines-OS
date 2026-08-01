@@ -1,6 +1,14 @@
-import { Calendar } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { CalendarContent } from "@/components/calendar/calendar-content";
 
-export default function CalendarPage() {
-  return <PlaceholderPage namespace="pages.calendar" icon={Calendar} />;
+export default async function CalendarPage() {
+  const t = await getTranslations("pages.calendar");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <CalendarContent />
+    </>
+  );
 }
