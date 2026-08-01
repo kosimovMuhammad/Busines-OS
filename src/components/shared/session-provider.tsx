@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useRefreshMutation } from "@/lib/api/auth.api";
 import { setCredentials, sessionCheckFailed } from "@/store/authSlice";
@@ -13,14 +13,25 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const initialized = useAppSelector((s) => s.auth.initialized);
   const accessToken = useAppSelector((s) => s.auth.accessToken);
   const [refresh] = useRefreshMutation();
+  const bootstrapStarted = useRef(false);
 
   useEffect(() => {
+    // Session state lives in the Redux store, which persists across
+    // route changes (see StoreProvider), but this component remounts
+    // every time navigation enters the (dashboard) layout — e.g. right
+    // after login. Skip the bootstrap call whenever a session already
+    // exists so it doesn't race the fresh login/refresh-token rotation
+    // and log the user back out. `bootstrapStarted` also protects
+    // against React Strict Mode's dev-only double effect invocation
+    // firing two concurrent /auth/refresh calls on first load.
+    if (initialized || bootstrapStarted.current) return;
+    bootstrapStarted.current = true;
+
     refresh()
       .unwrap()
       .then((data) => dispatch(setCredentials(data)))
       .catch(() => dispatch(sessionCheckFailed()));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [initialized, refresh, dispatch]);
 
   useEffect(() => {
     if (initialized && !accessToken) {
