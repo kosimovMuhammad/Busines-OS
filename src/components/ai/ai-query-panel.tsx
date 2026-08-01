@@ -100,7 +100,13 @@ export function AiQueryPanel() {
             }
           }}
         />
-        <Button type="button" size="icon" onClick={handleAsk} disabled={isLoading || !question.trim()}>
+        <Button
+          type="button"
+          size="icon"
+          aria-label={t("send")}
+          onClick={handleAsk}
+          disabled={isLoading || !question.trim()}
+        >
           {isLoading ? <Loader2 className="animate-spin" /> : <Send />}
         </Button>
       </div>

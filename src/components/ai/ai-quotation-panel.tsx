@@ -74,14 +74,14 @@ export function AiQuotationPanel() {
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="ai-quote-deal" className="text-xs font-medium text-text-tertiary uppercase">
           {t("deal")}
         </label>
         <Select
           value={dealId || NO_DEAL}
           onValueChange={(value) => setDealId(value === NO_DEAL || !value ? "" : value)}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger id="ai-quote-deal" className="w-full">
             <SelectValue>
               {(value: string) => {
                 const deal = deals?.find((d) => d.id === value);
@@ -134,6 +134,7 @@ export function AiQuotationPanel() {
               type="button"
               size="icon-sm"
               variant="ghost"
+              aria-label={t("removeItem")}
               onClick={() => setItems((prev) => prev.filter((_, i) => i !== index))}
               disabled={items.length === 1}
             >

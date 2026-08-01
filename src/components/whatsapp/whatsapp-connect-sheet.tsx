@@ -70,10 +70,11 @@ export function WhatsappConnectSheet({
           <p className="text-xs text-text-tertiary">{t("description")}</p>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="whatsapp-phoneNumberId" className="text-xs font-medium text-text-tertiary uppercase">
               {t("phoneNumberId")}
             </label>
             <input
+              id="whatsapp-phoneNumberId"
               className={inputClass}
               value={phoneNumberId}
               onChange={(e) => setPhoneNumberId(e.target.value)}
@@ -81,10 +82,11 @@ export function WhatsappConnectSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="whatsapp-wabaId" className="text-xs font-medium text-text-tertiary uppercase">
               {t("wabaId")}
             </label>
             <input
+              id="whatsapp-wabaId"
               className={inputClass}
               value={wabaId}
               onChange={(e) => setWabaId(e.target.value)}
@@ -92,10 +94,11 @@ export function WhatsappConnectSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="whatsapp-accessToken" className="text-xs font-medium text-text-tertiary uppercase">
               {t("accessToken")}
             </label>
             <input
+              id="whatsapp-accessToken"
               className={inputClass}
               type="password"
               value={accessToken}
@@ -104,10 +107,11 @@ export function WhatsappConnectSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="whatsapp-verifiedName" className="text-xs font-medium text-text-tertiary uppercase">
               {t("verifiedName")}
             </label>
             <input
+              id="whatsapp-verifiedName"
               className={inputClass}
               value={verifiedName}
               onChange={(e) => setVerifiedName(e.target.value)}

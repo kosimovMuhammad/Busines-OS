@@ -252,6 +252,7 @@
       },
       "composer": {
         "placeholder": "Type a message...",
+        "send": "Send message",
         "badRequest": "This contact needs a phone number and a connected WhatsApp account before you can send messages.",
         "unavailable": "WhatsApp sending isn't available yet for this number. Check back soon."
       }
@@ -285,6 +286,7 @@
       "query": {
         "empty": "Ask a question about your contacts, deals, or revenue.",
         "placeholder": "Show clients who haven't replied in 14 days...",
+        "send": "Ask",
         "working": "AI is working...",
         "failed": "AI features are being activated. Try again later."
       },
@@ -308,6 +310,7 @@
         "quantity": "Qty",
         "unitPrice": "Unit price",
         "addItem": "Add item",
+        "removeItem": "Remove item",
         "subtotal": "Subtotal",
         "generate": "Generate Quotation",
         "working": "AI is working...",
@@ -388,6 +391,8 @@
       "title": "Calendar",
       "subtitle": "Meetings and scheduling",
       "today": "Today",
+      "previousMonth": "Previous month",
+      "nextMonth": "Next month",
       "allContacts": "All Contacts",
       "allOrganizers": "All Organizers",
       "createMeeting": "New Meeting",

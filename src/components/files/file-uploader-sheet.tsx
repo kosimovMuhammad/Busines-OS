@@ -65,14 +65,14 @@ export function FileUploaderSheet({
 
         <div className="flex flex-col gap-4 px-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="upload-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedContact")}
             </label>
             <Select
               value={contactId || NONE}
               onValueChange={(value) => setContactId(value === NONE || !value ? "" : value)}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="upload-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const c = contactsPage?.data.find((x) => x.id === value);
@@ -94,14 +94,14 @@ export function FileUploaderSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="upload-deal" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedDeal")}
             </label>
             <Select
               value={dealId || NONE}
               onValueChange={(value) => setDealId(value === NONE || !value ? "" : value)}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="upload-deal" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const d = deals?.find((x) => x.id === value);

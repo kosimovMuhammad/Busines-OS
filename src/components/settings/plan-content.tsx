@@ -54,11 +54,11 @@ export function PlanContent() {
       {isOwner ? (
         <>
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="plan-select" className="text-xs font-medium text-text-tertiary uppercase">
               {t("changePlan")}
             </label>
             <Select value={current} onValueChange={(value) => setSelected(value as Plan)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="plan-select" className="w-full">
                 <SelectValue>{(value: string) => tPlan(value as Plan)}</SelectValue>
               </SelectTrigger>
               <SelectContent>

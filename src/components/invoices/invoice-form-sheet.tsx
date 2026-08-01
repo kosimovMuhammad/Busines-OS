@@ -114,7 +114,7 @@ export function InvoiceFormSheet({
           className="flex flex-1 flex-col gap-4 overflow-y-auto px-4"
         >
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invoice-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("contact")}
             </label>
             <Select
@@ -123,7 +123,7 @@ export function InvoiceFormSheet({
                 setValue("contactId", value === NO_CONTACT || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="invoice-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const c = contactsPage?.data.find((x) => x.id === value);
@@ -150,7 +150,7 @@ export function InvoiceFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invoice-deal" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedDeal")}
             </label>
             <Select
@@ -159,7 +159,7 @@ export function InvoiceFormSheet({
                 setValue("dealId", value === NONE || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="invoice-deal" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const d = deals?.find((x) => x.id === value);
@@ -180,10 +180,11 @@ export function InvoiceFormSheet({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="invoice-amount" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("amount")}
               </label>
               <input
+                id="invoice-amount"
                 className={inputClass}
                 type="number"
                 min="0"
@@ -195,28 +196,29 @@ export function InvoiceFormSheet({
               )}
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="invoice-currency" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("currency")}
               </label>
-              <input className={inputClass} {...register("currency")} />
+              <input id="invoice-currency" className={inputClass} {...register("currency")} />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invoice-dueDate" className="text-xs font-medium text-text-tertiary uppercase">
               {t("dueDate")}
             </label>
-            <input className={inputClass} type="date" {...register("dueDate")} />
+            <input id="invoice-dueDate" className={inputClass} type="date" {...register("dueDate")} />
             {errors.dueDate && (
               <p className="text-xs text-danger">{errors.dueDate.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invoice-notes" className="text-xs font-medium text-text-tertiary uppercase">
               {t("notes")}
             </label>
             <textarea
+              id="invoice-notes"
               className={`${inputClass} min-h-20 resize-none`}
               {...register("notes")}
             />

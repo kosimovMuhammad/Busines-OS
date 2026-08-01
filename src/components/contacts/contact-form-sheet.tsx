@@ -129,37 +129,38 @@ export function ContactFormSheet({
           className="flex flex-1 flex-col gap-4 overflow-y-auto px-4"
         >
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-firstName" className="text-xs font-medium text-text-tertiary uppercase">
               {t("firstName")}
             </label>
-            <input className={inputClass} {...register("firstName")} />
+            <input id="contact-firstName" className={inputClass} {...register("firstName")} />
             {errors.firstName && (
               <p className="text-xs text-danger">{errors.firstName.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-lastName" className="text-xs font-medium text-text-tertiary uppercase">
               {t("lastName")}
             </label>
-            <input className={inputClass} {...register("lastName")} />
+            <input id="contact-lastName" className={inputClass} {...register("lastName")} />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-email" className="text-xs font-medium text-text-tertiary uppercase">
               {t("email")}
             </label>
-            <input className={inputClass} type="email" {...register("email")} />
+            <input id="contact-email" className={inputClass} type="email" {...register("email")} />
             {errors.email && (
               <p className="text-xs text-danger">{errors.email.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-phone" className="text-xs font-medium text-text-tertiary uppercase">
               {t("phone")}
             </label>
             <input
+              id="contact-phone"
               className={inputClass}
               placeholder="+992901234567"
               {...register("phone")}
@@ -170,21 +171,21 @@ export function ContactFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-position" className="text-xs font-medium text-text-tertiary uppercase">
               {t("position")}
             </label>
-            <input className={inputClass} {...register("position")} />
+            <input id="contact-position" className={inputClass} {...register("position")} />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-companyName" className="text-xs font-medium text-text-tertiary uppercase">
               {t("companyName")}
             </label>
-            <input className={inputClass} {...register("companyName")} />
+            <input id="contact-companyName" className={inputClass} {...register("companyName")} />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-owner" className="text-xs font-medium text-text-tertiary uppercase">
               {t("owner")}
             </label>
             <Select
@@ -193,7 +194,7 @@ export function ContactFormSheet({
                 setValue("ownerId", value === UNASSIGNED || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="contact-owner" className="w-full">
                 <SelectValue>
                   {(value: string) =>
                     !value || value === UNASSIGNED
@@ -214,10 +215,11 @@ export function ContactFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-tags" className="text-xs font-medium text-text-tertiary uppercase">
               {t("tags")}
             </label>
             <input
+              id="contact-tags"
               className={inputClass}
               placeholder={t("tagsPlaceholder")}
               {...register("tags")}
@@ -225,10 +227,11 @@ export function ContactFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="contact-notes" className="text-xs font-medium text-text-tertiary uppercase">
               {t("notes")}
             </label>
             <textarea
+              id="contact-notes"
               className={cn(inputClass, "min-h-20 resize-none")}
               {...register("notes")}
             />

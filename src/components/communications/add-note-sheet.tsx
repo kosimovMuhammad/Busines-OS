@@ -73,7 +73,7 @@ export function AddNoteSheet({
 
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="note-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("contact")}
             </label>
             <Select
@@ -82,7 +82,7 @@ export function AddNoteSheet({
                 setContactId(value === NO_CONTACT || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="note-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const contact = contactsPage?.data.find((c) => c.id === value);
@@ -106,10 +106,11 @@ export function AddNoteSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="note-content" className="text-xs font-medium text-text-tertiary uppercase">
               {t("content")}
             </label>
             <textarea
+              id="note-content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className={`${inputClass} min-h-32 resize-none`}

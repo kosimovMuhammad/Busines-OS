@@ -165,14 +165,14 @@ export function MeetingFormSheet({
         >
           {isEdit && meeting && (
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="meeting-status" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("status")}
               </label>
               <Select
                 value={meeting.status}
                 onValueChange={(value) => handleStatusChange(value as MeetingStatus)}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger id="meeting-status" className="w-full">
                   <SelectValue>
                     {(value: string) => tStatus(value as MeetingStatus)}
                   </SelectValue>
@@ -189,25 +189,25 @@ export function MeetingFormSheet({
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="meeting-title" className="text-xs font-medium text-text-tertiary uppercase">
               {t("title")}
             </label>
-            <input className={inputClass} {...register("title")} />
+            <input id="meeting-title" className={inputClass} {...register("title")} />
             {errors.title && <p className="text-xs text-danger">{errors.title.message}</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="meeting-startAt" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("startAt")}
               </label>
-              <input className={inputClass} type="datetime-local" {...register("startAt")} />
+              <input id="meeting-startAt" className={inputClass} type="datetime-local" {...register("startAt")} />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="meeting-endAt" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("endAt")}
               </label>
-              <input className={inputClass} type="datetime-local" {...register("endAt")} />
+              <input id="meeting-endAt" className={inputClass} type="datetime-local" {...register("endAt")} />
               {errors.endAt && (
                 <p className="text-xs text-danger">{errors.endAt.message}</p>
               )}
@@ -215,24 +215,25 @@ export function MeetingFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="meeting-location" className="text-xs font-medium text-text-tertiary uppercase">
               {t("location")}
             </label>
-            <input className={inputClass} {...register("location")} />
+            <input id="meeting-location" className={inputClass} {...register("location")} />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="meeting-description" className="text-xs font-medium text-text-tertiary uppercase">
               {t("description")}
             </label>
             <textarea
+              id="meeting-description"
               className={cn(inputClass, "min-h-20 resize-none")}
               {...register("description")}
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="meeting-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedContact")}
             </label>
             <Select
@@ -241,7 +242,7 @@ export function MeetingFormSheet({
                 setValue("contactId", value === NONE || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="meeting-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const c = contactsPage?.data.find((x) => x.id === value);
@@ -263,7 +264,7 @@ export function MeetingFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="meeting-deal" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedDeal")}
             </label>
             <Select
@@ -272,7 +273,7 @@ export function MeetingFormSheet({
                 setValue("dealId", value === NONE || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="meeting-deal" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const d = deals?.find((x) => x.id === value);

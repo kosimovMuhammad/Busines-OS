@@ -54,10 +54,11 @@ export function CompanySettingsContent() {
   return (
     <div className="max-w-lg space-y-4 rounded-2xl border border-border-subtle bg-surface p-5">
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="settings-name" className="text-xs font-medium text-text-tertiary uppercase">
           {t("name")}
         </label>
         <input
+          id="settings-name"
           className={inputClass}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -66,10 +67,11 @@ export function CompanySettingsContent() {
       </div>
 
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="settings-industry" className="text-xs font-medium text-text-tertiary uppercase">
           {t("industry")}
         </label>
         <input
+          id="settings-industry"
           className={inputClass}
           value={industry}
           onChange={(e) => setIndustry(e.target.value)}
@@ -78,10 +80,11 @@ export function CompanySettingsContent() {
       </div>
 
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="settings-timezone" className="text-xs font-medium text-text-tertiary uppercase">
           {t("timezone")}
         </label>
         <input
+          id="settings-timezone"
           className={inputClass}
           value={timezone}
           onChange={(e) => setTimezone(e.target.value)}

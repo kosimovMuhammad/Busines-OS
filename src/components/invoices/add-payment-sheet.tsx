@@ -77,10 +77,11 @@ export function AddPaymentSheet({
 
         <div className="flex flex-col gap-4 px-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="payment-amount" className="text-xs font-medium text-text-tertiary uppercase">
               {t("amount")}
             </label>
             <input
+              id="payment-amount"
               className={inputClass}
               type="number"
               min="0"
@@ -91,11 +92,11 @@ export function AddPaymentSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="payment-method" className="text-xs font-medium text-text-tertiary uppercase">
               {t("method")}
             </label>
             <Select value={method} onValueChange={(value) => setMethod(value as PaymentMethod)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="payment-method" className="w-full">
                 <SelectValue>{(value: string) => tMethod(value as PaymentMethod)}</SelectValue>
               </SelectTrigger>
               <SelectContent>
@@ -109,10 +110,11 @@ export function AddPaymentSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="payment-notes" className="text-xs font-medium text-text-tertiary uppercase">
               {t("notes")}
             </label>
             <textarea
+              id="payment-notes"
               className={`${inputClass} min-h-16 resize-none`}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}

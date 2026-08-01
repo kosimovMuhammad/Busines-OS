@@ -58,6 +58,7 @@ export function CalendarMonthGrid({
             type="button"
             size="icon-sm"
             variant="ghost"
+            aria-label={t("previousMonth")}
             onClick={() => onMonthChange(subMonths(month, 1))}
           >
             <ChevronLeft className="size-4" />
@@ -69,6 +70,7 @@ export function CalendarMonthGrid({
             type="button"
             size="icon-sm"
             variant="ghost"
+            aria-label={t("nextMonth")}
             onClick={() => onMonthChange(addMonths(month, 1))}
           >
             <ChevronRight className="size-4" />

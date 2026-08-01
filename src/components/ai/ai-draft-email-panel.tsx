@@ -71,14 +71,14 @@ export function AiDraftEmailPanel() {
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="ai-draft-contact" className="text-xs font-medium text-text-tertiary uppercase">
           {t("contact")}
         </label>
         <Select
           value={contactId || NO_CONTACT}
           onValueChange={(value) => setContactId(value === NO_CONTACT || !value ? "" : value)}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger id="ai-draft-contact" className="w-full">
             <SelectValue>
               {(value: string) => {
                 const contact = contactsPage?.data.find((c) => c.id === value);
@@ -102,10 +102,11 @@ export function AiDraftEmailPanel() {
       </div>
 
       <div className="space-y-1.5">
-        <label className="text-xs font-medium text-text-tertiary uppercase">
+        <label htmlFor="ai-draft-context" className="text-xs font-medium text-text-tertiary uppercase">
           {t("context")}
         </label>
         <textarea
+          id="ai-draft-context"
           value={context}
           onChange={(e) => setContext(e.target.value)}
           placeholder={t("contextPlaceholder")}

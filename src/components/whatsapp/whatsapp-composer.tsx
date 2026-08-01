@@ -46,6 +46,7 @@ export function WhatsappComposer({ contactId }: { contactId: string }) {
         <Button
           type="button"
           size="icon"
+          aria-label={t("send")}
           onClick={handleSend}
           disabled={isLoading || !contactId || !message.trim()}
         >

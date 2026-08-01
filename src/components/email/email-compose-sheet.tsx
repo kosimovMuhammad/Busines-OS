@@ -89,7 +89,7 @@ export function EmailComposeSheet({
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="email-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("contact")}
             </label>
             <Select
@@ -98,7 +98,7 @@ export function EmailComposeSheet({
                 setContactId(value === NO_CONTACT || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="email-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const contact = contactsPage?.data.find((c) => c.id === value);
@@ -122,10 +122,11 @@ export function EmailComposeSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="email-subject" className="text-xs font-medium text-text-tertiary uppercase">
               {t("subject")}
             </label>
             <input
+              id="email-subject"
               className={inputClass}
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
@@ -133,10 +134,11 @@ export function EmailComposeSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="email-body" className="text-xs font-medium text-text-tertiary uppercase">
               {t("body")}
             </label>
             <textarea
+              id="email-body"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               className={`${inputClass} min-h-40 resize-none`}

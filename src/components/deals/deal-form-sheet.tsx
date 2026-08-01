@@ -142,17 +142,17 @@ export function DealFormSheet({
           className="flex flex-1 flex-col gap-4 overflow-y-auto px-4"
         >
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="deal-title" className="text-xs font-medium text-text-tertiary uppercase">
               {t("title")}
             </label>
-            <input className={inputClass} {...register("title")} />
+            <input id="deal-title" className={inputClass} {...register("title")} />
             {errors.title && (
               <p className="text-xs text-danger">{errors.title.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="deal-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("contact")}
             </label>
             <Select
@@ -161,7 +161,7 @@ export function DealFormSheet({
                 setValue("contactId", value === NO_CONTACT || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="deal-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const contact = contacts.find((c) => c.id === value);
@@ -189,10 +189,11 @@ export function DealFormSheet({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="deal-value" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("value")}
               </label>
               <input
+                id="deal-value"
                 className={inputClass}
                 type="number"
                 min="0"
@@ -201,22 +202,22 @@ export function DealFormSheet({
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="deal-currency" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("currency")}
               </label>
-              <input className={inputClass} {...register("currency")} />
+              <input id="deal-currency" className={inputClass} {...register("currency")} />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="deal-stage" className="text-xs font-medium text-text-tertiary uppercase">
               {t("stage")}
             </label>
             <Select
               value={stage || "LEAD"}
               onValueChange={(value) => setValue("stage", value ?? "LEAD")}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="deal-stage" className="w-full">
                 <SelectValue>
                   {(value: string) => tStage(value as DealStage)}
                 </SelectValue>
@@ -233,10 +234,11 @@ export function DealFormSheet({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="deal-probability" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("probability")}
               </label>
               <input
+                id="deal-probability"
                 className={inputClass}
                 type="number"
                 min="0"
@@ -245,10 +247,11 @@ export function DealFormSheet({
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="deal-closeDate" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("closeDate")}
               </label>
               <input
+                id="deal-closeDate"
                 className={inputClass}
                 type="date"
                 {...register("expectedCloseDate")}
@@ -257,7 +260,7 @@ export function DealFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="deal-owner" className="text-xs font-medium text-text-tertiary uppercase">
               {t("owner")}
             </label>
             <Select
@@ -266,7 +269,7 @@ export function DealFormSheet({
                 setValue("ownerId", value === UNASSIGNED || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="deal-owner" className="w-full">
                 <SelectValue>
                   {(value: string) =>
                     !value || value === UNASSIGNED

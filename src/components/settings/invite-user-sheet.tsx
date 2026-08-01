@@ -79,17 +79,18 @@ export function InviteUserSheet({
 
         <div className="flex flex-col gap-4 px-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invite-name" className="text-xs font-medium text-text-tertiary uppercase">
               {t("name")}
             </label>
-            <input className={inputClass} value={name} onChange={(e) => setName(e.target.value)} />
+            <input id="invite-name" className={inputClass} value={name} onChange={(e) => setName(e.target.value)} />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invite-email" className="text-xs font-medium text-text-tertiary uppercase">
               {t("email")}
             </label>
             <input
+              id="invite-email"
               className={inputClass}
               type="email"
               value={email}
@@ -98,11 +99,11 @@ export function InviteUserSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="invite-role" className="text-xs font-medium text-text-tertiary uppercase">
               {t("role")}
             </label>
             <Select value={role} onValueChange={(value) => setRole(value as UserRole)}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="invite-role" className="w-full">
                 <SelectValue>{(value: string) => tRole(value as UserRole)}</SelectValue>
               </SelectTrigger>
               <SelectContent>

@@ -122,20 +122,21 @@ export function TaskFormSheet({
           className="flex flex-1 flex-col gap-4 overflow-y-auto px-4"
         >
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="task-title" className="text-xs font-medium text-text-tertiary uppercase">
               {t("title")}
             </label>
-            <input className={inputClass} {...register("title")} />
+            <input id="task-title" className={inputClass} {...register("title")} />
             {errors.title && (
               <p className="text-xs text-danger">{errors.title.message}</p>
             )}
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="task-description" className="text-xs font-medium text-text-tertiary uppercase">
               {t("description")}
             </label>
             <textarea
+              id="task-description"
               className={cn(inputClass, "min-h-20 resize-none")}
               {...register("description")}
             />
@@ -143,14 +144,14 @@ export function TaskFormSheet({
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="task-priority" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("priority")}
               </label>
               <Select
                 value={priority || "MEDIUM"}
                 onValueChange={(value) => setValue("priority", value ?? "MEDIUM")}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger id="task-priority" className="w-full">
                   <SelectValue>
                     {(value: string) => tPriority(value as TaskPriority)}
                   </SelectValue>
@@ -165,15 +166,15 @@ export function TaskFormSheet({
               </Select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-text-tertiary uppercase">
+              <label htmlFor="task-dueDate" className="text-xs font-medium text-text-tertiary uppercase">
                 {t("dueDate")}
               </label>
-              <input className={inputClass} type="date" {...register("dueDate")} />
+              <input id="task-dueDate" className={inputClass} type="date" {...register("dueDate")} />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="task-assignee" className="text-xs font-medium text-text-tertiary uppercase">
               {t("assignee")}
             </label>
             <Select
@@ -182,7 +183,7 @@ export function TaskFormSheet({
                 setValue("assignedTo", value === UNASSIGNED || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="task-assignee" className="w-full">
                 <SelectValue>
                   {(value: string) =>
                     !value || value === UNASSIGNED
@@ -203,7 +204,7 @@ export function TaskFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="task-contact" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedContact")}
             </label>
             <Select
@@ -212,7 +213,7 @@ export function TaskFormSheet({
                 setValue("contactId", value === NONE || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="task-contact" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const contact = contactsPage?.data.find((c) => c.id === value);
@@ -234,7 +235,7 @@ export function TaskFormSheet({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-text-tertiary uppercase">
+            <label htmlFor="task-deal" className="text-xs font-medium text-text-tertiary uppercase">
               {t("relatedDeal")}
             </label>
             <Select
@@ -243,7 +244,7 @@ export function TaskFormSheet({
                 setValue("dealId", value === NONE || !value ? "" : value)
               }
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger id="task-deal" className="w-full">
                 <SelectValue>
                   {(value: string) => {
                     const deal = deals?.find((d) => d.id === value);
