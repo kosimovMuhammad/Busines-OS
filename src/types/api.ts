@@ -365,13 +365,23 @@ export type Invoice = {
   companyId: string;
   dealId: string | null;
   contactId: string;
+  invoiceNumber: string;
   amount: number;
   currency: string;
   status: InvoiceStatus;
+  issueDate: string;
   dueDate: string;
   notes: string | null;
   createdAt: string;
   updatedAt: string;
+};
+
+// GET /invoices/:id (and create/update responses) embed the related
+// contact/deal/payments directly - GET /invoices (list) does not.
+export type InvoiceDetail = Invoice & {
+  contact: Contact;
+  deal: Deal | null;
+  payments: Payment[];
 };
 
 export type CreateInvoiceRequest = {
@@ -385,6 +395,8 @@ export type CreateInvoiceRequest = {
 
 export type UpdateInvoiceRequest = Partial<Omit<CreateInvoiceRequest, "contactId">>;
 
+export type UpdateInvoiceStatusRequest = { status: InvoiceStatus };
+
 export type Payment = {
   id: string;
   invoiceId: string;
@@ -392,6 +404,7 @@ export type Payment = {
   method: PaymentMethod;
   paidAt: string;
   notes: string | null;
+  createdAt: string;
 };
 
 export type CreatePaymentRequest = {

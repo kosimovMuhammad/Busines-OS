@@ -1,6 +1,10 @@
-import { Receipt } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { InvoiceDetailContent } from "@/components/invoices/invoice-detail-content";
 
-export default function InvoiceDetailPage() {
-  return <PlaceholderPage namespace="pages.invoices" icon={Receipt} />;
+export default async function InvoiceDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <InvoiceDetailContent id={id} />;
 }

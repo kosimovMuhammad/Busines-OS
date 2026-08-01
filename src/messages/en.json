@@ -319,7 +319,52 @@
     },
     "invoices": {
       "title": "Invoicing",
-      "subtitle": "Track billing and payments"
+      "subtitle": "Track billing and payments",
+      "allStatuses": "All Statuses",
+      "createInvoice": "New Invoice",
+      "columnNumber": "Number",
+      "columnContact": "Contact",
+      "columnAmount": "Amount",
+      "columnStatus": "Status",
+      "columnDueDate": "Due Date",
+      "columnActions": "",
+      "empty": "No invoices found.",
+      "edit": "Edit",
+      "delete": "Delete",
+      "backToList": "Back to list",
+      "amount": "Amount",
+      "paid": "Paid",
+      "dueDate": "Due Date",
+      "notes": "Notes",
+      "payments": "Payments",
+      "addPayment": "Add Payment",
+      "noPayments": "No payments recorded yet.",
+      "form": {
+        "createTitle": "New Invoice",
+        "editTitle": "Edit Invoice",
+        "contact": "Contact",
+        "selectContact": "Select a contact",
+        "relatedDeal": "Related deal",
+        "none": "None",
+        "amount": "Amount",
+        "currency": "Currency",
+        "dueDate": "Due date",
+        "notes": "Notes",
+        "save": "Save",
+        "create": "Create"
+      },
+      "deleteDialog": {
+        "title": "Delete invoice?",
+        "description": "Are you sure you want to delete invoice {number}? This action cannot be undone.",
+        "cancel": "Cancel"
+      },
+      "paymentSheet": {
+        "title": "Add Payment",
+        "amount": "Amount",
+        "method": "Method",
+        "notes": "Notes",
+        "save": "Save"
+      }
     },
     "files": {
       "title": "Files",
@@ -386,6 +431,19 @@
       "EMAIL": "Email",
       "MANUAL_NOTE": "Note",
       "PHONE_CALL": "Phone Call"
+    },
+    "invoiceStatus": {
+      "DRAFT": "Draft",
+      "SENT": "Sent",
+      "PAID": "Paid",
+      "OVERDUE": "Overdue",
+      "CANCELLED": "Cancelled"
+    },
+    "paymentMethod": {
+      "CASH": "Cash",
+      "BANK_TRANSFER": "Bank Transfer",
+      "CARD": "Card",
+      "OTHER": "Other"
     },
     "activityType": {
       "task": "Task",

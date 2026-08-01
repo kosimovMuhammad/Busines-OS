@@ -319,7 +319,52 @@
     },
     "invoices": {
       "title": "Счета",
-      "subtitle": "Учёт выставленных счетов и платежей"
+      "subtitle": "Учёт выставленных счетов и платежей",
+      "allStatuses": "Все статусы",
+      "createInvoice": "Новый счёт",
+      "columnNumber": "Номер",
+      "columnContact": "Контакт",
+      "columnAmount": "Сумма",
+      "columnStatus": "Статус",
+      "columnDueDate": "Срок оплаты",
+      "columnActions": "",
+      "empty": "Счета не найдены.",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "backToList": "Назад к списку",
+      "amount": "Сумма",
+      "paid": "Оплачено",
+      "dueDate": "Срок оплаты",
+      "notes": "Заметки",
+      "payments": "Платежи",
+      "addPayment": "Добавить платёж",
+      "noPayments": "Платежи пока не записаны.",
+      "form": {
+        "createTitle": "Новый счёт",
+        "editTitle": "Редактировать счёт",
+        "contact": "Контакт",
+        "selectContact": "Выберите контакт",
+        "relatedDeal": "Связанная сделка",
+        "none": "Нет",
+        "amount": "Сумма",
+        "currency": "Валюта",
+        "dueDate": "Срок оплаты",
+        "notes": "Заметки",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "deleteDialog": {
+        "title": "Удалить счёт?",
+        "description": "Вы уверены, что хотите удалить счёт {number}? Это действие необратимо.",
+        "cancel": "Отмена"
+      },
+      "paymentSheet": {
+        "title": "Добавить платёж",
+        "amount": "Сумма",
+        "method": "Способ оплаты",
+        "notes": "Заметки",
+        "save": "Сохранить"
+      }
     },
     "files": {
       "title": "Файлы",
@@ -386,6 +431,19 @@
       "EMAIL": "Email",
       "MANUAL_NOTE": "Заметка",
       "PHONE_CALL": "Звонок"
+    },
+    "invoiceStatus": {
+      "DRAFT": "Черновик",
+      "SENT": "Отправлен",
+      "PAID": "Оплачен",
+      "OVERDUE": "Просрочен",
+      "CANCELLED": "Отменён"
+    },
+    "paymentMethod": {
+      "CASH": "Наличные",
+      "BANK_TRANSFER": "Банковский перевод",
+      "CARD": "Карта",
+      "OTHER": "Другое"
     },
     "activityType": {
       "task": "Задача",
