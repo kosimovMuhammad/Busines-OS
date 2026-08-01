@@ -1,6 +1,14 @@
-import { MessageCircle } from "lucide-react";
-import { PlaceholderPage } from "@/components/shared/placeholder-page";
+import { getTranslations } from "next-intl/server";
+import { PageHeader } from "@/components/layout/page-header";
+import { WhatsappContent } from "@/components/whatsapp/whatsapp-content";
 
-export default function WhatsAppPage() {
-  return <PlaceholderPage namespace="pages.whatsapp" icon={MessageCircle} />;
+export default async function WhatsAppPage() {
+  const t = await getTranslations("pages.whatsapp");
+
+  return (
+    <>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <WhatsappContent />
+    </>
+  );
 }

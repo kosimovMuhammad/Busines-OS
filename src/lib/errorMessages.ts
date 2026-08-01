@@ -3,6 +3,7 @@ type ErrorMessages = {
   conflict: string;
   forbidden: string;
   aiUnavailable: string;
+  integrationUnavailable: string;
 };
 
 let current: ErrorMessages = {
@@ -10,6 +11,7 @@ let current: ErrorMessages = {
   conflict: "That already exists.",
   forbidden: "You don't have permission to do that.",
   aiUnavailable: "AI features are being activated.",
+  integrationUnavailable: "This integration isn't set up yet. Try again later.",
 };
 
 export function setErrorMessages(messages: ErrorMessages) {
@@ -24,4 +26,8 @@ export function messageForStatus(status: number | string | undefined): string {
 
 export function aiUnavailableMessage(): string {
   return current.aiUnavailable;
+}
+
+export function integrationUnavailableMessage(): string {
+  return current.integrationUnavailable;
 }

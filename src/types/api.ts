@@ -261,6 +261,21 @@ export type SendEmailRequest = {
   body: string;
 };
 
+export type EmailConnectResponse = { url: string };
+
+// ---- Company Integrations ----
+
+export type IntegrationStatus = { connected: boolean; comingSoon?: boolean };
+
+export type CompanyIntegrations = {
+  whatsapp: IntegrationStatus;
+  gmail: IntegrationStatus;
+  outlook: IntegrationStatus;
+  telegram: IntegrationStatus;
+  stripe: IntegrationStatus;
+  paypal: IntegrationStatus;
+};
+
 // ---- AI ----
 
 export type AiQueryRequest = { question: string };

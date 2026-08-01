@@ -5,7 +5,8 @@
       "generic": "Что-то пошло не так. Попробуйте ещё раз.",
       "conflict": "Это уже существует.",
       "forbidden": "У вас нет прав для этого действия.",
-      "aiUnavailable": "Функции AI подключаются. Попробуйте позже."
+      "aiUnavailable": "Функции AI подключаются. Попробуйте позже.",
+      "integrationUnavailable": "Эта интеграция ещё не настроена. Попробуйте позже."
     },
     "logout": "Выйти"
   },
@@ -225,11 +226,57 @@
     },
     "whatsapp": {
       "title": "Управление WhatsApp",
-      "subtitle": "Централизованное управление бизнес-мессенджером."
+      "subtitle": "Централизованное управление бизнес-мессенджером.",
+      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты" },
+      "selectContact": "Выберите контакт",
+      "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения WhatsApp.",
+      "connectAccount": "Подключить аккаунт",
+      "accountsEmpty": "Пока нет подключённых аккаунтов WhatsApp.",
+      "status": {
+        "connected": "Подключено",
+        "notConnected": "Не подключено",
+        "hint": "Подключите аккаунт WhatsApp Business, чтобы отправлять и получать сообщения."
+      },
+      "accountRow": {
+        "phoneNumberId": "ID номера телефона",
+        "wabaId": "ID WABA"
+      },
+      "connectSheet": {
+        "title": "Подключить аккаунт WhatsApp",
+        "description": "Введите учётные данные Meta WhatsApp Business API.",
+        "phoneNumberId": "ID номера телефона",
+        "wabaId": "ID WhatsApp Business Account",
+        "accessToken": "Токен доступа",
+        "verifiedName": "Подтверждённое имя (необязательно)",
+        "save": "Подключить"
+      },
+      "composer": {
+        "placeholder": "Введите сообщение...",
+        "badRequest": "У этого контакта должен быть номер телефона, а у компании — подключённый аккаунт WhatsApp, чтобы отправлять сообщения.",
+        "unavailable": "Отправка WhatsApp для этого номера пока недоступна. Попробуйте позже."
+      }
     },
     "email": {
       "title": "Почта",
-      "subtitle": "Подключите и отправляйте письма из своего ящика"
+      "subtitle": "Подключите и отправляйте письма из своего ящика",
+      "tabs": { "messages": "Сообщения", "connections": "Подключения" },
+      "allContacts": "Все контакты",
+      "compose": "Написать",
+      "connections": {
+        "connected": "Подключено",
+        "notConnected": "Не подключено",
+        "connect": "Подключить"
+      },
+      "composeSheet": {
+        "title": "Новое письмо",
+        "contact": "Контакт",
+        "selectContact": "Выберите контакт",
+        "subject": "Тема",
+        "body": "Сообщение",
+        "send": "Отправить",
+        "badRequest": "Подключите почтовый аккаунт и убедитесь, что у контакта указан email перед отправкой.",
+        "unavailable": "Отправка писем пока недоступна. Попробуйте позже."
+      }
     },
     "ai": {
       "title": "AI-ассистент",

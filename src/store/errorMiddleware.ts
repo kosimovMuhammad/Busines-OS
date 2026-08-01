@@ -1,6 +1,10 @@
 import { isRejectedWithValue, type Middleware } from "@reduxjs/toolkit";
 import { toast } from "sonner";
-import { aiUnavailableMessage, messageForStatus } from "@/lib/errorMessages";
+import {
+  aiUnavailableMessage,
+  integrationUnavailableMessage,
+  messageForStatus,
+} from "@/lib/errorMessages";
 
 // auth.api.ts endpoints already show their own inline error messages
 // (e.g. "invalid credentials" on the login form) - don't double-toast them.
@@ -9,13 +13,29 @@ import { aiUnavailableMessage, messageForStatus } from "@/lib/errorMessages";
 // of which needs a toast. presignUpload also shows its own calm
 // "storage isn't set up yet" toast when S3 isn't configured (verified: a
 // real 500 in this environment), rather than the generic error banner.
-const SILENT_ENDPOINTS = new Set(["login", "register", "refresh", "logout", "presignUpload"]);
+// sendWhatsappMessage/sendEmail are silenced here because the send panels
+// show their own inline guidance banner for the verified 400 (no phone/
+// no account connected) and 502 (provider rejected the send) responses.
+const SILENT_ENDPOINTS = new Set([
+  "login",
+  "register",
+  "refresh",
+  "logout",
+  "presignUpload",
+  "sendWhatsappMessage",
+  "sendEmail",
+]);
 
 // TZ §11 degraded-mode UX: these AI actions are gated behind a backend API
 // key that isn't provisioned in every environment. Show the calm "AI
 // features are being activated" message instead of a scary generic error
 // - extend this set as more AI endpoints (F8) come online.
 const AI_DEGRADED_ENDPOINTS = new Set(["summarize"]);
+
+// Same idea for third-party integrations whose credentials aren't
+// configured in every environment - verified real 500 "MICROSOFT_CLIENT_ID/
+// SECRET not configured" from GET /email/connect/outlook.
+const INTEGRATION_DEGRADED_ENDPOINTS = new Set(["connectOutlook"]);
 
 export const errorToastMiddleware: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
@@ -25,6 +45,8 @@ export const errorToastMiddleware: Middleware = () => (next) => (action) => {
 
     if (endpointName && AI_DEGRADED_ENDPOINTS.has(endpointName)) {
       toast.info(aiUnavailableMessage());
+    } else if (endpointName && INTEGRATION_DEGRADED_ENDPOINTS.has(endpointName)) {
+      toast.info(integrationUnavailableMessage());
     } else if (!(endpointName && SILENT_ENDPOINTS.has(endpointName)) && status !== 401) {
       toast.error(messageForStatus(status));
     }

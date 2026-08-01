@@ -5,7 +5,8 @@
       "generic": "Something went wrong. Please try again.",
       "conflict": "That already exists.",
       "forbidden": "You don't have permission to do that.",
-      "aiUnavailable": "AI features are being activated. Try again later."
+      "aiUnavailable": "AI features are being activated. Try again later.",
+      "integrationUnavailable": "This integration isn't set up yet. Try again later."
     },
     "logout": "Log out"
   },
@@ -225,11 +226,57 @@
     },
     "whatsapp": {
       "title": "WhatsApp Management",
-      "subtitle": "Centralized control for your business messaging infrastructure."
+      "subtitle": "Centralized control for your business messaging infrastructure.",
+      "tabs": { "messages": "Messages", "accounts": "Accounts" },
+      "selectContact": "Select a contact",
+      "selectContactHint": "Select a contact to view and send WhatsApp messages.",
+      "connectAccount": "Connect Account",
+      "accountsEmpty": "No WhatsApp accounts connected yet.",
+      "status": {
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "hint": "Connect a WhatsApp Business account to send and receive messages."
+      },
+      "accountRow": {
+        "phoneNumberId": "Phone number ID",
+        "wabaId": "WABA ID"
+      },
+      "connectSheet": {
+        "title": "Connect WhatsApp Account",
+        "description": "Enter your Meta WhatsApp Business API credentials.",
+        "phoneNumberId": "Phone number ID",
+        "wabaId": "WhatsApp Business Account ID",
+        "accessToken": "Access token",
+        "verifiedName": "Verified name (optional)",
+        "save": "Connect"
+      },
+      "composer": {
+        "placeholder": "Type a message...",
+        "badRequest": "This contact needs a phone number and a connected WhatsApp account before you can send messages.",
+        "unavailable": "WhatsApp sending isn't available yet for this number. Check back soon."
+      }
     },
     "email": {
       "title": "Email",
-      "subtitle": "Connect and send from your inbox"
+      "subtitle": "Connect and send from your inbox",
+      "tabs": { "messages": "Messages", "connections": "Connections" },
+      "allContacts": "All Contacts",
+      "compose": "Compose",
+      "connections": {
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "connect": "Connect"
+      },
+      "composeSheet": {
+        "title": "New Email",
+        "contact": "Contact",
+        "selectContact": "Select a contact",
+        "subject": "Subject",
+        "body": "Message",
+        "send": "Send",
+        "badRequest": "Connect an email account and make sure this contact has an email address before sending.",
+        "unavailable": "Email sending isn't available yet. Check back soon."
+      }
     },
     "ai": {
       "title": "AI Assistant",
