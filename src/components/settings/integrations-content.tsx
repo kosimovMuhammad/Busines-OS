@@ -13,16 +13,17 @@ function ProviderRow({
 }: {
   icon: typeof Mail;
   name: string;
-  status: IntegrationStatus;
+  status: IntegrationStatus | undefined;
 }) {
   const t = useTranslations("pages.settingsIntegrations");
+  const connected = status?.connected ?? false;
 
   return (
     <div className="flex items-center justify-between rounded-2xl border border-border-subtle bg-surface p-4">
       <div className="flex items-center gap-3">
         <div
           className={`flex size-9 shrink-0 items-center justify-center rounded-full ${
-            status.connected
+            connected
               ? "bg-success/10 text-success"
               : "bg-surface-elevated text-text-tertiary"
           }`}
@@ -32,11 +33,7 @@ function ProviderRow({
         <p className="text-sm font-medium text-text-primary">{name}</p>
       </div>
       <span className="text-xs text-text-tertiary">
-        {status.comingSoon
-          ? t("comingSoon")
-          : status.connected
-            ? t("connected")
-            : t("notConnected")}
+        {status?.comingSoon ? t("comingSoon") : connected ? t("connected") : t("notConnected")}
       </span>
     </div>
   );
