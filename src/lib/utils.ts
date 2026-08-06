@@ -6,11 +6,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatCurrency(value: number, currency: string, locale: string) {
+  const safeValue = Number.isFinite(value) ? value : 0
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-    maximumFractionDigits: value % 1 === 0 ? 0 : 2,
-  }).format(value)
+    maximumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
+  }).format(safeValue)
 }
 
 export function formatCompactNumber(value: number, locale: string) {
