@@ -163,7 +163,35 @@
         "cancel": "Отмена"
       }
     },
-    "deals": { "title": "Воронка сделок", "subtitle": "Текущее распределение сделок" },
+    "deals": {
+      "title": "Воронка сделок",
+      "subtitle": "Текущее распределение сделок",
+      "searchPlaceholder": "Поиск сделок или контактов...",
+      "allOwners": "Все владельцы",
+      "createDeal": "Новая сделка",
+      "form": {
+        "createTitle": "Новая сделка",
+        "editTitle": "Редактировать сделку",
+        "title": "Название",
+        "contact": "Контакт",
+        "selectContact": "Выберите контакт",
+        "value": "Сумма",
+        "currency": "Валюта",
+        "stage": "Стадия",
+        "probability": "Вероятность",
+        "closeDate": "Ожидаемая дата закрытия",
+        "owner": "Владелец",
+        "unassigned": "Не назначен",
+        "delete": "Удалить",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "deleteDialog": {
+        "title": "Удалить сделку?",
+        "description": "Вы уверены, что хотите удалить {title}? Это действие необратимо.",
+        "cancel": "Отмена"
+      }
+    },
     "tasks": {
       "title": "Задачи",
       "subtitle": "Учёт работы и времени команды",
@@ -479,67 +507,67 @@
   },
   "enums": {
     "dealStage": {
-      "LEAD": "Лид",
-      "QUALIFIED": "Квалифицирован",
-      "PROPOSAL": "Предложение",
-      "NEGOTIATION": "Переговоры",
-      "WON": "Выигран",
-      "LOST": "Проигран"
+      "Lead": "Лид",
+      "Qualified": "Квалифицирован",
+      "Proposal": "Предложение",
+      "Negotiation": "Переговоры",
+      "Won": "Выигран",
+      "Lost": "Проигран"
     },
     "taskStatus": {
-      "TODO": "К выполнению",
-      "IN_PROGRESS": "В работе",
-      "COMPLETED": "Завершено",
-      "ARCHIVED": "Архив"
+      "Todo": "К выполнению",
+      "InProgress": "В работе",
+      "Completed": "Завершено",
+      "Archived": "Архив"
     },
     "taskPriority": {
-      "LOW": "Низкий",
-      "MEDIUM": "Средний",
-      "HIGH": "Высокий",
-      "URGENT": "Срочный"
+      "Low": "Низкий",
+      "Medium": "Средний",
+      "High": "Высокий",
+      "Urgent": "Срочный"
     },
     "commChannel": {
-      "WHATSAPP": "WhatsApp",
-      "EMAIL": "Email",
-      "MANUAL_NOTE": "Заметка",
-      "PHONE_CALL": "Звонок"
+      "Whatsapp": "WhatsApp",
+      "Email": "Email",
+      "ManualNote": "Заметка",
+      "PhoneCall": "Звонок"
     },
     "invoiceStatus": {
-      "DRAFT": "Черновик",
-      "SENT": "Отправлен",
-      "PAID": "Оплачен",
-      "OVERDUE": "Просрочен",
-      "CANCELLED": "Отменён"
+      "Draft": "Черновик",
+      "Sent": "Отправлен",
+      "Paid": "Оплачен",
+      "Overdue": "Просрочен",
+      "Cancelled": "Отменён"
     },
     "paymentMethod": {
-      "CASH": "Наличные",
-      "BANK_TRANSFER": "Банковский перевод",
-      "CARD": "Карта",
-      "OTHER": "Другое"
+      "Cash": "Наличные",
+      "BankTransfer": "Банковский перевод",
+      "Card": "Карта",
+      "Other": "Другое"
     },
     "meetingStatus": {
-      "SCHEDULED": "Запланировано",
-      "COMPLETED": "Завершено",
-      "CANCELLED": "Отменено"
+      "Scheduled": "Запланировано",
+      "Completed": "Завершено",
+      "Cancelled": "Отменено"
     },
     "userRole": {
-      "OWNER": "Владелец",
-      "ADMIN": "Администратор",
-      "MANAGER": "Менеджер",
-      "SALES": "Продажи",
-      "SUPPORT": "Поддержка",
-      "EMPLOYEE": "Сотрудник",
-      "READ_ONLY": "Только чтение"
+      "Owner": "Владелец",
+      "Admin": "Администратор",
+      "Manager": "Менеджер",
+      "Sales": "Продажи",
+      "Support": "Поддержка",
+      "Employee": "Сотрудник",
+      "ReadOnly": "Только чтение"
     },
     "userStatus": {
-      "ACTIVE": "Активен",
-      "INVITED": "Приглашён",
-      "SUSPENDED": "Приостановлен"
+      "Active": "Активен",
+      "Invited": "Приглашён",
+      "Suspended": "Приостановлен"
     },
     "plan": {
-      "STARTER": "Starter",
-      "PROFESSIONAL": "Professional",
-      "ENTERPRISE": "Enterprise"
+      "Starter": "Starter",
+      "Professional": "Professional",
+      "Enterprise": "Enterprise"
     },
     "activityType": {
       "task": "Задача",

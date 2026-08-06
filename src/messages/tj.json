@@ -163,7 +163,35 @@
         "cancel": "Бекор кардан"
       }
     },
-    "deals": { "title": "Қуттии муомилот", "subtitle": "Тақсимоти ҷории муомилот" },
+    "deals": {
+      "title": "Қуттии муомилот",
+      "subtitle": "Тақсимоти ҷории муомилот",
+      "searchPlaceholder": "Ҷустуҷӯи муомилот ё тамосҳо...",
+      "allOwners": "Ҳамаи соҳибон",
+      "createDeal": "Муомилоти нав",
+      "form": {
+        "createTitle": "Муомилоти нав",
+        "editTitle": "Таҳрири муомилот",
+        "title": "Сарлавҳа",
+        "contact": "Тамос",
+        "selectContact": "Тамосро интихоб кунед",
+        "value": "Арзиш",
+        "currency": "Асъор",
+        "stage": "Марҳила",
+        "probability": "Эҳтимолият",
+        "closeDate": "Санаи пешбинишудаи хотима",
+        "owner": "Соҳиб",
+        "unassigned": "Таъин нашуда",
+        "delete": "Нест кардан",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан"
+      },
+      "deleteDialog": {
+        "title": "Муомилот нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед {title}-ро нест кунед? Ин амал баргарданок нест.",
+        "cancel": "Бекор кардан"
+      }
+    },
     "tasks": {
       "title": "Вазифаҳо",
       "subtitle": "Пайгирии кор ва вақти дастаи шумо",
@@ -479,67 +507,67 @@
   },
   "enums": {
     "dealStage": {
-      "LEAD": "Лид",
-      "QUALIFIED": "Тасдиқшуда",
-      "PROPOSAL": "Пешниҳод",
-      "NEGOTIATION": "Гуфтушунид",
-      "WON": "Бурда шуд",
-      "LOST": "Бой дода шуд"
+      "Lead": "Лид",
+      "Qualified": "Тасдиқшуда",
+      "Proposal": "Пешниҳод",
+      "Negotiation": "Гуфтушунид",
+      "Won": "Бурда шуд",
+      "Lost": "Бой дода шуд"
     },
     "taskStatus": {
-      "TODO": "Барои иҷро",
-      "IN_PROGRESS": "Дар ҷараён",
-      "COMPLETED": "Иҷрошуда",
-      "ARCHIVED": "Бойгонӣ"
+      "Todo": "Барои иҷро",
+      "InProgress": "Дар ҷараён",
+      "Completed": "Иҷрошуда",
+      "Archived": "Бойгонӣ"
     },
     "taskPriority": {
-      "LOW": "Паст",
-      "MEDIUM": "Миёна",
-      "HIGH": "Баланд",
-      "URGENT": "Таъҷилӣ"
+      "Low": "Паст",
+      "Medium": "Миёна",
+      "High": "Баланд",
+      "Urgent": "Таъҷилӣ"
     },
     "commChannel": {
-      "WHATSAPP": "WhatsApp",
-      "EMAIL": "Email",
-      "MANUAL_NOTE": "Ёддошт",
-      "PHONE_CALL": "Занг"
+      "Whatsapp": "WhatsApp",
+      "Email": "Email",
+      "ManualNote": "Ёддошт",
+      "PhoneCall": "Занг"
     },
     "invoiceStatus": {
-      "DRAFT": "Лоиҳа",
-      "SENT": "Фиристодашуда",
-      "PAID": "Пардохтшуда",
-      "OVERDUE": "Мӯҳлаташ гузашта",
-      "CANCELLED": "Бекоршуда"
+      "Draft": "Лоиҳа",
+      "Sent": "Фиристодашуда",
+      "Paid": "Пардохтшуда",
+      "Overdue": "Мӯҳлаташ гузашта",
+      "Cancelled": "Бекоршуда"
     },
     "paymentMethod": {
-      "CASH": "Нақд",
-      "BANK_TRANSFER": "Гузаронии бонкӣ",
-      "CARD": "Корт",
-      "OTHER": "Дигар"
+      "Cash": "Нақд",
+      "BankTransfer": "Гузаронии бонкӣ",
+      "Card": "Корт",
+      "Other": "Дигар"
     },
     "meetingStatus": {
-      "SCHEDULED": "Ба нақша гирифташуда",
-      "COMPLETED": "Анҷомёфта",
-      "CANCELLED": "Бекоршуда"
+      "Scheduled": "Ба нақша гирифташуда",
+      "Completed": "Анҷомёфта",
+      "Cancelled": "Бекоршуда"
     },
     "userRole": {
-      "OWNER": "Соҳиб",
-      "ADMIN": "Маъмур",
-      "MANAGER": "Менеҷер",
-      "SALES": "Фурӯш",
-      "SUPPORT": "Дастгирӣ",
-      "EMPLOYEE": "Корманд",
-      "READ_ONLY": "Танҳо хондан"
+      "Owner": "Соҳиб",
+      "Admin": "Маъмур",
+      "Manager": "Менеҷер",
+      "Sales": "Фурӯш",
+      "Support": "Дастгирӣ",
+      "Employee": "Корманд",
+      "ReadOnly": "Танҳо хондан"
     },
     "userStatus": {
-      "ACTIVE": "Фаъол",
-      "INVITED": "Даъватшуда",
-      "SUSPENDED": "Боздошташуда"
+      "Active": "Фаъол",
+      "Invited": "Даъватшуда",
+      "Suspended": "Боздошташуда"
     },
     "plan": {
-      "STARTER": "Starter",
-      "PROFESSIONAL": "Professional",
-      "ENTERPRISE": "Enterprise"
+      "Starter": "Starter",
+      "Professional": "Professional",
+      "Enterprise": "Enterprise"
     },
     "activityType": {
       "task": "Вазифа",

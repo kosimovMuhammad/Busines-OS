@@ -163,7 +163,35 @@
         "cancel": "Cancel"
       }
     },
-    "deals": { "title": "Deals Pipeline", "subtitle": "Current deal distribution" },
+    "deals": {
+      "title": "Deals Pipeline",
+      "subtitle": "Current deal distribution",
+      "searchPlaceholder": "Search deals or contacts...",
+      "allOwners": "All Owners",
+      "createDeal": "New Deal",
+      "form": {
+        "createTitle": "New Deal",
+        "editTitle": "Edit Deal",
+        "title": "Title",
+        "contact": "Contact",
+        "selectContact": "Select contact",
+        "value": "Value",
+        "currency": "Currency",
+        "stage": "Stage",
+        "probability": "Probability",
+        "closeDate": "Expected close date",
+        "owner": "Owner",
+        "unassigned": "Unassigned",
+        "delete": "Delete",
+        "save": "Save",
+        "create": "Create"
+      },
+      "deleteDialog": {
+        "title": "Delete deal?",
+        "description": "Are you sure you want to delete {title}? This action cannot be undone.",
+        "cancel": "Cancel"
+      }
+    },
     "tasks": {
       "title": "Tasks",
       "subtitle": "Track work and time across your team",
@@ -479,67 +507,67 @@
   },
   "enums": {
     "dealStage": {
-      "LEAD": "Lead",
-      "QUALIFIED": "Qualified",
-      "PROPOSAL": "Proposal",
-      "NEGOTIATION": "Negotiation",
-      "WON": "Won",
-      "LOST": "Lost"
+      "Lead": "Lead",
+      "Qualified": "Qualified",
+      "Proposal": "Proposal",
+      "Negotiation": "Negotiation",
+      "Won": "Won",
+      "Lost": "Lost"
     },
     "taskStatus": {
-      "TODO": "To Do",
-      "IN_PROGRESS": "In Progress",
-      "COMPLETED": "Completed",
-      "ARCHIVED": "Archived"
+      "Todo": "To Do",
+      "InProgress": "In Progress",
+      "Completed": "Completed",
+      "Archived": "Archived"
     },
     "taskPriority": {
-      "LOW": "Low",
-      "MEDIUM": "Medium",
-      "HIGH": "High",
-      "URGENT": "Urgent"
+      "Low": "Low",
+      "Medium": "Medium",
+      "High": "High",
+      "Urgent": "Urgent"
     },
     "commChannel": {
-      "WHATSAPP": "WhatsApp",
-      "EMAIL": "Email",
-      "MANUAL_NOTE": "Note",
-      "PHONE_CALL": "Phone Call"
+      "Whatsapp": "WhatsApp",
+      "Email": "Email",
+      "ManualNote": "Note",
+      "PhoneCall": "Phone Call"
     },
     "invoiceStatus": {
-      "DRAFT": "Draft",
-      "SENT": "Sent",
-      "PAID": "Paid",
-      "OVERDUE": "Overdue",
-      "CANCELLED": "Cancelled"
+      "Draft": "Draft",
+      "Sent": "Sent",
+      "Paid": "Paid",
+      "Overdue": "Overdue",
+      "Cancelled": "Cancelled"
     },
     "paymentMethod": {
-      "CASH": "Cash",
-      "BANK_TRANSFER": "Bank Transfer",
-      "CARD": "Card",
-      "OTHER": "Other"
+      "Cash": "Cash",
+      "BankTransfer": "Bank Transfer",
+      "Card": "Card",
+      "Other": "Other"
     },
     "meetingStatus": {
-      "SCHEDULED": "Scheduled",
-      "COMPLETED": "Completed",
-      "CANCELLED": "Cancelled"
+      "Scheduled": "Scheduled",
+      "Completed": "Completed",
+      "Cancelled": "Cancelled"
     },
     "userRole": {
-      "OWNER": "Owner",
-      "ADMIN": "Admin",
-      "MANAGER": "Manager",
-      "SALES": "Sales",
-      "SUPPORT": "Support",
-      "EMPLOYEE": "Employee",
-      "READ_ONLY": "Read Only"
+      "Owner": "Owner",
+      "Admin": "Admin",
+      "Manager": "Manager",
+      "Sales": "Sales",
+      "Support": "Support",
+      "Employee": "Employee",
+      "ReadOnly": "Read Only"
     },
     "userStatus": {
-      "ACTIVE": "Active",
-      "INVITED": "Invited",
-      "SUSPENDED": "Suspended"
+      "Active": "Active",
+      "Invited": "Invited",
+      "Suspended": "Suspended"
     },
     "plan": {
-      "STARTER": "Starter",
-      "PROFESSIONAL": "Professional",
-      "ENTERPRISE": "Enterprise"
+      "Starter": "Starter",
+      "Professional": "Professional",
+      "Enterprise": "Enterprise"
     },
     "activityType": {
       "task": "Task",
