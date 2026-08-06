@@ -30,7 +30,8 @@ export function ForecastCard() {
               {formatCurrency(data.estimatedRevenue, "TJS", locale)}
             </p>
             <span className="rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium">
-              {t("confidence")} {Math.round(data.confidencePercentage)}%
+              {t("confidence")}{" "}
+              {Math.round(Number.isFinite(data.confidencePercentage) ? data.confidencePercentage : 0)}%
             </span>
           </div>
           <p className="mt-2 text-sm text-white/85">{data.summary}</p>
