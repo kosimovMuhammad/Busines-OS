@@ -40,7 +40,7 @@ export function InvoiceDetailContent({ id }: { id: string }) {
     );
   }
 
-  const contactName = [invoice.contact.firstName, invoice.contact.lastName]
+  const contactName = [invoice.contact?.firstName, invoice.contact?.lastName]
     .filter(Boolean)
     .join(" ");
   const totalPaid = invoice.payments.reduce((sum, p) => sum + p.amount, 0);
@@ -64,12 +64,16 @@ export function InvoiceDetailContent({ id }: { id: string }) {
             <h1 className="text-xl font-semibold text-text-primary">
               {invoice.invoiceNumber}
             </h1>
-            <Link
-              href={`/contacts/${invoice.contact.id}`}
-              className="text-sm text-text-secondary hover:underline"
-            >
-              {contactName}
-            </Link>
+            {invoice.contact ? (
+              <Link
+                href={`/contacts/${invoice.contact.id}`}
+                className="text-sm text-text-secondary hover:underline"
+              >
+                {contactName}
+              </Link>
+            ) : (
+              <p className="text-sm text-text-secondary">{contactName || "—"}</p>
+            )}
             {invoice.deal && (
               <p className="text-xs text-text-tertiary">{invoice.deal.title}</p>
             )}
