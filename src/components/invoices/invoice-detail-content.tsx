@@ -118,7 +118,9 @@ export function InvoiceDetailContent({ id }: { id: string }) {
         <div className="rounded-2xl border border-border-subtle bg-surface p-4">
           <p className="text-xs font-medium text-text-tertiary uppercase">{t("dueDate")}</p>
           <p className="mt-1 text-lg font-semibold text-text-primary">
-            {dateFormatter.format(new Date(invoice.dueDate))}
+            {invoice.dueDate && !Number.isNaN(new Date(invoice.dueDate).getTime())
+              ? dateFormatter.format(new Date(invoice.dueDate))
+              : "—"}
           </p>
         </div>
       </div>
@@ -154,7 +156,9 @@ export function InvoiceDetailContent({ id }: { id: string }) {
                     {payment.amount.toFixed(2)} {invoice.currency} · {tMethod(payment.method)}
                   </p>
                   <p className="text-xs text-text-tertiary">
-                    {dateTimeFormatter.format(new Date(payment.paidAt))}
+                    {payment.paidAt && !Number.isNaN(new Date(payment.paidAt).getTime())
+                      ? dateTimeFormatter.format(new Date(payment.paidAt))
+                      : "—"}
                   </p>
                 </div>
                 {payment.notes && (
