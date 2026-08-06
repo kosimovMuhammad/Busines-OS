@@ -2,7 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { DndContext, type DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
 import { useGetDealsQuery, useUpdateDealStageMutation } from "@/lib/api/deals.api";
 import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import { useGetUsersQuery } from "@/lib/api/users.api";
@@ -29,6 +35,9 @@ export function DealsBoard() {
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const { data: users } = useGetUsersQuery();
   const [updateStage] = useUpdateDealStageMutation();
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+  );
 
   const [search, setSearch] = useState("");
   const [ownerId, setOwnerId] = useState("");
@@ -100,7 +109,7 @@ export function DealsBoard() {
           ))}
         </div>
       ) : (
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
           <div className="flex gap-4 overflow-x-auto pb-4">
             {STAGES.map((stage) => (
               <DealColumn
