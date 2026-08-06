@@ -13,16 +13,18 @@ import { Button } from "@/components/ui/button";
 import type { CommChannel } from "@/types/enums";
 
 const CHANNEL_ICON: Record<CommChannel, typeof MessageSquareText> = {
-  WHATSAPP: MessageSquareText,
-  EMAIL: MessageSquareText,
-  MANUAL_NOTE: StickyNote,
-  PHONE_CALL: MessageSquareText,
+  Whatsapp: MessageSquareText,
+  Email: MessageSquareText,
+  ManualNote: StickyNote,
+  PhoneCall: MessageSquareText,
 };
 
 export function ContactTimeline({ contactId }: { contactId: string }) {
   const t = useTranslations("pages.contacts.timeline");
   const locale = useLocale();
-  const { data, isLoading } = useGetContactTimelineQuery(contactId);
+  const { data, isLoading } = useGetContactTimelineQuery(contactId, {
+    skip: !contactId,
+  });
   const [createNote, { isLoading: isSubmitting }] = useCreateNoteMutation();
   const [note, setNote] = useState("");
 
