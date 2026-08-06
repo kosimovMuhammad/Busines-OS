@@ -58,9 +58,9 @@ export function ActivityFeed() {
             const typeLabel = KNOWN_TYPES.has(item.type)
               ? tType(item.type as Parameters<typeof tType>[0])
               : item.type;
-            const title = item.data.title ?? typeLabel;
+            const title = item.data?.title ?? typeLabel;
             return (
-              <li key={`${item.type}-${item.data.id}-${i}`} className="flex items-start gap-3">
+              <li key={`${item.type}-${item.data?.id}-${i}`} className="flex items-start gap-3">
                 <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-surface-elevated text-text-tertiary">
                   <Icon className="size-4" />
                 </div>
