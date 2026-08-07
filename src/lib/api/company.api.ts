@@ -1,7 +1,11 @@
 import { baseApi } from "./baseApi";
 import type {
   Company,
+  CompanyFeatures,
   CompanyIntegrations,
+  CompanyInvoice,
+  CompanyInvoicesQueryArgs,
+  Paginated,
   PlanInfo,
   UpdateCompanyRequest,
   UpdatePlanRequest,
@@ -29,6 +33,14 @@ export const companyApi = baseApi.injectEndpoints({
       query: (body) => ({ url: "/company/plan", method: "PATCH", body }),
       invalidatesTags: ["Company"],
     }),
+    getFeatures: builder.query<CompanyFeatures, void>({
+      query: () => "/company/features",
+      providesTags: ["Company"],
+    }),
+    getCompanyInvoices: builder.query<Paginated<CompanyInvoice>, CompanyInvoicesQueryArgs | void>({
+      query: (args) => ({ url: "/company/invoices", params: args ?? undefined }),
+      providesTags: ["Company"],
+    }),
   }),
 });
 
@@ -38,4 +50,6 @@ export const {
   useUpdateCompanyMutation,
   useGetPlanQuery,
   useUpdatePlanMutation,
+  useGetFeaturesQuery,
+  useGetCompanyInvoicesQuery,
 } = companyApi;

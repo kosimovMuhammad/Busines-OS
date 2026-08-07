@@ -1,4 +1,5 @@
 import type {
+  BillingCycle,
   CommChannel,
   ConditionLogicOperator,
   ConditionOperator,
@@ -10,6 +11,7 @@ import type {
   NotificationType,
   PaymentMethod,
   Plan,
+  SubscriptionStatus,
   TaskPriority,
   TaskStatus,
   TemplateType,
@@ -1224,4 +1226,92 @@ export type NotificationPreferenceItem = {
 
 export type UpdateNotificationPreferencesRequest = {
   preferences: NotificationPreferenceItem[];
+};
+
+// ---- Subscription & Billing ----
+
+export type SubscriptionPlanFeature = {
+  featureKey: string;
+  limit: number | null;
+  enabled: boolean;
+};
+
+export type SubscriptionPlan = {
+  id: string;
+  name: string;
+  description: string | null;
+  priceMonthly: number;
+  priceYearly: number;
+  currency: string;
+  isActive: boolean;
+  sortOrder: number;
+  features: SubscriptionPlanFeature[];
+};
+
+export type Subscription = {
+  id: string;
+  planId: string;
+  planName: string;
+  status: SubscriptionStatus;
+  billingCycle: BillingCycle;
+  currentPeriodStart: string;
+  currentPeriodEnd: string;
+  trialEndsAt: string | null;
+  canceledAt: string | null;
+  pendingPlanId: string | null;
+  cancelAtPeriodEnd: boolean;
+};
+
+export type UsageMetric = {
+  metricKey: string;
+  currentValue: number;
+  limit: number | null;
+  isUnlimited: boolean;
+};
+
+// GET /company/features returns a flat map of feature key -> enabled;
+// the known keys observed live are whatsapp_integration, email_integration,
+// ai_features, advanced_analytics, custom_branding, api_access.
+export type CompanyFeatures = Record<string, boolean>;
+
+export type RequestUpgradeRequest = {
+  planId: string | null;
+  billingCycle: BillingCycle;
+};
+
+// Payment provider (Payme/Click/Alif) integration is not implemented yet -
+// every upgrade request comes back "pending" and the plan only actually
+// changes once a payment provider confirms the charge server-side.
+export type UpgradeResult = {
+  status: string;
+  message: string;
+  requestedPlanId: string;
+  requestedPlanName: string;
+  billingCycle: BillingCycle;
+  amount: number;
+  currency: string;
+  paymentTransactionId: string;
+};
+
+export type CancelSubscriptionRequest = {
+  immediate: boolean;
+};
+
+// GET /company/invoices never returned a populated row in live testing (no
+// billing cycle has completed for the probe company), so this shape is a
+// best-effort guess based on the billing-invoice conventions used
+// elsewhere in the API and is not verified against a real response.
+export type CompanyInvoice = {
+  id: string;
+  amount: number;
+  currency: string;
+  status: string;
+  issuedAt: string;
+  paidAt: string | null;
+  pdfUrl: string | null;
+};
+
+export type CompanyInvoicesQueryArgs = {
+  page?: number;
+  limit?: number;
 };

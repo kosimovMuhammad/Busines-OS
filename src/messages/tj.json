@@ -1052,8 +1052,61 @@
       "subtitle": "Идоракунии обуна",
       "currentPlan": "Тарифи ҷорӣ",
       "changePlan": "Тағйири тариф",
-      "save": "Нигоҳ доштан",
-      "ownerOnly": "Танҳо соҳиби фазои корӣ метавонад тарифро тағйир диҳад."
+      "cancelSubscription": "Бекор кардани обуна",
+      "adminReadOnly": "Танҳо соҳиби фазои корӣ метавонад обунаро тағйир диҳад ё бекор кунад.",
+      "billingCycle": "Даврии пардохт",
+      "renewsOn": "Дарозмуддат то",
+      "trialEndsOn": "Давраи озмоишӣ то",
+      "canceledBanner": "Ин обуна дар охири давраи ҷорӣ бекор карда мешавад.",
+      "featureKey": {
+        "whatsapp_integration": "Пайвасти WhatsApp",
+        "email_integration": "Пайвасти Email",
+        "ai_features": "Ёрдамчии AI",
+        "advanced_analytics": "Таҳлили пешрафта",
+        "custom_branding": "Брендинги фардӣ",
+        "api_access": "Дастрасии API",
+        "max_users": "Аъзоёни даста",
+        "max_contacts": "Тамосҳо",
+        "max_deals": "Созишҳо",
+        "storage_mb": "Ҷои захира (МБ)",
+        "automation_workflows": "Сценарийҳои фаъол"
+      },
+      "usage": {
+        "title": "Истифода",
+        "unlimited": "Бемаҳдудият"
+      },
+      "features": {
+        "title": "Хусусиятҳо",
+        "enabled": "Фаъол",
+        "disabled": "Ғайрифаъол"
+      },
+      "upgradeDialog": {
+        "title": "Тағйири тариф",
+        "billingCycle": "Даврии пардохт",
+        "currentPlanBadge": "Тарифи ҷорӣ",
+        "perMonth": "/моҳ",
+        "perYear": "/сол",
+        "select": "Интихоб",
+        "pendingTitle": "Дархости тағйири тариф фиристода шуд",
+        "amount": "Маблағ",
+        "done": "Тайёр"
+      },
+      "cancelDialog": {
+        "title": "Обуна бекор карда шавад?",
+        "description": "Обунаи шумо дигар дароз намешавад. Шумо метавонед хусусиятҳои пулакиро то охири давраи ҷории ҳисобкунӣ истифода баред, агар бекоркунии фаврӣ интихоб накунед.",
+        "immediate": "Ба ҷои охири давра, ҳозир бекор кардан",
+        "cancel": "Обунаро нигоҳ доштан",
+        "confirm": "Бекор кардани обуна"
+      },
+      "invoices": {
+        "title": "Таърихи ҳисобномаҳо",
+        "empty": "То ҳол ҳисобнома нест.",
+        "columnAmount": "Маблағ",
+        "columnStatus": "Ҳолат",
+        "columnDate": "Сана",
+        "columnActions": "Амалҳо",
+        "download": "Боргирии PDF"
+      }
     },
     "search": {
       "title": "Ҷустуҷӯ",
@@ -1137,6 +1190,16 @@
       "Starter": "Starter",
       "Professional": "Professional",
       "Enterprise": "Enterprise"
+    },
+    "billingCycle": {
+      "Monthly": "Моҳона",
+      "Yearly": "Солона"
+    },
+    "subscriptionStatus": {
+      "Trialing": "Давраи озмоишӣ",
+      "Active": "Фаъол",
+      "PastDue": "Қарздор",
+      "Canceled": "Бекоршуда"
     },
     "activityType": {
       "task": "Вазифа",

@@ -1052,8 +1052,61 @@
       "subtitle": "Manage your subscription",
       "currentPlan": "Current plan",
       "changePlan": "Change plan",
-      "save": "Save",
-      "ownerOnly": "Only the workspace owner can change the plan."
+      "cancelSubscription": "Cancel subscription",
+      "adminReadOnly": "Only the workspace owner can change or cancel the subscription.",
+      "billingCycle": "Billing cycle",
+      "renewsOn": "Renews on",
+      "trialEndsOn": "Trial ends on",
+      "canceledBanner": "This subscription is scheduled to cancel at the end of the current period.",
+      "featureKey": {
+        "whatsapp_integration": "WhatsApp integration",
+        "email_integration": "Email integration",
+        "ai_features": "AI Assistant",
+        "advanced_analytics": "Advanced analytics",
+        "custom_branding": "Custom branding",
+        "api_access": "API access",
+        "max_users": "Team members",
+        "max_contacts": "Contacts",
+        "max_deals": "Deals",
+        "storage_mb": "Storage (MB)",
+        "automation_workflows": "Active workflows"
+      },
+      "usage": {
+        "title": "Usage",
+        "unlimited": "Unlimited"
+      },
+      "features": {
+        "title": "Features",
+        "enabled": "Enabled",
+        "disabled": "Disabled"
+      },
+      "upgradeDialog": {
+        "title": "Change plan",
+        "billingCycle": "Billing cycle",
+        "currentPlanBadge": "Current plan",
+        "perMonth": "/mo",
+        "perYear": "/yr",
+        "select": "Select",
+        "pendingTitle": "Plan change requested",
+        "amount": "Amount",
+        "done": "Done"
+      },
+      "cancelDialog": {
+        "title": "Cancel subscription?",
+        "description": "Your subscription will stop renewing. You can still use paid features until the end of the current billing period, unless you cancel immediately.",
+        "immediate": "Cancel immediately instead of at period end",
+        "cancel": "Keep subscription",
+        "confirm": "Cancel subscription"
+      },
+      "invoices": {
+        "title": "Invoice history",
+        "empty": "No invoices yet.",
+        "columnAmount": "Amount",
+        "columnStatus": "Status",
+        "columnDate": "Date",
+        "columnActions": "Actions",
+        "download": "Download PDF"
+      }
     },
     "search": {
       "title": "Search",
@@ -1137,6 +1190,16 @@
       "Starter": "Starter",
       "Professional": "Professional",
       "Enterprise": "Enterprise"
+    },
+    "billingCycle": {
+      "Monthly": "Monthly",
+      "Yearly": "Yearly"
+    },
+    "subscriptionStatus": {
+      "Trialing": "Trial",
+      "Active": "Active",
+      "PastDue": "Past due",
+      "Canceled": "Canceled"
     },
     "activityType": {
       "task": "Task",

@@ -84,6 +84,7 @@ export const baseApi = createApi({
     "Reports",
     "Workflows",
     "Webhooks",
+    "Subscription",
   ],
   endpoints: () => ({}),
 });

@@ -1052,8 +1052,61 @@
       "subtitle": "Управление подпиской",
       "currentPlan": "Текущий тариф",
       "changePlan": "Изменить тариф",
-      "save": "Сохранить",
-      "ownerOnly": "Только владелец рабочего пространства может изменить тариф."
+      "cancelSubscription": "Отменить подписку",
+      "adminReadOnly": "Только владелец рабочего пространства может изменить или отменить подписку.",
+      "billingCycle": "Периодичность оплаты",
+      "renewsOn": "Продление",
+      "trialEndsOn": "Пробный период до",
+      "canceledBanner": "Эта подписка будет отменена в конце текущего периода.",
+      "featureKey": {
+        "whatsapp_integration": "Интеграция WhatsApp",
+        "email_integration": "Интеграция Email",
+        "ai_features": "AI-ассистент",
+        "advanced_analytics": "Расширенная аналитика",
+        "custom_branding": "Собственный брендинг",
+        "api_access": "Доступ к API",
+        "max_users": "Участники команды",
+        "max_contacts": "Контакты",
+        "max_deals": "Сделки",
+        "storage_mb": "Хранилище (МБ)",
+        "automation_workflows": "Активные сценарии"
+      },
+      "usage": {
+        "title": "Использование",
+        "unlimited": "Без ограничений"
+      },
+      "features": {
+        "title": "Функции",
+        "enabled": "Включено",
+        "disabled": "Отключено"
+      },
+      "upgradeDialog": {
+        "title": "Изменить тариф",
+        "billingCycle": "Периодичность оплаты",
+        "currentPlanBadge": "Текущий тариф",
+        "perMonth": "/мес",
+        "perYear": "/год",
+        "select": "Выбрать",
+        "pendingTitle": "Запрос на смену тарифа отправлен",
+        "amount": "Сумма",
+        "done": "Готово"
+      },
+      "cancelDialog": {
+        "title": "Отменить подписку?",
+        "description": "Ваша подписка перестанет продлеваться. Вы сможете пользоваться платными функциями до конца текущего расчётного периода, если не выберете немедленную отмену.",
+        "immediate": "Отменить немедленно, а не в конце периода",
+        "cancel": "Оставить подписку",
+        "confirm": "Отменить подписку"
+      },
+      "invoices": {
+        "title": "История счетов",
+        "empty": "Счетов пока нет.",
+        "columnAmount": "Сумма",
+        "columnStatus": "Статус",
+        "columnDate": "Дата",
+        "columnActions": "Действия",
+        "download": "Скачать PDF"
+      }
     },
     "search": {
       "title": "Поиск",
@@ -1137,6 +1190,16 @@
       "Starter": "Starter",
       "Professional": "Professional",
       "Enterprise": "Enterprise"
+    },
+    "billingCycle": {
+      "Monthly": "Помесячно",
+      "Yearly": "Ежегодно"
+    },
+    "subscriptionStatus": {
+      "Trialing": "Пробный период",
+      "Active": "Активна",
+      "PastDue": "Просрочена",
+      "Canceled": "Отменена"
     },
     "activityType": {
       "task": "Задача",

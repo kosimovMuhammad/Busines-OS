@@ -12,7 +12,7 @@ const TABS = [
   { href: "/settings/roles", labelKey: "rolesPermissions", roles: ["Owner", "Admin"] },
   { href: "/settings/security", labelKey: "security", roles: ["Owner", "Admin"] },
   { href: "/settings/integrations", labelKey: "integrations" },
-  { href: "/settings/plan", labelKey: "plan" },
+  { href: "/settings/plan", labelKey: "plan", roles: ["Owner", "Admin"] },
   { href: "/settings/notifications", labelKey: "notifications" },
 ] as const;
 
