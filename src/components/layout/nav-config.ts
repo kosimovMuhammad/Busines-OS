@@ -12,6 +12,7 @@ import {
   Mail,
   MessageCircle,
   MessagesSquare,
+  PackageSearch,
   Receipt,
   Workflow,
 } from "lucide-react";
@@ -32,7 +33,8 @@ export type NavItem = {
     | "files"
     | "calendar"
     | "reports"
-    | "automation";
+    | "automation"
+    | "inventory";
   icon: LucideIcon;
 };
 
@@ -54,4 +56,5 @@ export const workspaceNavItems: NavItem[] = [
   { href: "/calendar", labelKey: "calendar", icon: Calendar },
   { href: "/reports", labelKey: "reports", icon: ChartColumn },
   { href: "/automation", labelKey: "automation", icon: Workflow },
+  { href: "/inventory", labelKey: "inventory", icon: PackageSearch },
 ];

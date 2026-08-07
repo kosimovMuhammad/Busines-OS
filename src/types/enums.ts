@@ -85,3 +85,15 @@ export type BillingCycle = "Monthly" | "Yearly";
 // Only "Trialing" observed live; other values are the obvious counterparts
 // and not yet confirmed against a real response.
 export type SubscriptionStatus = "Trialing" | "Active" | "PastDue" | "Canceled";
+
+export type ProductUnit =
+  | "Piece"
+  | "Kg"
+  | "Gram"
+  | "Liter"
+  | "Milliliter"
+  | "Meter"
+  | "Box"
+  | "Pack";
+
+export type PurchaseOrderStatus = "Draft" | "Ordered" | "Received" | "Cancelled";

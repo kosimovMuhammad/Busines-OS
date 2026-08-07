@@ -11,6 +11,8 @@ import type {
   NotificationType,
   PaymentMethod,
   Plan,
+  ProductUnit,
+  PurchaseOrderStatus,
   SubscriptionStatus,
   TaskPriority,
   TaskStatus,
@@ -1312,6 +1314,241 @@ export type CompanyInvoice = {
 };
 
 export type CompanyInvoicesQueryArgs = {
+  page?: number;
+  limit?: number;
+};
+
+// ---- Inventory Suite ----
+
+export type Category = {
+  id: string;
+  name: string;
+  description: string | null;
+  parentCategoryId: string | null;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+export type CreateCategoryRequest = {
+  name: string;
+  description?: string;
+  parentCategoryId?: string;
+};
+
+export type UpdateCategoryRequest = Partial<CreateCategoryRequest>;
+
+export type Product = {
+  id: string;
+  name: string;
+  sku: string | null;
+  description: string | null;
+  price: number;
+  cost: number;
+  currency: string;
+  categoryId: string | null;
+  categoryName: string | null;
+  unit: ProductUnit;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+export type CreateProductRequest = {
+  name: string;
+  sku?: string;
+  description?: string;
+  price: number;
+  cost: number;
+  currency?: string;
+  categoryId?: string;
+  unit: ProductUnit;
+  isActive: boolean;
+};
+
+export type UpdateProductRequest = Partial<CreateProductRequest>;
+
+export type ProductsQueryArgs = {
+  search?: string;
+  categoryId?: string;
+  isActive?: boolean;
+  includeArchived?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+export type Supplier = {
+  id: string;
+  name: string;
+  contactName: string | null;
+  email: string | null;
+  phone: string | null;
+  address: string | null;
+  notes: string | null;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+export type CreateSupplierRequest = {
+  name: string;
+  contactName?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  notes?: string;
+  isActive: boolean;
+};
+
+export type UpdateSupplierRequest = Partial<CreateSupplierRequest>;
+
+export type SuppliersQueryArgs = {
+  search?: string;
+  isActive?: boolean;
+  includeArchived?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+export type CreatePurchaseOrderLineItemRequest = {
+  productId: string;
+  quantity: number;
+  unitCost: number;
+};
+
+export type PurchaseOrderLineItem = CreatePurchaseOrderLineItemRequest & {
+  id: string;
+  productName: string;
+  productSku: string | null;
+  lineTotal: number;
+};
+
+// GET /purchase-orders (list) omits lineItems; GET /purchase-orders/{id}
+// (detail) includes them - mirrors the WorkflowSummary/Workflow split.
+export type PurchaseOrderSummary = {
+  id: string;
+  supplierId: string | null;
+  supplierName: string | null;
+  orderNumber: string;
+  status: PurchaseOrderStatus;
+  orderDate: string;
+  expectedDate: string | null;
+  receivedDate: string | null;
+  currency: string;
+  notes: string | null;
+  totalAmount: number;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+export type PurchaseOrder = PurchaseOrderSummary & {
+  lineItems: PurchaseOrderLineItem[];
+};
+
+export type CreatePurchaseOrderRequest = {
+  supplierId?: string;
+  expectedDate?: string;
+  currency?: string;
+  notes?: string;
+  lineItems?: CreatePurchaseOrderLineItemRequest[];
+};
+
+export type UpdatePurchaseOrderRequest = {
+  supplierId?: string;
+  status?: PurchaseOrderStatus;
+  expectedDate?: string;
+  currency?: string;
+  notes?: string;
+  lineItems?: CreatePurchaseOrderLineItemRequest[];
+};
+
+export type PurchaseOrdersQueryArgs = {
+  status?: PurchaseOrderStatus;
+  supplierId?: string;
+  includeArchived?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+export type InventoryRecord = {
+  id: string;
+  productId: string;
+  productName: string;
+  productSku: string | null;
+  branchId: string | null;
+  branchName: string | null;
+  quantity: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateInventoryRequest = {
+  productId: string;
+  branchId?: string;
+  quantity: number;
+};
+
+export type UpdateInventoryRequest = {
+  quantity?: number;
+};
+
+export type StockMovementRequest = {
+  productId: string;
+  branchId?: string;
+  quantity: number;
+  reason?: string;
+  reference?: string;
+};
+
+export type InventoryQueryArgs = {
+  productId?: string;
+  branchId?: string;
+  page?: number;
+  limit?: number;
+};
+
+export type Expense = {
+  id: string;
+  description: string | null;
+  amount: number;
+  currency: string;
+  category: string | null;
+  date: string;
+  paidById: string;
+  paidByName: string;
+  branchId: string | null;
+  branchName: string | null;
+  receiptFileId: string | null;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+// The OpenAPI schema marks paidById as nullable, but the backend 400s
+// without it ("The PaidById field is required.") - confirmed live.
+export type CreateExpenseRequest = {
+  description?: string;
+  amount: number;
+  currency?: string;
+  category?: string;
+  date: string;
+  paidById: string;
+  branchId?: string;
+  receiptFileId?: string;
+};
+
+export type UpdateExpenseRequest = Partial<CreateExpenseRequest>;
+
+export type ExpensesQueryArgs = {
+  category?: string;
+  paidById?: string;
+  branchId?: string;
+  from?: string;
+  to?: string;
+  includeArchived?: boolean;
   page?: number;
   limit?: number;
 };
