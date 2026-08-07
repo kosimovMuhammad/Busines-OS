@@ -362,6 +362,102 @@ export type GlobalSearchArgs = {
   limit?: number;
 };
 
+// ---- Reports ----
+
+export type ReportDateRangeArgs = { from?: string; to?: string };
+
+export type SalesReport = {
+  totalDeals: number;
+  wonCount: number;
+  wonValue: number;
+  lostCount: number;
+  lostValue: number;
+  openCount: number;
+  openValue: number;
+  winRatePercent: number | null;
+  averageDealValue: number;
+  byStage: { stage: string; count: number; value: number }[];
+};
+
+export type RevenueReportArgs = ReportDateRangeArgs & { groupBy?: "day" | "week" | "month" };
+
+export type RevenueReport = {
+  totalRevenue: number;
+  forecastedRevenue: number;
+  byPeriod: { periodLabel: string; revenue: number }[];
+  byStage: { stage: string; value: number; count: number }[];
+  previousPeriodRevenue: number;
+  percentChange: number | null;
+};
+
+export type TasksReport = {
+  totalTasks: number;
+  completedCount: number;
+  overdueCount: number;
+  completionRatePercent: number | null;
+  byStatus: { status: string; count: number }[];
+  byPriority: { priority: string; count: number }[];
+};
+
+export type CustomersReport = {
+  totalContacts: number;
+  newContactsInRange: number;
+  topCustomers: {
+    contactId: string;
+    contactName: string;
+    wonRevenue: number;
+    wonDealsCount: number;
+  }[];
+};
+
+export type EmployeePerformanceArgs = ReportDateRangeArgs & { userId?: string };
+
+export type EmployeePerformanceEntry = {
+  userId: string;
+  userName: string;
+  dealsWonCount: number;
+  dealsWonValue: number;
+  dealsLostCount: number;
+  dealsLostValue: number;
+  tasksCompleted: number;
+  tasksOverdue: number;
+  avgDealCycleDays: number | null;
+  activityCount: number;
+};
+
+// Field/groupBy/metric names are validated server-side against a strict
+// per-entity whitelist (discovered live via the 422 error messages, since
+// the schema doesn't document it): Deals -> groupBy day/week/month/Stage/
+// OwnerId, metrics count + sum:value/avg:value; Contacts -> groupBy day/
+// week/month/OwnerId, metrics count only; Tasks -> groupBy day/week/month/
+// Status/Priority/AssignedTo, metrics count only.
+export type ReportEntityType = "Deals" | "Contacts" | "Tasks";
+
+export type ReportFilter = { field: string; operator: string; value: string };
+
+export type SavedReport = {
+  id: string;
+  name: string;
+  entityType: string;
+  filters: ReportFilter[] | null;
+  groupBy: string | null;
+  metrics: string[] | null;
+  createdBy: string;
+  createdAt: string;
+};
+
+export type CreateReportRequest = {
+  name: string;
+  entityType: ReportEntityType;
+  filters?: ReportFilter[];
+  groupBy?: string;
+  metrics?: string[];
+};
+
+export type ReportRunResult = {
+  rows: { groupKey: string; metrics: Record<string, number> }[];
+};
+
 // ---- Company ----
 
 export type Company = {

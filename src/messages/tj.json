@@ -37,6 +37,7 @@
     "contracts": "Шартномаҳо",
     "files": "Файлҳо",
     "calendar": "Тақвим",
+    "reports": "Ҳисоботҳо",
     "settings": "Танзимот",
     "workspaceSection": "Фазои корӣ",
     "collapse": "Пахш кардан"
@@ -549,6 +550,116 @@
         "notConnected": "Пайваст нашудааст",
         "connect": "Пайваст кардан",
         "disconnect": "Қатъ кардан"
+      }
+    },
+    "reports": {
+      "title": "Ҳисоботҳо",
+      "subtitle": "Фурӯш, даромад ва самаранокии дастаро дар фазои кории худ пайгирӣ кунед",
+      "from": "Аз",
+      "to": "То",
+      "export": "Содирот CSV",
+      "tabs": {
+        "sales": "Фурӯш",
+        "revenue": "Даромад",
+        "tasks": "Вазифаҳо",
+        "customers": "Мизоҷон",
+        "employeePerformance": "Самаранокии кормандон",
+        "custom": "Ҳисоботи фармоишӣ"
+      },
+      "sales": {
+        "totalDeals": "Ҳамаи муомилот",
+        "averageValue": "Миёна {value}",
+        "won": "Бурдашуда",
+        "lost": "Бойдодашуда",
+        "winRate": "Дараҷаи бурд",
+        "columnStage": "Марҳила",
+        "columnCount": "Шумора",
+        "columnValue": "Арзиш"
+      },
+      "revenue": {
+        "groupBy": { "day": "Рӯз", "week": "Ҳафта", "month": "Моҳ" },
+        "totalRevenue": "Даромади умумӣ",
+        "vsPrevious": "{value} нисбат ба давраи қаблӣ",
+        "forecasted": "Пешбинишуда",
+        "previousPeriod": "Давраи қаблӣ",
+        "empty": "Барои ин давра маълумоти даромад нест.",
+        "columnPeriod": "Давра",
+        "columnRevenue": "Даромад"
+      },
+      "tasks": {
+        "total": "Ҳамаи вазифаҳо",
+        "completed": "Иҷрошуда",
+        "overdue": "Мӯҳлаташ гузашта",
+        "completionRate": "Дараҷаи иҷро",
+        "byStatus": "Аз рӯи ҳолат",
+        "byPriority": "Аз рӯи муҳимият"
+      },
+      "customers": {
+        "totalContacts": "Ҳамаи тамосҳо",
+        "newInRange": "Нав дар ин давра",
+        "topCustomers": "Беҳтарин мизоҷон",
+        "empty": "То ҳол маълумоти даромади мизоҷон нест.",
+        "columnContact": "Тамос",
+        "columnDeals": "Муомилоти бурдашуда",
+        "columnRevenue": "Даромад"
+      },
+      "employeePerformance": {
+        "allEmployees": "Ҳамаи кормандон",
+        "empty": "То ҳол маълумоти самаранокӣ нест.",
+        "columnEmployee": "Корманд",
+        "columnWon": "Бурдашуда",
+        "columnLost": "Бойдодашуда",
+        "columnTasksCompleted": "Вазифаҳои иҷрошуда",
+        "columnTasksOverdue": "Мӯҳлаташ гузашта",
+        "columnActivity": "Фаъолият"
+      },
+      "custom": {
+        "createTitle": "Сохтани ҳисобот",
+        "name": "Ном",
+        "entityType": "Манбаи маълумот",
+        "groupBy": "Гурӯҳбандӣ аз рӯи",
+        "metrics": "Метрикаҳо",
+        "filterOptional": "Филтр (ихтиёрӣ)",
+        "noFilter": "Бе филтр",
+        "filterValuePlaceholder": "масалан, Won",
+        "create": "Сохтан",
+        "empty": "То ҳол ҳисоботи фармоишӣ сохта нашудааст.",
+        "columnName": "Ном",
+        "columnEntity": "Манбаи маълумот",
+        "columnGroupBy": "Гурӯҳбандӣ",
+        "columnCreated": "Сохта шуд",
+        "columnActions": "",
+        "run": "Иҷро кардан",
+        "delete": "Нест кардан",
+        "runEmpty": "Ин ҳисобот сатре барнагардонд.",
+        "groupKey": "Гурӯҳ",
+        "deleteDialog": {
+          "title": "Ҳисобот нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед «{name}»-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        },
+        "fields": {
+          "entity": {
+            "Deals": "Муомилот",
+            "Contacts": "Тамосҳо",
+            "Tasks": "Вазифаҳо"
+          },
+          "groupBy": {
+            "day": "Рӯз",
+            "week": "Ҳафта",
+            "month": "Моҳ",
+            "Stage": "Марҳила",
+            "OwnerId": "Соҳиб",
+            "Status": "Ҳолат",
+            "Priority": "Муҳимият",
+            "AssignedTo": "Иҷрокунанда"
+          },
+          "metric": {
+            "count": "Шумора",
+            "sum:value": "Ҷамъи арзиш",
+            "avg:value": "Арзиши миёна"
+          }
+        }
       }
     },
     "settings": {

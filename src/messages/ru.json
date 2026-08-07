@@ -37,6 +37,7 @@
     "contracts": "Договоры",
     "files": "Файлы",
     "calendar": "Календарь",
+    "reports": "Отчёты",
     "settings": "Настройки",
     "workspaceSection": "Рабочее пространство",
     "collapse": "Свернуть"
@@ -549,6 +550,116 @@
         "notConnected": "Не подключено",
         "connect": "Подключить",
         "disconnect": "Отключить"
+      }
+    },
+    "reports": {
+      "title": "Отчёты",
+      "subtitle": "Отслеживайте продажи, доход и эффективность команды в вашем рабочем пространстве",
+      "from": "С",
+      "to": "По",
+      "export": "Экспорт CSV",
+      "tabs": {
+        "sales": "Продажи",
+        "revenue": "Доход",
+        "tasks": "Задачи",
+        "customers": "Клиенты",
+        "employeePerformance": "Эффективность сотрудников",
+        "custom": "Свои отчёты"
+      },
+      "sales": {
+        "totalDeals": "Всего сделок",
+        "averageValue": "Средн. {value}",
+        "won": "Выиграно",
+        "lost": "Проиграно",
+        "winRate": "Процент побед",
+        "columnStage": "Стадия",
+        "columnCount": "Количество",
+        "columnValue": "Сумма"
+      },
+      "revenue": {
+        "groupBy": { "day": "День", "week": "Неделя", "month": "Месяц" },
+        "totalRevenue": "Общий доход",
+        "vsPrevious": "{value} к предыдущему периоду",
+        "forecasted": "Прогноз",
+        "previousPeriod": "Предыдущий период",
+        "empty": "Нет данных о доходе за этот период.",
+        "columnPeriod": "Период",
+        "columnRevenue": "Доход"
+      },
+      "tasks": {
+        "total": "Всего задач",
+        "completed": "Завершено",
+        "overdue": "Просрочено",
+        "completionRate": "Процент выполнения",
+        "byStatus": "По статусу",
+        "byPriority": "По приоритету"
+      },
+      "customers": {
+        "totalContacts": "Всего контактов",
+        "newInRange": "Новых за период",
+        "topCustomers": "Лучшие клиенты",
+        "empty": "Данных о доходе клиентов пока нет.",
+        "columnContact": "Контакт",
+        "columnDeals": "Выигранные сделки",
+        "columnRevenue": "Доход"
+      },
+      "employeePerformance": {
+        "allEmployees": "Все сотрудники",
+        "empty": "Данных об эффективности пока нет.",
+        "columnEmployee": "Сотрудник",
+        "columnWon": "Выиграно",
+        "columnLost": "Проиграно",
+        "columnTasksCompleted": "Задач выполнено",
+        "columnTasksOverdue": "Просрочено",
+        "columnActivity": "Активность"
+      },
+      "custom": {
+        "createTitle": "Создать отчёт",
+        "name": "Название",
+        "entityType": "Источник данных",
+        "groupBy": "Группировать по",
+        "metrics": "Метрики",
+        "filterOptional": "Фильтр (опционально)",
+        "noFilter": "Без фильтра",
+        "filterValuePlaceholder": "например, Won",
+        "create": "Создать",
+        "empty": "Свои отчёты пока не созданы.",
+        "columnName": "Название",
+        "columnEntity": "Источник данных",
+        "columnGroupBy": "Группировка",
+        "columnCreated": "Создан",
+        "columnActions": "",
+        "run": "Запустить",
+        "delete": "Удалить",
+        "runEmpty": "Этот отчёт не вернул строк.",
+        "groupKey": "Группа",
+        "deleteDialog": {
+          "title": "Удалить отчёт?",
+          "description": "Вы уверены, что хотите удалить «{name}»? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        },
+        "fields": {
+          "entity": {
+            "Deals": "Сделки",
+            "Contacts": "Контакты",
+            "Tasks": "Задачи"
+          },
+          "groupBy": {
+            "day": "День",
+            "week": "Неделя",
+            "month": "Месяц",
+            "Stage": "Стадия",
+            "OwnerId": "Владелец",
+            "Status": "Статус",
+            "Priority": "Приоритет",
+            "AssignedTo": "Исполнитель"
+          },
+          "metric": {
+            "count": "Количество",
+            "sum:value": "Сумма значения",
+            "avg:value": "Среднее значение"
+          }
+        }
       }
     },
     "settings": {

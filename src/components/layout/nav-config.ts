@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   Bot,
   Calendar,
+  ChartColumn,
   CircleCheck,
   Contact,
   FileSignature,
@@ -28,7 +29,8 @@ export type NavItem = {
     | "invoicing"
     | "contracts"
     | "files"
-    | "calendar";
+    | "calendar"
+    | "reports";
   icon: LucideIcon;
 };
 
@@ -48,4 +50,5 @@ export const workspaceNavItems: NavItem[] = [
   { href: "/contracts", labelKey: "contracts", icon: FileSignature },
   { href: "/files", labelKey: "files", icon: FileText },
   { href: "/calendar", labelKey: "calendar", icon: Calendar },
+  { href: "/reports", labelKey: "reports", icon: ChartColumn },
 ];

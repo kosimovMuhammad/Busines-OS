@@ -37,6 +37,7 @@
     "contracts": "Contracts",
     "files": "Files",
     "calendar": "Calendar",
+    "reports": "Reports",
     "settings": "Settings",
     "workspaceSection": "Workspace",
     "collapse": "Collapse"
@@ -549,6 +550,116 @@
         "notConnected": "Not connected",
         "connect": "Connect",
         "disconnect": "Disconnect"
+      }
+    },
+    "reports": {
+      "title": "Reports",
+      "subtitle": "Track sales, revenue, and team performance across your workspace",
+      "from": "From",
+      "to": "To",
+      "export": "Export CSV",
+      "tabs": {
+        "sales": "Sales",
+        "revenue": "Revenue",
+        "tasks": "Tasks",
+        "customers": "Customers",
+        "employeePerformance": "Employee Performance",
+        "custom": "Custom"
+      },
+      "sales": {
+        "totalDeals": "Total Deals",
+        "averageValue": "Avg. {value}",
+        "won": "Won",
+        "lost": "Lost",
+        "winRate": "Win Rate",
+        "columnStage": "Stage",
+        "columnCount": "Count",
+        "columnValue": "Value"
+      },
+      "revenue": {
+        "groupBy": { "day": "Day", "week": "Week", "month": "Month" },
+        "totalRevenue": "Total Revenue",
+        "vsPrevious": "{value} vs previous period",
+        "forecasted": "Forecasted",
+        "previousPeriod": "Previous Period",
+        "empty": "No revenue data for this range.",
+        "columnPeriod": "Period",
+        "columnRevenue": "Revenue"
+      },
+      "tasks": {
+        "total": "Total Tasks",
+        "completed": "Completed",
+        "overdue": "Overdue",
+        "completionRate": "Completion Rate",
+        "byStatus": "By Status",
+        "byPriority": "By Priority"
+      },
+      "customers": {
+        "totalContacts": "Total Contacts",
+        "newInRange": "New in Range",
+        "topCustomers": "Top Customers",
+        "empty": "No customer revenue data yet.",
+        "columnContact": "Contact",
+        "columnDeals": "Won Deals",
+        "columnRevenue": "Revenue"
+      },
+      "employeePerformance": {
+        "allEmployees": "All Employees",
+        "empty": "No performance data yet.",
+        "columnEmployee": "Employee",
+        "columnWon": "Won",
+        "columnLost": "Lost",
+        "columnTasksCompleted": "Tasks Done",
+        "columnTasksOverdue": "Overdue",
+        "columnActivity": "Activity"
+      },
+      "custom": {
+        "createTitle": "Create Report",
+        "name": "Name",
+        "entityType": "Data source",
+        "groupBy": "Group by",
+        "metrics": "Metrics",
+        "filterOptional": "Filter (optional)",
+        "noFilter": "No filter",
+        "filterValuePlaceholder": "e.g. Won",
+        "create": "Create",
+        "empty": "No custom reports yet.",
+        "columnName": "Name",
+        "columnEntity": "Data source",
+        "columnGroupBy": "Group by",
+        "columnCreated": "Created",
+        "columnActions": "",
+        "run": "Run",
+        "delete": "Delete",
+        "runEmpty": "This report returned no rows.",
+        "groupKey": "Group",
+        "deleteDialog": {
+          "title": "Delete report?",
+          "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+          "cancel": "Cancel"
+        },
+        "fields": {
+          "entity": {
+            "Deals": "Deals",
+            "Contacts": "Contacts",
+            "Tasks": "Tasks"
+          },
+          "groupBy": {
+            "day": "Day",
+            "week": "Week",
+            "month": "Month",
+            "Stage": "Stage",
+            "OwnerId": "Owner",
+            "Status": "Status",
+            "Priority": "Priority",
+            "AssignedTo": "Assignee"
+          },
+          "metric": {
+            "count": "Count",
+            "sum:value": "Sum of value",
+            "avg:value": "Average value"
+          }
+        }
       }
     },
     "settings": {
