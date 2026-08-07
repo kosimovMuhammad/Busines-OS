@@ -82,6 +82,8 @@ export const baseApi = createApi({
     "Contracts",
     "Templates",
     "Reports",
+    "Workflows",
+    "Webhooks",
   ],
   endpoints: () => ({}),
 });

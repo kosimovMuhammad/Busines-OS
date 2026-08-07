@@ -38,6 +38,7 @@
     "files": "Файлы",
     "calendar": "Календарь",
     "reports": "Отчёты",
+    "automation": "Автоматизация",
     "settings": "Настройки",
     "workspaceSection": "Рабочее пространство",
     "collapse": "Свернуть"
@@ -659,6 +660,134 @@
             "sum:value": "Сумма значения",
             "avg:value": "Среднее значение"
           }
+        }
+      }
+    },
+    "automation": {
+      "title": "Автоматизация",
+      "subtitle": "Автоматизируйте повторяющуюся работу с помощью сценариев и вебхуков",
+      "tabs": {
+        "workflows": "Сценарии",
+        "webhooks": "Вебхуки",
+        "logs": "Журнал"
+      },
+      "workflows": {
+        "create": "Новый сценарий",
+        "empty": "Сценариев пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "viewHistory": "Показать историю",
+        "deleteDialog": {
+          "title": "Удалить сценарий?",
+          "description": "Вы уверены, что хотите удалить «{name}»? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        },
+        "executions": {
+          "empty": "Этот сценарий ещё не запускался.",
+          "status": {
+            "Success": "Успешно",
+            "Failed": "Ошибка",
+            "Skipped": "Пропущено"
+          }
+        },
+        "form": {
+          "createTitle": "Новый сценарий",
+          "editTitle": "Изменить сценарий",
+          "name": "Название",
+          "description": "Описание",
+          "isActive": "Активен",
+          "triggerSection": "Триггер",
+          "cronExpression": "Cron-выражение",
+          "conditionsSection": "Условия",
+          "conditionFieldPlaceholder": "Поле",
+          "conditionValuePlaceholder": "Значение",
+          "removeCondition": "Удалить условие",
+          "addCondition": "Добавить условие",
+          "actionsSection": "Действия",
+          "moveUp": "Переместить вверх",
+          "moveDown": "Переместить вниз",
+          "removeAction": "Удалить действие",
+          "addAction": "Добавить действие",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "triggerType": {
+          "RecordCreated": "Запись создана",
+          "RecordUpdated": "Запись обновлена",
+          "RecordStatusChanged": "Статус записи изменён",
+          "TimeBased": "По расписанию (cron)",
+          "FieldValueMatches": "Значение поля совпадает"
+        },
+        "actionType": {
+          "SendNotification": "Отправить уведомление",
+          "SendEmail": "Отправить email",
+          "SendWhatsAppMessage": "Отправить WhatsApp-сообщение",
+          "CreateTask": "Создать задачу",
+          "UpdateField": "Обновить поле",
+          "AssignOwner": "Назначить владельца"
+        },
+        "operator": {
+          "Equals": "Равно",
+          "NotEquals": "Не равно",
+          "GreaterThan": "Больше",
+          "LessThan": "Меньше",
+          "Contains": "Содержит",
+          "IsEmpty": "Пусто",
+          "IsNotEmpty": "Не пусто"
+        },
+        "logic": {
+          "And": "И",
+          "Or": "ИЛИ"
+        },
+        "configField": {
+          "entityType": "Тип сущности",
+          "field": "Поле",
+          "value": "Значение",
+          "title": "Заголовок",
+          "body": "Текст",
+          "subject": "Тема",
+          "message": "Сообщение",
+          "description": "Описание",
+          "userId": "Пользователь"
+        }
+      },
+      "webhooks": {
+        "create": "Новый вебхук",
+        "empty": "Вебхуков пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "noEvents": "События не выбраны",
+        "deleteDialog": {
+          "title": "Удалить вебхук?",
+          "description": "Вы уверены, что хотите удалить «{url}»? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        },
+        "form": {
+          "createTitle": "Новый вебхук",
+          "editTitle": "Изменить вебхук",
+          "createdTitle": "Вебхук создан",
+          "createdHint": "Скопируйте секретный ключ сейчас — повторно увидеть его будет нельзя.",
+          "copy": "Копировать",
+          "copied": "Скопировано в буфер обмена.",
+          "done": "Готово",
+          "url": "URL",
+          "events": "События",
+          "eventsPlaceholder": "deal.created, deal.stage_changed",
+          "eventsHint": "Названия событий через запятую.",
+          "isActive": "Активен",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "logs": {
+          "allWebhooks": "Все вебхуки",
+          "allStatuses": "Все статусы",
+          "success": "Успешно",
+          "failed": "Ошибка",
+          "empty": "Логов доставки пока нет.",
+          "columnEvent": "Событие",
+          "columnStatus": "Статус",
+          "columnStatusCode": "Код статуса",
+          "columnDate": "Дата"
         }
       }
     },

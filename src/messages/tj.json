@@ -38,6 +38,7 @@
     "files": "Файлҳо",
     "calendar": "Тақвим",
     "reports": "Ҳисоботҳо",
+    "automation": "Автоматикунонӣ",
     "settings": "Танзимот",
     "workspaceSection": "Фазои корӣ",
     "collapse": "Пахш кардан"
@@ -659,6 +660,134 @@
             "sum:value": "Ҷамъи арзиш",
             "avg:value": "Арзиши миёна"
           }
+        }
+      }
+    },
+    "automation": {
+      "title": "Автоматикунонӣ",
+      "subtitle": "Кори такрориро бо ёрии сценарийҳо ва вебхукҳо автоматӣ кунед",
+      "tabs": {
+        "workflows": "Сценарийҳо",
+        "webhooks": "Вебхукҳо",
+        "logs": "Журнал"
+      },
+      "workflows": {
+        "create": "Сценарийи нав",
+        "empty": "То ҳол сценарий нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "viewHistory": "Дидани таърих",
+        "deleteDialog": {
+          "title": "Сценарий нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед «{name}»-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        },
+        "executions": {
+          "empty": "Ин сценарий то ҳол иҷро нашудааст.",
+          "status": {
+            "Success": "Муваффақ",
+            "Failed": "Хатогӣ",
+            "Skipped": "Гузашта шуд"
+          }
+        },
+        "form": {
+          "createTitle": "Сценарийи нав",
+          "editTitle": "Таҳрири сценарий",
+          "name": "Ном",
+          "description": "Тавзеҳ",
+          "isActive": "Фаъол",
+          "triggerSection": "Триггер",
+          "cronExpression": "Ифодаи cron",
+          "conditionsSection": "Шартҳо",
+          "conditionFieldPlaceholder": "Майдон",
+          "conditionValuePlaceholder": "Арзиш",
+          "removeCondition": "Нест кардани шарт",
+          "addCondition": "Илова кардани шарт",
+          "actionsSection": "Амалҳо",
+          "moveUp": "Ба боло гузаронидан",
+          "moveDown": "Ба поён гузаронидан",
+          "removeAction": "Нест кардани амал",
+          "addAction": "Илова кардани амал",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "triggerType": {
+          "RecordCreated": "Сабт сохта шуд",
+          "RecordUpdated": "Сабт навсозӣ шуд",
+          "RecordStatusChanged": "Ҳолати сабт тағйир ёфт",
+          "TimeBased": "Тибқи ҷадвал (cron)",
+          "FieldValueMatches": "Арзиши майдон мувофиқ аст"
+        },
+        "actionType": {
+          "SendNotification": "Фиристодани огоҳинома",
+          "SendEmail": "Фиристодани email",
+          "SendWhatsAppMessage": "Фиристодани паёми WhatsApp",
+          "CreateTask": "Сохтани вазифа",
+          "UpdateField": "Навсозии майдон",
+          "AssignOwner": "Таъини соҳиб"
+        },
+        "operator": {
+          "Equals": "Баробар аст",
+          "NotEquals": "Баробар нест",
+          "GreaterThan": "Бузургтар",
+          "LessThan": "Хурдтар",
+          "Contains": "Дар бар мегирад",
+          "IsEmpty": "Холист",
+          "IsNotEmpty": "Холӣ нест"
+        },
+        "logic": {
+          "And": "ВА",
+          "Or": "Ё"
+        },
+        "configField": {
+          "entityType": "Навъи объект",
+          "field": "Майдон",
+          "value": "Арзиш",
+          "title": "Сарлавҳа",
+          "body": "Матн",
+          "subject": "Мавзӯъ",
+          "message": "Паём",
+          "description": "Тавзеҳ",
+          "userId": "Корбар"
+        }
+      },
+      "webhooks": {
+        "create": "Вебхуки нав",
+        "empty": "То ҳол вебхук нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "noEvents": "Рӯйдод интихоб нашудааст",
+        "deleteDialog": {
+          "title": "Вебхук нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед «{url}»-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        },
+        "form": {
+          "createTitle": "Вебхуки нав",
+          "editTitle": "Таҳрири вебхук",
+          "createdTitle": "Вебхук сохта шуд",
+          "createdHint": "Ҳозир калиди махфиро нусхабардорӣ кунед — дигар онро дидан мумкин нест.",
+          "copy": "Нусхабардорӣ",
+          "copied": "Ба ҳофизаи муваққатӣ нусхабардорӣ шуд.",
+          "done": "Тайёр",
+          "url": "URL",
+          "events": "Рӯйдодҳо",
+          "eventsPlaceholder": "deal.created, deal.stage_changed",
+          "eventsHint": "Номҳои рӯйдод бо вергул ҷудошуда.",
+          "isActive": "Фаъол",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "logs": {
+          "allWebhooks": "Ҳамаи вебхукҳо",
+          "allStatuses": "Ҳамаи ҳолатҳо",
+          "success": "Муваффақ",
+          "failed": "Хатогӣ",
+          "empty": "То ҳол логи расонидан нест.",
+          "columnEvent": "Рӯйдод",
+          "columnStatus": "Ҳолат",
+          "columnStatusCode": "Коди ҳолат",
+          "columnDate": "Сана"
         }
       }
     },

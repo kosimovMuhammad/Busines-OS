@@ -1,5 +1,7 @@
 import type {
   CommChannel,
+  ConditionLogicOperator,
+  ConditionOperator,
   ContractStatus,
   DealStage,
   InvoiceStatus,
@@ -13,6 +15,8 @@ import type {
   TemplateType,
   UserRole,
   UserStatus,
+  WorkflowActionType,
+  WorkflowTriggerType,
 } from "./enums";
 
 export type Paginated<T> = {
@@ -456,6 +460,152 @@ export type CreateReportRequest = {
 
 export type ReportRunResult = {
   rows: { groupKey: string; metrics: Record<string, number> }[];
+};
+
+// ---- Workflows ----
+
+export type WorkflowSummary = {
+  id: string;
+  name: string;
+  description: string | null;
+  isActive: boolean;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type WorkflowTrigger = {
+  id: string;
+  type: WorkflowTriggerType;
+  configJson: string | null;
+  cronExpression: string | null;
+  nextRunAtUtc: string | null;
+};
+
+export type WorkflowCondition = {
+  id: string;
+  field: string;
+  operator: ConditionOperator;
+  value: string;
+};
+
+export type WorkflowConditionGroup = {
+  id: string;
+  logicOperator: ConditionLogicOperator;
+  conditions: WorkflowCondition[];
+  // The API supports arbitrarily nested childGroups, but the builder UI
+  // only edits a single flat group for now (see workflow-form-sheet.tsx) -
+  // kept here so reading back a workflow created elsewhere doesn't lose data.
+  childGroups: WorkflowConditionGroup[];
+};
+
+export type WorkflowAction = {
+  id: string;
+  type: WorkflowActionType;
+  configJson: string | null;
+  orderIndex: number;
+};
+
+export type Workflow = WorkflowSummary & {
+  trigger: WorkflowTrigger;
+  conditionGroups: WorkflowConditionGroup[];
+  actions: WorkflowAction[];
+};
+
+export type CreateWorkflowTriggerRequest = {
+  type: WorkflowTriggerType;
+  configJson?: string;
+  cronExpression?: string;
+};
+
+export type CreateConditionRequest = {
+  field: string;
+  operator: ConditionOperator;
+  value: string;
+};
+
+export type CreateConditionGroupRequest = {
+  logicOperator: ConditionLogicOperator;
+  conditions?: CreateConditionRequest[];
+  childGroups?: CreateConditionGroupRequest[];
+};
+
+export type CreateWorkflowActionRequest = {
+  type: WorkflowActionType;
+  configJson?: string;
+  orderIndex: number;
+};
+
+export type CreateWorkflowRequest = {
+  name: string;
+  description?: string;
+  isActive?: boolean;
+  trigger: CreateWorkflowTriggerRequest;
+  conditionGroups?: CreateConditionGroupRequest[];
+  actions?: CreateWorkflowActionRequest[];
+};
+
+export type UpdateWorkflowRequest = Partial<CreateWorkflowRequest>;
+
+export type WorkflowExecutionsArgs = { id: string; page?: number; limit?: number };
+
+// Inferred from domain convention and the confirmed {data,page,limit,total}
+// pagination envelope - no workflow ever produced a real execution in this
+// environment (the automation engine doesn't appear to be wired up yet),
+// so the exact field set here is a best-effort guess, not verified live.
+export type WorkflowExecutionStatus = "Success" | "Failed" | "Skipped";
+
+export type WorkflowExecution = {
+  id: string;
+  workflowId: string;
+  status: WorkflowExecutionStatus;
+  startedAt: string;
+  completedAt: string | null;
+  errorMessage: string | null;
+};
+
+// ---- Webhooks ----
+
+export type Webhook = {
+  id: string;
+  url: string;
+  subscribedEvents: string[];
+  isActive: boolean;
+  hasSecret: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+// POST /webhooks is the only response that ever includes the raw secret -
+// it is shown once and never retrievable again afterwards (same pattern
+// as API keys, see apiKeys.api.ts).
+export type CreatedWebhook = Webhook & { secret: string };
+
+export type CreateWebhookRequest = {
+  url: string;
+  subscribedEvents?: string[];
+  isActive?: boolean;
+};
+
+export type UpdateWebhookRequest = Partial<CreateWebhookRequest>;
+
+export type WebhookLogsArgs = {
+  webhookId?: string;
+  success?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+// Inferred (see WorkflowExecution comment above - logs were always empty
+// in this environment since no webhook ever fired).
+export type WebhookLog = {
+  id: string;
+  webhookId: string;
+  event: string;
+  success: boolean;
+  statusCode: number | null;
+  responseBody: string | null;
+  createdAt: string;
 };
 
 // ---- Company ----

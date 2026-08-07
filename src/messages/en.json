@@ -38,6 +38,7 @@
     "files": "Files",
     "calendar": "Calendar",
     "reports": "Reports",
+    "automation": "Automation",
     "settings": "Settings",
     "workspaceSection": "Workspace",
     "collapse": "Collapse"
@@ -659,6 +660,134 @@
             "sum:value": "Sum of value",
             "avg:value": "Average value"
           }
+        }
+      }
+    },
+    "automation": {
+      "title": "Automation",
+      "subtitle": "Automate repetitive work with workflows and webhooks",
+      "tabs": {
+        "workflows": "Workflows",
+        "webhooks": "Webhooks",
+        "logs": "Logs"
+      },
+      "workflows": {
+        "create": "New Workflow",
+        "empty": "No workflows yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "viewHistory": "View history",
+        "deleteDialog": {
+          "title": "Delete workflow?",
+          "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+          "cancel": "Cancel"
+        },
+        "executions": {
+          "empty": "This workflow hasn't run yet.",
+          "status": {
+            "Success": "Success",
+            "Failed": "Failed",
+            "Skipped": "Skipped"
+          }
+        },
+        "form": {
+          "createTitle": "New Workflow",
+          "editTitle": "Edit Workflow",
+          "name": "Name",
+          "description": "Description",
+          "isActive": "Active",
+          "triggerSection": "Trigger",
+          "cronExpression": "Cron expression",
+          "conditionsSection": "Conditions",
+          "conditionFieldPlaceholder": "Field",
+          "conditionValuePlaceholder": "Value",
+          "removeCondition": "Remove condition",
+          "addCondition": "Add condition",
+          "actionsSection": "Actions",
+          "moveUp": "Move up",
+          "moveDown": "Move down",
+          "removeAction": "Remove action",
+          "addAction": "Add action",
+          "save": "Save",
+          "create": "Create"
+        },
+        "triggerType": {
+          "RecordCreated": "Record created",
+          "RecordUpdated": "Record updated",
+          "RecordStatusChanged": "Record status changed",
+          "TimeBased": "Scheduled (cron)",
+          "FieldValueMatches": "Field value matches"
+        },
+        "actionType": {
+          "SendNotification": "Send notification",
+          "SendEmail": "Send email",
+          "SendWhatsAppMessage": "Send WhatsApp message",
+          "CreateTask": "Create task",
+          "UpdateField": "Update field",
+          "AssignOwner": "Assign owner"
+        },
+        "operator": {
+          "Equals": "Equals",
+          "NotEquals": "Not equals",
+          "GreaterThan": "Greater than",
+          "LessThan": "Less than",
+          "Contains": "Contains",
+          "IsEmpty": "Is empty",
+          "IsNotEmpty": "Is not empty"
+        },
+        "logic": {
+          "And": "AND",
+          "Or": "OR"
+        },
+        "configField": {
+          "entityType": "Entity type",
+          "field": "Field",
+          "value": "Value",
+          "title": "Title",
+          "body": "Body",
+          "subject": "Subject",
+          "message": "Message",
+          "description": "Description",
+          "userId": "User"
+        }
+      },
+      "webhooks": {
+        "create": "New Webhook",
+        "empty": "No webhooks yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "noEvents": "No events selected",
+        "deleteDialog": {
+          "title": "Delete webhook?",
+          "description": "Are you sure you want to delete \"{url}\"? This action cannot be undone.",
+          "cancel": "Cancel"
+        },
+        "form": {
+          "createTitle": "New Webhook",
+          "editTitle": "Edit Webhook",
+          "createdTitle": "Webhook created",
+          "createdHint": "Copy this signing secret now — you won't be able to see it again.",
+          "copy": "Copy",
+          "copied": "Copied to clipboard.",
+          "done": "Done",
+          "url": "URL",
+          "events": "Events",
+          "eventsPlaceholder": "deal.created, deal.stage_changed",
+          "eventsHint": "Comma-separated event names.",
+          "isActive": "Active",
+          "save": "Save",
+          "create": "Create"
+        },
+        "logs": {
+          "allWebhooks": "All Webhooks",
+          "allStatuses": "All Statuses",
+          "success": "Success",
+          "failed": "Failed",
+          "empty": "No delivery logs yet.",
+          "columnEvent": "Event",
+          "columnStatus": "Status",
+          "columnStatusCode": "Status Code",
+          "columnDate": "Date"
         }
       }
     },

@@ -53,3 +53,29 @@ export type NotificationChannel = "InApp" | "Email" | "WhatsApp";
 export type ContractStatus = "Draft" | "Sent" | "Signed" | "Expired" | "Cancelled";
 
 export type TemplateType = "Contract" | "Email" | "Other";
+
+export type WorkflowTriggerType =
+  | "RecordCreated"
+  | "RecordUpdated"
+  | "RecordStatusChanged"
+  | "TimeBased"
+  | "FieldValueMatches";
+
+export type WorkflowActionType =
+  | "SendNotification"
+  | "SendEmail"
+  | "SendWhatsAppMessage"
+  | "CreateTask"
+  | "UpdateField"
+  | "AssignOwner";
+
+export type ConditionOperator =
+  | "Equals"
+  | "NotEquals"
+  | "GreaterThan"
+  | "LessThan"
+  | "Contains"
+  | "IsEmpty"
+  | "IsNotEmpty";
+
+export type ConditionLogicOperator = "And" | "Or";
