@@ -29,17 +29,19 @@ import {
   useUpdateUserMutation,
   useUpdateUserRoleMutation,
 } from "@/lib/api/users.api";
+import { useGetRolesQuery } from "@/lib/api/roles.api";
 import { InviteUserSheet } from "./invite-user-sheet";
+import { UserRbacRolePopover } from "./user-rbac-role-popover";
 import type { UserRole } from "@/types/enums";
 
 const ROLES: UserRole[] = [
-  "OWNER",
-  "ADMIN",
-  "MANAGER",
-  "SALES",
-  "SUPPORT",
-  "EMPLOYEE",
-  "READ_ONLY",
+  "Owner",
+  "Admin",
+  "Manager",
+  "Sales",
+  "Support",
+  "Employee",
+  "ReadOnly",
 ];
 
 export function TeamContent() {
@@ -47,10 +49,12 @@ export function TeamContent() {
   const tRole = useTranslations("enums.userRole");
   const tStatus = useTranslations("enums.userStatus");
   const { hasRole } = useRole();
-  const canManage = hasRole(["OWNER", "ADMIN"]);
+  const canManage = hasRole(["Owner", "Admin"]);
   const currentUserId = useAppSelector((s) => s.auth.user?.id);
 
   const { data: users, isLoading } = useGetUsersQuery();
+  const { data: roles } = useGetRolesQuery();
+  const customRoles = (roles ?? []).filter((r) => !r.isSystemRole);
   const [updateUserRole] = useUpdateUserRoleMutation();
   const [updateUser] = useUpdateUserMutation();
   const [removeUser] = useRemoveUserMutation();
@@ -90,7 +94,7 @@ export function TeamContent() {
             <TableBody>
               {users.map((u) => {
                 const isSelf = u.id === currentUserId;
-                const suspended = u.status === "SUSPENDED";
+                const suspended = u.status === "Suspended";
                 return (
                   <TableRow key={u.id} className="border-border-subtle">
                     <TableCell>
@@ -133,12 +137,15 @@ export function TeamContent() {
                             onClick={() =>
                               updateUser({
                                 id: u.id,
-                                body: { status: suspended ? "ACTIVE" : "SUSPENDED" },
+                                body: { status: suspended ? "Active" : "Suspended" },
                               })
                             }
                           >
                             {suspended ? t("activate") : t("suspend")}
                           </Button>
+                          {customRoles.length > 0 && (
+                            <UserRbacRolePopover user={u} customRoles={customRoles} />
+                          )}
                           <button
                             type="button"
                             onClick={() => removeUser(u.id)}

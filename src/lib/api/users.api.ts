@@ -2,8 +2,10 @@ import { baseApi } from "./baseApi";
 import type {
   InviteUserRequest,
   UpdateRoleRequest,
+  UpdateUserPermissionsRequest,
   UpdateUserRequest,
   User,
+  UserPermissions,
 } from "@/types/api";
 
 export const usersApi = baseApi.injectEndpoints({
@@ -34,11 +36,32 @@ export const usersApi = baseApi.injectEndpoints({
       invalidatesTags: (_result, _error, { id }) => [
         { type: "Users", id },
         { type: "Users", id: "LIST" },
+        { type: "Users", id: `${id}-PERMISSIONS` },
       ],
+    }),
+    resendInvite: builder.mutation<{ success: boolean }, string>({
+      query: (id) => ({ url: `/users/${id}/resend-invite`, method: "POST" }),
     }),
     removeUser: builder.mutation<{ success: boolean }, string>({
       query: (id) => ({ url: `/users/${id}`, method: "DELETE" }),
       invalidatesTags: [{ type: "Users", id: "LIST" }],
+    }),
+    getUserPermissions: builder.query<UserPermissions, string>({
+      query: (id) => `/users/${id}/permissions`,
+      providesTags: (_result, _error, id) => [{ type: "Users", id: `${id}-PERMISSIONS` }],
+    }),
+    updateUserPermissions: builder.mutation<
+      UserPermissions,
+      { id: string; body: UpdateUserPermissionsRequest }
+    >({
+      query: ({ id, body }) => ({
+        url: `/users/${id}/permissions`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: "Users", id: `${id}-PERMISSIONS` },
+      ],
     }),
   }),
 });
@@ -48,5 +71,8 @@ export const {
   useInviteUserMutation,
   useUpdateUserMutation,
   useUpdateUserRoleMutation,
+  useResendInviteMutation,
   useRemoveUserMutation,
+  useGetUserPermissionsQuery,
+  useUpdateUserPermissionsMutation,
 } = usersApi;

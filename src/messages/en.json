@@ -8,7 +8,8 @@
       "aiUnavailable": "AI features are being activated. Try again later.",
       "integrationUnavailable": "This integration isn't set up yet. Try again later."
     },
-    "logout": "Log out"
+    "logout": "Log out",
+    "restrictedAccess": "You don't have access to this section."
   },
   "validation": {
     "required": "This field is required.",
@@ -465,6 +466,8 @@
       "tabs": {
         "company": "Company",
         "team": "Team",
+        "organization": "Organization",
+        "rolesPermissions": "Roles & Permissions",
         "integrations": "Integrations",
         "plan": "Plan"
       }
@@ -481,12 +484,141 @@
       "activate": "Activate",
       "suspend": "Suspend",
       "remove": "Remove",
+      "rbacRole": "Custom role",
+      "rbacRoleCurrent": "Current: {name}",
+      "rbacRoleSave": "Save",
       "inviteSheet": {
         "title": "Invite User",
         "name": "Full name",
         "email": "Email address",
         "role": "Role",
+        "rbacRole": "Custom role (optional)",
+        "rbacRoleNone": "Use default role permissions",
+        "rbacRoleSummary": "{count} permissions included",
         "invite": "Send Invite"
+      }
+    },
+    "settingsRoles": {
+      "title": "Roles & Permissions",
+      "subtitle": "Define custom roles and control what each one can access",
+      "createRole": "Create Role",
+      "empty": "No roles found.",
+      "systemBadge": "System",
+      "systemRoleHint": "System roles are fixed and can't be edited.",
+      "permissionCount": "{count} permissions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "form": {
+        "createTitle": "New Role",
+        "editTitle": "Edit Role",
+        "name": "Name",
+        "description": "Description",
+        "save": "Save",
+        "create": "Create"
+      },
+      "deleteDialog": {
+        "title": "Delete role?",
+        "description": "Are you sure you want to delete {name}? This action cannot be undone.",
+        "cancel": "Cancel"
+      }
+    },
+    "settingsOrganization": {
+      "title": "Organization",
+      "subtitle": "Manage departments, teams, and branches",
+      "none": "None",
+      "tabs": {
+        "departments": "Departments",
+        "teams": "Teams",
+        "branches": "Branches",
+        "orgChart": "Org Chart"
+      },
+      "departments": {
+        "create": "New Department",
+        "empty": "No departments yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "managedBy": "Managed by {name}",
+        "noManager": "No manager assigned",
+        "form": {
+          "createTitle": "New Department",
+          "editTitle": "Edit Department",
+          "name": "Name",
+          "description": "Description",
+          "parent": "Parent department",
+          "manager": "Manager",
+          "save": "Save",
+          "create": "Create"
+        },
+        "deleteDialog": {
+          "title": "Delete department?",
+          "description": "Are you sure you want to delete {name}? This action cannot be undone.",
+          "cancel": "Cancel"
+        }
+      },
+      "teams": {
+        "create": "New Team",
+        "empty": "No teams yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "noDepartment": "No department",
+        "leadBy": "led by {name}",
+        "noMembers": "No members yet.",
+        "addMember": "Add",
+        "addMemberPlaceholder": "Select a member",
+        "removeMember": "Remove member",
+        "form": {
+          "createTitle": "New Team",
+          "editTitle": "Edit Team",
+          "name": "Name",
+          "description": "Description",
+          "department": "Department",
+          "teamLead": "Team lead",
+          "save": "Save",
+          "create": "Create"
+        },
+        "deleteDialog": {
+          "title": "Delete team?",
+          "description": "Are you sure you want to delete {name}? This action cannot be undone.",
+          "cancel": "Cancel"
+        }
+      },
+      "branches": {
+        "create": "New Branch",
+        "empty": "No branches yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "columnName": "Name",
+        "columnLocation": "Location",
+        "columnTimezone": "Timezone",
+        "columnActions": "",
+        "headquarters": "HQ",
+        "form": {
+          "createTitle": "New Branch",
+          "editTitle": "Edit Branch",
+          "name": "Name",
+          "address": "Address",
+          "city": "City",
+          "country": "Country",
+          "timezone": "Timezone",
+          "isHeadquarters": "This is the headquarters",
+          "save": "Save",
+          "create": "Create"
+        },
+        "deleteDialog": {
+          "title": "Delete branch?",
+          "description": "Are you sure you want to delete {name}? This action cannot be undone.",
+          "cancel": "Cancel"
+        }
+      },
+      "orgChart": {
+        "empty": "Nothing to show yet — add departments and assign employees.",
+        "managedBy": "managed by {name}",
+        "noEmployees": "No employees in this department.",
+        "unassigned": "Unassigned",
+        "managementChain": "Management chain",
+        "noManager": "No manager in the chain.",
+        "directReports": "Direct reports",
+        "noDirectReports": "No direct reports."
       }
     },
     "settingsIntegrations": {

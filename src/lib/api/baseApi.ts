@@ -46,7 +46,7 @@ const baseQueryWithReauth: BaseQueryFn<
     }
   }
 
-  return result;
+return result;
 };
 
 export const baseApi = createApi({
@@ -67,6 +67,12 @@ export const baseApi = createApi({
     "Invoicing",
     "Calendar",
     "Analytics",
+    "Roles",
+    "Permissions",
+    "Departments",
+    "Teams",
+    "Branches",
+    "OrgChart",
   ],
   endpoints: () => ({}),
 });

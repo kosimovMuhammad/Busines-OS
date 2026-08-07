@@ -8,7 +8,8 @@
       "aiUnavailable": "Функсияҳои AI фаъол карда мешаванд. Баъдтар кӯшиш кунед.",
       "integrationUnavailable": "Ин интегратсия ҳанӯз танзим нашудааст. Баъдтар кӯшиш кунед."
     },
-    "logout": "Баромадан"
+    "logout": "Баромадан",
+    "restrictedAccess": "Шумо ба ин бахш дастрасӣ надоред."
   },
   "validation": {
     "required": "Ин майдон ҳатмист.",
@@ -465,6 +466,8 @@
       "tabs": {
         "company": "Ширкат",
         "team": "Дастаи корӣ",
+        "organization": "Созмон",
+        "rolesPermissions": "Нақшҳо ва иҷозатҳо",
         "integrations": "Интегратсияҳо",
         "plan": "Тариф"
       }
@@ -481,12 +484,141 @@
       "activate": "Фаъол кардан",
       "suspend": "Боздоштан",
       "remove": "Нест кардан",
+      "rbacRole": "Нақши фармоишӣ",
+      "rbacRoleCurrent": "Ҷорӣ: {name}",
+      "rbacRoleSave": "Нигоҳ доштан",
       "inviteSheet": {
         "title": "Даъвати корбар",
         "name": "Номи пурра",
         "email": "Суроғаи почтаи электронӣ",
         "role": "Нақш",
+        "rbacRole": "Нақши фармоишӣ (ихтиёрӣ)",
+        "rbacRoleNone": "Истифодаи иҷозатҳои нақши пешфарз",
+        "rbacRoleSummary": "{count} иҷозат дохил аст",
         "invite": "Фиристодани даъват"
+      }
+    },
+    "settingsRoles": {
+      "title": "Нақшҳо ва иҷозатҳо",
+      "subtitle": "Нақшҳои фармоишӣ созед ва дастрасии ҳар якро идора кунед",
+      "createRole": "Сохтани нақш",
+      "empty": "Нақш ёфт нашуд.",
+      "systemBadge": "Системавӣ",
+      "systemRoleHint": "Нақшҳои системавӣ собитанд ва тағйир дода намешаванд.",
+      "permissionCount": "{count} иҷозат",
+      "edit": "Таҳрир",
+      "delete": "Нест кардан",
+      "form": {
+        "createTitle": "Нақши нав",
+        "editTitle": "Таҳрири нақш",
+        "name": "Ном",
+        "description": "Тавзеҳ",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан"
+      },
+      "deleteDialog": {
+        "title": "Нақш нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед {name}-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+        "cancel": "Бекор кардан"
+      }
+    },
+    "settingsOrganization": {
+      "title": "Созмон",
+      "subtitle": "Идоракунии шӯъбаҳо, дастаҳо ва филиалҳо",
+      "none": "Нест",
+      "tabs": {
+        "departments": "Шӯъбаҳо",
+        "teams": "Дастаҳо",
+        "branches": "Филиалҳо",
+        "orgChart": "Сохтори созмон"
+      },
+      "departments": {
+        "create": "Шӯъбаи нав",
+        "empty": "То ҳол шӯъба нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "managedBy": "Мудир: {name}",
+        "noManager": "Мудир таъин нашудааст",
+        "form": {
+          "createTitle": "Шӯъбаи нав",
+          "editTitle": "Таҳрири шӯъба",
+          "name": "Ном",
+          "description": "Тавзеҳ",
+          "parent": "Шӯъбаи волидайн",
+          "manager": "Мудир",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "deleteDialog": {
+          "title": "Шӯъба нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед {name}-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        }
+      },
+      "teams": {
+        "create": "Дастаи нав",
+        "empty": "То ҳол даста нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "noDepartment": "Бе шӯъба",
+        "leadBy": "сарвар: {name}",
+        "noMembers": "То ҳол аъзо нест.",
+        "addMember": "Илова кардан",
+        "addMemberPlaceholder": "Аъзоро интихоб кунед",
+        "removeMember": "Нест кардани аъзо",
+        "form": {
+          "createTitle": "Дастаи нав",
+          "editTitle": "Таҳрири даста",
+          "name": "Ном",
+          "description": "Тавзеҳ",
+          "department": "Шӯъба",
+          "teamLead": "Сарвари даста",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "deleteDialog": {
+          "title": "Даста нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед {name}-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        }
+      },
+      "branches": {
+        "create": "Филиали нав",
+        "empty": "То ҳол филиал нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "columnName": "Ном",
+        "columnLocation": "Ҷойгиршавӣ",
+        "columnTimezone": "Минтақаи вақт",
+        "columnActions": "",
+        "headquarters": "Марказ",
+        "form": {
+          "createTitle": "Филиали нав",
+          "editTitle": "Таҳрири филиал",
+          "name": "Ном",
+          "address": "Суроға",
+          "city": "Шаҳр",
+          "country": "Кишвар",
+          "timezone": "Минтақаи вақт",
+          "isHeadquarters": "Ин дафтари марказӣ аст",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "deleteDialog": {
+          "title": "Филиал нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед {name}-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        }
+      },
+      "orgChart": {
+        "empty": "То ҳол чизе барои намоиш нест — шӯъба илова кунед ва кормандро таъин кунед.",
+        "managedBy": "мудир: {name}",
+        "noEmployees": "Дар ин шӯъба корманд нест.",
+        "unassigned": "Бе шӯъба",
+        "managementChain": "Занҷираи роҳбарӣ",
+        "noManager": "Дар занҷира мудир нест.",
+        "directReports": "Зердастон",
+        "noDirectReports": "Зердаст нест."
       }
     },
     "settingsIntegrations": {

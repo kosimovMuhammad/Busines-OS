@@ -13,11 +13,9 @@ import type {
 
 export type Paginated<T> = {
   data: T[];
-  meta: {
-    total: number;
-    page: number;
-    limit: number;
-  };
+  page: number;
+  limit: number;
+  total: number;
 };
 
 // ---- Auth ----
@@ -31,6 +29,11 @@ export type RegisterRequest = {
 
 export type LoginRequest = {
   email: string;
+  password: string;
+};
+
+export type AcceptInviteRequest = {
+  token: string;
   password: string;
 };
 
@@ -58,6 +61,7 @@ export type InviteUserRequest = {
   name: string;
   email: string;
   role?: UserRole;
+  rbacRoleId?: string;
 };
 
 export type UpdateUserRequest = {
@@ -66,7 +70,183 @@ export type UpdateUserRequest = {
   status?: UserStatus;
 };
 
-export type UpdateRoleRequest = { role: UserRole };
+export type UpdateRoleRequest = { role: UserRole; rbacRoleId?: string | null };
+
+// ---- RBAC: Roles & Permissions ----
+
+export type Permission = {
+  id: string;
+  key: string;
+  module: string;
+  description: string;
+};
+
+export type RbacRole = {
+  id: string;
+  name: string;
+  description: string | null;
+  isSystemRole: boolean;
+  permissions: Permission[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateRoleRequest = {
+  name: string;
+  description?: string;
+  permissionIds?: string[];
+};
+
+export type UpdateRoleDetailsRequest = {
+  name?: string;
+  description?: string;
+};
+
+export type AttachPermissionRequest = { permissionId: string };
+
+export type CreatePermissionRequest = {
+  key: string;
+  module: string;
+  description?: string;
+};
+
+export type UpdatePermissionRequest = { description?: string };
+
+// ---- Departments ----
+
+export type Department = {
+  id: string;
+  name: string;
+  description: string | null;
+  parentDepartmentId: string | null;
+  managerId: string | null;
+  managerName: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DepartmentTreeNode = {
+  id: string;
+  name: string;
+  description: string | null;
+  managerId: string | null;
+  managerName: string | null;
+  createdAt: string;
+  updatedAt: string;
+  children: DepartmentTreeNode[];
+};
+
+export type CreateDepartmentRequest = {
+  name: string;
+  description?: string;
+  parentDepartmentId?: string;
+  managerId?: string;
+};
+
+export type UpdateDepartmentRequest = Partial<CreateDepartmentRequest>;
+
+// ---- Teams ----
+
+export type Team = {
+  id: string;
+  departmentId: string | null;
+  name: string;
+  description: string | null;
+  teamLeadId: string | null;
+  teamLeadName: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TeamMember = {
+  userId: string;
+  userName: string;
+  joinedAt: string;
+};
+
+export type CreateTeamRequest = {
+  name: string;
+  departmentId?: string;
+  description?: string;
+  teamLeadId?: string;
+};
+
+export type UpdateTeamRequest = Partial<CreateTeamRequest>;
+
+export type AddTeamMemberRequest = { userId: string };
+
+// ---- Branches ----
+
+export type Branch = {
+  id: string;
+  name: string;
+  address: string | null;
+  city: string | null;
+  country: string | null;
+  timezone: string | null;
+  isHeadquarters: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBranchRequest = {
+  name: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  timezone?: string;
+  isHeadquarters?: boolean;
+};
+
+export type UpdateBranchRequest = Partial<CreateBranchRequest>;
+
+// ---- Org Chart ----
+
+export type OrgChartPerson = {
+  id: string;
+  name: string;
+  avatarUrl: string | null;
+  managerId?: string | null;
+};
+
+export type OrgChartDepartmentNode = {
+  id: string;
+  name: string;
+  managerId: string | null;
+  managerName: string | null;
+  employees: OrgChartPerson[];
+  children: OrgChartDepartmentNode[];
+};
+
+export type OrgChart = {
+  departments: OrgChartDepartmentNode[];
+  unassignedEmployees: OrgChartPerson[];
+};
+
+export type OrgChartForUser = {
+  user: { id: string; name: string; avatarUrl: string | null };
+  managementChain: OrgChartPerson[];
+  directReports: OrgChartPerson[];
+};
+
+// ---- User permission overrides ----
+
+export type UserPermissionOverrideItem = {
+  permissionId: string;
+  allow: boolean;
+};
+
+export type UserPermissions = {
+  userId: string;
+  roleId: string;
+  roleName: string;
+  permissionKeys: string[];
+  overrides: UserPermissionOverrideItem[];
+};
+
+export type UpdateUserPermissionsRequest = {
+  overrides: UserPermissionOverrideItem[];
+};
 
 // ---- Company ----
 
@@ -518,15 +698,12 @@ export type CalendarConnectResponse = { url: string };
 export type DashboardOverview = {
   contactsCount: number;
   openTasksCount: number;
-  dealsByStage: { stage: DealStage; count: number }[];
+  dealsByStage: Partial<Record<DealStage, number>>;
   todayTimeTrackedSec: number;
 };
 
 export type SalesAnalytics = {
-  byStage: { stage: DealStage; count: number; totalValue: number }[];
-  wonCount: number;
-  wonValue: number;
-  lostCount: number;
+  pipelineByStage: Partial<Record<DealStage, number>>;
   winRate: number;
 };
 
@@ -538,8 +715,8 @@ export type RevenueAnalytics = {
 };
 
 export type TaskAnalytics = {
-  byStatus: { status: TaskStatus; count: number }[];
-  byPriority: { priority: TaskPriority; count: number }[];
+  byStatus: Partial<Record<TaskStatus, number>>;
+  byPriority: Partial<Record<TaskPriority, number>>;
   overdueCount: number;
 };
 

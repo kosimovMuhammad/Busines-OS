@@ -3,10 +3,13 @@
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { useRole } from "@/lib/hooks/useRole";
 
 const TABS = [
   { href: "/settings", labelKey: "company" },
   { href: "/settings/team", labelKey: "team" },
+  { href: "/settings/organization", labelKey: "organization", roles: ["Owner", "Admin", "Manager"] },
+  { href: "/settings/roles", labelKey: "rolesPermissions", roles: ["Owner", "Admin"] },
   { href: "/settings/integrations", labelKey: "integrations" },
   { href: "/settings/plan", labelKey: "plan" },
 ] as const;
@@ -14,10 +17,13 @@ const TABS = [
 export function SettingsTabs() {
   const t = useTranslations("pages.settings.tabs");
   const pathname = usePathname();
+  const { hasRole } = useRole();
+
+  const tabs = TABS.filter((tab) => !("roles" in tab) || hasRole([...tab.roles]));
 
   return (
     <div className="mb-4 flex items-center gap-1 border-b border-border-subtle">
-      {TABS.map((tab) => {
+      {tabs.map((tab) => {
         const active = pathname === tab.href;
         return (
           <Link

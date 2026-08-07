@@ -8,7 +8,8 @@
       "aiUnavailable": "Функции AI подключаются. Попробуйте позже.",
       "integrationUnavailable": "Эта интеграция ещё не настроена. Попробуйте позже."
     },
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "restrictedAccess": "У вас нет доступа к этому разделу."
   },
   "validation": {
     "required": "Это поле обязательно.",
@@ -465,6 +466,8 @@
       "tabs": {
         "company": "Компания",
         "team": "Команда",
+        "organization": "Организация",
+        "rolesPermissions": "Роли и права",
         "integrations": "Интеграции",
         "plan": "Тариф"
       }
@@ -481,12 +484,141 @@
       "activate": "Активировать",
       "suspend": "Приостановить",
       "remove": "Удалить",
+      "rbacRole": "Пользовательская роль",
+      "rbacRoleCurrent": "Текущая: {name}",
+      "rbacRoleSave": "Сохранить",
       "inviteSheet": {
         "title": "Пригласить пользователя",
         "name": "Полное имя",
         "email": "Электронная почта",
         "role": "Роль",
+        "rbacRole": "Пользовательская роль (опционально)",
+        "rbacRoleNone": "Использовать права роли по умолчанию",
+        "rbacRoleSummary": "Включено прав: {count}",
         "invite": "Отправить приглашение"
+      }
+    },
+    "settingsRoles": {
+      "title": "Роли и права",
+      "subtitle": "Настройка пользовательских ролей и управление доступом",
+      "createRole": "Создать роль",
+      "empty": "Роли не найдены.",
+      "systemBadge": "Системная",
+      "systemRoleHint": "Системные роли фиксированы и не могут быть изменены.",
+      "permissionCount": "Прав: {count}",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "form": {
+        "createTitle": "Новая роль",
+        "editTitle": "Изменить роль",
+        "name": "Название",
+        "description": "Описание",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "deleteDialog": {
+        "title": "Удалить роль?",
+        "description": "Вы уверены, что хотите удалить {name}? Это действие нельзя отменить.",
+        "cancel": "Отмена"
+      }
+    },
+    "settingsOrganization": {
+      "title": "Организация",
+      "subtitle": "Управление отделами, командами и филиалами",
+      "none": "Нет",
+      "tabs": {
+        "departments": "Отделы",
+        "teams": "Команды",
+        "branches": "Филиалы",
+        "orgChart": "Оргструктура"
+      },
+      "departments": {
+        "create": "Новый отдел",
+        "empty": "Отделов пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "managedBy": "Руководитель: {name}",
+        "noManager": "Руководитель не назначен",
+        "form": {
+          "createTitle": "Новый отдел",
+          "editTitle": "Изменить отдел",
+          "name": "Название",
+          "description": "Описание",
+          "parent": "Родительский отдел",
+          "manager": "Руководитель",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "deleteDialog": {
+          "title": "Удалить отдел?",
+          "description": "Вы уверены, что хотите удалить {name}? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        }
+      },
+      "teams": {
+        "create": "Новая команда",
+        "empty": "Команд пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "noDepartment": "Без отдела",
+        "leadBy": "руководитель: {name}",
+        "noMembers": "Участников пока нет.",
+        "addMember": "Добавить",
+        "addMemberPlaceholder": "Выберите участника",
+        "removeMember": "Удалить участника",
+        "form": {
+          "createTitle": "Новая команда",
+          "editTitle": "Изменить команду",
+          "name": "Название",
+          "description": "Описание",
+          "department": "Отдел",
+          "teamLead": "Руководитель команды",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "deleteDialog": {
+          "title": "Удалить команду?",
+          "description": "Вы уверены, что хотите удалить {name}? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        }
+      },
+      "branches": {
+        "create": "Новый филиал",
+        "empty": "Филиалов пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "columnName": "Название",
+        "columnLocation": "Расположение",
+        "columnTimezone": "Часовой пояс",
+        "columnActions": "",
+        "headquarters": "Главный офис",
+        "form": {
+          "createTitle": "Новый филиал",
+          "editTitle": "Изменить филиал",
+          "name": "Название",
+          "address": "Адрес",
+          "city": "Город",
+          "country": "Страна",
+          "timezone": "Часовой пояс",
+          "isHeadquarters": "Это главный офис",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "deleteDialog": {
+          "title": "Удалить филиал?",
+          "description": "Вы уверены, что хотите удалить {name}? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        }
+      },
+      "orgChart": {
+        "empty": "Пока нечего показать — добавьте отделы и назначьте сотрудников.",
+        "managedBy": "руководитель: {name}",
+        "noEmployees": "В этом отделе нет сотрудников.",
+        "unassigned": "Без отдела",
+        "managementChain": "Цепочка подчинения",
+        "noManager": "В цепочке нет руководителя.",
+        "directReports": "Подчинённые",
+        "noDirectReports": "Нет подчинённых."
       }
     },
     "settingsIntegrations": {
