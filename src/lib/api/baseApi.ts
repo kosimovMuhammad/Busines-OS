@@ -79,6 +79,8 @@ export const baseApi = createApi({
     "ApiKeys",
     "Notifications",
     "NotificationPreferences",
+    "Contracts",
+    "Templates",
   ],
   endpoints: () => ({}),
 });

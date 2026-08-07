@@ -1,5 +1,6 @@
 import type {
   CommChannel,
+  ContractStatus,
   DealStage,
   InvoiceStatus,
   MeetingStatus,
@@ -9,6 +10,7 @@ import type {
   Plan,
   TaskPriority,
   TaskStatus,
+  TemplateType,
   UserRole,
   UserStatus,
 } from "./enums";
@@ -249,6 +251,75 @@ export type UserPermissions = {
 export type UpdateUserPermissionsRequest = {
   overrides: UserPermissionOverrideItem[];
 };
+
+// ---- Contracts ----
+
+export type Contract = {
+  id: string;
+  title: string;
+  counterpartyName: string | null;
+  contactId: string | null;
+  contactName: string | null;
+  dealId: string | null;
+  dealTitle: string | null;
+  content: string | null;
+  status: ContractStatus;
+  effectiveDate: string | null;
+  expiryDate: string | null;
+  templateId: string | null;
+  signedAt: string | null;
+  signedByUserId: string | null;
+  signedByUserName: string | null;
+  signedIpAddress: string | null;
+  createdAt: string;
+  updatedAt: string;
+  isArchived: boolean;
+};
+
+export type ContractsQueryArgs = {
+  status?: ContractStatus;
+  contactId?: string;
+  dealId?: string;
+  includeArchived?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+export type CreateContractRequest = {
+  title: string;
+  counterpartyName?: string;
+  contactId?: string;
+  dealId?: string;
+  content?: string;
+  templateId?: string;
+  effectiveDate?: string;
+  expiryDate?: string;
+};
+
+export type UpdateContractRequest = Partial<Omit<CreateContractRequest, "templateId">> & {
+  status?: ContractStatus;
+};
+
+// ---- Templates ----
+
+export type Template = {
+  id: string;
+  name: string;
+  type: TemplateType;
+  content: string | null;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateTemplateRequest = {
+  name: string;
+  type: TemplateType;
+  content?: string;
+  isActive?: boolean;
+};
+
+export type UpdateTemplateRequest = Partial<CreateTemplateRequest>;
 
 // ---- Company ----
 

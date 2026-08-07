@@ -49,3 +49,7 @@ export type NotificationType =
   | "DealStageChanged";
 
 export type NotificationChannel = "InApp" | "Email" | "WhatsApp";
+
+export type ContractStatus = "Draft" | "Sent" | "Signed" | "Expired" | "Cancelled";
+
+export type TemplateType = "Contract" | "Email" | "Other";

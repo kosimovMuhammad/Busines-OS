@@ -4,6 +4,7 @@ import {
   Calendar,
   CircleCheck,
   Contact,
+  FileSignature,
   FileText,
   Gem,
   LayoutGrid,
@@ -25,6 +26,7 @@ export type NavItem = {
     | "whatsapp"
     | "email"
     | "invoicing"
+    | "contracts"
     | "files"
     | "calendar";
   icon: LucideIcon;
@@ -43,6 +45,7 @@ export const workspaceNavItems: NavItem[] = [
   { href: "/whatsapp", labelKey: "whatsapp", icon: MessageCircle },
   { href: "/email", labelKey: "email", icon: Mail },
   { href: "/invoices", labelKey: "invoicing", icon: Receipt },
+  { href: "/contracts", labelKey: "contracts", icon: FileSignature },
   { href: "/files", labelKey: "files", icon: FileText },
   { href: "/calendar", labelKey: "calendar", icon: Calendar },
 ];

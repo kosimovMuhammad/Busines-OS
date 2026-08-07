@@ -34,6 +34,7 @@
     "whatsapp": "WhatsApp",
     "email": "Email",
     "invoicing": "Invoicing",
+    "contracts": "Contracts",
     "files": "Files",
     "calendar": "Calendar",
     "settings": "Settings",
@@ -401,6 +402,89 @@
         "method": "Method",
         "notes": "Notes",
         "save": "Save"
+      }
+    },
+    "contracts": {
+      "title": "Contracts",
+      "subtitle": "Track agreements from draft to signature",
+      "allStatuses": "All Statuses",
+      "createContract": "New Contract",
+      "empty": "No contracts found.",
+      "columnTitle": "Title",
+      "columnCounterparty": "Counterparty",
+      "columnStatus": "Status",
+      "columnUpdated": "Updated",
+      "backToList": "Back to list",
+      "edit": "Edit",
+      "delete": "Delete",
+      "send": "Send",
+      "sign": "Sign",
+      "cancelContract": "Cancel contract",
+      "archive": "Archive",
+      "restore": "Restore",
+      "archivedNotice": "This contract is archived.",
+      "signedBanner": "Signed",
+      "signedBy": "Signed by {name} on {date}",
+      "signedIp": "IP address: {ip}",
+      "noContent": "No content yet.",
+      "tabs": {
+        "contracts": "Contracts",
+        "templates": "Templates"
+      },
+      "form": {
+        "createTitle": "New Contract",
+        "editTitle": "Edit Contract",
+        "titleField": "Title",
+        "counterparty": "Counterparty name",
+        "contact": "Contact",
+        "none": "None",
+        "relatedDeal": "Related deal",
+        "template": "Template",
+        "noTemplate": "No template",
+        "effectiveDate": "Effective date",
+        "expiryDate": "Expiry date",
+        "content": "Content",
+        "save": "Save",
+        "create": "Create"
+      },
+      "deleteDialog": {
+        "title": "Delete contract?",
+        "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+        "cancel": "Cancel"
+      },
+      "signDialog": {
+        "title": "Sign this contract?",
+        "description": "Signing records your name, timestamp, and IP address as part of the audit trail. This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Sign contract"
+      },
+      "templates": {
+        "create": "New Template",
+        "empty": "No templates yet.",
+        "edit": "Edit",
+        "delete": "Delete",
+        "active": "Active",
+        "inactive": "Inactive",
+        "columnName": "Name",
+        "columnType": "Type",
+        "columnStatus": "Status",
+        "columnActions": "",
+        "form": {
+          "createTitle": "New Template",
+          "editTitle": "Edit Template",
+          "name": "Name",
+          "type": "Type",
+          "content": "Content",
+          "contentPlaceholder": "Use placeholders such as [company] or [counterparty]",
+          "isActive": "Active",
+          "save": "Save",
+          "create": "Create"
+        },
+        "deleteDialog": {
+          "title": "Delete template?",
+          "description": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+          "cancel": "Cancel"
+        }
       }
     },
     "files": {
@@ -814,6 +898,18 @@
       "InApp": "In-App",
       "Email": "Email",
       "WhatsApp": "WhatsApp"
+    },
+    "contractStatus": {
+      "Draft": "Draft",
+      "Sent": "Sent",
+      "Signed": "Signed",
+      "Expired": "Expired",
+      "Cancelled": "Cancelled"
+    },
+    "templateType": {
+      "Contract": "Contract",
+      "Email": "Email",
+      "Other": "Other"
     }
   }
 }

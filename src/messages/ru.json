@@ -34,6 +34,7 @@
     "whatsapp": "WhatsApp",
     "email": "Почта",
     "invoicing": "Счета",
+    "contracts": "Договоры",
     "files": "Файлы",
     "calendar": "Календарь",
     "settings": "Настройки",
@@ -401,6 +402,89 @@
         "method": "Способ оплаты",
         "notes": "Заметки",
         "save": "Сохранить"
+      }
+    },
+    "contracts": {
+      "title": "Договоры",
+      "subtitle": "Отслеживайте соглашения от черновика до подписания",
+      "allStatuses": "Все статусы",
+      "createContract": "Новый договор",
+      "empty": "Договоры не найдены.",
+      "columnTitle": "Название",
+      "columnCounterparty": "Контрагент",
+      "columnStatus": "Статус",
+      "columnUpdated": "Обновлён",
+      "backToList": "Назад к списку",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "send": "Отправить",
+      "sign": "Подписать",
+      "cancelContract": "Отменить договор",
+      "archive": "Архивировать",
+      "restore": "Восстановить",
+      "archivedNotice": "Этот договор в архиве.",
+      "signedBanner": "Подписан",
+      "signedBy": "Подписан {name} {date}",
+      "signedIp": "IP-адрес: {ip}",
+      "noContent": "Содержимого пока нет.",
+      "tabs": {
+        "contracts": "Договоры",
+        "templates": "Шаблоны"
+      },
+      "form": {
+        "createTitle": "Новый договор",
+        "editTitle": "Изменить договор",
+        "titleField": "Название",
+        "counterparty": "Название контрагента",
+        "contact": "Контакт",
+        "none": "Нет",
+        "relatedDeal": "Связанная сделка",
+        "template": "Шаблон",
+        "noTemplate": "Без шаблона",
+        "effectiveDate": "Дата вступления в силу",
+        "expiryDate": "Дата окончания",
+        "content": "Содержимое",
+        "save": "Сохранить",
+        "create": "Создать"
+      },
+      "deleteDialog": {
+        "title": "Удалить договор?",
+        "description": "Вы уверены, что хотите удалить «{title}»? Это действие нельзя отменить.",
+        "cancel": "Отмена"
+      },
+      "signDialog": {
+        "title": "Подписать этот договор?",
+        "description": "Подписание фиксирует ваше имя, время и IP-адрес как часть журнала аудита. Это действие нельзя отменить.",
+        "cancel": "Отмена",
+        "confirm": "Подписать договор"
+      },
+      "templates": {
+        "create": "Новый шаблон",
+        "empty": "Шаблонов пока нет.",
+        "edit": "Изменить",
+        "delete": "Удалить",
+        "active": "Активен",
+        "inactive": "Неактивен",
+        "columnName": "Название",
+        "columnType": "Тип",
+        "columnStatus": "Статус",
+        "columnActions": "",
+        "form": {
+          "createTitle": "Новый шаблон",
+          "editTitle": "Изменить шаблон",
+          "name": "Название",
+          "type": "Тип",
+          "content": "Содержимое",
+          "contentPlaceholder": "Используйте плейсхолдеры вида [company] или [counterparty]",
+          "isActive": "Активен",
+          "save": "Сохранить",
+          "create": "Создать"
+        },
+        "deleteDialog": {
+          "title": "Удалить шаблон?",
+          "description": "Вы уверены, что хотите удалить «{name}»? Это действие нельзя отменить.",
+          "cancel": "Отмена"
+        }
       }
     },
     "files": {
@@ -814,6 +898,18 @@
       "InApp": "В приложении",
       "Email": "Email",
       "WhatsApp": "WhatsApp"
+    },
+    "contractStatus": {
+      "Draft": "Черновик",
+      "Sent": "Отправлен",
+      "Signed": "Подписан",
+      "Expired": "Истёк",
+      "Cancelled": "Отменён"
+    },
+    "templateType": {
+      "Contract": "Договор",
+      "Email": "Email",
+      "Other": "Другое"
     }
   }
 }

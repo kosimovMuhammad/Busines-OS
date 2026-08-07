@@ -34,6 +34,7 @@
     "whatsapp": "WhatsApp",
     "email": "Почта",
     "invoicing": "Ҳисобҳо",
+    "contracts": "Шартномаҳо",
     "files": "Файлҳо",
     "calendar": "Тақвим",
     "settings": "Танзимот",
@@ -401,6 +402,89 @@
         "method": "Усули пардохт",
         "notes": "Ёддоштҳо",
         "save": "Нигоҳ доштан"
+      }
+    },
+    "contracts": {
+      "title": "Шартномаҳо",
+      "subtitle": "Созишномаҳоро аз лоиҳа то имзо пайгирӣ кунед",
+      "allStatuses": "Ҳамаи ҳолатҳо",
+      "createContract": "Шартномаи нав",
+      "empty": "Шартнома ёфт нашуд.",
+      "columnTitle": "Ном",
+      "columnCounterparty": "Тарафи муқобил",
+      "columnStatus": "Ҳолат",
+      "columnUpdated": "Навсозӣ",
+      "backToList": "Бозгашт ба рӯйхат",
+      "edit": "Таҳрир",
+      "delete": "Нест кардан",
+      "send": "Фиристодан",
+      "sign": "Имзо кардан",
+      "cancelContract": "Бекор кардани шартнома",
+      "archive": "Бойгонӣ кардан",
+      "restore": "Барқарор кардан",
+      "archivedNotice": "Ин шартнома дар бойгонӣ аст.",
+      "signedBanner": "Имзошуда",
+      "signedBy": "Аз ҷониби {name} дар {date} имзо шудааст",
+      "signedIp": "Суроғаи IP: {ip}",
+      "noContent": "То ҳол мазмун нест.",
+      "tabs": {
+        "contracts": "Шартномаҳо",
+        "templates": "Шаблонҳо"
+      },
+      "form": {
+        "createTitle": "Шартномаи нав",
+        "editTitle": "Таҳрири шартнома",
+        "titleField": "Ном",
+        "counterparty": "Номи тарафи муқобил",
+        "contact": "Тамос",
+        "none": "Нест",
+        "relatedDeal": "Муомилаи алоқаманд",
+        "template": "Шаблон",
+        "noTemplate": "Бе шаблон",
+        "effectiveDate": "Санаи қувват гирифтан",
+        "expiryDate": "Санаи анҷом",
+        "content": "Мазмун",
+        "save": "Нигоҳ доштан",
+        "create": "Сохтан"
+      },
+      "deleteDialog": {
+        "title": "Шартнома нест карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед «{title}»-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+        "cancel": "Бекор кардан"
+      },
+      "signDialog": {
+        "title": "Ин шартнома имзо карда шавад?",
+        "description": "Имзо кардан номи шумо, вақт ва суроғаи IP-ро ҳамчун қисми журнали аудит сабт мекунад. Ин амалро бекор кардан мумкин нест.",
+        "cancel": "Бекор кардан",
+        "confirm": "Имзои шартнома"
+      },
+      "templates": {
+        "create": "Шаблони нав",
+        "empty": "То ҳол шаблон нест.",
+        "edit": "Таҳрир",
+        "delete": "Нест кардан",
+        "active": "Фаъол",
+        "inactive": "Ғайрифаъол",
+        "columnName": "Ном",
+        "columnType": "Навъ",
+        "columnStatus": "Ҳолат",
+        "columnActions": "",
+        "form": {
+          "createTitle": "Шаблони нав",
+          "editTitle": "Таҳрири шаблон",
+          "name": "Ном",
+          "type": "Навъ",
+          "content": "Мазмун",
+          "contentPlaceholder": "Аз ҷойгузорҳо монанди [company] ё [counterparty] истифода баред",
+          "isActive": "Фаъол",
+          "save": "Нигоҳ доштан",
+          "create": "Сохтан"
+        },
+        "deleteDialog": {
+          "title": "Шаблон нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед «{name}»-ро нест кунед? Ин амалро бекор кардан мумкин нест.",
+          "cancel": "Бекор кардан"
+        }
       }
     },
     "files": {
@@ -814,6 +898,18 @@
       "InApp": "Дар барнома",
       "Email": "Email",
       "WhatsApp": "WhatsApp"
+    },
+    "contractStatus": {
+      "Draft": "Лоиҳа",
+      "Sent": "Фиристодашуда",
+      "Signed": "Имзошуда",
+      "Expired": "Мӯҳлаташ гузашта",
+      "Cancelled": "Бекоршуда"
+    },
+    "templateType": {
+      "Contract": "Шартнома",
+      "Email": "Email",
+      "Other": "Дигар"
     }
   }
 }
