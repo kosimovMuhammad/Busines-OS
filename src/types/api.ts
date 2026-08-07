@@ -321,6 +321,47 @@ export type CreateTemplateRequest = {
 
 export type UpdateTemplateRequest = Partial<CreateTemplateRequest>;
 
+// ---- Search ----
+
+export type SearchResultType =
+  | "contacts"
+  | "deals"
+  | "tasks"
+  | "users"
+  | "files"
+  | "emails"
+  | "messages";
+
+export type SearchResultItem = {
+  id: string;
+  type: SearchResultType;
+  title: string;
+  subtitle: string | null;
+  link: string;
+  score: number;
+};
+
+export type SearchGroup = {
+  type: SearchResultType;
+  items: SearchResultItem[];
+  total: number;
+  page: number;
+  limit: number;
+  allowed: boolean;
+};
+
+export type GlobalSearchResponse = {
+  query: string;
+  groups: SearchGroup[];
+};
+
+export type GlobalSearchArgs = {
+  q: string;
+  types?: SearchResultType[];
+  page?: number;
+  limit?: number;
+};
+
 // ---- Company ----
 
 export type Company = {

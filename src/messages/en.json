@@ -49,6 +49,12 @@
       "title": "Notifications",
       "markAllRead": "Mark all read",
       "empty": "You're all caught up."
+    },
+    "search": {
+      "placeholder": "Search contacts, deals, tasks...",
+      "hint": "Type at least 2 characters to search.",
+      "empty": "No results found.",
+      "viewAll": "View all results for \"{query}\""
     }
   },
   "auth": {
@@ -808,6 +814,24 @@
       "changePlan": "Change plan",
       "save": "Save",
       "ownerOnly": "Only the workspace owner can change the plan."
+    },
+    "search": {
+      "title": "Search",
+      "subtitle": "Find contacts, deals, tasks, and more across your workspace",
+      "placeholder": "Search contacts, deals, tasks...",
+      "hint": "Type at least 2 characters to search.",
+      "empty": "No results for \"{query}\"."
+    }
+  },
+  "search": {
+    "groups": {
+      "contacts": "Contacts",
+      "deals": "Deals",
+      "tasks": "Tasks",
+      "users": "Team",
+      "files": "Files",
+      "emails": "Emails",
+      "messages": "Messages"
     }
   },
   "enums": {
