@@ -1,37 +1,51 @@
 export type UserRole =
-  | "OWNER"
-  | "ADMIN"
-  | "MANAGER"
-  | "SALES"
-  | "SUPPORT"
-  | "EMPLOYEE"
-  | "READ_ONLY";
+  | "Owner"
+  | "Admin"
+  | "Manager"
+  | "Sales"
+  | "Support"
+  | "Employee"
+  | "ReadOnly";
 
-export type UserStatus = "ACTIVE" | "INVITED" | "SUSPENDED";
+export type UserStatus = "Active" | "Invited" | "Suspended";
 
 export type DealStage =
-  | "LEAD"
-  | "QUALIFIED"
-  | "PROPOSAL"
-  | "NEGOTIATION"
-  | "WON"
-  | "LOST";
+  | "Lead"
+  | "Qualified"
+  | "Proposal"
+  | "Negotiation"
+  | "Won"
+  | "Lost";
 
-export type TaskStatus = "TODO" | "IN_PROGRESS" | "COMPLETED" | "ARCHIVED";
+export type TaskStatus = "Todo" | "InProgress" | "Completed" | "Archived";
 
-export type TaskPriority = "LOW" | "MEDIUM" | "HIGH" | "URGENT";
+export type TaskPriority = "Low" | "Medium" | "High" | "Urgent";
 
-export type CommChannel = "WHATSAPP" | "EMAIL" | "MANUAL_NOTE" | "PHONE_CALL";
+export type CommChannel = "Whatsapp" | "Email" | "ManualNote" | "PhoneCall";
 
 export type InvoiceStatus =
-  | "DRAFT"
-  | "SENT"
-  | "PAID"
-  | "OVERDUE"
-  | "CANCELLED";
+  | "Draft"
+  | "Sent"
+  | "Paid"
+  | "Overdue"
+  | "Cancelled";
 
-export type PaymentMethod = "CASH" | "BANK_TRANSFER" | "CARD" | "OTHER";
+export type PaymentMethod = "Cash" | "BankTransfer" | "Card" | "Other";
 
-export type MeetingStatus = "SCHEDULED" | "COMPLETED" | "CANCELLED";
+export type MeetingStatus = "Scheduled" | "Completed" | "Cancelled";
 
-export type Plan = "STARTER" | "PROFESSIONAL" | "ENTERPRISE";
+export type Plan = "Starter" | "Professional" | "Enterprise";
+
+export type NotificationType =
+  | "DealAssigned"
+  | "TaskAssigned"
+  | "TaskDue"
+  | "TaskOverdue"
+  | "MentionInComment"
+  | "LeadAssigned"
+  | "PaymentReceived"
+  | "InviteAccepted"
+  | "RoleChanged"
+  | "DealStageChanged";
+
+export type NotificationChannel = "InApp" | "Email" | "WhatsApp";

@@ -43,7 +43,12 @@
   "topbar": {
     "searchPlaceholder": "Поиск команд, сделок или контактов...",
     "themeToggleLight": "Включить светлую тему",
-    "themeToggleDark": "Включить тёмную тему"
+    "themeToggleDark": "Включить тёмную тему",
+    "notifications": {
+      "title": "Уведомления",
+      "markAllRead": "Отметить всё как прочитанное",
+      "empty": "Новых уведомлений нет."
+    }
   },
   "auth": {
     "login": {
@@ -468,8 +473,10 @@
         "team": "Команда",
         "organization": "Организация",
         "rolesPermissions": "Роли и права",
+        "security": "Безопасность и аудит",
         "integrations": "Интеграции",
-        "plan": "Тариф"
+        "plan": "Тариф",
+        "notifications": "Уведомления"
       }
     },
     "settingsTeam": {
@@ -621,6 +628,88 @@
         "noDirectReports": "Нет подчинённых."
       }
     },
+    "settingsSecurity": {
+      "title": "Безопасность и аудит",
+      "subtitle": "Сессии, API-ключи и активность в вашем рабочем пространстве",
+      "tabs": {
+        "sessions": "Сессии",
+        "apiKeys": "API-ключи",
+        "auditLog": "Журнал аудита",
+        "loginHistory": "История входов",
+        "permissionHistory": "История прав"
+      },
+      "sessions": {
+        "logoutAll": "Завершить другие сессии",
+        "empty": "Нет активных сессий.",
+        "unknownDevice": "Неизвестное устройство",
+        "thisDevice": "Это устройство",
+        "createdAt": "Вход выполнен {date}",
+        "revoke": "Завершить",
+        "logoutAllDialog": {
+          "title": "Завершить другие сессии?",
+          "description": "Это завершит все сессии, кроме той, которой вы пользуетесь сейчас.",
+          "cancel": "Отмена"
+        }
+      },
+      "apiKeys": {
+        "createTitle": "Создать API-ключ",
+        "createdTitle": "API-ключ создан",
+        "createdHint": "Скопируйте ключ сейчас — повторно увидеть его будет нельзя.",
+        "copy": "Копировать",
+        "copied": "Скопировано в буфер обмена.",
+        "done": "Готово",
+        "name": "Название",
+        "namePlaceholder": "например, интеграция Zapier",
+        "create": "Создать",
+        "empty": "API-ключей пока нет.",
+        "columnName": "Название",
+        "columnKey": "Ключ",
+        "columnCreatedBy": "Создал",
+        "columnLastUsed": "Последнее использование",
+        "columnActive": "Активен",
+        "columnActions": "",
+        "neverUsed": "Не использовался",
+        "inactive": "Неактивен",
+        "delete": "Удалить",
+        "deleteDialog": {
+          "title": "Удалить API-ключ?",
+          "description": "Вы уверены, что хотите удалить «{name}»? Любая интеграция, использующая его, перестанет работать немедленно.",
+          "cancel": "Отмена"
+        }
+      },
+      "auditLog": {
+        "allUsers": "Все пользователи",
+        "export": "Экспорт CSV",
+        "empty": "События аудита не найдены.",
+        "columnAction": "Действие",
+        "columnUser": "Пользователь",
+        "columnTarget": "Объект",
+        "columnIp": "IP-адрес",
+        "columnDate": "Дата"
+      },
+      "loginHistory": {
+        "empty": "История входов пока пуста.",
+        "columnDevice": "Устройство",
+        "columnIp": "IP-адрес",
+        "columnStatus": "Статус",
+        "columnDate": "Дата",
+        "newDevice": "Новое устройство",
+        "success": "Успешно",
+        "failed": "Не удалось"
+      },
+      "permissionHistory": {
+        "empty": "Изменений прав пока нет.",
+        "columnAction": "Действие",
+        "columnUser": "Пользователь",
+        "columnTarget": "Объект",
+        "columnDate": "Дата"
+      }
+    },
+    "settingsNotifications": {
+      "title": "Настройки уведомлений",
+      "subtitle": "Выберите, как вы хотите получать уведомления о каждом событии",
+      "columnType": "Событие"
+    },
     "settingsIntegrations": {
       "title": "Интеграции",
       "subtitle": "Статус подключённых сервисов",
@@ -708,6 +797,23 @@
       "invoice": "Счёт",
       "meeting": "Встреча",
       "communication": "Коммуникация"
+    },
+    "notificationType": {
+      "DealAssigned": "Сделка назначена",
+      "TaskAssigned": "Задача назначена",
+      "TaskDue": "Срок задачи наступил",
+      "TaskOverdue": "Задача просрочена",
+      "MentionInComment": "Упоминание в комментарии",
+      "LeadAssigned": "Лид назначен",
+      "PaymentReceived": "Платёж получен",
+      "InviteAccepted": "Приглашение принято",
+      "RoleChanged": "Роль изменена",
+      "DealStageChanged": "Стадия сделки изменена"
+    },
+    "notificationChannel": {
+      "InApp": "В приложении",
+      "Email": "Email",
+      "WhatsApp": "WhatsApp"
     }
   }
 }

@@ -73,6 +73,12 @@ export const baseApi = createApi({
     "Teams",
     "Branches",
     "OrgChart",
+    "ActivityLog",
+    "AuditLog",
+    "Sessions",
+    "ApiKeys",
+    "Notifications",
+    "NotificationPreferences",
   ],
   endpoints: () => ({}),
 });

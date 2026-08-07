@@ -3,6 +3,8 @@ import type {
   DealStage,
   InvoiceStatus,
   MeetingStatus,
+  NotificationChannel,
+  NotificationType,
   PaymentMethod,
   Plan,
   TaskPriority,
@@ -756,3 +758,112 @@ export type ForecastAnalytics = {
 // contact/deal are already part of Meeting itself (verified always
 // populated) - this alias just documents intent at dashboard call sites.
 export type UpcomingMeeting = Meeting;
+
+// ---- Activity Log ----
+
+export type ActivityLogEntry = {
+  id: string;
+  entityType: string;
+  entityId: string;
+  userId: string;
+  userName: string;
+  action: string;
+  changesJson: string | null;
+  createdAt: string;
+};
+
+// ---- Audit Log ----
+
+export type AuditLogEntry = {
+  id: string;
+  userId: string;
+  userName: string;
+  action: string;
+  targetType: string;
+  targetId: string;
+  metadataJson: string | null;
+  ipAddress: string | null;
+  createdAt: string;
+};
+
+export type AuditLogQueryArgs = {
+  action?: string;
+  userId?: string;
+  from?: string;
+  to?: string;
+  page?: number;
+  limit?: number;
+};
+
+export type LoginHistoryEntry = {
+  id: string;
+  loginAt: string;
+  ipAddress: string | null;
+  userAgent: string | null;
+  deviceInfo: string | null;
+  success: boolean;
+  failureReason: string | null;
+  isNewDevice: boolean;
+};
+
+// ---- Sessions ----
+
+export type Session = {
+  id: string;
+  deviceInfo: string | null;
+  ipAddress: string | null;
+  createdAt: string;
+  expiresAt: string;
+  isCurrent: boolean;
+};
+
+// ---- API Keys ----
+
+export type ApiKey = {
+  id: string;
+  name: string;
+  keyPrefix: string;
+  isActive: boolean;
+  createdByUserId: string;
+  createdByUserName: string;
+  lastUsedAt: string | null;
+  expiresAt: string | null;
+  createdAt: string;
+};
+
+// POST /api-keys is the only response that ever includes the raw secret -
+// it is shown once and never retrievable again afterwards.
+export type CreatedApiKey = ApiKey & { rawKey: string };
+
+export type CreateApiKeyRequest = { name: string; expiresAt?: string };
+export type UpdateApiKeyRequest = { name?: string; isActive?: boolean };
+
+// ---- Notifications ----
+
+export type Notification = {
+  id: string;
+  type: NotificationType;
+  title: string;
+  body: string | null;
+  relatedEntityType: string | null;
+  relatedEntityId: string | null;
+  isRead: boolean;
+  createdAt: string;
+  readAt: string | null;
+};
+
+export type NotificationsQueryArgs = {
+  isRead?: boolean;
+  page?: number;
+  limit?: number;
+};
+
+export type NotificationPreferenceItem = {
+  type: NotificationType;
+  channel: NotificationChannel;
+  enabled: boolean;
+};
+
+export type UpdateNotificationPreferencesRequest = {
+  preferences: NotificationPreferenceItem[];
+};

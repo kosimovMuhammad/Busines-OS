@@ -1,10 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Bell, CircleHelp, Search, Sparkles } from "lucide-react";
+import { CircleHelp, Search, Sparkles } from "lucide-react";
 import { ActiveTimerWidget } from "@/components/tasks/active-timer-widget";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
+import { NotificationsPanel } from "./notifications-panel";
 
 export function Topbar() {
   const t = useTranslations("topbar");
@@ -22,12 +23,7 @@ export function Topbar() {
 
       <div className="ml-auto flex items-center gap-2">
         <ActiveTimerWidget />
-        <button
-          type="button"
-          className="flex size-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-        >
-          <Bell className="size-[18px]" />
-        </button>
+        <NotificationsPanel />
         <button
           type="button"
           className="flex size-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"

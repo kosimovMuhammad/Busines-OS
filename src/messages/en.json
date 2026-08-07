@@ -43,7 +43,12 @@
   "topbar": {
     "searchPlaceholder": "Search commands, deals, or contacts...",
     "themeToggleLight": "Switch to light theme",
-    "themeToggleDark": "Switch to dark theme"
+    "themeToggleDark": "Switch to dark theme",
+    "notifications": {
+      "title": "Notifications",
+      "markAllRead": "Mark all read",
+      "empty": "You're all caught up."
+    }
   },
   "auth": {
     "login": {
@@ -468,8 +473,10 @@
         "team": "Team",
         "organization": "Organization",
         "rolesPermissions": "Roles & Permissions",
+        "security": "Security & Audit",
         "integrations": "Integrations",
-        "plan": "Plan"
+        "plan": "Plan",
+        "notifications": "Notifications"
       }
     },
     "settingsTeam": {
@@ -621,6 +628,88 @@
         "noDirectReports": "No direct reports."
       }
     },
+    "settingsSecurity": {
+      "title": "Security & Audit",
+      "subtitle": "Sessions, API keys, and activity across your workspace",
+      "tabs": {
+        "sessions": "Sessions",
+        "apiKeys": "API Keys",
+        "auditLog": "Audit Log",
+        "loginHistory": "Login History",
+        "permissionHistory": "Permission History"
+      },
+      "sessions": {
+        "logoutAll": "Log out other sessions",
+        "empty": "No active sessions.",
+        "unknownDevice": "Unknown device",
+        "thisDevice": "This device",
+        "createdAt": "Signed in {date}",
+        "revoke": "Revoke",
+        "logoutAllDialog": {
+          "title": "Log out other sessions?",
+          "description": "This will sign out every session except the one you're using right now.",
+          "cancel": "Cancel"
+        }
+      },
+      "apiKeys": {
+        "createTitle": "Create API Key",
+        "createdTitle": "API key created",
+        "createdHint": "Copy this key now — you won't be able to see it again.",
+        "copy": "Copy",
+        "copied": "Copied to clipboard.",
+        "done": "Done",
+        "name": "Name",
+        "namePlaceholder": "e.g. Zapier integration",
+        "create": "Create",
+        "empty": "No API keys yet.",
+        "columnName": "Name",
+        "columnKey": "Key",
+        "columnCreatedBy": "Created by",
+        "columnLastUsed": "Last used",
+        "columnActive": "Active",
+        "columnActions": "",
+        "neverUsed": "Never used",
+        "inactive": "Inactive",
+        "delete": "Delete",
+        "deleteDialog": {
+          "title": "Delete API key?",
+          "description": "Are you sure you want to delete \"{name}\"? Any integration using it will stop working immediately.",
+          "cancel": "Cancel"
+        }
+      },
+      "auditLog": {
+        "allUsers": "All Users",
+        "export": "Export CSV",
+        "empty": "No audit events found.",
+        "columnAction": "Action",
+        "columnUser": "User",
+        "columnTarget": "Target",
+        "columnIp": "IP Address",
+        "columnDate": "Date"
+      },
+      "loginHistory": {
+        "empty": "No login history yet.",
+        "columnDevice": "Device",
+        "columnIp": "IP Address",
+        "columnStatus": "Status",
+        "columnDate": "Date",
+        "newDevice": "New device",
+        "success": "Success",
+        "failed": "Failed"
+      },
+      "permissionHistory": {
+        "empty": "No permission changes yet.",
+        "columnAction": "Action",
+        "columnUser": "User",
+        "columnTarget": "Target",
+        "columnDate": "Date"
+      }
+    },
+    "settingsNotifications": {
+      "title": "Notification Preferences",
+      "subtitle": "Choose how you want to be notified for each event",
+      "columnType": "Event"
+    },
     "settingsIntegrations": {
       "title": "Integrations",
       "subtitle": "Connected services status",
@@ -708,6 +797,23 @@
       "invoice": "Invoice",
       "meeting": "Meeting",
       "communication": "Communication"
+    },
+    "notificationType": {
+      "DealAssigned": "Deal assigned",
+      "TaskAssigned": "Task assigned",
+      "TaskDue": "Task due",
+      "TaskOverdue": "Task overdue",
+      "MentionInComment": "Mentioned in a comment",
+      "LeadAssigned": "Lead assigned",
+      "PaymentReceived": "Payment received",
+      "InviteAccepted": "Invite accepted",
+      "RoleChanged": "Role changed",
+      "DealStageChanged": "Deal stage changed"
+    },
+    "notificationChannel": {
+      "InApp": "In-App",
+      "Email": "Email",
+      "WhatsApp": "WhatsApp"
     }
   }
 }

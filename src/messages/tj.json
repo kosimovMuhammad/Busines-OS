@@ -43,7 +43,12 @@
   "topbar": {
     "searchPlaceholder": "Ҷустуҷӯи фармонҳо, муомилот ё тамосҳо...",
     "themeToggleLight": "Гузариш ба мавзӯи равшан",
-    "themeToggleDark": "Гузариш ба мавзӯи торик"
+    "themeToggleDark": "Гузариш ба мавзӯи торик",
+    "notifications": {
+      "title": "Огоҳиномаҳо",
+      "markAllRead": "Ҳамаро хондашуда қайд кардан",
+      "empty": "Огоҳиномаи нав нест."
+    }
   },
   "auth": {
     "login": {
@@ -468,8 +473,10 @@
         "team": "Дастаи корӣ",
         "organization": "Созмон",
         "rolesPermissions": "Нақшҳо ва иҷозатҳо",
+        "security": "Бехатарӣ ва аудит",
         "integrations": "Интегратсияҳо",
-        "plan": "Тариф"
+        "plan": "Тариф",
+        "notifications": "Огоҳиномаҳо"
       }
     },
     "settingsTeam": {
@@ -621,6 +628,88 @@
         "noDirectReports": "Зердаст нест."
       }
     },
+    "settingsSecurity": {
+      "title": "Бехатарӣ ва аудит",
+      "subtitle": "Сессияҳо, калидҳои API ва фаъолият дар фазои кории шумо",
+      "tabs": {
+        "sessions": "Сессияҳо",
+        "apiKeys": "Калидҳои API",
+        "auditLog": "Журнали аудит",
+        "loginHistory": "Таърихи воридшавӣ",
+        "permissionHistory": "Таърихи иҷозатҳо"
+      },
+      "sessions": {
+        "logoutAll": "Хомӯш кардани сессияҳои дигар",
+        "empty": "Сессияи фаъол нест.",
+        "unknownDevice": "Дастгоҳи номаълум",
+        "thisDevice": "Ин дастгоҳ",
+        "createdAt": "Воридшуда {date}",
+        "revoke": "Хомӯш кардан",
+        "logoutAllDialog": {
+          "title": "Сессияҳои дигар хомӯш карда шаванд?",
+          "description": "Ин ҳамаи сессияҳоро ба ғайр аз ҳамин, ки шумо ҳозир истифода мебаред, хомӯш мекунад.",
+          "cancel": "Бекор кардан"
+        }
+      },
+      "apiKeys": {
+        "createTitle": "Сохтани калиди API",
+        "createdTitle": "Калиди API сохта шуд",
+        "createdHint": "Ҳозир калидро нусхабардорӣ кунед — дигар онро дидан мумкин нест.",
+        "copy": "Нусхабардорӣ",
+        "copied": "Ба ҳофизаи муваққатӣ нусхабардорӣ шуд.",
+        "done": "Тайёр",
+        "name": "Ном",
+        "namePlaceholder": "масалан, интегратсияи Zapier",
+        "create": "Сохтан",
+        "empty": "То ҳол калиди API нест.",
+        "columnName": "Ном",
+        "columnKey": "Калид",
+        "columnCreatedBy": "Сохта аз",
+        "columnLastUsed": "Истифодаи охирин",
+        "columnActive": "Фаъол",
+        "columnActions": "",
+        "neverUsed": "Ҳеҷ гоҳ истифода нашудааст",
+        "inactive": "Ғайрифаъол",
+        "delete": "Нест кардан",
+        "deleteDialog": {
+          "title": "Калиди API нест карда шавад?",
+          "description": "Шумо мутмаин ҳастед, ки мехоҳед «{name}»-ро нест кунед? Ҳар интегратсияе, ки онро истифода мебарад, дарҳол қатъ мешавад.",
+          "cancel": "Бекор кардан"
+        }
+      },
+      "auditLog": {
+        "allUsers": "Ҳамаи корбарон",
+        "export": "Содирот CSV",
+        "empty": "Рӯйдоди аудит ёфт нашуд.",
+        "columnAction": "Амал",
+        "columnUser": "Корбар",
+        "columnTarget": "Объект",
+        "columnIp": "Суроғаи IP",
+        "columnDate": "Сана"
+      },
+      "loginHistory": {
+        "empty": "Таърихи воридшавӣ то ҳол холист.",
+        "columnDevice": "Дастгоҳ",
+        "columnIp": "Суроғаи IP",
+        "columnStatus": "Ҳолат",
+        "columnDate": "Сана",
+        "newDevice": "Дастгоҳи нав",
+        "success": "Муваффақ",
+        "failed": "Ноком"
+      },
+      "permissionHistory": {
+        "empty": "То ҳол тағйироти иҷозат нест.",
+        "columnAction": "Амал",
+        "columnUser": "Корбар",
+        "columnTarget": "Объект",
+        "columnDate": "Сана"
+      }
+    },
+    "settingsNotifications": {
+      "title": "Танзимоти огоҳиномаҳо",
+      "subtitle": "Интихоб кунед, ки чӣ тавр барои ҳар рӯйдод огоҳ шавед",
+      "columnType": "Рӯйдод"
+    },
     "settingsIntegrations": {
       "title": "Интегратсияҳо",
       "subtitle": "Ҳолати хидматҳои пайвастшуда",
@@ -708,6 +797,23 @@
       "invoice": "Ҳисоб",
       "meeting": "Вохӯрӣ",
       "communication": "Алоқа"
+    },
+    "notificationType": {
+      "DealAssigned": "Муомила таъин шуд",
+      "TaskAssigned": "Вазифа таъин шуд",
+      "TaskDue": "Мӯҳлати вазифа расид",
+      "TaskOverdue": "Вазифа мӯҳлаташ гузашт",
+      "MentionInComment": "Дар шарҳ ёдовар шуд",
+      "LeadAssigned": "Лид таъин шуд",
+      "PaymentReceived": "Пардохт қабул шуд",
+      "InviteAccepted": "Даъват қабул шуд",
+      "RoleChanged": "Нақш тағйир ёфт",
+      "DealStageChanged": "Марҳилаи муомила тағйир ёфт"
+    },
+    "notificationChannel": {
+      "InApp": "Дар барнома",
+      "Email": "Email",
+      "WhatsApp": "WhatsApp"
     }
   }
 }

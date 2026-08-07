@@ -17,3 +17,14 @@ export function formatCurrency(value: number, currency: string, locale: string) 
 export function formatCompactNumber(value: number, locale: string) {
   return new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }).format(value)
 }
+
+// Audit/security log actions are free-form backend strings like
+// "security.login_succeeded" or "permission.role_created" - split the
+// module prefix from a human-readable label rather than hardcoding a
+// translation for every possible action.
+export function parseAuditAction(action: string) {
+  const [module, ...rest] = action.split(".")
+  const raw = rest.length > 0 ? rest.join(".") : module
+  const label = raw.replace(/_/g, " ").replace(/^./, (c) => c.toUpperCase())
+  return { module: rest.length > 0 ? module : null, label }
+}
