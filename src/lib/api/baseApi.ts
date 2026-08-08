@@ -21,14 +21,34 @@ const rawBaseQuery = fetchBaseQuery({
   },
 });
 
+// Endpoints that are part of the unauthenticated auth flow itself. A 401/400/422 from
+// one of these means "wrong password" / "wrong code" / "expired invite link" - it should
+// surface as a normal inline error, never trigger a refresh attempt or a redirect (there is
+// no session to refresh, and redirecting off e.g. the verify-email screen on a wrong code
+// is exactly the "flash and reload instead of an inline error" bug this guards against).
+const AUTH_FLOW_ENDPOINTS = new Set([
+  "login",
+  "register",
+  "verifyEmail",
+  "resendVerification",
+  "acceptInvite",
+  "refresh",
+]);
+
 const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
+  const hadSession = !!(api.getState() as RootState).auth.accessToken;
   let result = await rawBaseQuery(args, api, extraOptions);
 
-  if (result.error?.status === 401) {
+  const shouldAttemptReauth =
+    result.error?.status === 401 &&
+    hadSession &&
+    !AUTH_FLOW_ENDPOINTS.has(api.endpoint);
+
+  if (shouldAttemptReauth) {
     const refreshResult = await rawBaseQuery(
       { url: "/auth/refresh", method: "POST" },
       api,
