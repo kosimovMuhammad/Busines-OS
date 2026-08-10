@@ -24,7 +24,8 @@
     "passwordMin": "Password must be at least 8 characters.",
     "agreeToTerms": "You must agree to the terms to continue.",
     "invalidPhone": "Enter a phone number in international format, e.g. +992901234567.",
-    "passwordMismatch": "Passwords don't match."
+    "passwordMismatch": "Passwords don't match.",
+    "invalidAmount": "Enter a number of 0 or more."
   },
   "brand": {
     "name": "Business OS",
@@ -51,7 +52,8 @@
     "financeSection": "Finance",
     "operationsSection": "Operations",
     "insightsSection": "Insights",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "openMenu": "Open menu"
   },
   "topbar": {
     "searchPlaceholder": "Search commands, deals, or contacts...",

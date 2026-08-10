@@ -24,7 +24,8 @@
     "passwordMin": "Рамз бояд ҳадди ақал 8 аломат бошад.",
     "agreeToTerms": "Шумо бояд бо шартҳо розӣ шавед.",
     "invalidPhone": "Рақами телефонро дар формати байналмилалӣ ворид кунед, масалан +992901234567.",
-    "passwordMismatch": "Рамзҳо мувофиқат намекунанд."
+    "passwordMismatch": "Рамзҳо мувофиқат намекунанд.",
+    "invalidAmount": "Ададро 0 ё зиёдтар ворид кунед."
   },
   "brand": {
     "name": "Business OS",
@@ -51,7 +52,8 @@
     "financeSection": "Молия",
     "operationsSection": "Амалиёт",
     "insightsSection": "Таҳлил",
-    "collapse": "Пахш кардан"
+    "collapse": "Пахш кардан",
+    "openMenu": "Кушодани меню"
   },
   "topbar": {
     "searchPlaceholder": "Ҷустуҷӯи фармонҳо, муомилот ё тамосҳо...",

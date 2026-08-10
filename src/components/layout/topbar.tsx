@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
+import { MobileNav } from "@/components/layout/sidebar";
 import { ActiveTimerWidget } from "@/components/tasks/active-timer-widget";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
@@ -26,7 +27,9 @@ export function Topbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-10 flex items-center gap-4 border-b border-border-subtle bg-background/80 px-8 py-4 backdrop-blur-sm">
+    <header className="sticky top-0 z-10 flex items-center gap-4 border-b border-border-subtle bg-background/80 px-4 py-4 backdrop-blur-sm md:px-8">
+      <MobileNav />
+
       <button
         type="button"
         onClick={() => setSearchOpen(true)}

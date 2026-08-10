@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronDown, ChevronLeft, ChevronRight, Layers, Settings } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Layers, Menu, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useRole } from "@/lib/hooks/useRole";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { navEntries, type NavGroup, type NavItem } from "./nav-config";
 import { filterNavEntries } from "./nav-filter";
 
@@ -156,7 +157,7 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "sticky top-3 ml-3 my-3 flex h-[calc(100vh-24px)] shrink-0 flex-col rounded-3xl bg-surface-elevated border border-border-subtle transition-[width] duration-200",
+        "sticky top-3 ml-3 my-3 hidden h-[calc(100vh-24px)] shrink-0 flex-col rounded-3xl bg-surface-elevated border border-border-subtle transition-[width] duration-200 md:flex",
         collapsed ? "w-19" : "w-[260px]"
       )}
     >
@@ -221,5 +222,84 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
+  );
+}
+
+export function MobileNav() {
+  const [open, setOpen] = useState(false);
+  const t = useTranslations("nav");
+  const brand = useTranslations("brand");
+  const pathname = usePathname();
+  const { role } = useRole();
+  const visibleNavEntries = useMemo(() => filterNavEntries(navEntries, role), [role]);
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    for (const entry of navEntries) {
+      if (entry.kind === "group") {
+        initial[entry.group.key] = entry.group.items.some((item) =>
+          pathname.startsWith(item.href)
+        );
+      }
+    }
+    return initial;
+  });
+
+  const toggleGroup = (key: string) =>
+    setExpandedGroups((prev) => ({ ...prev, [key]: !prev[key] }));
+
+  // Close the drawer on navigation so it doesn't stay open over the new page.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label={t("openMenu")}
+        className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-border-subtle text-text-secondary transition-colors hover:text-text-primary md:hidden"
+      >
+        <Menu className="size-5" />
+      </button>
+
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="left" className="flex flex-col gap-0 bg-surface-elevated p-0">
+          <div className="flex items-center gap-3 px-6 py-6">
+            <div className="bg-accent-gradient flex size-9 shrink-0 items-center justify-center rounded-xl text-white">
+              <Layers className="size-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="truncate text-lg font-semibold text-text-primary">
+                {brand("name")}
+              </div>
+              <div className="truncate text-[10px] font-medium tracking-widest text-text-tertiary uppercase">
+                {brand("tagline")}
+              </div>
+            </div>
+          </div>
+
+          <nav className="no-scrollbar flex-1 space-y-0.5 overflow-y-auto px-3">
+            {visibleNavEntries.map((entry) =>
+              entry.kind === "link" ? (
+                <NavLink key={entry.item.href} item={entry.item} collapsed={false} />
+              ) : (
+                <NavGroupSection
+                  key={entry.group.key}
+                  group={entry.group}
+                  collapsed={false}
+                  expanded={!!expandedGroups[entry.group.key]}
+                  onToggle={() => toggleGroup(entry.group.key)}
+                />
+              )
+            )}
+          </nav>
+
+          <div className="p-3">
+            <SettingsNavSection collapsed={false} />
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }

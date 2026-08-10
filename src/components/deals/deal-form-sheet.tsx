@@ -79,7 +79,12 @@ export function DealFormSheet({
     watch,
     formState: { errors },
   } = useForm<DealFormValues>({
-    resolver: zodResolver(createDealSchema({ required: tValidation("required") })),
+    resolver: zodResolver(
+      createDealSchema({
+        required: tValidation("required"),
+        invalidAmount: tValidation("invalidAmount"),
+      })
+    ),
     defaultValues: { title: "", contactId: "" },
   });
 
@@ -202,6 +207,7 @@ export function DealFormSheet({
                 step="0.01"
                 {...register("value")}
               />
+              {errors.value && <p className="text-xs text-danger">{errors.value.message}</p>}
             </div>
             <div className="space-y-1.5">
               <label htmlFor="deal-currency" className="text-xs font-medium text-text-tertiary uppercase">

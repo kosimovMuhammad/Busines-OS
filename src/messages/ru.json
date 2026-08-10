@@ -24,7 +24,8 @@
     "passwordMin": "Пароль — минимум 8 символов.",
     "agreeToTerms": "Необходимо согласиться с условиями.",
     "invalidPhone": "Введите номер в международном формате, например +992901234567.",
-    "passwordMismatch": "Пароли не совпадают."
+    "passwordMismatch": "Пароли не совпадают.",
+    "invalidAmount": "Введите число 0 или больше."
   },
   "brand": {
     "name": "Business OS",
@@ -51,7 +52,8 @@
     "financeSection": "Финансы",
     "operationsSection": "Операции",
     "insightsSection": "Аналитика",
-    "collapse": "Свернуть"
+    "collapse": "Свернуть",
+    "openMenu": "Открыть меню"
   },
   "topbar": {
     "searchPlaceholder": "Поиск команд, сделок или контактов...",
