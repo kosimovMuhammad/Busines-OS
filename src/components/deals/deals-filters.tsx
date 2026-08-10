@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 
 const ALL = "__all__";
 
@@ -65,9 +67,11 @@ export function DealsFilters({
         </SelectContent>
       </Select>
 
-      <Button type="button" onClick={onCreate} className="ml-auto">
-        {t("createDeal")}
-      </Button>
+      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+        <Button type="button" onClick={onCreate} className="ml-auto">
+          {t("createDeal")}
+        </Button>
+      </PermissionGuard>
     </div>
   );
 }

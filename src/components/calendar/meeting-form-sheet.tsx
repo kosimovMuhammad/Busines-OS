@@ -31,11 +31,12 @@ import {
 } from "@/lib/api/calendar.api";
 import { createMeetingSchema, type MeetingFormValues } from "@/lib/schemas/meeting.schema";
 import { cn } from "@/lib/utils";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import type { Meeting } from "@/types/api";
 import type { MeetingStatus } from "@/types/enums";
 
 const NONE = "__none__";
-const STATUSES: MeetingStatus[] = ["SCHEDULED", "COMPLETED", "CANCELLED"];
+const STATUSES: MeetingStatus[] = ["Scheduled", "Completed", "Cancelled"];
 
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-background px-3.5 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none";
@@ -71,6 +72,7 @@ export function MeetingFormSheet({
   const [updateMeeting, { isLoading: isUpdating }] = useUpdateMeetingMutation();
   const [updateStatus, { isLoading: isUpdatingStatus }] = useUpdateMeetingStatusMutation();
   const isSubmitting = isCreating || isUpdating || isUpdatingStatus;
+  const canMutate = useCanMutate();
 
   const {
     register,
@@ -312,12 +314,12 @@ export function MeetingFormSheet({
 
         <SheetFooter className={cn(isEdit && "flex-row justify-between")}>
           {isEdit && onDelete && (
-            <Button type="button" variant="destructive" onClick={onDelete}>
+            <Button type="button" variant="destructive" onClick={onDelete} disabled={!canMutate}>
               <Trash2 className="size-4" />
               {t("delete")}
             </Button>
           )}
-          <Button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
+          <Button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting || !canMutate}>
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             {isEdit ? t("save") : t("create")}
           </Button>

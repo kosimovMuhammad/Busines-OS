@@ -122,7 +122,7 @@ export function CalendarMonthGrid({
                     }}
                     className={cn(
                       "truncate rounded px-1 py-0.5 text-left text-[11px] transition-colors",
-                      m.status === "CANCELLED"
+                      m.status === "Cancelled"
                         ? "bg-surface-elevated text-text-tertiary line-through"
                         : "bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20"
                     )}

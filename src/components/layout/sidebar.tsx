@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronLeft, ChevronRight, Layers, Settings } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Layers, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/i18n/navigation";
-import { mainNavItems, workspaceNavItems, type NavItem } from "./nav-config";
+import { useRole } from "@/lib/hooks/useRole";
+import { navEntries, type NavGroup, type NavItem } from "./nav-config";
+import { filterNavEntries } from "./nav-filter";
 
 function NavLink({ item, collapsed }: { item: NavItem; collapsed: boolean }) {
   const t = useTranslations("nav");
@@ -18,18 +20,113 @@ function NavLink({ item, collapsed }: { item: NavItem; collapsed: boolean }) {
       href={item.href}
       title={collapsed ? t(item.labelKey) : undefined}
       className={cn(
-        "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-        collapsed && "justify-center px-0",
+        "group relative flex items-center gap-3 rounded-2xl px-4 py-3 text-[14px] font-medium transition-all mx-3",
+        collapsed && "justify-center px-0 mx-2",
         active
-          ? "bg-accent-primary/15 text-accent-primary"
-          : "text-text-secondary hover:bg-surface-elevated hover:text-text-primary"
+          ? "bg-surface text-accent-primary shadow-sm"
+          : "text-text-secondary hover:bg-black/5 hover:text-text-primary dark:hover:bg-white/5"
       )}
     >
-      {active && (
-        <span className="absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-full bg-accent-primary" />
-      )}
-      <Icon className="size-[18px] shrink-0" />
+      <Icon className="size-5 shrink-0" />
       {!collapsed && <span className="truncate">{t(item.labelKey)}</span>}
+    </Link>
+  );
+}
+
+function NavGroupSection({
+  group,
+  collapsed,
+  expanded,
+  onToggle,
+}: {
+  group: NavGroup;
+  collapsed: boolean;
+  expanded: boolean;
+  onToggle: () => void;
+}) {
+  const t = useTranslations("nav");
+  const pathname = usePathname();
+  const Icon = group.icon;
+  const hasActiveChild = group.items.some((item) => pathname.startsWith(item.href));
+
+  if (collapsed) {
+    return (
+      <>
+        {group.items.map((item) => (
+          <NavLink key={item.href} item={item} collapsed={collapsed} />
+        ))}
+      </>
+    );
+  }
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={onToggle}
+        className={cn(
+          "group relative mx-3 flex items-center justify-between rounded-2xl px-4 py-3 text-[14px] font-medium transition-all",
+          "w-[calc(100%-24px)]",
+          hasActiveChild
+            ? "text-accent-primary"
+            : "text-text-secondary hover:bg-black/5 hover:text-text-primary dark:hover:bg-white/5"
+        )}
+      >
+        <span className="flex min-w-0 items-center gap-3">
+          <Icon className="size-5 shrink-0" />
+          <span className="truncate">{t(group.titleKey)}</span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "size-4 shrink-0 text-text-tertiary transition-transform",
+            !expanded && "-rotate-90"
+          )}
+        />
+      </button>
+      {expanded && (
+        <div className="ml-[27px] mt-0.5 space-y-0.5 border-l border-border-subtle pb-1 pl-4">
+          {group.items.map((item) => {
+            const active = pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "block truncate rounded-lg px-3 py-2 text-[13px] transition-colors",
+                  active
+                    ? "font-medium text-accent-primary"
+                    : "text-text-tertiary hover:text-text-primary"
+                )}
+              >
+                {t(item.labelKey)}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SettingsNavSection({ collapsed }: { collapsed: boolean }) {
+  const t = useTranslations("nav");
+  const pathname = usePathname();
+  const settingsActive = pathname.startsWith("/settings");
+
+  return (
+    <Link
+      href="/settings"
+      title={collapsed ? t("settings") : undefined}
+      className={cn(
+        "group relative flex items-center gap-3 rounded-2xl px-4 py-3 text-[14px] font-medium transition-all mx-3",
+        collapsed && "justify-center px-0 mx-2",
+        settingsActive
+          ? "bg-accent-gradient glow-accent text-white"
+          : "text-text-secondary hover:bg-black/5 hover:text-text-primary dark:hover:bg-white/5"
+      )}
+    >
+      <Settings className="size-[18px] shrink-0" />
+      {!collapsed && <span className="truncate">{t("settings")}</span>}
     </Link>
   );
 }
@@ -39,13 +136,28 @@ export function Sidebar() {
   const t = useTranslations("nav");
   const brand = useTranslations("brand");
   const pathname = usePathname();
-  const settingsActive = pathname.startsWith("/settings");
+  const { role } = useRole();
+  const visibleNavEntries = useMemo(() => filterNavEntries(navEntries, role), [role]);
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    for (const entry of navEntries) {
+      if (entry.kind === "group") {
+        initial[entry.group.key] = entry.group.items.some((item) =>
+          pathname.startsWith(item.href)
+        );
+      }
+    }
+    return initial;
+  });
+
+  const toggleGroup = (key: string) =>
+    setExpandedGroups((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <aside
       className={cn(
-        "sticky top-0 flex h-screen shrink-0 flex-col border-r border-border-subtle bg-surface transition-[width] duration-200",
-        collapsed ? "w-[76px]" : "w-64"
+        "sticky top-3 ml-3 my-3 flex h-[calc(100vh-24px)] shrink-0 flex-col rounded-3xl bg-surface-elevated border border-border-subtle transition-[width] duration-200",
+        collapsed ? "w-19" : "w-[260px]"
       )}
     >
       <div
@@ -69,41 +181,29 @@ export function Sidebar() {
         )}
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3">
-        {mainNavItems.map((item) => (
-          <NavLink key={item.href} item={item} collapsed={collapsed} />
-        ))}
-
-        <div className={cn("pt-4 pb-1", collapsed ? "px-0" : "px-3")}>
-          {!collapsed ? (
-            <span className="text-[10px] font-semibold tracking-widest text-text-tertiary uppercase">
-              {t("workspaceSection")}
-            </span>
+      <nav
+        className={cn(
+          "no-scrollbar flex-1 overflow-y-auto px-3",
+          collapsed ? "space-y-1" : "space-y-0.5"
+        )}
+      >
+        {visibleNavEntries.map((entry) =>
+          entry.kind === "link" ? (
+            <NavLink key={entry.item.href} item={entry.item} collapsed={collapsed} />
           ) : (
-            <div className="mx-auto h-px w-6 bg-border-subtle" />
-          )}
-        </div>
-
-        {workspaceNavItems.map((item) => (
-          <NavLink key={item.href} item={item} collapsed={collapsed} />
-        ))}
+            <NavGroupSection
+              key={entry.group.key}
+              group={entry.group}
+              collapsed={collapsed}
+              expanded={collapsed ? true : !!expandedGroups[entry.group.key]}
+              onToggle={() => toggleGroup(entry.group.key)}
+            />
+          )
+        )}
       </nav>
 
       <div className="space-y-1 p-3">
-        <Link
-          href="/settings"
-          title={collapsed ? t("settings") : undefined}
-          className={cn(
-            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
-            collapsed && "justify-center px-0",
-            settingsActive
-              ? "bg-accent-gradient glow-accent text-white"
-              : "text-text-secondary hover:bg-surface-elevated hover:text-text-primary"
-          )}
-        >
-          <Settings className="size-[18px] shrink-0" />
-          {!collapsed && <span className="truncate">{t("settings")}</span>}
-        </Link>
+        <SettingsNavSection collapsed={collapsed} />
 
         <button
           type="button"

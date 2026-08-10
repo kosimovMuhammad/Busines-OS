@@ -210,3 +210,169 @@
     background-position: -200% 0;
   }
 }
+
+/* Marketing landing page (src/components/landing) */
+@keyframes ambient-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -3%) scale(1.05);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Orbit / funnel graphics (src/components/landing/orbit-graphic.tsx, lead-funnel.tsx) */
+@keyframes orbit-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-6px);
+  }
+}
+
+@keyframes orbit-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--border-glow), 0 0 24px -4px var(--border-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--border-glow), 0 0 40px -2px var(--border-glow);
+  }
+}
+
+@keyframes funnel-flow {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100% - 8px));
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-ambient-drift {
+    animation: ambient-drift 12s ease-in-out infinite;
+  }
+
+  .orbit-float {
+    animation: orbit-float 4s ease-in-out infinite;
+  }
+  .orbit-pulse {
+    animation: orbit-pulse 3s ease-in-out infinite;
+  }
+  .funnel-flow-dot {
+    animation: funnel-flow 2.5s linear infinite;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+  }
+  [data-reveal].is-visible {
+    animation: reveal-up 0.7s ease-out forwards;
+  }
+
+  .btn-glow-ring {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 16px -4px rgba(255, 61, 129, 0.45),
+      0 0 22px -6px rgba(139, 92, 246, 0.45),
+      0 0 28px -8px rgba(34, 211, 238, 0.35);
+    transition: box-shadow 0.3s ease;
+  }
+  .btn-glow-ring:hover {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.14),
+      0 0 20px -2px rgba(255, 61, 129, 0.6),
+      0 0 28px -4px rgba(139, 92, 246, 0.6),
+      0 0 34px -6px rgba(34, 211, 238, 0.5),
+      0 0 40px -8px rgba(234, 179, 8, 0.4);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      animation: none;
+    }
+    .animate-ambient-drift {
+      animation: none;
+    }
+    .orbit-float,
+    .orbit-pulse,
+    .funnel-flow-dot {
+      animation: none;
+    }
+  }
+
+  /* ── Hero video section ── */
+  .hero-video-section {
+    min-height: 100svh;
+  }
+
+  /* ── Named gradient box-shadows ── */
+  .shadow-glow-violet {
+    box-shadow:
+      0 0 0 1px rgba(139, 92, 246, 0.22),
+      0 8px 32px -4px rgba(139, 92, 246, 0.40),
+      0 24px 56px -8px rgba(124, 92, 255, 0.28),
+      0 48px 96px -16px rgba(79, 140, 255, 0.16);
+  }
+  .shadow-glow-blue {
+    box-shadow:
+      0 0 0 1px rgba(79, 140, 255, 0.22),
+      0 8px 32px -4px rgba(79, 140, 255, 0.40),
+      0 24px 56px -8px rgba(34, 211, 238, 0.28),
+      0 48px 96px -16px rgba(124, 92, 255, 0.14);
+  }
+  .shadow-glow-emerald {
+    box-shadow:
+      0 0 0 1px rgba(52, 211, 153, 0.22),
+      0 8px 32px -4px rgba(52, 211, 153, 0.35),
+      0 24px 56px -8px rgba(16, 185, 129, 0.22),
+      0 48px 96px -16px rgba(79, 140, 255, 0.12);
+  }
+  .shadow-glow-aurora {
+    box-shadow:
+      0 0 0 1px rgba(255, 61, 129, 0.20),
+      0 8px 32px -4px rgba(255, 61, 129, 0.32),
+      0 24px 56px -8px rgba(139, 92, 246, 0.30),
+      0 40px 80px -12px rgba(34, 211, 238, 0.22),
+      0 60px 120px -20px rgba(234, 179, 8, 0.16);
+  }
+  .shadow-glow-default {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.18),
+      0 8px 24px -4px rgba(124, 92, 255, 0.30),
+      0 24px 48px -8px rgba(79, 140, 255, 0.20),
+      0 40px 80px -16px rgba(34, 211, 238, 0.12);
+  }
+
+  /* ── Scroll without a visible scrollbar (e.g. the sidebar nav) ── */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

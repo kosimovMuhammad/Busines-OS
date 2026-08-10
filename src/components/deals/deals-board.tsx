@@ -13,6 +13,7 @@ import { useGetDealsQuery, useUpdateDealStageMutation } from "@/lib/api/deals.ap
 import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import { useGetUsersQuery } from "@/lib/api/users.api";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import { DealColumn } from "./deal-column";
 import { DealsFilters } from "./deals-filters";
 import { DealFormSheet } from "./deal-form-sheet";
@@ -21,12 +22,12 @@ import type { Deal } from "@/types/api";
 import type { DealStage } from "@/types/enums";
 
 const STAGES: DealStage[] = [
-  "LEAD",
-  "QUALIFIED",
-  "PROPOSAL",
-  "NEGOTIATION",
-  "WON",
-  "LOST",
+  "Lead",
+  "Qualified",
+  "Proposal",
+  "Negotiation",
+  "Won",
+  "Lost",
 ];
 
 export function DealsBoard() {
@@ -35,6 +36,7 @@ export function DealsBoard() {
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const { data: users } = useGetUsersQuery();
   const [updateStage] = useUpdateDealStageMutation();
+  const canMutate = useCanMutate();
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
   );
@@ -81,6 +83,7 @@ export function DealsBoard() {
   }, [filteredDeals]);
 
   const handleDragEnd = (event: DragEndEvent) => {
+    if (!canMutate) return;
     const dealId = event.active.id as string;
     const newStage = event.over?.id as DealStage | undefined;
     if (!newStage || !STAGES.includes(newStage)) return;

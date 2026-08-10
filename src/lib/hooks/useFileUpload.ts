@@ -4,7 +4,7 @@ import type { FileAsset } from "@/types/api";
 
 type UploadTarget = { contactId?: string; dealId?: string; invoiceId?: string };
 
-function putToS3(url: string, file: File, onProgress: (percent: number) => void) {
+export function putToS3(url: string, file: File, onProgress: (percent: number) => void) {
   return new Promise<void>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open("PUT", url);

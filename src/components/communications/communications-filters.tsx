@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import type { CommChannel } from "@/types/enums";
 
 const ALL = "__all__";
-const CHANNELS: CommChannel[] = ["WHATSAPP", "EMAIL", "MANUAL_NOTE", "PHONE_CALL"];
+const CHANNELS: CommChannel[] = ["Whatsapp", "Email", "ManualNote", "PhoneCall"];
 
 export function CommunicationsFilters({
   contactId,

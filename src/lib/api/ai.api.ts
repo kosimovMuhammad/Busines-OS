@@ -1,7 +1,12 @@
 import { baseApi } from "./baseApi";
 import type {
+  AiAssistantConversation,
+  AiAssistantMessageRequest,
+  AiAssistantMessageResponse,
   AiDraftEmailRequest,
   AiDraftEmailResult,
+  AiForecastRequest,
+  AiForecastResult,
   AiGenerateQuotationRequest,
   AiJobQueued,
   AiQueryRequest,
@@ -9,6 +14,7 @@ import type {
   AiQuotationResult,
   AiSummarizeQueued,
   AiSummaryRecord,
+  AiUsageResponse,
   SummarizeRequest,
 } from "@/types/api";
 
@@ -42,6 +48,29 @@ export const aiApi = baseApi.injectEndpoints({
     getQuotationResult: builder.query<AiQuotationResult, string>({
       query: (id) => `/ai/generate-quotation/result/${id}`,
     }),
+
+    // Synchronous - POST but no job/polling envelope, per the feature spec
+    // ("no polling needed"). Modeled as a query (not a mutation) since it
+    // doesn't mutate server state, just like getForecast on analytics.api.ts.
+    getForecast: builder.query<AiForecastResult, AiForecastRequest | void>({
+      query: (body) => ({ url: "/ai/forecast", method: "POST", body: body ?? {} }),
+      providesTags: ["AI"],
+    }),
+
+    sendAssistantMessage: builder.mutation<AiAssistantMessageResponse, AiAssistantMessageRequest>({
+      query: (body) => ({ url: "/ai/assistant/message", method: "POST", body }),
+      invalidatesTags: (result) =>
+        result ? [{ type: "AI", id: result.conversationId }] : [],
+    }),
+    getAssistantConversation: builder.query<AiAssistantConversation, string>({
+      query: (id) => `/ai/assistant/conversations/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "AI", id }],
+    }),
+
+    getAiUsage: builder.query<AiUsageResponse, void>({
+      query: () => "/company/ai-usage",
+      providesTags: ["Company"],
+    }),
   }),
 });
 
@@ -54,4 +83,8 @@ export const {
   useGetDraftEmailResultQuery,
   useGenerateQuotationMutation,
   useGetQuotationResultQuery,
+  useGetForecastQuery: useGetAiForecastQuery,
+  useSendAssistantMessageMutation,
+  useGetAssistantConversationQuery,
+  useGetAiUsageQuery,
 } = aiApi;

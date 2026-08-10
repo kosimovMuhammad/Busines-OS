@@ -19,9 +19,11 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useAddPaymentMutation } from "@/lib/api/invoices.api";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { PaymentMethod } from "@/types/enums";
 
-const METHODS: PaymentMethod[] = ["CASH", "BANK_TRANSFER", "CARD", "OTHER"];
+const METHODS: PaymentMethod[] = ["Cash", "BankTransfer", "Card", "Other"];
 
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-background px-3.5 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none";
@@ -38,9 +40,10 @@ export function AddPaymentSheet({
   const t = useTranslations("pages.invoices.paymentSheet");
   const tMethod = useTranslations("enums.paymentMethod");
   const [addPayment, { isLoading }] = useAddPaymentMutation();
+  const canMutate = useCanMutate(INVOICE_MUTATION_ALLOWED_ROLES);
 
   const [amount, setAmount] = useState("");
-  const [method, setMethod] = useState<PaymentMethod>("CASH");
+  const [method, setMethod] = useState<PaymentMethod>("Cash");
   const [notes, setNotes] = useState("");
 
   const [wasOpen, setWasOpen] = useState(open);
@@ -48,7 +51,7 @@ export function AddPaymentSheet({
     setWasOpen(open);
     if (open) {
       setAmount("");
-      setMethod("CASH");
+      setMethod("Cash");
       setNotes("");
     }
   }
@@ -123,7 +126,7 @@ export function AddPaymentSheet({
         </div>
 
         <SheetFooter>
-          <Button type="button" onClick={handleSubmit} disabled={isLoading || !canSubmit}>
+          <Button type="button" onClick={handleSubmit} disabled={isLoading || !canSubmit || !canMutate}>
             {isLoading && <Loader2 className="size-4 animate-spin" />}
             {t("save")}
           </Button>

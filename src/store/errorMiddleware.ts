@@ -13,17 +13,25 @@ import {
 // of which needs a toast. presignUpload also shows its own calm
 // "storage isn't set up yet" toast when S3 isn't configured (verified: a
 // real 500 in this environment), rather than the generic error banner.
+// presignProfileMedia (avatar/cover upload) follows the same pattern.
 // sendWhatsappMessage/sendEmail are silenced here because the send panels
 // show their own inline guidance banner for the verified 400 (no phone/
 // no account connected) and 502 (provider rejected the send) responses.
+// sendPlatformWhatsAppText/sendPlatformWhatsAppTemplate follow the same
+// pattern: the platform-admin panel shows its own inline banner for the
+// verified 403 (not a platform admin), 422 (validation), and 502 (Meta
+// rejected the send) responses.
 const SILENT_ENDPOINTS = new Set([
   "login",
   "register",
   "refresh",
   "logout",
   "presignUpload",
+  "presignProfileMedia",
   "sendWhatsappMessage",
   "sendEmail",
+  "sendPlatformWhatsAppText",
+  "sendPlatformWhatsAppTemplate",
 ]);
 
 // TZ §11 degraded-mode UX: these AI actions are gated behind a backend API

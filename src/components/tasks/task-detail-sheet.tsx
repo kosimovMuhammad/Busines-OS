@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
 import { useRole } from "@/lib/hooks/useRole";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import {
   useGetTaskTimeEntriesQuery,
   useRemoveTimeEntryMutation,
@@ -21,7 +22,7 @@ import {
 } from "@/lib/api/tasks.api";
 import type { Task } from "@/types/api";
 
-const TIME_ENTRY_DELETE_ROLES = ["OWNER", "ADMIN", "MANAGER"] as const;
+const TIME_ENTRY_DELETE_ROLES = ["Owner", "Admin", "Manager"] as const;
 
 function formatDuration(sec: number) {
   const h = Math.floor(sec / 3600);
@@ -49,6 +50,7 @@ export function TaskDetailSheet({
   const locale = useLocale();
   const { hasRole } = useRole();
   const canDeleteEntries = hasRole([...TIME_ENTRY_DELETE_ROLES]);
+  const canMutate = useCanMutate();
 
   const { data: entries, isLoading } = useGetTaskTimeEntriesQuery(task?.id ?? "", {
     skip: !task,
@@ -89,7 +91,7 @@ export function TaskDetailSheet({
               <Button
                 type="button"
                 variant={isActiveTimer ? "destructive" : "outline"}
-                disabled={isStarting || isStopping || (hasOtherActiveTimer && !isActiveTimer)}
+                disabled={!canMutate || isStarting || isStopping || (hasOtherActiveTimer && !isActiveTimer)}
                 onClick={() =>
                   isActiveTimer ? stopTimer(task.id) : startTimer(task.id)
                 }
@@ -153,11 +155,11 @@ export function TaskDetailSheet({
             </div>
 
             <SheetFooter className="flex-row justify-between">
-              <Button type="button" variant="destructive" onClick={onDelete}>
+              <Button type="button" variant="destructive" onClick={onDelete} disabled={!canMutate}>
                 <Trash2 className="size-4" />
                 {t("deleteTask")}
               </Button>
-              <Button type="button" onClick={onEdit}>
+              <Button type="button" onClick={onEdit} disabled={!canMutate}>
                 {t("editTask")}
               </Button>
             </SheetFooter>

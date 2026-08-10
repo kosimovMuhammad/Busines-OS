@@ -27,7 +27,7 @@ export function WhatsappContent() {
 
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const { data: communications, isLoading } = useGetCommunicationsQuery(
-    contactId ? { contactId, channel: "WHATSAPP" } : { channel: "WHATSAPP" }
+    contactId ? { contactId, channel: "Whatsapp" } : { channel: "Whatsapp" }
   );
 
   const contactsById = useMemo(() => {

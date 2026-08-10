@@ -9,7 +9,12 @@
       "integrationUnavailable": "This integration isn't set up yet. Try again later."
     },
     "logout": "Log out",
-    "restrictedAccess": "You don't have access to this section."
+  "profile": "Profile",
+    "restrictedAccess": "You don't have access to this section.",
+    "passwordNudge": {
+      "message": "You haven't set a password yet. Set one in Settings to enable password login.",
+      "cta": "Set password"
+    }
   },
   "validation": {
     "required": "This field is required.",
@@ -18,7 +23,8 @@
     "nameMin": "Name must be at least 2 characters.",
     "passwordMin": "Password must be at least 8 characters.",
     "agreeToTerms": "You must agree to the terms to continue.",
-    "invalidPhone": "Enter a phone number in international format, e.g. +992901234567."
+    "invalidPhone": "Enter a phone number in international format, e.g. +992901234567.",
+    "passwordMismatch": "Passwords don't match."
   },
   "brand": {
     "name": "Business OS",
@@ -41,7 +47,10 @@
     "automation": "Automation",
     "inventory": "Inventory",
     "settings": "Settings",
-    "workspaceSection": "Workspace",
+    "communicationsSection": "Communications",
+    "financeSection": "Finance",
+    "operationsSection": "Operations",
+    "insightsSection": "Insights",
     "collapse": "Collapse"
   },
   "topbar": {
@@ -64,6 +73,8 @@
     "login": {
       "title": "Welcome back",
       "subtitle": "Please enter your credentials to access your workspace.",
+      "passwordTab": "Password",
+      "codeTab": "Invite code",
       "emailLabel": "Email address",
       "emailPlaceholder": "name@company.com",
       "passwordLabel": "Password",
@@ -75,7 +86,14 @@
       "biometric": "Biometric",
       "noAccount": "Don't have an account?",
       "signUp": "Sign up",
-      "invalidCredentials": "Incorrect email or password."
+      "invalidCredentials": "Incorrect email or password.",
+      "codeLabel": "Invite code",
+      "codePlaceholder": "000000",
+      "codeSubmit": "Verify & sign in",
+      "invalidCode": "Invalid or expired code. Please try again.",
+      "resendCode": "Resend code",
+      "resendCodeCooldown": "Resend code in {seconds}s",
+      "resendSuccess": "If an invite exists for that email, a new code was sent."
     },
     "register": {
       "title": "Create your account",
@@ -86,13 +104,31 @@
       "fullNamePlaceholder": "John Doe",
       "emailLabel": "Email address",
       "emailPlaceholder": "name@company.com",
+      "roleLabel": "Your role",
+      "rolePlaceholder": "Select your role",
+      "roles": {
+        "Founder": "Founder / Executive",
+        "Sales": "Sales",
+        "Marketing": "Marketing",
+        "Operations": "Operations",
+        "Support": "Support",
+        "Other": "Other"
+      },
       "passwordLabel": "Password",
       "passwordHint": "Must be at least 8 characters.",
       "terms": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
       "submit": "Create account",
       "haveAccount": "Already have an account?",
       "logIn": "Log in",
-      "emailTaken": "An account with this email already exists."
+      "emailTaken": "An account with this email already exists.",
+      "verifyTitle": "Verify your email",
+      "verifySubtitle": "Enter the 6-digit code we sent to {email}.",
+      "codeLabel": "Verification code",
+      "codePlaceholder": "000000",
+      "verifySubmit": "Verify & continue",
+      "invalidCode": "Invalid or expired code. Please try again.",
+      "resendCode": "Resend code",
+      "resendSuccess": "A new code has been sent."
     }
   },
   "pages": {
@@ -326,7 +362,7 @@
     "ai": {
       "title": "AI Assistant",
       "subtitle": "Ask questions, draft emails, generate quotations",
-      "tabs": { "query": "Ask", "draftEmail": "Draft Email", "quotation": "Quotation" },
+      "tabs": { "query": "Ask", "draftEmail": "Draft Email", "quotation": "Quotation", "forecast": "Forecast", "assistant": "Assistant" },
       "query": {
         "empty": "Ask a question about your contacts, deals, or revenue.",
         "placeholder": "Show clients who haven't replied in 14 days...",
@@ -362,6 +398,19 @@
         "tryAgain": "Try again",
         "total": "Total",
         "download": "Download quotation"
+      },
+      "forecast": {
+        "title": "Revenue forecast",
+        "period": "Period",
+        "confidence": "Confidence",
+        "topExpected": "Top expected payments",
+        "empty": "No expected payments for this period."
+      },
+      "assistant": {
+        "empty": "Ask the AI assistant anything about your business.",
+        "placeholder": "Type a message...",
+        "send": "Send",
+        "messageFailed": "AI features are being activated. Try again later."
       }
     },
     "invoices": {
@@ -1024,6 +1073,7 @@
       "timezone": "Timezone",
       "save": "Save",
       "tabs": {
+        "preferences": "Preferences",
         "company": "Company",
         "team": "Team",
         "organization": "Organization",
@@ -1031,8 +1081,90 @@
         "security": "Security & Audit",
         "integrations": "Integrations",
         "plan": "Plan",
-        "notifications": "Notifications"
+        "notifications": "Notifications",
+        "aiUsage": "AI Usage",
+        "platformAdmin": "Platform Admin"
       }
+    },
+    "settingsPlatform": {
+      "title": "Platform Admin",
+      "subtitle": "Internal tools for platform administrators only.",
+      "whatsapp": {
+        "description": "Send messages from the platform's own WhatsApp Business number, not a tenant's connected account.",
+        "textCard": {
+          "title": "Send text message",
+          "to": "Recipient phone number",
+          "toPlaceholder": "+992901234567",
+          "toHint": "Any common format works — it's normalized server-side.",
+          "message": "Message",
+          "messagePlaceholder": "Type a message...",
+          "send": "Send message",
+          "success": "Message sent."
+        },
+        "templateCard": {
+          "title": "Send template message",
+          "to": "Recipient phone number",
+          "toPlaceholder": "+992901234567",
+          "templateName": "Template name",
+          "templateNamePlaceholder": "order_confirmation",
+          "languageCode": "Language code",
+          "send": "Send template",
+          "success": "Template sent."
+        }
+      }
+    },
+    "settingsProfile": {
+      "title": "Profile",
+      "subtitle": "Your account details and password",
+      "accountTitle": "Account",
+      "name": "Name",
+      "email": "Email",
+      "photoHint": "JPG, PNG or GIF. Max 5MB.",
+      "changeCover": "Change cover",
+      "changeAvatar": "Change avatar",
+      "avatarUpdated": "Profile photo updated.",
+      "coverUpdated": "Cover photo updated.",
+      "changePhoto": "Change photo",
+      "removePhoto": "Remove photo",
+      "removePhotoFailed": "Failed to remove photo. Please try again.",
+      "avatarRemoved": "Profile photo removed.",
+      "coverRemoved": "Cover photo removed.",
+      "noPhotoSet": "No photo set yet.",
+      "invalidFileType": "Please choose an image file.",
+      "fileTooLarge": "Image must be smaller than 5MB.",
+      "uploadFailed": "Upload failed. Please try again.",
+      "save": "Save",
+      "nameSaved": "Name updated.",
+      "newEmailLabel": "New email",
+      "newEmailPlaceholder": "name@company.com",
+      "verifyEmailButton": "Verify",
+      "cancelEmailChange": "Cancel",
+      "emailTaken": "An account with this email already exists.",
+      "emailCodeSentToast": "A verification code was sent to your new email address.",
+      "emailCodeSentSubtitle": "Enter the 6-digit code we sent to {email}.",
+      "emailCodePlaceholder": "000000",
+      "confirmEmailChange": "Confirm",
+      "invalidEmailCode": "Invalid or expired code. Please try again.",
+      "emailChangeSuccess": "Your email is now {email}. For your security, you've been signed out of every other session.",
+      "resendCode": "Resend code",
+      "resendSuccess": "A new code has been sent.",
+      "passwordTitle": "Password",
+      "setHint": "You signed in with an invite code. Set a password to also sign in with email and password.",
+      "setSuccess": "Password set. You can now sign in with your password too.",
+      "alreadySet": "A password is already set on this account.",
+      "setSubmit": "Set password",
+      "changeHint": "Your account has a password set.",
+      "changeSuccess": "Password updated.",
+      "wrongCurrentPassword": "Current password is incorrect.",
+      "changeSubmit": "Update password",
+      "currentPasswordLabel": "Current password",
+      "newPasswordLabel": "New password",
+      "confirmPasswordLabel": "Confirm new password",
+      "promoTitle": "Unlock more with Pro",
+      "promoBody": "Get AI features, advanced analytics, and higher limits for your team.",
+      "promoCta": "View plans",
+      "tipsTitle": "Security tip",
+      "tipsBody": "Use a unique password for this account and update it regularly to keep your data safe."
     },
     "settingsTeam": {
       "title": "Team",
@@ -1057,7 +1189,10 @@
         "rbacRole": "Custom role (optional)",
         "rbacRoleNone": "Use default role permissions",
         "rbacRoleSummary": "{count} permissions included",
-        "invite": "Send Invite"
+        "invite": "Send Invite",
+        "inviteSentTitle": "An invite code was sent to {email}",
+        "inviteSentHint": "They'll enter it on the login screen, under \"Invite code\", to join your workspace.",
+        "done": "Done"
       }
     },
     "settingsRoles": {
@@ -1260,6 +1395,14 @@
         "columnDate": "Date"
       }
     },
+    "settingsPreferences": {
+      "title": "Preferences",
+      "subtitle": "Language and appearance",
+      "language": "Language",
+      "theme": "Theme",
+      "themeLight": "Light",
+      "themeDark": "Dark"
+    },
     "settingsNotifications": {
       "title": "Notification Preferences",
       "subtitle": "Choose how you want to be notified for each event",
@@ -1271,6 +1414,29 @@
       "connected": "Connected",
       "notConnected": "Not connected",
       "comingSoon": "Coming soon"
+    },
+    "settingsAiUsage": {
+      "title": "AI Usage",
+      "subtitle": "Track AI request volume and cost for this billing period",
+      "currentPeriod": "Current period:",
+      "totalRequests": "Total requests",
+      "totalCost": "Total cost",
+      "chartTitle": "Requests by endpoint",
+      "empty": "No AI usage recorded yet this period.",
+      "endpoints": {
+        "summarize": "Summarize",
+        "query": "Ask AI",
+        "draftEmail": "Draft Email",
+        "quotation": "Generate Quotation",
+        "forecast": "Forecast",
+        "assistant": "AI Assistant"
+      },
+      "table": {
+        "endpoint": "Endpoint",
+        "requests": "Requests",
+        "tokens": "Tokens",
+        "cost": "Cost"
+      }
     },
     "settingsPlan": {
       "title": "Billing & Plan",
@@ -1312,9 +1478,29 @@
         "perMonth": "/mo",
         "perYear": "/yr",
         "select": "Select",
-        "pendingTitle": "Plan change requested",
         "amount": "Amount",
-        "done": "Done"
+        "done": "Done",
+        "checkout": {
+          "title": "Payment details",
+          "orderSummary": "Order summary",
+          "cardholderName": "Name on card",
+          "cardholderPlaceholder": "e.g. John Smith",
+          "cardNumber": "Card number",
+          "expiry": "Expiry",
+          "cvc": "CVC",
+          "secureNotice": "Your payment details are encrypted and never leave your device in this demo.",
+          "back": "Back",
+          "pay": "Pay {amount}",
+          "processing": "Processing payment...",
+          "successTitle": "Payment successful",
+          "successMessage": "Your subscription has been upgraded to {plan}.",
+          "cardEnding": "Card ending in {last4}",
+          "transactionId": "Transaction ID",
+          "errorRequired": "This field is required",
+          "errorCardNumber": "Enter a valid 16-digit card number",
+          "errorExpiry": "Enter a valid, non-expired date (MM/YY)",
+          "errorCvc": "Enter a valid CVC"
+        }
       },
       "cancelDialog": {
         "title": "Cancel subscription?",
@@ -1332,6 +1518,11 @@
         "columnActions": "Actions",
         "download": "Download PDF"
       }
+    },
+    "forbidden": {
+      "title": "Access denied",
+      "subtitle": "You don't have permission to view this page.",
+      "backToDashboard": "Back to Dashboard"
     },
     "search": {
       "title": "Search",

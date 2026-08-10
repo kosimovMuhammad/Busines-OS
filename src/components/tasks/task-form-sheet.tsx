@@ -26,12 +26,13 @@ import { useGetDealsQuery } from "@/lib/api/deals.api";
 import { useCreateTaskMutation, useUpdateTaskMutation } from "@/lib/api/tasks.api";
 import { createTaskSchema, type TaskFormValues } from "@/lib/schemas/task.schema";
 import { cn } from "@/lib/utils";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import type { Task } from "@/types/api";
 import type { TaskPriority } from "@/types/enums";
 
 const UNASSIGNED = "__unassigned__";
 const NONE = "__none__";
-const PRIORITIES: TaskPriority[] = ["LOW", "MEDIUM", "HIGH", "URGENT"];
+const PRIORITIES: TaskPriority[] = ["Low", "Medium", "High", "Urgent"];
 
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-background px-3.5 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none";
@@ -56,6 +57,7 @@ export function TaskFormSheet({
   const [createTask, { isLoading: isCreating }] = useCreateTaskMutation();
   const [updateTask, { isLoading: isUpdating }] = useUpdateTaskMutation();
   const isSubmitting = isCreating || isUpdating;
+  const canMutate = useCanMutate();
 
   const {
     register,
@@ -74,7 +76,7 @@ export function TaskFormSheet({
     reset({
       title: task?.title ?? "",
       description: task?.description ?? "",
-      priority: task?.priority ?? "MEDIUM",
+      priority: task?.priority ?? "Medium",
       assignedTo: task?.assignedTo ?? "",
       dueDate: task?.dueDate?.slice(0, 10) ?? "",
       dealId: task?.dealId ?? "",
@@ -148,8 +150,8 @@ export function TaskFormSheet({
                 {t("priority")}
               </label>
               <Select
-                value={priority || "MEDIUM"}
-                onValueChange={(value) => setValue("priority", value ?? "MEDIUM")}
+                value={priority || "Medium"}
+                onValueChange={(value) => setValue("priority", value ?? "Medium")}
               >
                 <SelectTrigger id="task-priority" className="w-full">
                   <SelectValue>
@@ -268,7 +270,7 @@ export function TaskFormSheet({
           <Button
             type="button"
             onClick={handleSubmit(onSubmit)}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !canMutate}
           >
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             {isEdit ? t("save") : t("create")}

@@ -5,6 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useLocale } from "next-intl";
 import { formatCurrency } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import type { Deal } from "@/types/api";
 
 export function DealCard({
@@ -19,8 +20,10 @@ export function DealCard({
   onClick: () => void;
 }) {
   const locale = useLocale();
+  const canMutate = useCanMutate();
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: deal.id,
+    disabled: !canMutate,
   });
 
   return (
@@ -31,7 +34,8 @@ export function DealCard({
       onClick={onClick}
       style={{ transform: CSS.Translate.toString(transform) }}
       className={cn(
-        "cursor-grab space-y-2 rounded-xl border border-border-subtle bg-surface p-3 active:cursor-grabbing",
+        "space-y-2 rounded-xl border border-border-subtle bg-surface p-3",
+        canMutate ? "cursor-grab active:cursor-grabbing" : "cursor-default",
         isDragging && "z-10 opacity-50 shadow-lg"
       )}
     >

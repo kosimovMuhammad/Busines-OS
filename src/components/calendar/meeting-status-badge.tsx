@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils";
 import type { MeetingStatus } from "@/types/enums";
 
 const STATUS_CLASSES: Record<MeetingStatus, string> = {
-  SCHEDULED: "bg-accent-secondary/10 text-accent-secondary",
-  COMPLETED: "bg-success/10 text-success",
-  CANCELLED: "bg-surface-elevated text-text-tertiary line-through",
+  Scheduled: "bg-accent-secondary/10 text-accent-secondary",
+  Completed: "bg-success/10 text-success",
+  Cancelled: "bg-surface-elevated text-text-tertiary line-through",
 };
 
 export function MeetingStatusBadge({ status }: { status: MeetingStatus }) {

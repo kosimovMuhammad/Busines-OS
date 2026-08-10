@@ -10,10 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { TaskStatus } from "@/types/enums";
 
 const ALL = "__all__";
-const STATUSES: TaskStatus[] = ["TODO", "IN_PROGRESS", "COMPLETED", "ARCHIVED"];
+const STATUSES: TaskStatus[] = ["Todo", "InProgress", "Completed", "Archived"];
 
 export function TasksFilters({
   status,
@@ -78,9 +80,11 @@ export function TasksFilters({
         </SelectContent>
       </Select>
 
-      <Button type="button" onClick={onCreate} className="ml-auto">
-        {t("createTask")}
-      </Button>
+      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+        <Button type="button" onClick={onCreate} className="ml-auto">
+          {t("createTask")}
+        </Button>
+      </PermissionGuard>
     </div>
   );
 }

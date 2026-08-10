@@ -14,7 +14,7 @@ const inputClass =
 export function CompanySettingsContent() {
   const t = useTranslations("pages.settings");
   const { hasRole } = useRole();
-  const canEdit = hasRole(["OWNER", "ADMIN"]);
+  const canEdit = hasRole(["Owner", "Admin"]);
 
   const { data: company, isLoading } = useGetCompanyQuery();
   const [updateCompany, { isLoading: isSaving }] = useUpdateCompanyMutation();

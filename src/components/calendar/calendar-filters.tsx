@@ -11,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import { useGetUsersQuery } from "@/lib/api/users.api";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 
 const ALL = "__all__";
 
@@ -84,9 +86,11 @@ export function CalendarFilters({
         </SelectContent>
       </Select>
 
-      <Button type="button" onClick={onCreate} className="ml-auto">
-        {t("createMeeting")}
-      </Button>
+      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+        <Button type="button" onClick={onCreate} className="ml-auto">
+          {t("createMeeting")}
+        </Button>
+      </PermissionGuard>
     </div>
   );
 }

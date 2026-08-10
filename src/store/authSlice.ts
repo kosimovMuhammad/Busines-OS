@@ -27,6 +27,9 @@ const authSlice = createSlice({
     setCompany: (state, action: PayloadAction<Company>) => {
       state.company = action.payload;
     },
+    updateUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
     sessionCheckFailed: (state) => {
       state.accessToken = null;
       state.user = null;
@@ -37,6 +40,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, setCompany, sessionCheckFailed, clearAuth } =
+export const { setCredentials, setCompany, updateUser, sessionCheckFailed, clearAuth } =
   authSlice.actions;
 export default authSlice.reducer;

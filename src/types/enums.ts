@@ -7,7 +7,15 @@ export type UserRole =
   | "Employee"
   | "ReadOnly";
 
-export type UserStatus = "Active" | "Invited" | "Suspended";
+export type UserStatus = "Active" | "Invited" | "Suspended" | "PendingVerification";
+
+export type OnboardingRole =
+  | "Founder"
+  | "Sales"
+  | "Marketing"
+  | "Operations"
+  | "Support"
+  | "Other";
 
 export type DealStage =
   | "Lead"

@@ -14,6 +14,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { FileList } from "./file-list";
 import { FileUploaderSheet } from "./file-uploader-sheet";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 
 const ALL = "__all__";
 
@@ -58,9 +60,11 @@ export function FilesContent() {
           </SelectContent>
         </Select>
 
-        <Button type="button" onClick={() => setUploaderOpen(true)} className="ml-auto">
-          {t("uploadFile")}
-        </Button>
+        <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+          <Button type="button" onClick={() => setUploaderOpen(true)} className="ml-auto">
+            {t("uploadFile")}
+          </Button>
+        </PermissionGuard>
       </div>
 
       <FileList files={files ?? []} isLoading={isLoading} />

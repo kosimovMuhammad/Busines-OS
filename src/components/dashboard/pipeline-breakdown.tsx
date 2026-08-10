@@ -1,48 +1,41 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useGetSalesAnalyticsQuery } from "@/lib/api/analytics.api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
-import { formatCurrency } from "@/lib/utils";
 import type { DealStage } from "@/types/enums";
 import { Gem } from "lucide-react";
 
 const STAGE_ORDER: DealStage[] = [
-  "LEAD",
-  "QUALIFIED",
-  "PROPOSAL",
-  "NEGOTIATION",
-  "WON",
-  "LOST",
+  "Lead",
+  "Qualified",
+  "Proposal",
+  "Negotiation",
+  "Won",
+  "Lost",
 ];
 
 const STAGE_COLOR: Record<DealStage, string> = {
-  LEAD: "var(--chart-1)",
-  QUALIFIED: "var(--chart-2)",
-  PROPOSAL: "var(--chart-3)",
-  NEGOTIATION: "var(--chart-4)",
-  WON: "var(--success)",
-  LOST: "var(--danger)",
+  Lead: "var(--chart-1)",
+  Qualified: "var(--chart-2)",
+  Proposal: "var(--chart-3)",
+  Negotiation: "var(--chart-4)",
+  Won: "var(--success)",
+  Lost: "var(--danger)",
 };
 
 export function PipelineBreakdown() {
   const t = useTranslations("pages.dashboard.pipeline");
   const tStage = useTranslations("enums.dealStage");
-  const locale = useLocale();
   const { data, isLoading } = useGetSalesAnalyticsQuery();
 
-  const rows = STAGE_ORDER.map((stage) => {
-    const entry = data?.byStage.find((s) => s.stage === stage);
-    return {
-      stage,
-      count: entry?.count ?? 0,
-      totalValue: entry ? Number(entry.totalValue) : 0,
-    };
-  }).filter((row) => row.count > 0);
+  const rows = STAGE_ORDER.map((stage) => ({
+    stage,
+    count: data?.pipelineByStage[stage] ?? 0,
+  })).filter((row) => row.count > 0);
 
-  const total = rows.reduce((sum, r) => sum + r.totalValue, 0);
-  const currency = "TJS";
+  const total = rows.reduce((sum, r) => sum + r.count, 0);
 
   return (
     <div className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-5">
@@ -67,9 +60,7 @@ export function PipelineBreakdown() {
           <p className="mt-4 text-xs font-medium tracking-wide text-text-tertiary uppercase">
             {t("total")}
           </p>
-          <p className="text-2xl font-semibold text-text-primary">
-            {formatCurrency(total, currency, locale)}
-          </p>
+          <p className="text-2xl font-semibold text-text-primary">{total}</p>
 
           <ul className="mt-4 space-y-3">
             {rows.map((row) => (
@@ -79,15 +70,8 @@ export function PipelineBreakdown() {
                   style={{ background: STAGE_COLOR[row.stage] }}
                   aria-hidden
                 />
-                <span className="flex-1 text-text-primary">
-                  {tStage(row.stage)}
-                  <span className="ml-1.5 text-xs text-text-tertiary">
-                    ({row.count})
-                  </span>
-                </span>
-                <span className="text-text-secondary">
-                  {formatCurrency(row.totalValue, currency, locale)}
-                </span>
+                <span className="flex-1 text-text-primary">{tStage(row.stage)}</span>
+                <span className="text-text-secondary">{row.count}</span>
               </li>
             ))}
           </ul>

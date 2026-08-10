@@ -20,9 +20,9 @@ export function KpiRow() {
   const revenue = useGetRevenueAnalyticsQuery();
   const finance = useGetFinanceAnalyticsQuery();
 
-  const openDealsCount = (overview.data?.dealsByStage ?? [])
-    .filter((d) => d.stage !== "WON" && d.stage !== "LOST")
-    .reduce((sum, d) => sum + d.count, 0);
+  const openDealsCount = Object.entries(overview.data?.dealsByStage ?? {})
+    .filter(([stage]) => stage !== "Won" && stage !== "Lost")
+    .reduce((sum, [, count]) => sum + count, 0);
 
   const cards = [
     {

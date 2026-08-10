@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 import type { InvoiceStatus } from "@/types/enums";
 
 const STATUS_CLASSES: Record<InvoiceStatus, string> = {
-  DRAFT: "bg-surface-elevated text-text-tertiary",
-  SENT: "bg-accent-secondary/10 text-accent-secondary",
-  PAID: "bg-success/10 text-success",
-  OVERDUE: "bg-danger/10 text-danger",
-  CANCELLED: "bg-surface-elevated text-text-tertiary line-through",
+  Draft: "bg-surface-elevated text-text-tertiary",
+  Sent: "bg-accent-secondary/10 text-accent-secondary",
+  Paid: "bg-success/10 text-success",
+  Overdue: "bg-danger/10 text-danger",
+  Cancelled: "bg-surface-elevated text-text-tertiary line-through",
 };
 
 export function InvoiceStatusBadge({ status }: { status: InvoiceStatus }) {

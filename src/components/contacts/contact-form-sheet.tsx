@@ -30,6 +30,7 @@ import {
   type ContactFormValues,
 } from "@/lib/schemas/contact.schema";
 import { cn } from "@/lib/utils";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import type { Contact } from "@/types/api";
 
 const UNASSIGNED = "__unassigned__";
@@ -54,6 +55,7 @@ export function ContactFormSheet({
   const [createContact, { isLoading: isCreating }] = useCreateContactMutation();
   const [updateContact, { isLoading: isUpdating }] = useUpdateContactMutation();
   const isSubmitting = isCreating || isUpdating;
+  const canMutate = useCanMutate();
 
   const {
     register,
@@ -242,7 +244,7 @@ export function ContactFormSheet({
           <Button
             type="button"
             onClick={handleSubmit(onSubmit)}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !canMutate}
           >
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             {isEdit ? t("save") : t("create")}

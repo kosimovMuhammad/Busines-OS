@@ -27,6 +27,9 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { useGetSavedReportsQuery, useRemoveReportMutation } from "@/lib/api/reports.api";
 import { CreateReportSheet } from "./create-report-sheet";
 import { RunReportDialog } from "./run-report-dialog";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { SavedReport } from "@/types/api";
 
 export function CustomReportsTab() {
@@ -37,6 +40,7 @@ export function CustomReportsTab() {
 
   const { data: reports, isLoading } = useGetSavedReportsQuery();
   const [removeReport, { isLoading: isRemoving }] = useRemoveReportMutation();
+  const canMutate = useCanMutate();
 
   const [sheetOpen, setSheetOpen] = useState(false);
   const [runningReport, setRunningReport] = useState<SavedReport | null>(null);
@@ -55,10 +59,12 @@ export function CustomReportsTab() {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button type="button" onClick={() => setSheetOpen(true)}>
-          <Plus className="size-3.5" />
-          {t("createTitle")}
-        </Button>
+        <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+          <Button type="button" onClick={() => setSheetOpen(true)}>
+            <Plus className="size-3.5" />
+            {t("createTitle")}
+          </Button>
+        </PermissionGuard>
       </div>
 
       {isLoading ? (
@@ -72,10 +78,12 @@ export function CustomReportsTab() {
           icon={TableProperties}
           title={t("empty")}
           action={
-            <Button type="button" size="sm" onClick={() => setSheetOpen(true)}>
-              <Plus className="size-3.5" />
-              {t("createTitle")}
-            </Button>
+            <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+              <Button type="button" size="sm" onClick={() => setSheetOpen(true)}>
+                <Plus className="size-3.5" />
+                {t("createTitle")}
+              </Button>
+            </PermissionGuard>
           }
         />
       ) : (
@@ -113,14 +121,16 @@ export function CustomReportsTab() {
                       >
                         <Play className="size-3.5" />
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeletingReport(report)}
-                        className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-                        aria-label={t("delete")}
-                      >
-                        <Trash2 className="size-3.5" />
-                      </button>
+                      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+                        <button
+                          type="button"
+                          onClick={() => setDeletingReport(report)}
+                          className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+                          aria-label={t("delete")}
+                        >
+                          <Trash2 className="size-3.5" />
+                        </button>
+                      </PermissionGuard>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -146,7 +156,7 @@ export function CustomReportsTab() {
             <DialogClose render={<Button variant="outline" />}>
               {t("deleteDialog.cancel")}
             </DialogClose>
-            <Button variant="destructive" onClick={handleDelete} disabled={isRemoving}>
+            <Button variant="destructive" onClick={handleDelete} disabled={isRemoving || !canMutate}>
               {isRemoving && <Loader2 className="size-4 animate-spin" />}
               {t("delete")}
             </Button>

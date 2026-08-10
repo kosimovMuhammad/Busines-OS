@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Contact } from "@/types/api";
 
 export function ContactsTable({
@@ -87,24 +89,26 @@ export function ContactsTable({
                   {contact.email ?? contact.phone ?? "—"}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center justify-end gap-1">
-                    <button
-                      type="button"
-                      onClick={() => onEdit(contact)}
-                      className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-                      aria-label={t("edit")}
-                    >
-                      <Pencil className="size-3.5" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onDelete(contact)}
-                      className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-                      aria-label={t("delete")}
-                    >
-                      <Trash2 className="size-3.5" />
-                    </button>
-                  </div>
+                  <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+                    <div className="flex items-center justify-end gap-1">
+                      <button
+                        type="button"
+                        onClick={() => onEdit(contact)}
+                        className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
+                        aria-label={t("edit")}
+                      >
+                        <Pencil className="size-3.5" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onDelete(contact)}
+                        className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+                        aria-label={t("delete")}
+                      >
+                        <Trash2 className="size-3.5" />
+                      </button>
+                    </div>
+                  </PermissionGuard>
                 </TableCell>
               </TableRow>
             );

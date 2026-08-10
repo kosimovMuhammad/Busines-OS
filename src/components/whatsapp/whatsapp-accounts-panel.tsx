@@ -16,7 +16,7 @@ export function WhatsappAccountsPanel() {
   const { data: integrations } = useGetIntegrationsQuery();
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const connected = integrations?.whatsapp.connected ?? false;
+  const connected = integrations?.whatsapp?.connected ?? false;
 
   return (
     <div className="space-y-4">

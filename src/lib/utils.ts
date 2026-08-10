@@ -18,6 +18,15 @@ export function formatCompactNumber(value: number, locale: string) {
   return new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }).format(value)
 }
 
+export function initials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("")
+}
+
 // Audit/security log actions are free-form backend strings like
 // "security.login_succeeded" or "permission.role_created" - split the
 // module prefix from a human-readable label rather than hardcoding a

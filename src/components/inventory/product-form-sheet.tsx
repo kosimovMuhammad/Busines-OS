@@ -75,13 +75,17 @@ export function ProductFormSheet({
     }
   }
 
-  const canSubmit = name.trim().length >= 1 && price.trim() !== "" && cost.trim() !== "";
+  const canSubmit =
+    name.trim().length >= 1 &&
+    sku.trim() !== "" &&
+    price.trim() !== "" &&
+    cost.trim() !== "";
 
   const handleSubmit = async () => {
     if (!canSubmit) return;
     const body = {
       name: name.trim(),
-      sku: sku.trim() || undefined,
+      sku: sku.trim(),
       description: description.trim() || undefined,
       price: Number(price),
       cost: Number(cost),

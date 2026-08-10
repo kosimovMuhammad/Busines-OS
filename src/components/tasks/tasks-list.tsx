@@ -8,7 +8,7 @@ import { TaskRow } from "./task-row";
 import type { Task } from "@/types/api";
 import type { TaskStatus } from "@/types/enums";
 
-const STATUS_ORDER: TaskStatus[] = ["TODO", "IN_PROGRESS", "COMPLETED", "ARCHIVED"];
+const STATUS_ORDER: TaskStatus[] = ["Todo", "InProgress", "Completed", "Archived"];
 
 export function TasksList({
   tasks,

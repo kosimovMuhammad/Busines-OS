@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { CircleHelp, Search, Sparkles } from "lucide-react";
+import { Search } from "lucide-react";
 import { ActiveTimerWidget } from "@/components/tasks/active-timer-widget";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitcher } from "./language-switcher";
 import { UserMenu } from "./user-menu";
 import { NotificationsPanel } from "./notifications-panel";
 import { GlobalSearchDialog } from "./global-search-dialog";
@@ -43,18 +44,7 @@ export function Topbar() {
       <div className="ml-auto flex items-center gap-2">
         <ActiveTimerWidget />
         <NotificationsPanel />
-        <button
-          type="button"
-          className="flex size-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-        >
-          <Sparkles className="size-[18px]" />
-        </button>
-        <button
-          type="button"
-          className="flex size-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-        >
-          <CircleHelp className="size-[18px]" />
-        </button>
+        <LanguageSwitcher />
         <ThemeToggle />
 
         <div className="mx-2 h-6 w-px bg-border-subtle" />

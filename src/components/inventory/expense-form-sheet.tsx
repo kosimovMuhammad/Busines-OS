@@ -70,7 +70,8 @@ export function ExpenseFormSheet({
     }
   }
 
-  const canSubmit = amount.trim() !== "" && date.trim() !== "" && !!paidById;
+  const canSubmit =
+    amount.trim() !== "" && date.trim() !== "" && !!paidById && category.trim() !== "";
 
   const handleSubmit = async () => {
     if (!canSubmit) return;

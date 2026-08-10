@@ -179,20 +179,31 @@ export function AiQuotationPanel() {
         </div>
       )}
 
-      {status === "success" && data && (
+      {status === "success" && data && data.status === "Failed" && (
+        <div className="space-y-2 rounded-xl border border-warning/30 bg-warning/10 p-3 text-xs text-warning">
+          <p>{t("failed")}</p>
+          <Button type="button" size="sm" variant="outline" onClick={handleGenerate}>
+            {t("tryAgain")}
+          </Button>
+        </div>
+      )}
+
+      {status === "success" && data && data.status !== "Failed" && (
         <div className="space-y-2 rounded-2xl border border-border-subtle bg-surface p-4">
           <div className="flex items-center justify-between text-sm">
             <span className="text-text-secondary">{t("total")}</span>
-            <span className="font-medium text-text-primary">{data.total.toFixed(2)}</span>
+            <span className="font-medium text-text-primary">{data.totalAmount.toFixed(2)}</span>
           </div>
-          <a
-            href={data.file.downloadUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-accent-primary underline-offset-4 hover:underline"
-          >
-            {t("download")}
-          </a>
+          {data.downloadUrl && (
+            <a
+              href={data.downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-accent-primary underline-offset-4 hover:underline"
+            >
+              {t("download")}
+            </a>
+          )}
         </div>
       )}
     </div>

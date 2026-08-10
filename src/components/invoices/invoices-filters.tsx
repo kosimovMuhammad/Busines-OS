@@ -9,10 +9,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { InvoiceStatus } from "@/types/enums";
 
 const ALL = "__all__";
-const STATUSES: InvoiceStatus[] = ["DRAFT", "SENT", "PAID", "OVERDUE", "CANCELLED"];
+const STATUSES: InvoiceStatus[] = ["Draft", "Sent", "Paid", "Overdue", "Cancelled"];
 
 export function InvoicesFilters({
   status,
@@ -49,9 +51,11 @@ export function InvoicesFilters({
         </SelectContent>
       </Select>
 
-      <Button type="button" onClick={onCreate} className="ml-auto">
-        {t("createInvoice")}
-      </Button>
+      <PermissionGuard roles={INVOICE_MUTATION_ALLOWED_ROLES}>
+        <Button type="button" onClick={onCreate} className="ml-auto">
+          {t("createInvoice")}
+        </Button>
+      </PermissionGuard>
     </div>
   );
 }

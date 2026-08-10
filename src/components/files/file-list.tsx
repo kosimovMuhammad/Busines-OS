@@ -5,6 +5,8 @@ import { File as FileIcon, Trash2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
 import { useRemoveFileMutation } from "@/lib/api/files.api";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { FileAsset } from "@/types/api";
 
 function formatSize(bytes: number) {
@@ -63,14 +65,16 @@ export function FileList({
               {formatSize(file.sizeBytes)} · {formatter.format(new Date(file.createdAt))}
             </p>
           </a>
-          <button
-            type="button"
-            onClick={() => removeFile(file.id)}
-            className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-            aria-label={t("delete")}
-          >
-            <Trash2 className="size-3.5" />
-          </button>
+          <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+            <button
+              type="button"
+              onClick={() => removeFile(file.id)}
+              className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+              aria-label={t("delete")}
+            >
+              <Trash2 className="size-3.5" />
+            </button>
+          </PermissionGuard>
         </li>
       ))}
     </ul>

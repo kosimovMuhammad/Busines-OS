@@ -9,7 +9,12 @@
       "integrationUnavailable": "Эта интеграция ещё не настроена. Попробуйте позже."
     },
     "logout": "Выйти",
-    "restrictedAccess": "У вас нет доступа к этому разделу."
+  "profile": "Профиль",
+    "restrictedAccess": "У вас нет доступа к этому разделу.",
+    "passwordNudge": {
+      "message": "Вы ещё не задали пароль. Задайте его в настройках, чтобы входить и по паролю.",
+      "cta": "Задать пароль"
+    }
   },
   "validation": {
     "required": "Это поле обязательно.",
@@ -18,7 +23,8 @@
     "nameMin": "Имя — минимум 2 символа.",
     "passwordMin": "Пароль — минимум 8 символов.",
     "agreeToTerms": "Необходимо согласиться с условиями.",
-    "invalidPhone": "Введите номер в международном формате, например +992901234567."
+    "invalidPhone": "Введите номер в международном формате, например +992901234567.",
+    "passwordMismatch": "Пароли не совпадают."
   },
   "brand": {
     "name": "Business OS",
@@ -41,7 +47,10 @@
     "automation": "Автоматизация",
     "inventory": "Склад",
     "settings": "Настройки",
-    "workspaceSection": "Рабочее пространство",
+    "communicationsSection": "Коммуникации",
+    "financeSection": "Финансы",
+    "operationsSection": "Операции",
+    "insightsSection": "Аналитика",
     "collapse": "Свернуть"
   },
   "topbar": {
@@ -64,6 +73,8 @@
     "login": {
       "title": "С возвращением",
       "subtitle": "Введите свои учётные данные для доступа к рабочему пространству.",
+      "passwordTab": "Пароль",
+      "codeTab": "Код-приглашение",
       "emailLabel": "Электронная почта",
       "emailPlaceholder": "name@company.com",
       "passwordLabel": "Пароль",
@@ -75,7 +86,14 @@
       "biometric": "Биометрия",
       "noAccount": "Нет аккаунта?",
       "signUp": "Зарегистрироваться",
-      "invalidCredentials": "Неверный email или пароль."
+      "invalidCredentials": "Неверный email или пароль.",
+      "codeLabel": "Код-приглашение",
+      "codePlaceholder": "000000",
+      "codeSubmit": "Подтвердить и войти",
+      "invalidCode": "Неверный или истёкший код. Попробуйте снова.",
+      "resendCode": "Отправить код повторно",
+      "resendCodeCooldown": "Повторная отправка через {seconds} с",
+      "resendSuccess": "Если приглашение для этого email существует, новый код отправлен."
     },
     "register": {
       "title": "Создайте аккаунт",
@@ -86,13 +104,31 @@
       "fullNamePlaceholder": "Иван Иванов",
       "emailLabel": "Электронная почта",
       "emailPlaceholder": "name@company.com",
+      "roleLabel": "Ваша роль",
+      "rolePlaceholder": "Выберите вашу роль",
+      "roles": {
+        "Founder": "Основатель / Руководитель",
+        "Sales": "Продажи",
+        "Marketing": "Маркетинг",
+        "Operations": "Операции",
+        "Support": "Поддержка",
+        "Other": "Другое"
+      },
       "passwordLabel": "Пароль",
       "passwordHint": "Минимум 8 символов.",
       "terms": "Я согласен с <terms>условиями использования</terms> и <privacy>политикой конфиденциальности</privacy>.",
       "submit": "Создать аккаунт",
       "haveAccount": "Уже есть аккаунт?",
       "logIn": "Войти",
-      "emailTaken": "Аккаунт с таким email уже существует."
+      "emailTaken": "Аккаунт с таким email уже существует.",
+      "verifyTitle": "Подтвердите вашу почту",
+      "verifySubtitle": "Введите 6-значный код, отправленный на {email}.",
+      "codeLabel": "Код подтверждения",
+      "codePlaceholder": "000000",
+      "verifySubmit": "Подтвердить и продолжить",
+      "invalidCode": "Неверный или истёкший код. Попробуйте снова.",
+      "resendCode": "Отправить код повторно",
+      "resendSuccess": "Новый код отправлен."
     }
   },
   "pages": {
@@ -326,7 +362,7 @@
     "ai": {
       "title": "AI-ассистент",
       "subtitle": "Задавайте вопросы, создавайте письма и коммерческие предложения",
-      "tabs": { "query": "Вопрос", "draftEmail": "Черновик письма", "quotation": "Предложение" },
+      "tabs": { "query": "Вопрос", "draftEmail": "Черновик письма", "quotation": "Предложение", "forecast": "Прогноз", "assistant": "Ассистент" },
       "query": {
         "empty": "Задайте вопрос о контактах, сделках или доходе.",
         "placeholder": "Покажи клиентов, которые не отвечали 14 дней...",
@@ -362,6 +398,19 @@
         "tryAgain": "Повторить",
         "total": "Итого",
         "download": "Скачать предложение"
+      },
+      "forecast": {
+        "title": "Прогноз выручки",
+        "period": "Период",
+        "confidence": "Уверенность",
+        "topExpected": "Ожидаемые платежи",
+        "empty": "Нет ожидаемых платежей за этот период."
+      },
+      "assistant": {
+        "empty": "Задайте AI-ассистенту любой вопрос о вашем бизнесе.",
+        "placeholder": "Введите сообщение...",
+        "send": "Отправить",
+        "messageFailed": "Функции AI подключаются. Попробуйте позже."
       }
     },
     "invoices": {
@@ -1024,6 +1073,7 @@
       "timezone": "Часовой пояс",
       "save": "Сохранить",
       "tabs": {
+        "preferences": "Настройки профиля",
         "company": "Компания",
         "team": "Команда",
         "organization": "Организация",
@@ -1031,8 +1081,90 @@
         "security": "Безопасность и аудит",
         "integrations": "Интеграции",
         "plan": "Тариф",
-        "notifications": "Уведомления"
+        "notifications": "Уведомления",
+        "aiUsage": "Использование AI",
+        "platformAdmin": "Администрирование платформы"
       }
+    },
+    "settingsPlatform": {
+      "title": "Администрирование платформы",
+      "subtitle": "Внутренние инструменты только для администраторов платформы.",
+      "whatsapp": {
+        "description": "Отправка сообщений с собственного номера WhatsApp Business платформы, а не с подключённого аккаунта компании.",
+        "textCard": {
+          "title": "Отправить текстовое сообщение",
+          "to": "Номер телефона получателя",
+          "toPlaceholder": "+992901234567",
+          "toHint": "Подходит любой распространённый формат — номер нормализуется на сервере.",
+          "message": "Сообщение",
+          "messagePlaceholder": "Введите сообщение...",
+          "send": "Отправить сообщение",
+          "success": "Сообщение отправлено."
+        },
+        "templateCard": {
+          "title": "Отправить шаблонное сообщение",
+          "to": "Номер телефона получателя",
+          "toPlaceholder": "+992901234567",
+          "templateName": "Название шаблона",
+          "templateNamePlaceholder": "order_confirmation",
+          "languageCode": "Код языка",
+          "send": "Отправить шаблон",
+          "success": "Шаблон отправлен."
+        }
+      }
+    },
+    "settingsProfile": {
+      "title": "Профиль",
+      "subtitle": "Данные вашего аккаунта и пароль",
+      "accountTitle": "Аккаунт",
+      "name": "Имя",
+      "email": "Email",
+      "photoHint": "JPG, PNG или GIF. Максимум 5 МБ.",
+      "changeCover": "Изменить обложку",
+      "changeAvatar": "Изменить аватар",
+      "avatarUpdated": "Фото профиля обновлено.",
+      "coverUpdated": "Обложка обновлена.",
+      "changePhoto": "Изменить фото",
+      "removePhoto": "Удалить фото",
+      "removePhotoFailed": "Не удалось удалить фото. Попробуйте снова.",
+      "avatarRemoved": "Фото профиля удалено.",
+      "coverRemoved": "Обложка удалена.",
+      "noPhotoSet": "Фото ещё не задано.",
+      "invalidFileType": "Пожалуйста, выберите файл изображения.",
+      "fileTooLarge": "Изображение должно быть меньше 5 МБ.",
+      "uploadFailed": "Не удалось загрузить файл. Попробуйте снова.",
+      "save": "Сохранить",
+      "nameSaved": "Имя обновлено.",
+      "newEmailLabel": "Новый email",
+      "newEmailPlaceholder": "name@company.com",
+      "verifyEmailButton": "Подтвердить",
+      "cancelEmailChange": "Отмена",
+      "emailTaken": "Аккаунт с таким email уже существует.",
+      "emailCodeSentToast": "Код подтверждения отправлен на новый email.",
+      "emailCodeSentSubtitle": "Введите 6-значный код, отправленный на {email}.",
+      "emailCodePlaceholder": "000000",
+      "confirmEmailChange": "Подтвердить",
+      "invalidEmailCode": "Неверный или просроченный код. Попробуйте снова.",
+      "emailChangeSuccess": "Ваш email теперь {email}. В целях безопасности вы вышли из всех остальных сессий.",
+      "resendCode": "Отправить код повторно",
+      "resendSuccess": "Новый код отправлен.",
+      "passwordTitle": "Пароль",
+      "setHint": "Вы вошли по коду-приглашению. Задайте пароль, чтобы также входить по email и паролю.",
+      "setSuccess": "Пароль задан. Теперь вы можете входить и по паролю.",
+      "alreadySet": "На этом аккаунте пароль уже задан.",
+      "setSubmit": "Задать пароль",
+      "changeHint": "На вашем аккаунте уже задан пароль.",
+      "changeSuccess": "Пароль обновлён.",
+      "wrongCurrentPassword": "Текущий пароль неверен.",
+      "changeSubmit": "Обновить пароль",
+      "currentPasswordLabel": "Текущий пароль",
+      "newPasswordLabel": "Новый пароль",
+      "confirmPasswordLabel": "Подтвердите новый пароль",
+      "promoTitle": "Больше возможностей с Pro",
+      "promoBody": "Получите функции AI, расширенную аналитику и увеличенные лимиты для вашей команды.",
+      "promoCta": "Посмотреть тарифы",
+      "tipsTitle": "Совет по безопасности",
+      "tipsBody": "Используйте уникальный пароль для этого аккаунта и регулярно обновляйте его для безопасности данных."
     },
     "settingsTeam": {
       "title": "Команда",
@@ -1057,7 +1189,10 @@
         "rbacRole": "Пользовательская роль (опционально)",
         "rbacRoleNone": "Использовать права роли по умолчанию",
         "rbacRoleSummary": "Включено прав: {count}",
-        "invite": "Отправить приглашение"
+        "invite": "Отправить приглашение",
+        "inviteSentTitle": "Код-приглашение отправлен на {email}",
+        "inviteSentHint": "Пользователь введёт его на экране входа, во вкладке «Код-приглашение», чтобы присоединиться к вашему рабочему пространству.",
+        "done": "Готово"
       }
     },
     "settingsRoles": {
@@ -1260,6 +1395,14 @@
         "columnDate": "Дата"
       }
     },
+    "settingsPreferences": {
+      "title": "Настройки профиля",
+      "subtitle": "Язык и внешний вид",
+      "language": "Язык",
+      "theme": "Тема",
+      "themeLight": "Светлая",
+      "themeDark": "Тёмная"
+    },
     "settingsNotifications": {
       "title": "Настройки уведомлений",
       "subtitle": "Выберите, как вы хотите получать уведомления о каждом событии",
@@ -1271,6 +1414,29 @@
       "connected": "Подключено",
       "notConnected": "Не подключено",
       "comingSoon": "Скоро"
+    },
+    "settingsAiUsage": {
+      "title": "Использование AI",
+      "subtitle": "Объём и стоимость AI-запросов за текущий период",
+      "currentPeriod": "Текущий период:",
+      "totalRequests": "Всего запросов",
+      "totalCost": "Общая стоимость",
+      "chartTitle": "Запросы по endpoint'ам",
+      "empty": "В этом периоде ещё нет данных об использовании AI.",
+      "endpoints": {
+        "summarize": "Резюме",
+        "query": "Вопрос AI",
+        "draftEmail": "Черновик письма",
+        "quotation": "Создание предложения",
+        "forecast": "Прогноз",
+        "assistant": "AI-ассистент"
+      },
+      "table": {
+        "endpoint": "Endpoint",
+        "requests": "Запросы",
+        "tokens": "Токены",
+        "cost": "Стоимость"
+      }
     },
     "settingsPlan": {
       "title": "Тариф и оплата",
@@ -1312,9 +1478,29 @@
         "perMonth": "/мес",
         "perYear": "/год",
         "select": "Выбрать",
-        "pendingTitle": "Запрос на смену тарифа отправлен",
         "amount": "Сумма",
-        "done": "Готово"
+        "done": "Готово",
+        "checkout": {
+          "title": "Данные оплаты",
+          "orderSummary": "Итог заказа",
+          "cardholderName": "Имя владельца карты",
+          "cardholderPlaceholder": "например, Иван Иванов",
+          "cardNumber": "Номер карты",
+          "expiry": "Срок действия",
+          "cvc": "CVC",
+          "secureNotice": "Данные вашей карты зашифрованы и в этой демо-версии никуда не отправляются.",
+          "back": "Назад",
+          "pay": "Оплатить {amount}",
+          "processing": "Обработка платежа...",
+          "successTitle": "Оплата прошла успешно",
+          "successMessage": "Ваша подписка обновлена до тарифа {plan}.",
+          "cardEnding": "Карта, оканчивающаяся на {last4}",
+          "transactionId": "ID транзакции",
+          "errorRequired": "Это поле обязательно",
+          "errorCardNumber": "Введите корректный 16-значный номер карты",
+          "errorExpiry": "Введите корректную, не истёкшую дату (ММ/ГГ)",
+          "errorCvc": "Введите корректный CVC"
+        }
       },
       "cancelDialog": {
         "title": "Отменить подписку?",
@@ -1332,6 +1518,11 @@
         "columnActions": "Действия",
         "download": "Скачать PDF"
       }
+    },
+    "forbidden": {
+      "title": "Доступ запрещён",
+      "subtitle": "У вас нет прав для просмотра этой страницы.",
+      "backToDashboard": "Вернуться на главную"
     },
     "search": {
       "title": "Поиск",

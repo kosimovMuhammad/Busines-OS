@@ -28,18 +28,19 @@ import {
 } from "@/lib/api/deals.api";
 import { createDealSchema, type DealFormValues } from "@/lib/schemas/deal.schema";
 import { cn } from "@/lib/utils";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 import type { Contact, Deal } from "@/types/api";
 import type { DealStage } from "@/types/enums";
 
 const UNASSIGNED = "__unassigned__";
 const NO_CONTACT = "__no_contact__";
 const STAGES: DealStage[] = [
-  "LEAD",
-  "QUALIFIED",
-  "PROPOSAL",
-  "NEGOTIATION",
-  "WON",
-  "LOST",
+  "Lead",
+  "Qualified",
+  "Proposal",
+  "Negotiation",
+  "Won",
+  "Lost",
 ];
 
 const inputClass =
@@ -68,6 +69,7 @@ export function DealFormSheet({
   const [updateDeal, { isLoading: isUpdating }] = useUpdateDealMutation();
   const [updateDealStage, { isLoading: isUpdatingStage }] = useUpdateDealStageMutation();
   const isSubmitting = isCreating || isUpdating || isUpdatingStage;
+  const canMutate = useCanMutate();
 
   const {
     register,
@@ -88,7 +90,7 @@ export function DealFormSheet({
       contactId: deal?.contactId ?? "",
       value: deal ? String(deal.value) : "",
       currency: deal?.currency ?? "TJS",
-      stage: deal?.stage ?? "LEAD",
+      stage: deal?.stage ?? "Lead",
       probability: deal?.probability != null ? String(deal.probability) : "",
       expectedCloseDate: deal?.expectedCloseDate?.slice(0, 10) ?? "",
       ownerId: deal?.ownerId ?? "",
@@ -214,8 +216,8 @@ export function DealFormSheet({
               {t("stage")}
             </label>
             <Select
-              value={stage || "LEAD"}
-              onValueChange={(value) => setValue("stage", value ?? "LEAD")}
+              value={stage || "Lead"}
+              onValueChange={(value) => setValue("stage", value ?? "Lead")}
             >
               <SelectTrigger id="deal-stage" className="w-full">
                 <SelectValue>
@@ -292,7 +294,7 @@ export function DealFormSheet({
 
         <SheetFooter className={cn(isEdit && "flex-row justify-between")}>
           {isEdit && onDelete && (
-            <Button type="button" variant="destructive" onClick={onDelete}>
+            <Button type="button" variant="destructive" onClick={onDelete} disabled={!canMutate}>
               <Trash2 className="size-4" />
               {t("delete")}
             </Button>
@@ -300,7 +302,7 @@ export function DealFormSheet({
           <Button
             type="button"
             onClick={handleSubmit(onSubmit)}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !canMutate}
           >
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             {isEdit ? t("save") : t("create")}

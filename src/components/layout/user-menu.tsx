@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -39,13 +40,19 @@ export function UserMenu() {
       <DropdownMenuContent align="end" className="w-56">
         {user && (
           <>
-            <DropdownMenuLabel className="flex flex-col">
-              <span className="text-sm font-medium text-text-primary">{user.name}</span>
-              <span className="text-xs text-text-tertiary">{user.email}</span>
-            </DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel className="flex flex-col">
+                <span className="text-sm font-medium text-text-primary">{user.name}</span>
+                <span className="text-xs text-text-tertiary">{user.email}</span>
+              </DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
           </>
         )}
+        <DropdownMenuItem onClick={() => router.push("/profile")}>
+          <User className="size-4" />
+          {t("profile")}
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout} className="text-danger">
           <LogOut className="size-4" />
           {t("logout")}

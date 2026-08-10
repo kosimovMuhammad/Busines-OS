@@ -2,7 +2,10 @@ import { baseApi } from "./baseApi";
 import type {
   Communication,
   ConnectWhatsappAccountRequest,
+  SendPlatformWhatsAppTemplateRequest,
+  SendPlatformWhatsAppTextRequest,
   SendWhatsappRequest,
+  WhatsAppSendResult,
   WhatsappAccount,
 } from "@/types/api";
 
@@ -32,6 +35,21 @@ export const whatsappApi = baseApi.injectEndpoints({
         { type: "Communications", id: "LIST" },
       ],
     }),
+    // Platform mode: sends from the platform's own WhatsApp number, not a
+    // tenant's connected account. Backend gates this to IsPlatformAdmin
+    // users (403 otherwise) - see WhatsAppService.EnsurePlatformAdminAsync.
+    sendPlatformWhatsAppText: builder.mutation<
+      WhatsAppSendResult,
+      SendPlatformWhatsAppTextRequest
+    >({
+      query: (body) => ({ url: "/whatsapp/platform/send/text", method: "POST", body }),
+    }),
+    sendPlatformWhatsAppTemplate: builder.mutation<
+      WhatsAppSendResult,
+      SendPlatformWhatsAppTemplateRequest
+    >({
+      query: (body) => ({ url: "/whatsapp/platform/send/template", method: "POST", body }),
+    }),
   }),
 });
 
@@ -39,4 +57,6 @@ export const {
   useGetWhatsappAccountsQuery,
   useConnectWhatsappAccountMutation,
   useSendWhatsappMessageMutation,
+  useSendPlatformWhatsAppTextMutation,
+  useSendPlatformWhatsAppTemplateMutation,
 } = whatsappApi;

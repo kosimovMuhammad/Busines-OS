@@ -24,6 +24,8 @@ import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import { useGetDealsQuery } from "@/lib/api/deals.api";
 import { useCreateInvoiceMutation, useUpdateInvoiceMutation } from "@/lib/api/invoices.api";
 import { createInvoiceSchema, type InvoiceFormValues } from "@/lib/schemas/invoice.schema";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Invoice } from "@/types/api";
 
 const NO_CONTACT = "__no_contact__";
@@ -52,6 +54,7 @@ export function InvoiceFormSheet({
   const [createInvoice, { isLoading: isCreating }] = useCreateInvoiceMutation();
   const [updateInvoice, { isLoading: isUpdating }] = useUpdateInvoiceMutation();
   const isSubmitting = isCreating || isUpdating;
+  const canMutate = useCanMutate(INVOICE_MUTATION_ALLOWED_ROLES);
 
   const {
     register,
@@ -226,7 +229,7 @@ export function InvoiceFormSheet({
         </form>
 
         <SheetFooter>
-          <Button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
+          <Button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting || !canMutate}>
             {isSubmitting && <Loader2 className="size-4 animate-spin" />}
             {isEdit ? t("save") : t("create")}
           </Button>

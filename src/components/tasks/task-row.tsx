@@ -15,16 +15,19 @@ import {
   useUpdateTaskStatusMutation,
 } from "@/lib/api/tasks.api";
 import { cn } from "@/lib/utils";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
+import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Task } from "@/types/api";
 import type { TaskStatus } from "@/types/enums";
 
-const STATUS_ORDER: TaskStatus[] = ["TODO", "IN_PROGRESS", "COMPLETED", "ARCHIVED"];
+const STATUS_ORDER: TaskStatus[] = ["Todo", "InProgress", "Completed", "Archived"];
 
 const PRIORITY_CLASS: Record<Task["priority"], string> = {
-  LOW: "bg-surface-elevated text-text-tertiary",
-  MEDIUM: "bg-warning/10 text-warning",
-  HIGH: "bg-danger/10 text-danger",
-  URGENT: "bg-danger/20 text-danger",
+  Low: "bg-surface-elevated text-text-tertiary",
+  Medium: "bg-warning/10 text-warning",
+  High: "bg-danger/10 text-danger",
+  Urgent: "bg-danger/20 text-danger",
 };
 
 export function TaskRow({
@@ -50,6 +53,7 @@ export function TaskRow({
   const [startTimer, { isLoading: isStarting }] = useStartTimerMutation();
   const [stopTimer, { isLoading: isStopping }] = useStopTimerMutation();
   const [updateStatus] = useUpdateTaskStatusMutation();
+  const canMutate = useCanMutate();
 
   const dueDate = task.dueDate
     ? new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" }).format(
@@ -62,7 +66,7 @@ export function TaskRow({
       <button
         type="button"
         onClick={() => (isActiveTimer ? stopTimer(task.id) : startTimer(task.id))}
-        disabled={isStarting || isStopping || (hasOtherActiveTimer && !isActiveTimer)}
+        disabled={!canMutate || isStarting || isStopping || (hasOtherActiveTimer && !isActiveTimer)}
         className={cn(
           "flex size-8 shrink-0 items-center justify-center rounded-full transition-colors disabled:opacity-30",
           isActiveTimer
@@ -97,7 +101,7 @@ export function TaskRow({
           value && value !== task.status && updateStatus({ id: task.id, status: value as TaskStatus })
         }
       >
-        <SelectTrigger size="sm" className="w-36">
+        <SelectTrigger size="sm" className="w-36" disabled={!canMutate}>
           <SelectValue>{(value: string) => tStatus(value as TaskStatus)}</SelectValue>
         </SelectTrigger>
         <SelectContent>
@@ -109,22 +113,24 @@ export function TaskRow({
         </SelectContent>
       </Select>
 
-      <button
-        type="button"
-        onClick={onEdit}
-        className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-        aria-label={t("edit")}
-      >
-        <Pencil className="size-3.5" />
-      </button>
-      <button
-        type="button"
-        onClick={onDelete}
-        className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-        aria-label={t("delete")}
-      >
-        <Trash2 className="size-3.5" />
-      </button>
+      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
+        <button
+          type="button"
+          onClick={onEdit}
+          className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
+          aria-label={t("edit")}
+        >
+          <Pencil className="size-3.5" />
+        </button>
+        <button
+          type="button"
+          onClick={onDelete}
+          className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+          aria-label={t("delete")}
+        >
+          <Trash2 className="size-3.5" />
+        </button>
+      </PermissionGuard>
     </div>
   );
 }

@@ -4,13 +4,14 @@ import { useTranslations } from "next-intl";
 import {
   Bar,
   BarChart,
-  Cell,
   LabelList,
+  Rectangle,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import type { BarShapeProps } from "recharts";
 import { useGetTaskAnalyticsQuery } from "@/lib/api/analytics.api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
@@ -18,17 +19,17 @@ import type { TaskStatus } from "@/types/enums";
 import { CircleCheck } from "lucide-react";
 
 const STATUS_ORDER: TaskStatus[] = [
-  "TODO",
-  "IN_PROGRESS",
-  "COMPLETED",
-  "ARCHIVED",
+  "Todo",
+  "InProgress",
+  "Completed",
+  "Archived",
 ];
 
 const STATUS_COLOR: Record<TaskStatus, string> = {
-  TODO: "var(--chart-1)",
-  IN_PROGRESS: "var(--chart-2)",
-  COMPLETED: "var(--success)",
-  ARCHIVED: "var(--text-tertiary)",
+  Todo: "var(--chart-1)",
+  InProgress: "var(--chart-2)",
+  Completed: "var(--success)",
+  Archived: "var(--text-tertiary)",
 };
 
 export function TaskBreakdown() {
@@ -43,7 +44,7 @@ export function TaskBreakdown() {
   const rows = STATUS_ORDER.map((status) => ({
     status,
     label: tStatus(status),
-    count: data?.byStatus.find((s) => s.status === status)?.count ?? 0,
+    count: data?.byStatus?.[status] ?? 0,
   }));
   const hasData = rows.some((r) => r.count > 0);
   const maxCount = Math.max(1, ...rows.map((r) => r.count));
@@ -62,7 +63,7 @@ export function TaskBreakdown() {
         )}
       </div>
 
-      <div className="mt-4 h-48">
+      <div className="mt-4 h-44">
         {isLoading ? (
           <Skeleton className="h-full w-full" />
         ) : !hasData ? (
@@ -74,11 +75,11 @@ export function TaskBreakdown() {
               layout="vertical"
               margin={{ top: 0, right: 24, left: 0, bottom: 0 }}
             >
-              <XAxis type="number" hide domain={[0, maxCount]} />
+              <XAxis type="number" domain={[0, maxCount]} hide />
               <YAxis
-                type="category"
                 dataKey="label"
-                width={110}
+                type="category"
+                width={96}
                 tickLine={false}
                 axisLine={false}
                 tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
@@ -93,10 +94,17 @@ export function TaskBreakdown() {
                   color: "var(--text-primary)",
                 }}
               />
-              <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={20}>
-                {rows.map((row) => (
-                  <Cell key={row.status} fill={STATUS_COLOR[row.status]} />
-                ))}
+              <Bar
+                dataKey="count"
+                radius={[0, 4, 4, 0]}
+                barSize={14}
+                shape={(props: BarShapeProps) => (
+                  <Rectangle
+                    {...props}
+                    fill={STATUS_COLOR[props.payload.status as TaskStatus]}
+                  />
+                )}
+              >
                 <LabelList
                   dataKey="count"
                   position="right"
@@ -107,6 +115,7 @@ export function TaskBreakdown() {
           </ResponsiveContainer>
         )}
       </div>
+
     </div>
   );
 }

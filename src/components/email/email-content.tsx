@@ -35,7 +35,7 @@ export function EmailContent() {
 
   const { data: contactsPage } = useGetContactsQuery({ limit: 200 });
   const { data: communications, isLoading } = useGetCommunicationsQuery(
-    contactId ? { contactId, channel: "EMAIL" } : { channel: "EMAIL" }
+    contactId ? { contactId, channel: "Email" } : { channel: "Email" }
   );
 
   const contactsById = useMemo(() => {

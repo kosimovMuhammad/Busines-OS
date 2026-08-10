@@ -9,6 +9,7 @@ import type {
   MeetingStatus,
   NotificationChannel,
   NotificationType,
+  OnboardingRole,
   PaymentMethod,
   Plan,
   ProductUnit,
@@ -37,6 +38,7 @@ export type RegisterRequest = {
   name: string;
   email: string;
   password: string;
+  role: OnboardingRole;
 };
 
 export type LoginRequest = {
@@ -44,14 +46,41 @@ export type LoginRequest = {
   password: string;
 };
 
-export type AcceptInviteRequest = {
-  token: string;
-  password: string;
-};
-
 export type AuthResponse = {
   accessToken: string;
   user: User;
+};
+
+export type RegistrationPendingResponse = {
+  email: string;
+  requiresVerification: true;
+};
+
+export type VerifyEmailRequest = {
+  email: string;
+  code: string;
+};
+
+export type ResendVerificationRequest = {
+  email: string;
+};
+
+export type LoginWithCodeRequest = {
+  email: string;
+  code: string;
+};
+
+export type ResendInviteCodeRequest = {
+  email: string;
+};
+
+export type SetPasswordRequest = {
+  newPassword: string;
+};
+
+export type ChangePasswordRequest = {
+  currentPassword: string;
+  newPassword: string;
 };
 
 // ---- Users ----
@@ -63,7 +92,10 @@ export type User = {
   email: string;
   role: UserRole;
   avatarUrl: string | null;
+  coverUrl: string | null;
   status: UserStatus;
+  hasPassword: boolean;
+  isPlatformAdmin: boolean;
   lastLoginAt: string | null;
   createdAt: string;
   updatedAt: string;
@@ -83,6 +115,41 @@ export type UpdateUserRequest = {
 };
 
 export type UpdateRoleRequest = { role: UserRole; rbacRoleId?: string | null };
+
+// ---- Profile media & email change ----
+
+export type ProfileMediaTarget = "Avatar" | "Cover";
+
+export type PresignProfileMediaRequest = {
+  filename: string;
+  mimeType: string;
+  target: ProfileMediaTarget;
+};
+
+export type PresignProfileMediaResponse = {
+  uploadUrl: string;
+  s3Key: string;
+};
+
+export type ConfirmProfileMediaRequest = {
+  s3Key: string;
+  filename: string;
+  mimeType: string;
+  sizeBytes: number;
+  target: ProfileMediaTarget;
+};
+
+export type DeleteProfileMediaRequest = {
+  target: ProfileMediaTarget;
+};
+
+export type RequestEmailChangeRequest = {
+  newEmail: string;
+};
+
+export type ConfirmEmailChangeRequest = {
+  code: string;
+};
 
 // ---- RBAC: Roles & Permissions ----
 
@@ -743,19 +810,17 @@ export type UpdateTaskRequest = Partial<Omit<CreateTaskRequest, "status">>;
 
 export type TimeEntry = {
   id: string;
-  companyId: string;
   taskId: string;
+  taskTitle: string;
   userId: string;
+  userName: string;
   note: string | null;
   startedAt: string;
   stoppedAt: string | null;
   durationSec: number | null;
-  createdAt: string;
-  // Only present on the POST .../time/stop response.
-  totalTimeSec?: number;
 };
 
-export type ActiveTimeEntry = TimeEntry & { task: Task };
+export type ActiveTimeEntry = TimeEntry;
 
 // ---- Communications ----
 
@@ -801,6 +866,22 @@ export type ConnectWhatsappAccountRequest = {
 export type SendWhatsappRequest = {
   contactId: string;
   message: string;
+};
+
+export type SendPlatformWhatsAppTextRequest = {
+  to: string;
+  message: string;
+};
+
+export type SendPlatformWhatsAppTemplateRequest = {
+  to: string;
+  templateName: string;
+  languageCode: string;
+};
+
+export type WhatsAppSendResult = {
+  success: boolean;
+  messageId: string | null;
 };
 
 // ---- Email ----
@@ -894,14 +975,90 @@ export type AiDraftEmailResult = {
   completedAt: string;
 };
 
-// Inferred from the endpoint's Swagger description ("totals + FileAsset +
-// presigned download URL") - never observed as a real 200 in this
-// environment since AWS S3 isn't configured (verified real 422 instead).
-// Revisit once S3 is provisioned.
+// Verified live 2026-08-10 (uploads are now configured, unlike the earlier
+// "AWS S3 not configured" 422 this was originally inferred against) - the
+// real shape has neither `subtotal`/`total` nor a nested `file`, just a
+// flat `totalAmount` + `downloadUrl`. See BACKEND_ISSUES.md.
 export type AiQuotationResult = {
-  subtotal: number;
-  total: number;
-  file: FileAsset;
+  id: string;
+  dealId: string;
+  itemsJson: string;
+  totalAmount: number;
+  status: "Pending" | "Completed" | "Failed";
+  downloadUrl: string | null;
+  errorMessage: string | null;
+};
+
+export type AiForecastRequest = { period?: string };
+
+// Response shape inferred from the feature spec, not yet observed as a live
+// 200 (swagger has no response schema for /ai/forecast - request body only).
+// Revisit once live-tested; see BACKEND_ISSUES.md if the shape drifts.
+export type AiForecastPayment = {
+  contactId: string;
+  contactName: string;
+  amount: number;
+};
+
+export type AiForecastResult = {
+  estimatedAmount: number;
+  currency: string;
+  confidencePercent: number;
+  period: string;
+  topExpectedPayments: AiForecastPayment[];
+};
+
+export type AiAssistantMessageRequest = { conversationId?: string; message: string };
+
+// Verified live 2026-08-10 against POST /ai/assistant/message: it does NOT
+// return the conversation/messages, just three ids - the assistant's reply
+// is generated in the background and only shows up via a subsequent GET
+// /ai/assistant/conversations/{conversationId} poll.
+export type AiAssistantMessageResponse = {
+  conversationId: string;
+  userMessageId: string;
+  assistantMessageId: string;
+};
+
+// Verified live 2026-08-10 against GET /ai/assistant/conversations/{id}.
+// Note role is PascalCase ("User"/"Assistant"), not lowercase - and each
+// message carries its own generation `status`, since the assistant's row
+// is created upfront (empty content) and filled in - or marked Failed -
+// once generation finishes. In this dev environment (no AI provider
+// configured) assistant messages consistently come back
+// {content: "", status: "Failed"} - see BACKEND_ISSUES.md.
+export type AiAssistantMessage = {
+  id: string;
+  role: "User" | "Assistant";
+  content: string;
+  status: "Pending" | "Completed" | "Failed";
+  createdAt: string;
+};
+
+export type AiAssistantConversation = {
+  id: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  messages: AiAssistantMessage[];
+};
+
+// Verified live 2026-08-10 against GET /company/ai-usage. `endpoint` is a
+// short feature slug ("assistant", "forecast", ...), not the URL path.
+export type AiUsageBreakdownEntry = {
+  endpoint: string;
+  requestCount: number;
+  tokensUsed: number;
+  cost: number;
+};
+
+export type AiUsageResponse = {
+  periodStart: string;
+  periodEnd: string;
+  totalRequests: number;
+  totalTokensUsed: number;
+  estimatedCost: number;
+  byEndpoint: AiUsageBreakdownEntry[];
 };
 
 // ---- Files ----

@@ -12,6 +12,8 @@ import { InvoiceStatusSelect } from "./invoice-status-select";
 import { InvoiceFormSheet } from "./invoice-form-sheet";
 import { DeleteInvoiceDialog } from "./delete-invoice-dialog";
 import { AddPaymentSheet } from "./add-payment-sheet";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Invoice } from "@/types/api";
 
 export function InvoiceDetailContent({ id }: { id: string }) {
@@ -81,23 +83,27 @@ export function InvoiceDetailContent({ id }: { id: string }) {
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <InvoiceStatusSelect invoiceId={invoice.id} status={invoice.status} />
-          <button
-            type="button"
-            onClick={() => setEditOpen(true)}
-            className="flex size-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-            aria-label={t("edit")}
-          >
-            <Pencil className="size-4" />
-          </button>
-          {invoice.status === "DRAFT" && (
+          <PermissionGuard roles={INVOICE_MUTATION_ALLOWED_ROLES}>
             <button
               type="button"
-              onClick={() => setDeletingInvoice(invoice)}
-              className="flex size-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-              aria-label={t("delete")}
+              onClick={() => setEditOpen(true)}
+              className="flex size-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
+              aria-label={t("edit")}
             >
-              <Trash2 className="size-4" />
+              <Pencil className="size-4" />
             </button>
+          </PermissionGuard>
+          {invoice.status === "Draft" && (
+            <PermissionGuard roles={INVOICE_MUTATION_ALLOWED_ROLES}>
+              <button
+                type="button"
+                onClick={() => setDeletingInvoice(invoice)}
+                className="flex size-8 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+                aria-label={t("delete")}
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </PermissionGuard>
           )}
         </div>
       </div>
@@ -137,9 +143,11 @@ export function InvoiceDetailContent({ id }: { id: string }) {
       <div>
         <div className="mb-2 flex items-center justify-between">
           <h4 className="text-sm font-medium text-text-primary">{t("payments")}</h4>
-          <Button type="button" size="sm" variant="outline" onClick={() => setPaymentOpen(true)}>
-            {t("addPayment")}
-          </Button>
+          <PermissionGuard roles={INVOICE_MUTATION_ALLOWED_ROLES}>
+            <Button type="button" size="sm" variant="outline" onClick={() => setPaymentOpen(true)}>
+              {t("addPayment")}
+            </Button>
+          </PermissionGuard>
         </div>
 
         {invoice.payments.length === 0 ? (

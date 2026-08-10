@@ -9,9 +9,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useUpdateInvoiceStatusMutation } from "@/lib/api/invoices.api";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { InvoiceStatus } from "@/types/enums";
 
-const STATUSES: InvoiceStatus[] = ["DRAFT", "SENT", "PAID", "OVERDUE", "CANCELLED"];
+const STATUSES: InvoiceStatus[] = ["Draft", "Sent", "Paid", "Overdue", "Cancelled"];
 
 export function InvoiceStatusSelect({
   invoiceId,
@@ -22,6 +24,7 @@ export function InvoiceStatusSelect({
 }) {
   const t = useTranslations("enums.invoiceStatus");
   const [updateStatus, { isLoading }] = useUpdateInvoiceStatusMutation();
+  const canMutate = useCanMutate(INVOICE_MUTATION_ALLOWED_ROLES);
 
   return (
     <Select
@@ -33,7 +36,7 @@ export function InvoiceStatusSelect({
         }
       }}
     >
-      <SelectTrigger className="h-8 w-36" disabled={isLoading}>
+      <SelectTrigger className="h-8 w-36" disabled={isLoading || !canMutate}>
         <SelectValue>{(value: string) => t(value as InvoiceStatus)}</SelectValue>
       </SelectTrigger>
       <SelectContent>

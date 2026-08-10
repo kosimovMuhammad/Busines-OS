@@ -9,10 +9,10 @@ import type { Communication, Contact } from "@/types/api";
 import type { CommChannel } from "@/types/enums";
 
 const CHANNEL_ICON: Record<CommChannel, typeof Mail> = {
-  WHATSAPP: MessageCircle,
-  EMAIL: Mail,
-  MANUAL_NOTE: StickyNote,
-  PHONE_CALL: Phone,
+  Whatsapp: MessageCircle,
+  Email: Mail,
+  ManualNote: StickyNote,
+  PhoneCall: Phone,
 };
 
 export function CommunicationsFeed({

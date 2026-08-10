@@ -22,16 +22,17 @@ const rawBaseQuery = fetchBaseQuery({
 });
 
 // Endpoints that are part of the unauthenticated auth flow itself. A 401/400/422 from
-// one of these means "wrong password" / "wrong code" / "expired invite link" - it should
+// one of these means "wrong password" / "wrong or expired code" - it should
 // surface as a normal inline error, never trigger a refresh attempt or a redirect (there is
 // no session to refresh, and redirecting off e.g. the verify-email screen on a wrong code
 // is exactly the "flash and reload instead of an inline error" bug this guards against).
 const AUTH_FLOW_ENDPOINTS = new Set([
   "login",
+  "loginWithCode",
+  "resendInviteCode",
   "register",
   "verifyEmail",
   "resendVerification",
-  "acceptInvite",
   "refresh",
 ]);
 

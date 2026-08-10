@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Square } from "lucide-react";
 import { useGetActiveTimeEntryQuery, useStopTimerMutation } from "@/lib/api/tasks.api";
+import { useCanMutate } from "@/lib/hooks/usePermissions";
 
 function formatElapsed(startedAt: string, now: number) {
   const totalSec = Math.max(0, Math.floor((now - new Date(startedAt).getTime()) / 1000));
@@ -19,6 +20,7 @@ export function ActiveTimerWidget() {
     pollingInterval: 30000,
   });
   const [stopTimer, { isLoading }] = useStopTimerMutation();
+  const canMutate = useCanMutate();
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export function ActiveTimerWidget() {
     <div className="flex items-center gap-2 rounded-full border border-border-subtle bg-surface py-1.5 pr-1.5 pl-3 text-sm">
       <span className="size-1.5 rounded-full bg-danger" />
       <span className="max-w-32 truncate text-text-secondary">
-        {activeEntry.task.title}
+        {activeEntry.taskTitle}
       </span>
       <span className="font-mono text-xs text-text-primary tabular-nums">
         {formatElapsed(activeEntry.startedAt, now)}
@@ -41,7 +43,7 @@ export function ActiveTimerWidget() {
       <button
         type="button"
         onClick={() => stopTimer(activeEntry.taskId)}
-        disabled={isLoading}
+        disabled={isLoading || !canMutate}
         className="flex size-6 items-center justify-center rounded-full bg-danger/10 text-danger transition-colors hover:bg-danger/20 disabled:opacity-50"
         aria-label={t("stopTimer")}
       >

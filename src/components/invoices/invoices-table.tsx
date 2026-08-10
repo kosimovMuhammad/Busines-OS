@@ -14,6 +14,8 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
 import { InvoiceStatusBadge } from "./invoice-status-badge";
+import { PermissionGuard } from "@/components/guards/permission-guard";
+import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Contact, Invoice } from "@/types/api";
 
 export function InvoicesTable({
@@ -86,15 +88,17 @@ export function InvoicesTable({
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center justify-end gap-1">
-                    {invoice.status === "DRAFT" && (
-                      <button
-                        type="button"
-                        onClick={() => onDelete(invoice)}
-                        className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-                        aria-label={t("delete")}
-                      >
-                        <Trash2 className="size-3.5" />
-                      </button>
+                    {invoice.status === "Draft" && (
+                      <PermissionGuard roles={INVOICE_MUTATION_ALLOWED_ROLES}>
+                        <button
+                          type="button"
+                          onClick={() => onDelete(invoice)}
+                          className="flex size-7 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
+                          aria-label={t("delete")}
+                        >
+                          <Trash2 className="size-3.5" />
+                        </button>
+                      </PermissionGuard>
                     )}
                   </div>
                 </TableCell>
