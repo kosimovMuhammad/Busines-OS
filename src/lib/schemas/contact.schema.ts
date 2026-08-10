@@ -23,13 +23,9 @@ export function createContactSchema(m: Messages) {
     lastName: z.string().optional(),
     email: z.union([z.email(m.invalidEmail), z.literal("")]).optional(),
     phone: z
-      .union([
-        z.preprocess(
-          (v) => (typeof v === "string" ? normalizePhoneInput(v) : v),
-          z.string().regex(E164_REGEX, m.invalidPhone)
-        ),
-        z.literal(""),
-      ])
+      .string()
+      .transform((v) => normalizePhoneInput(v))
+      .refine((v) => v === "" || E164_REGEX.test(v), { message: m.invalidPhone })
       .optional(),
     position: z.string().optional(),
     companyName: z.string().optional(),

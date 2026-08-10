@@ -84,6 +84,7 @@
       "orDivider": "or",
       "sso": "SSO",
       "biometric": "Biometric",
+      "comingSoon": "Coming soon",
       "noAccount": "Don't have an account?",
       "signUp": "Sign up",
       "invalidCredentials": "Incorrect email or password.",

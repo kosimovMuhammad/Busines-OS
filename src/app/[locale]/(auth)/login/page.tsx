@@ -201,14 +201,18 @@ function PasswordLoginForm() {
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
-          className="flex items-center justify-center gap-2 rounded-lg border border-border-subtle bg-surface-elevated py-2.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+          disabled
+          title={t("comingSoon")}
+          className="flex cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-border-subtle bg-surface-elevated py-2.5 text-sm text-text-secondary/60 transition-colors"
         >
           <KeyRound className="size-4" />
           {t("sso")}
         </button>
         <button
           type="button"
-          className="flex items-center justify-center gap-2 rounded-lg border border-border-subtle bg-surface-elevated py-2.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+          disabled
+          title={t("comingSoon")}
+          className="flex cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-border-subtle bg-surface-elevated py-2.5 text-sm text-text-secondary/60 transition-colors"
         >
           <Fingerprint className="size-4" />
           {t("biometric")}
