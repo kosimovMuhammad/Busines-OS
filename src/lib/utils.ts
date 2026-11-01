@@ -7,11 +7,19 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatCurrency(value: number, currency: string, locale: string) {
   const safeValue = Number.isFinite(value) ? value : 0
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    maximumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
-  }).format(safeValue)
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
+    }).format(safeValue)
+  } catch (err) {
+    // Fallback for invalid currency codes (e.g. "$")
+    const formattedNum = new Intl.NumberFormat(locale, {
+      maximumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
+    }).format(safeValue)
+    return `${formattedNum} ${currency || ""}`.trim()
+  }
 }
 
 export function formatCompactNumber(value: number, locale: string) {

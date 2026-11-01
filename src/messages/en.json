@@ -6,6 +6,7 @@
       "conflict": "That already exists.",
       "forbidden": "You don't have permission to do that.",
       "aiUnavailable": "AI features are being activated. Try again later.",
+      "aiPlanRequired": "AI features require a Pro plan.",
       "integrationUnavailable": "This integration isn't set up yet. Try again later."
     },
     "logout": "Log out",
@@ -39,6 +40,8 @@
     "tasks": "Tasks",
     "communications": "Communications",
     "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
     "email": "Email",
     "invoicing": "Invoicing",
     "contracts": "Contracts",
@@ -62,7 +65,9 @@
     "notifications": {
       "title": "Notifications",
       "markAllRead": "Mark all read",
-      "empty": "You're all caught up."
+      "empty": "You're all caught up.",
+      "viewAll": "View all",
+      "delete": "Delete notification"
     },
     "search": {
       "placeholder": "Search contacts, deals, tasks...",
@@ -75,11 +80,10 @@
     "login": {
       "title": "Welcome back",
       "subtitle": "Please enter your credentials to access your workspace.",
-      "passwordTab": "Password",
-      "codeTab": "Invite code",
       "emailLabel": "Email address",
       "emailPlaceholder": "name@company.com",
-      "passwordLabel": "Password",
+      "secretLabel": "Password or code",
+      "secretPlaceholder": "Password or 6-digit code",
       "forgotPassword": "Forgot password?",
       "remember": "Remember this workstation for 30 days",
       "submit": "Sign in",
@@ -89,11 +93,8 @@
       "comingSoon": "Coming soon",
       "noAccount": "Don't have an account?",
       "signUp": "Sign up",
-      "invalidCredentials": "Incorrect email or password.",
-      "codeLabel": "Invite code",
-      "codePlaceholder": "000000",
-      "codeSubmit": "Verify & sign in",
-      "invalidCode": "Invalid or expired code. Please try again.",
+      "invalidCredentials": "Incorrect email, password, or code.",
+      "sendCode": "Send me a login code instead",
       "resendCode": "Resend code",
       "resendCodeCooldown": "Resend code in {seconds}s",
       "resendSuccess": "If an invite exists for that email, a new code was sent."
@@ -171,7 +172,8 @@
       },
       "forecast": {
         "title": "30-Day Forecast",
-        "confidence": "Confidence"
+        "confidence": "Confidence",
+        "summary": "Weighted by open deal stages and invoices due within 30 days"
       }
     },
     "contacts": {
@@ -224,6 +226,9 @@
       "searchPlaceholder": "Search deals or contacts...",
       "allOwners": "All Owners",
       "createDeal": "New Deal",
+      "newItem": "New deal",
+      "collapseColumn": "Collapse column",
+      "expandColumn": "Expand column",
       "form": {
         "createTitle": "New Deal",
         "editTitle": "Edit Deal",
@@ -292,12 +297,31 @@
     "communications": {
       "title": "Communications",
       "subtitle": "Unified feed across every channel",
-      "allContacts": "All Contacts",
-      "allChannels": "All Channels",
-      "addNote": "Add Note",
+      "allChannels": "All",
+      "addNote": "Add note",
+      "backToDashboard": "Back to dashboard",
       "empty": "No messages yet.",
       "unknownContact": "No contact",
       "summarize": "Summarize",
+      "searchPlaceholder": "Search contacts...",
+      "noResults": "No contacts match your search.",
+      "noConversations": "No conversations yet.",
+      "selectContactHint": "Select a conversation to see the full thread.",
+      "timeline": "Timeline",
+      "newDeal": "New deal",
+      "owner": "Owner",
+      "company": "Company",
+      "phone": "Phone",
+      "email": "Email",
+      "channels": "Channels",
+      "linkedRecords": "Linked records",
+      "noLinkedDeals": "No deals linked.",
+      "noLinkedInvoices": "No invoices linked.",
+      "noLinkedMeetings": "No meetings linked.",
+      "composerPlaceholder": "Write an internal note...",
+      "composerHint": "Internal only — not visible to the contact.",
+      "today": "Today",
+      "yesterday": "Yesterday",
       "noteSheet": {
         "title": "New Note",
         "contact": "Contact",
@@ -322,7 +346,14 @@
       },
       "accountRow": {
         "phoneNumberId": "Phone number ID",
-        "wabaId": "WABA ID"
+        "wabaId": "WABA ID",
+        "unnamed": "Unnamed account",
+        "active": "Active",
+        "disconnected": "Disconnected",
+        "connectedOn": "Connected on",
+        "actions": "Account actions",
+        "editName": "Edit name",
+        "disconnectAction": "Disconnect"
       },
       "connectSheet": {
         "title": "Connect WhatsApp Account",
@@ -331,13 +362,126 @@
         "wabaId": "WhatsApp Business Account ID",
         "accessToken": "Access token",
         "verifiedName": "Verified name (optional)",
-        "save": "Connect"
+        "save": "Connect",
+        "success": "WhatsApp account connected."
+      },
+      "editSheet": {
+        "title": "Edit account name",
+        "verifiedNameLabel": "Verified name",
+        "save": "Save",
+        "success": "Account name updated."
+      },
+      "disconnectDialog": {
+        "title": "Disconnect WhatsApp account?",
+        "description": "Are you sure you want to disconnect \"{name}\"? Outgoing messages will stop working.",
+        "cancel": "Cancel",
+        "confirm": "Disconnect",
+        "success": "WhatsApp account disconnected."
       },
       "composer": {
         "placeholder": "Type a message...",
         "send": "Send message",
         "badRequest": "This contact needs a phone number and a connected WhatsApp account before you can send messages.",
         "unavailable": "WhatsApp sending isn't available yet for this number. Check back soon."
+      }
+    },
+    "telegram": {
+      "title": "Telegram Management",
+      "subtitle": "Centralized control for your Telegram bot messaging.",
+      "tabs": { "messages": "Messages", "accounts": "Accounts", "chatLinks": "Chat Links" },
+      "selectContact": "Select a contact",
+      "selectContactHint": "Select a contact to view and send Telegram messages.",
+      "connectAccount": "Connect Bot",
+      "accountsEmpty": "No Telegram bots connected yet.",
+      "status": {
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "hint": "Connect a Telegram bot to send and receive messages."
+      },
+      "accountRow": {
+        "botUsername": "Bot username",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "connectSheet": {
+        "title": "Connect Telegram Bot",
+        "description": "Get a bot token from @BotFather on Telegram and paste it below.",
+        "botToken": "Bot token",
+        "save": "Connect",
+        "success": "Telegram bot connected."
+      },
+      "composer": {
+        "placeholder": "Type a message...",
+        "send": "Send message",
+        "badRequest": "This contact needs a linked Telegram chat before you can send messages.",
+        "unavailable": "Telegram sending isn't available yet for this chat. Check back soon."
+      },
+      "chatLinks": {
+        "unlinkedTab": "Unlinked",
+        "allTab": "All",
+        "linkButton": "Link to Contact",
+        "selectContactPlaceholder": "Select a contact",
+        "unknownName": "Unknown",
+        "suggestedMatch": "Suggested: possibly matches {name}",
+        "empty": "No Telegram chats found.",
+        "linkMethodBadge": {
+          "AutoMatchedByPhone": "Auto-matched",
+          "ManuallyLinked": "Manually linked",
+          "Unlinked": "Unlinked"
+        }
+      }
+    },
+    "instagram": {
+      "title": "Instagram Management",
+      "subtitle": "Centralized control for your Instagram direct messaging.",
+      "tabs": { "messages": "Messages", "accounts": "Accounts", "conversationLinks": "Conversation Links" },
+      "selectContact": "Select a contact",
+      "selectContactHint": "Select a contact to view and send Instagram messages.",
+      "connectAccount": "Connect Instagram Account",
+      "accountsEmpty": "No Instagram accounts connected yet.",
+      "status": {
+        "connected": "Connected",
+        "notConnected": "Not connected",
+        "hint": "Connect an Instagram account to send and receive direct messages."
+      },
+      "accountRow": {
+        "username": "Username",
+        "active": "Active",
+        "inactive": "Inactive",
+        "reconnectRequired": "Reconnect required",
+        "reconnect": "Reconnect",
+        "tokenExpires": "Token expires"
+      },
+      "connectCallback": {
+        "success": "Instagram account connected.",
+        "error": "Couldn't connect your Instagram account. Please try again.",
+        "errorWithReason": "Couldn't connect your Instagram account: {reason}"
+      },
+      "legacyConnect": {
+        "toggle": "Advanced: connect manually",
+        "description": "Paste an existing Instagram access token instead of using the connect flow above.",
+        "openForm": "Open manual connect form"
+      },
+      "connectSheet": {
+        "title": "Connect Instagram Account",
+        "description": "Enter your Instagram access token.",
+        "accessToken": "Access token",
+        "save": "Connect",
+        "success": "Instagram account connected."
+      },
+      "composer": {
+        "placeholder": "Type a message...",
+        "send": "Send message",
+        "badRequest": "This contact needs a linked Instagram conversation before you can send messages.",
+        "unavailable": "Instagram sending isn't available yet for this conversation. Check back soon."
+      },
+      "conversationLinks": {
+        "unlinkedTab": "Unlinked",
+        "allTab": "All",
+        "linkButton": "Link to Contact",
+        "selectContactPlaceholder": "Select a contact",
+        "unknownName": "Unknown",
+        "empty": "No Instagram conversations found."
       }
     },
     "email": {
@@ -414,6 +558,11 @@
         "placeholder": "Type a message...",
         "send": "Send",
         "messageFailed": "AI features are being activated. Try again later."
+      },
+      "upgradeRequired": {
+        "title": "AI features require the Pro plan",
+        "description": "Ask questions, draft emails, generate quotations, and forecast revenue with AI. Upgrade your plan to unlock these tools.",
+        "cta": "Upgrade to Pro"
       }
     },
     "invoices": {
@@ -1194,7 +1343,7 @@
         "rbacRoleSummary": "{count} permissions included",
         "invite": "Send Invite",
         "inviteSentTitle": "An invite code was sent to {email}",
-        "inviteSentHint": "They'll enter it on the login screen, under \"Invite code\", to join your workspace.",
+        "inviteSentHint": "They'll enter it in the password field on the login screen to join your workspace.",
         "done": "Done"
       }
     },
@@ -1416,7 +1565,14 @@
       "subtitle": "Connected services status",
       "connected": "Connected",
       "notConnected": "Not connected",
-      "comingSoon": "Coming soon"
+      "comingSoon": "Coming soon",
+      "tabs": {
+        "overview": "Overview",
+        "whatsapp": "WhatsApp",
+        "telegram": "Telegram",
+        "instagram": "Instagram",
+        "email": "Email"
+      }
     },
     "settingsAiUsage": {
       "title": "AI Usage",
@@ -1452,6 +1608,11 @@
       "renewsOn": "Renews on",
       "trialEndsOn": "Trial ends on",
       "canceledBanner": "This subscription is scheduled to cancel at the end of the current period.",
+      "noActivePlan": {
+        "title": "No active plan",
+        "description": "Your subscription has been canceled and paid features are no longer active. Choose a plan to restore access.",
+        "cta": "Choose a plan"
+      },
       "featureKey": {
         "whatsapp_integration": "WhatsApp integration",
         "email_integration": "Email integration",
@@ -1569,6 +1730,8 @@
     },
     "commChannel": {
       "Whatsapp": "WhatsApp",
+      "Telegram": "Telegram",
+      "Instagram": "Instagram",
       "Email": "Email",
       "ManualNote": "Note",
       "PhoneCall": "Phone Call"
@@ -1654,7 +1817,8 @@
       "PaymentReceived": "Payment received",
       "InviteAccepted": "Invite accepted",
       "RoleChanged": "Role changed",
-      "DealStageChanged": "Deal stage changed"
+      "DealStageChanged": "Deal stage changed",
+      "NewMessage": "New message"
     },
     "notificationChannel": {
       "InApp": "In-App",

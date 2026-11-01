@@ -29,7 +29,7 @@ export type TaskStatus = "Todo" | "InProgress" | "Completed" | "Archived";
 
 export type TaskPriority = "Low" | "Medium" | "High" | "Urgent";
 
-export type CommChannel = "Whatsapp" | "Email" | "ManualNote" | "PhoneCall";
+export type CommChannel = "Whatsapp" | "Telegram" | "Instagram" | "Email" | "ManualNote" | "PhoneCall";
 
 export type InvoiceStatus =
   | "Draft"
@@ -54,7 +54,8 @@ export type NotificationType =
   | "PaymentReceived"
   | "InviteAccepted"
   | "RoleChanged"
-  | "DealStageChanged";
+  | "DealStageChanged"
+  | "NewMessage";
 
 export type NotificationChannel = "InApp" | "Email" | "WhatsApp";
 

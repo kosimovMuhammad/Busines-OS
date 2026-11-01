@@ -35,7 +35,7 @@ export const companyApi = baseApi.injectEndpoints({
     }),
     getFeatures: builder.query<CompanyFeatures, void>({
       query: () => "/company/features",
-      providesTags: ["Company"],
+      providesTags: ["CompanyFeatures"],
     }),
     getCompanyInvoices: builder.query<Paginated<CompanyInvoice>, CompanyInvoicesQueryArgs | void>({
       query: (args) => ({ url: "/company/invoices", params: args ?? undefined }),

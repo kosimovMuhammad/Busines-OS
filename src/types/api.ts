@@ -853,6 +853,7 @@ export type WhatsappAccount = {
   phoneNumberId: string;
   wabaId: string;
   verifiedName: string | null;
+  isActive: boolean;
   createdAt: string;
 };
 
@@ -861,6 +862,11 @@ export type ConnectWhatsappAccountRequest = {
   wabaId: string;
   accessToken: string;
   verifiedName?: string;
+};
+
+export type UpdateWhatsappAccountRequest = {
+  verifiedName?: string;
+  isActive?: boolean;
 };
 
 export type SendWhatsappRequest = {
@@ -882,6 +888,75 @@ export type SendPlatformWhatsAppTemplateRequest = {
 export type WhatsAppSendResult = {
   success: boolean;
   messageId: string | null;
+};
+
+// ---- Telegram ----
+
+export type TelegramAccount = {
+  id: string;
+  botUsername: string;
+  isActive: boolean;
+  createdAt: string;
+};
+
+export type TelegramChatLink = {
+  id: string;
+  chatId: string;
+  telegramUsername: string | null;
+  telegramFirstName: string | null;
+  telegramLastName: string | null;
+  phoneNumber: string | null;
+  linkMethod: "AutoMatchedByPhone" | "ManuallyLinked" | "Unlinked";
+  contactId: string | null;
+  linkedAt: string | null;
+  createdAt: string;
+};
+
+export type ConnectTelegramAccountRequest = {
+  botToken: string;
+};
+
+export type SendTelegramRequest = {
+  contactId: string;
+  message: string;
+};
+
+export type LinkTelegramChatToContactRequest = {
+  contactId: string;
+};
+
+// ---- Instagram ----
+
+export type InstagramAccount = {
+  id: string;
+  username: string;
+  name?: string | null;
+  isActive: boolean;
+  tokenExpiresAt?: string | null;
+  createdAt: string;
+};
+
+export type ConnectInstagramAccountRequest = {
+  accessToken: string;
+};
+
+export type InstagramConnectResponse = { url: string };
+
+export type SendInstagramRequest = {
+  contactId: string;
+  message: string;
+};
+
+export type InstagramConversationLink = {
+  id: string;
+  instagramUsername: string | null;
+  contactId: string | null;
+  linkedAt: string | null;
+  createdAt: string;
+};
+
+export type LinkInstagramConversationToContactRequest = {
+  contactId: string;
 };
 
 // ---- Email ----
@@ -1228,11 +1303,11 @@ export type SalesAnalytics = {
   winRate: number;
 };
 
-export type MonthlyValue = { month: string; value: number };
+export type MonthlyValue = { period: string; revenue: number };
 
 export type RevenueAnalytics = {
   totalWonValue: number;
-  byMonth: MonthlyValue[];
+  revenueByMonth: MonthlyValue[];
 };
 
 export type TaskAnalytics = {
@@ -1256,21 +1331,18 @@ export type ActivityFeedItem = {
 
 export type FinanceAnalytics = {
   totalOutstanding: number;
-  totalPaid: number;
-  overdueCount: number;
-  overdueAmount: number;
+  paidThisMonth: number;
+  overdue: number;
   revenueByMonth: MonthlyValue[];
 };
 
+// Note: the backend returns only these three fields for /dashboard/forecast -
+// no per-deal/invoice breakdown is available, and `summary` is a raw,
+// untranslated English sentence not meant for direct display (see
+// ForecastCard, which builds its own localized caption instead).
 export type ForecastAnalytics = {
-  estimatedRevenue: number;
+  weightedForecast30Days: number;
   confidencePercentage: number;
-  breakdown: {
-    weightedDealValue: number;
-    weightedInvoiceValue: number;
-    openDealsCount: number;
-    dueSoonInvoicesCount: number;
-  };
   summary: string;
 };
 
@@ -1435,6 +1507,15 @@ export type CompanyFeatures = Record<string, boolean>;
 
 export type RequestUpgradeRequest = {
   planId: string | null;
+  billingCycle: BillingCycle;
+};
+
+// POST /company/subscription/change-plan - unlike requestUpgrade (which
+// only ever comes back "pending" until a payment provider is wired up),
+// this applies the new plan immediately and is reflected on the very next
+// GET /company/features call.
+export type ChangePlanRequest = {
+  planId: string;
   billingCycle: BillingCycle;
 };
 

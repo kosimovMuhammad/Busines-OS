@@ -6,6 +6,7 @@
       "conflict": "Это уже существует.",
       "forbidden": "У вас нет прав для этого действия.",
       "aiUnavailable": "Функции AI подключаются. Попробуйте позже.",
+      "aiPlanRequired": "Функции AI доступны только на тарифе Pro.",
       "integrationUnavailable": "Эта интеграция ещё не настроена. Попробуйте позже."
     },
     "logout": "Выйти",
@@ -39,6 +40,8 @@
     "tasks": "Задачи",
     "communications": "Коммуникации",
     "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
     "email": "Почта",
     "invoicing": "Счета",
     "contracts": "Договоры",
@@ -62,7 +65,9 @@
     "notifications": {
       "title": "Уведомления",
       "markAllRead": "Отметить всё как прочитанное",
-      "empty": "Новых уведомлений нет."
+      "empty": "Новых уведомлений нет.",
+      "viewAll": "Показать все",
+      "delete": "Удалить уведомление"
     },
     "search": {
       "placeholder": "Поиск контактов, сделок, задач...",
@@ -75,11 +80,10 @@
     "login": {
       "title": "С возвращением",
       "subtitle": "Введите свои учётные данные для доступа к рабочему пространству.",
-      "passwordTab": "Пароль",
-      "codeTab": "Код-приглашение",
       "emailLabel": "Электронная почта",
       "emailPlaceholder": "name@company.com",
-      "passwordLabel": "Пароль",
+      "secretLabel": "Пароль или код",
+      "secretPlaceholder": "Пароль или 6-значный код",
       "forgotPassword": "Забыли пароль?",
       "remember": "Запомнить это устройство на 30 дней",
       "submit": "Войти",
@@ -89,11 +93,8 @@
       "comingSoon": "Скоро",
       "noAccount": "Нет аккаунта?",
       "signUp": "Зарегистрироваться",
-      "invalidCredentials": "Неверный email или пароль.",
-      "codeLabel": "Код-приглашение",
-      "codePlaceholder": "000000",
-      "codeSubmit": "Подтвердить и войти",
-      "invalidCode": "Неверный или истёкший код. Попробуйте снова.",
+      "invalidCredentials": "Неверный email, пароль или код.",
+      "sendCode": "Отправить код для входа",
       "resendCode": "Отправить код повторно",
       "resendCodeCooldown": "Повторная отправка через {seconds} с",
       "resendSuccess": "Если приглашение для этого email существует, новый код отправлен."
@@ -171,7 +172,8 @@
       },
       "forecast": {
         "title": "Прогноз на 30 дней",
-        "confidence": "Уверенность"
+        "confidence": "Уверенность",
+        "summary": "Рассчитано с учётом стадий открытых сделок и счетов к оплате в течение 30 дней"
       }
     },
     "contacts": {
@@ -224,6 +226,9 @@
       "searchPlaceholder": "Поиск сделок или контактов...",
       "allOwners": "Все владельцы",
       "createDeal": "Новая сделка",
+      "newItem": "Новая сделка",
+      "collapseColumn": "Свернуть колонку",
+      "expandColumn": "Развернуть колонку",
       "form": {
         "createTitle": "Новая сделка",
         "editTitle": "Редактировать сделку",
@@ -292,12 +297,31 @@
     "communications": {
       "title": "Коммуникации",
       "subtitle": "Единая лента по всем каналам",
-      "allContacts": "Все контакты",
-      "allChannels": "Все каналы",
+      "allChannels": "Все",
       "addNote": "Добавить заметку",
+      "backToDashboard": "Назад на панель",
       "empty": "Пока нет сообщений.",
       "unknownContact": "Без контакта",
       "summarize": "Резюмировать",
+      "searchPlaceholder": "Поиск контактов...",
+      "noResults": "Контакты не найдены.",
+      "noConversations": "Пока нет переписок.",
+      "selectContactHint": "Выберите переписку, чтобы увидеть всю историю.",
+      "timeline": "История",
+      "newDeal": "Новая сделка",
+      "owner": "Ответственный",
+      "company": "Компания",
+      "phone": "Телефон",
+      "email": "Email",
+      "channels": "Каналы",
+      "linkedRecords": "Связанные записи",
+      "noLinkedDeals": "Сделки не привязаны.",
+      "noLinkedInvoices": "Счета не привязаны.",
+      "noLinkedMeetings": "Встречи не привязаны.",
+      "composerPlaceholder": "Введите внутреннюю заметку...",
+      "composerHint": "Только для внутреннего пользования — контакту не видно.",
+      "today": "Сегодня",
+      "yesterday": "Вчера",
       "noteSheet": {
         "title": "Новая заметка",
         "contact": "Контакт",
@@ -322,7 +346,14 @@
       },
       "accountRow": {
         "phoneNumberId": "ID номера телефона",
-        "wabaId": "ID WABA"
+        "wabaId": "ID WABA",
+        "unnamed": "Аккаунт без имени",
+        "active": "Активен",
+        "disconnected": "Отключён",
+        "connectedOn": "Подключён",
+        "actions": "Действия с аккаунтом",
+        "editName": "Изменить имя",
+        "disconnectAction": "Отключить"
       },
       "connectSheet": {
         "title": "Подключить аккаунт WhatsApp",
@@ -331,13 +362,126 @@
         "wabaId": "ID WhatsApp Business Account",
         "accessToken": "Токен доступа",
         "verifiedName": "Подтверждённое имя (необязательно)",
-        "save": "Подключить"
+        "save": "Подключить",
+        "success": "Аккаунт WhatsApp подключён."
+      },
+      "editSheet": {
+        "title": "Изменить имя аккаунта",
+        "verifiedNameLabel": "Подтверждённое имя",
+        "save": "Сохранить",
+        "success": "Имя аккаунта обновлено."
+      },
+      "disconnectDialog": {
+        "title": "Отключить аккаунт WhatsApp?",
+        "description": "Вы уверены, что хотите отключить «{name}»? Исходящие сообщения перестанут отправляться.",
+        "cancel": "Отмена",
+        "confirm": "Отключить",
+        "success": "Аккаунт WhatsApp отключён."
       },
       "composer": {
         "placeholder": "Введите сообщение...",
         "send": "Отправить сообщение",
         "badRequest": "У этого контакта должен быть номер телефона, а у компании — подключённый аккаунт WhatsApp, чтобы отправлять сообщения.",
         "unavailable": "Отправка WhatsApp для этого номера пока недоступна. Попробуйте позже."
+      }
+    },
+    "telegram": {
+      "title": "Управление Telegram",
+      "subtitle": "Централизованное управление сообщениями Telegram-бота.",
+      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты", "chatLinks": "Связи чатов" },
+      "selectContact": "Выберите контакт",
+      "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения Telegram.",
+      "connectAccount": "Подключить бота",
+      "accountsEmpty": "Пока нет подключённых Telegram-ботов.",
+      "status": {
+        "connected": "Подключено",
+        "notConnected": "Не подключено",
+        "hint": "Подключите Telegram-бота, чтобы отправлять и получать сообщения."
+      },
+      "accountRow": {
+        "botUsername": "Имя пользователя бота",
+        "active": "Активен",
+        "inactive": "Неактивен"
+      },
+      "connectSheet": {
+        "title": "Подключить Telegram-бота",
+        "description": "Получите токен бота у @BotFather в Telegram и вставьте его ниже.",
+        "botToken": "Токен бота",
+        "save": "Подключить",
+        "success": "Telegram-бот подключён."
+      },
+      "composer": {
+        "placeholder": "Введите сообщение...",
+        "send": "Отправить сообщение",
+        "badRequest": "У этого контакта должен быть привязанный чат Telegram, чтобы отправлять сообщения.",
+        "unavailable": "Отправка Telegram для этого чата пока недоступна. Попробуйте позже."
+      },
+      "chatLinks": {
+        "unlinkedTab": "Не привязаны",
+        "allTab": "Все",
+        "linkButton": "Привязать к контакту",
+        "selectContactPlaceholder": "Выберите контакт",
+        "unknownName": "Неизвестно",
+        "suggestedMatch": "Предположительно совпадает с {name}",
+        "empty": "Чаты Telegram не найдены.",
+        "linkMethodBadge": {
+          "AutoMatchedByPhone": "Автоматически сопоставлено",
+          "ManuallyLinked": "Привязано вручную",
+          "Unlinked": "Не привязано"
+        }
+      }
+    },
+    "instagram": {
+      "title": "Управление Instagram",
+      "subtitle": "Централизованное управление личными сообщениями Instagram.",
+      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты", "conversationLinks": "Связи переписок" },
+      "selectContact": "Выберите контакт",
+      "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения Instagram.",
+      "connectAccount": "Подключить аккаунт Instagram",
+      "accountsEmpty": "Пока нет подключённых аккаунтов Instagram.",
+      "status": {
+        "connected": "Подключено",
+        "notConnected": "Не подключено",
+        "hint": "Подключите аккаунт Instagram, чтобы отправлять и получать личные сообщения."
+      },
+      "accountRow": {
+        "username": "Имя пользователя",
+        "active": "Активен",
+        "inactive": "Неактивен",
+        "reconnectRequired": "Требуется переподключение",
+        "reconnect": "Переподключить",
+        "tokenExpires": "Токен истекает"
+      },
+      "connectCallback": {
+        "success": "Аккаунт Instagram подключён.",
+        "error": "Не удалось подключить аккаунт Instagram. Попробуйте ещё раз.",
+        "errorWithReason": "Не удалось подключить аккаунт Instagram: {reason}"
+      },
+      "legacyConnect": {
+        "toggle": "Дополнительно: подключить вручную",
+        "description": "Вставьте существующий токен доступа Instagram вместо использования подключения выше.",
+        "openForm": "Открыть форму ручного подключения"
+      },
+      "connectSheet": {
+        "title": "Подключить аккаунт Instagram",
+        "description": "Введите токен доступа Instagram.",
+        "accessToken": "Токен доступа",
+        "save": "Подключить",
+        "success": "Аккаунт Instagram подключён."
+      },
+      "composer": {
+        "placeholder": "Введите сообщение...",
+        "send": "Отправить сообщение",
+        "badRequest": "У этого контакта должна быть привязанная переписка Instagram, чтобы отправлять сообщения.",
+        "unavailable": "Отправка Instagram для этой переписки пока недоступна. Попробуйте позже."
+      },
+      "conversationLinks": {
+        "unlinkedTab": "Не привязаны",
+        "allTab": "Все",
+        "linkButton": "Привязать к контакту",
+        "selectContactPlaceholder": "Выберите контакт",
+        "unknownName": "Неизвестно",
+        "empty": "Переписки Instagram не найдены."
       }
     },
     "email": {
@@ -414,6 +558,11 @@
         "placeholder": "Введите сообщение...",
         "send": "Отправить",
         "messageFailed": "Функции AI подключаются. Попробуйте позже."
+      },
+      "upgradeRequired": {
+        "title": "AI-функции доступны на тарифе Pro",
+        "description": "Задавайте вопросы, составляйте письма, формируйте коммерческие предложения и прогнозируйте выручку с помощью AI. Обновите тариф, чтобы открыть эти инструменты.",
+        "cta": "Перейти на Pro"
       }
     },
     "invoices": {
@@ -1194,7 +1343,7 @@
         "rbacRoleSummary": "Включено прав: {count}",
         "invite": "Отправить приглашение",
         "inviteSentTitle": "Код-приглашение отправлен на {email}",
-        "inviteSentHint": "Пользователь введёт его на экране входа, во вкладке «Код-приглашение», чтобы присоединиться к вашему рабочему пространству.",
+        "inviteSentHint": "Пользователь введёт его в поле пароля на экране входа, чтобы присоединиться к вашему рабочему пространству.",
         "done": "Готово"
       }
     },
@@ -1416,7 +1565,14 @@
       "subtitle": "Статус подключённых сервисов",
       "connected": "Подключено",
       "notConnected": "Не подключено",
-      "comingSoon": "Скоро"
+      "comingSoon": "Скоро",
+      "tabs": {
+        "overview": "Обзор",
+        "whatsapp": "WhatsApp",
+        "telegram": "Telegram",
+        "instagram": "Instagram",
+        "email": "Email"
+      }
     },
     "settingsAiUsage": {
       "title": "Использование AI",
@@ -1452,6 +1608,11 @@
       "renewsOn": "Продление",
       "trialEndsOn": "Пробный период до",
       "canceledBanner": "Эта подписка будет отменена в конце текущего периода.",
+      "noActivePlan": {
+        "title": "Нет активного тарифа",
+        "description": "Ваша подписка отменена, платные функции больше не активны. Выберите тариф, чтобы восстановить доступ.",
+        "cta": "Выбрать тариф"
+      },
       "featureKey": {
         "whatsapp_integration": "Интеграция WhatsApp",
         "email_integration": "Интеграция Email",
@@ -1569,6 +1730,8 @@
     },
     "commChannel": {
       "Whatsapp": "WhatsApp",
+      "Telegram": "Telegram",
+      "Instagram": "Instagram",
       "Email": "Email",
       "ManualNote": "Заметка",
       "PhoneCall": "Звонок"
@@ -1654,7 +1817,8 @@
       "PaymentReceived": "Платёж получен",
       "InviteAccepted": "Приглашение принято",
       "RoleChanged": "Роль изменена",
-      "DealStageChanged": "Стадия сделки изменена"
+      "DealStageChanged": "Стадия сделки изменена",
+      "NewMessage": "Новое сообщение"
     },
     "notificationChannel": {
       "InApp": "В приложении",

@@ -3,6 +3,7 @@ type ErrorMessages = {
   conflict: string;
   forbidden: string;
   aiUnavailable: string;
+  aiPlanRequired: string;
   integrationUnavailable: string;
 };
 
@@ -11,6 +12,7 @@ let current: ErrorMessages = {
   conflict: "That already exists.",
   forbidden: "You don't have permission to do that.",
   aiUnavailable: "AI features are being activated.",
+  aiPlanRequired: "AI features require a Pro plan.",
   integrationUnavailable: "This integration isn't set up yet. Try again later.",
 };
 
@@ -26,6 +28,10 @@ export function messageForStatus(status: number | string | undefined): string {
 
 export function aiUnavailableMessage(): string {
   return current.aiUnavailable;
+}
+
+export function aiPlanRequiredMessage(): string {
+  return current.aiPlanRequired;
 }
 
 export function integrationUnavailableMessage(): string {

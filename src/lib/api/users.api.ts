@@ -23,6 +23,18 @@ export const usersApi = baseApi.injectEndpoints({
       query: () => "/users/me",
       providesTags: ["Auth"],
     }),
+    updateMe: builder.mutation<User, UpdateUserRequest>({
+      query: (body) => ({ url: "/users/me", method: "PATCH", body }),
+      invalidatesTags: ["Auth"],
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setAuthUser(data));
+        } catch {
+          // errorToastMiddleware / component-level catch already surface this
+        }
+      },
+    }),
     setPassword: builder.mutation<void, SetPasswordRequest>({
       query: (body) => ({ url: "/users/me/set-password", method: "POST", body }),
       invalidatesTags: ["Auth"],
@@ -131,6 +143,7 @@ export const usersApi = baseApi.injectEndpoints({
 
 export const {
   useGetMeQuery,
+  useUpdateMeMutation,
   useSetPasswordMutation,
   useChangePasswordMutation,
   usePresignProfileMediaMutation,

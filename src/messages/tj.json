@@ -6,6 +6,7 @@
       "conflict": "Ин аллакай вуҷуд дорад.",
       "forbidden": "Шумо барои ин амал иҷозат надоред.",
       "aiUnavailable": "Функсияҳои AI фаъол карда мешаванд. Баъдтар кӯшиш кунед.",
+      "aiPlanRequired": "Функсияҳои AI танҳо дар нақшаи Pro дастрасанд.",
       "integrationUnavailable": "Ин интегратсия ҳанӯз танзим нашудааст. Баъдтар кӯшиш кунед."
     },
     "logout": "Баромадан",
@@ -39,6 +40,8 @@
     "tasks": "Вазифаҳо",
     "communications": "Алоқаҳо",
     "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
     "email": "Почта",
     "invoicing": "Ҳисобҳо",
     "contracts": "Шартномаҳо",
@@ -62,7 +65,9 @@
     "notifications": {
       "title": "Огоҳиномаҳо",
       "markAllRead": "Ҳамаро хондашуда қайд кардан",
-      "empty": "Огоҳиномаи нав нест."
+      "empty": "Огоҳиномаи нав нест.",
+      "viewAll": "Ҳамаро дидан",
+      "delete": "Нест кардани огоҳинома"
     },
     "search": {
       "placeholder": "Ҷустуҷӯи тамос, муомила, вазифа...",
@@ -75,11 +80,10 @@
     "login": {
       "title": "Хуш омадед",
       "subtitle": "Лутфан маълумоти воридшавии худро ворид кунед.",
-      "passwordTab": "Рамз",
-      "codeTab": "Рамзи даъват",
       "emailLabel": "Суроғаи почтаи электронӣ",
       "emailPlaceholder": "name@company.com",
-      "passwordLabel": "Рамз",
+      "secretLabel": "Рамз ё код",
+      "secretPlaceholder": "Рамз ё коди 6-рақама",
       "forgotPassword": "Рамзро фаромӯш кардед?",
       "remember": "Ин дастгоҳро 30 рӯз дар хотир нигоҳ доред",
       "submit": "Ворид шудан",
@@ -89,11 +93,8 @@
       "comingSoon": "Ба зудӣ",
       "noAccount": "Ҳисоб надоред?",
       "signUp": "Бақайдгирӣ",
-      "invalidCredentials": "Почтаи электронӣ ё рамз нодуруст аст.",
-      "codeLabel": "Рамзи даъват",
-      "codePlaceholder": "000000",
-      "codeSubmit": "Тасдиқ ва вуруд",
-      "invalidCode": "Рамз нодуруст ё муддаташ гузаштааст. Бори дигар кӯшиш кунед.",
+      "invalidCredentials": "Почта, рамз ё код нодуруст аст.",
+      "sendCode": "Ба ман коди воридшавӣ фиристед",
       "resendCode": "Аз нав фиристодани рамз",
       "resendCodeCooldown": "Аз нав фиристодан баъди {seconds} сония",
       "resendSuccess": "Агар барои ин почтаи электронӣ даъват вуҷуд дошта бошад, рамзи нав фиристода шуд."
@@ -171,7 +172,8 @@
       },
       "forecast": {
         "title": "Пешбинии 30 рӯза",
-        "confidence": "Эътимод"
+        "confidence": "Эътимод",
+        "summary": "Бо назардошти зинаҳои муомилоти кушода ва ҳисобҳое, ки то 30 рӯз мӯҳлаташон мерасад"
       }
     },
     "contacts": {
@@ -224,6 +226,9 @@
       "searchPlaceholder": "Ҷустуҷӯи муомилот ё тамосҳо...",
       "allOwners": "Ҳамаи соҳибон",
       "createDeal": "Муомилоти нав",
+      "newItem": "Муомилоти нав",
+      "collapseColumn": "Пахш кардани сутун",
+      "expandColumn": "Кушодани сутун",
       "form": {
         "createTitle": "Муомилоти нав",
         "editTitle": "Таҳрири муомилот",
@@ -292,12 +297,31 @@
     "communications": {
       "title": "Алоқаҳо",
       "subtitle": "Лентаи ягона аз ҳамаи каналҳо",
-      "allContacts": "Ҳамаи тамосҳо",
-      "allChannels": "Ҳамаи каналҳо",
+      "allChannels": "Ҳама",
       "addNote": "Иловаи ёддошт",
+      "backToDashboard": "Бозгашт ба дашборд",
       "empty": "Ҳанӯз паём нест.",
       "unknownContact": "Бе тамос",
       "summarize": "Хулоса кардан",
+      "searchPlaceholder": "Ҷустуҷӯи тамосҳо...",
+      "noResults": "Тамос ёфт нашуд.",
+      "noConversations": "Ҳанӯз сӯҳбат нест.",
+      "selectContactHint": "Барои дидани таърихи пурраи сӯҳбат, онро интихоб кунед.",
+      "timeline": "Таърих",
+      "newDeal": "Аҳдномаи нав",
+      "owner": "Масъул",
+      "company": "Ширкат",
+      "phone": "Телефон",
+      "email": "Email",
+      "channels": "Каналҳо",
+      "linkedRecords": "Сабтҳои алоқаманд",
+      "noLinkedDeals": "Аҳдномае пайваст нашудааст.",
+      "noLinkedInvoices": "Ҳисобномае пайваст нашудааст.",
+      "noLinkedMeetings": "Вохӯрие пайваст нашудааст.",
+      "composerPlaceholder": "Ёддошти дохилиро нависед...",
+      "composerHint": "Танҳо дохилӣ — ба тамос намоён нест.",
+      "today": "Имрӯз",
+      "yesterday": "Дирӯз",
       "noteSheet": {
         "title": "Ёддошти нав",
         "contact": "Тамос",
@@ -322,7 +346,14 @@
       },
       "accountRow": {
         "phoneNumberId": "ID рақами телефон",
-        "wabaId": "ID WABA"
+        "wabaId": "ID WABA",
+        "unnamed": "Ҳисоби беном",
+        "active": "Фаъол",
+        "disconnected": "Қатъшуда",
+        "connectedOn": "Пайваст шуд",
+        "actions": "Амалҳои ҳисоб",
+        "editName": "Тағйири ном",
+        "disconnectAction": "Қатъ кардан"
       },
       "connectSheet": {
         "title": "Пайваст кардани ҳисоби WhatsApp",
@@ -331,13 +362,126 @@
         "wabaId": "ID WhatsApp Business Account",
         "accessToken": "Токени дастрасӣ",
         "verifiedName": "Номи тасдиқшуда (ихтиёрӣ)",
-        "save": "Пайваст кардан"
+        "save": "Пайваст кардан",
+        "success": "Ҳисоби WhatsApp пайваст шуд."
+      },
+      "editSheet": {
+        "title": "Тағйири номи ҳисоб",
+        "verifiedNameLabel": "Номи тасдиқшуда",
+        "save": "Нигоҳ доштан",
+        "success": "Номи ҳисоб навсозӣ шуд."
+      },
+      "disconnectDialog": {
+        "title": "Ҳисоби WhatsApp қатъ карда шавад?",
+        "description": "Шумо мутмаин ҳастед, ки мехоҳед «{name}»-ро қатъ кунед? Паёмҳои содиротӣ дигар фиристода намешаванд.",
+        "cancel": "Бекор кардан",
+        "confirm": "Қатъ кардан",
+        "success": "Ҳисоби WhatsApp қатъ карда шуд."
       },
       "composer": {
         "placeholder": "Паём нависед...",
         "send": "Фиристодани паём",
         "badRequest": "Барои фиристодани паём ин тамос бояд рақами телефон дошта бошад ва ширкат бояд ҳисоби WhatsApp пайвастшуда дошта бошад.",
         "unavailable": "Фиристодани WhatsApp барои ин рақам ҳанӯз дастрас нест. Баъдтар кӯшиш кунед."
+      }
+    },
+    "telegram": {
+      "title": "Идоракунии Telegram",
+      "subtitle": "Идоракунии марказонидашудаи паёмрасонии бот-и Telegram-и шумо.",
+      "tabs": { "messages": "Паёмҳо", "accounts": "Ҳисобҳо", "chatLinks": "Пайвастҳои чат" },
+      "selectContact": "Тамосро интихоб кунед",
+      "selectContactHint": "Барои дидан ва фиристодани паёмҳои Telegram тамосро интихоб кунед.",
+      "connectAccount": "Пайваст кардани бот",
+      "accountsEmpty": "Ҳанӯз ҳеҷ бот-и Telegram пайваст нашудааст.",
+      "status": {
+        "connected": "Пайваст аст",
+        "notConnected": "Пайваст нашудааст",
+        "hint": "Барои фиристодан ва қабули паёмҳо бот-и Telegram-ро пайваст кунед."
+      },
+      "accountRow": {
+        "botUsername": "Номи корбарии бот",
+        "active": "Фаъол",
+        "inactive": "Ғайрифаъол"
+      },
+      "connectSheet": {
+        "title": "Пайваст кардани бот-и Telegram",
+        "description": "Токени бот-ро аз @BotFather дар Telegram гиред ва дар поён ворид кунед.",
+        "botToken": "Токени бот",
+        "save": "Пайваст кардан",
+        "success": "Бот-и Telegram пайваст шуд."
+      },
+      "composer": {
+        "placeholder": "Паём нависед...",
+        "send": "Фиристодани паём",
+        "badRequest": "Барои фиристодани паём ин тамос бояд чати Telegram-и пайвастшуда дошта бошад.",
+        "unavailable": "Фиристодани Telegram барои ин чат ҳанӯз дастрас нест. Баъдтар кӯшиш кунед."
+      },
+      "chatLinks": {
+        "unlinkedTab": "Пайваст нашуда",
+        "allTab": "Ҳама",
+        "linkButton": "Пайваст кардан ба тамос",
+        "selectContactPlaceholder": "Тамосро интихоб кунед",
+        "unknownName": "Номаълум",
+        "suggestedMatch": "Пешниҳод: эҳтимол мувофиқат мекунад бо {name}",
+        "empty": "Ягон чати Telegram ёфт нашуд.",
+        "linkMethodBadge": {
+          "AutoMatchedByPhone": "Ба таври худкор мувофиқ карда шуд",
+          "ManuallyLinked": "Дастӣ пайваст карда шуд",
+          "Unlinked": "Пайваст нашуда"
+        }
+      }
+    },
+    "instagram": {
+      "title": "Идоракунии Instagram",
+      "subtitle": "Идоракунии марказонидашудаи паёмҳои шахсии Instagram-и шумо.",
+      "tabs": { "messages": "Паёмҳо", "accounts": "Ҳисобҳо", "conversationLinks": "Пайвастҳои гуфтугӯ" },
+      "selectContact": "Тамосро интихоб кунед",
+      "selectContactHint": "Барои дидан ва фиристодани паёмҳои Instagram тамосро интихоб кунед.",
+      "connectAccount": "Пайваст кардани ҳисоби Instagram",
+      "accountsEmpty": "Ҳанӯз ҳеҷ ҳисоби Instagram пайваст нашудааст.",
+      "status": {
+        "connected": "Пайваст аст",
+        "notConnected": "Пайваст нашудааст",
+        "hint": "Барои фиристодан ва қабули паёмҳои шахсӣ ҳисоби Instagram-ро пайваст кунед."
+      },
+      "accountRow": {
+        "username": "Номи корбар",
+        "active": "Фаъол",
+        "inactive": "Ғайрифаъол",
+        "reconnectRequired": "Пайвасти дубора лозим аст",
+        "reconnect": "Пайвасти дубора",
+        "tokenExpires": "Токен анҷом меёбад"
+      },
+      "connectCallback": {
+        "success": "Ҳисоби Instagram пайваст шуд.",
+        "error": "Пайваст кардани ҳисоби Instagram муяссар нашуд. Лутфан аз нав кӯшиш кунед.",
+        "errorWithReason": "Пайваст кардани ҳисоби Instagram муяссар нашуд: {reason}"
+      },
+      "legacyConnect": {
+        "toggle": "Иловагӣ: пайваст кардани дастӣ",
+        "description": "Ба ҷои истифодаи пайвасти боло токени дастрасии мавҷудаи Instagram-ро гузоред.",
+        "openForm": "Кушодани шакли пайвасти дастӣ"
+      },
+      "connectSheet": {
+        "title": "Пайваст кардани ҳисоби Instagram",
+        "description": "Токени дастрасии Instagram-ро ворид кунед.",
+        "accessToken": "Токени дастрасӣ",
+        "save": "Пайваст кардан",
+        "success": "Ҳисоби Instagram пайваст шуд."
+      },
+      "composer": {
+        "placeholder": "Паём нависед...",
+        "send": "Фиристодани паём",
+        "badRequest": "Барои фиристодани паём ин тамос бояд гуфтугӯи Instagram-и пайвастшуда дошта бошад.",
+        "unavailable": "Фиристодани Instagram барои ин гуфтугӯ ҳанӯз дастрас нест. Баъдтар кӯшиш кунед."
+      },
+      "conversationLinks": {
+        "unlinkedTab": "Пайваст нашуда",
+        "allTab": "Ҳама",
+        "linkButton": "Пайваст кардан ба тамос",
+        "selectContactPlaceholder": "Тамосро интихоб кунед",
+        "unknownName": "Номаълум",
+        "empty": "Ягон гуфтугӯи Instagram ёфт нашуд."
       }
     },
     "email": {
@@ -414,6 +558,11 @@
         "placeholder": "Паём нависед...",
         "send": "Фиристодан",
         "messageFailed": "Функсияҳои AI фаъол карда мешаванд. Баъдтар кӯшиш кунед."
+      },
+      "upgradeRequired": {
+        "title": "Функсияҳои AI дар нақшаи Pro дастрасанд",
+        "description": "Бо AI савол диҳед, мактуб таҳия кунед, нархнома созед ва даромадро пешбинӣ кунед. Барои кушодани ин абзорҳо нақшаи худро баланд кунед.",
+        "cta": "Гузариш ба Pro"
       }
     },
     "invoices": {
@@ -1194,7 +1343,7 @@
         "rbacRoleSummary": "{count} иҷозат дохил аст",
         "invite": "Фиристодани даъват",
         "inviteSentTitle": "Рамзи даъват ба {email} фиристода шуд",
-        "inviteSentHint": "Корбар онро дар экрани воридшавӣ бо интихоби «Рамзи даъват» ворид мекунад, то ба фазои кории шумо ҳамроҳ шавад.",
+        "inviteSentHint": "Корбар онро дар майдони рамз дар экрани воридшавӣ ворид мекунад, то ба фазои кории шумо ҳамроҳ шавад.",
         "done": "Тайёр"
       }
     },
@@ -1416,7 +1565,14 @@
       "subtitle": "Ҳолати хидматҳои пайвастшуда",
       "connected": "Пайваст аст",
       "notConnected": "Пайваст нашудааст",
-      "comingSoon": "Ба зудӣ"
+      "comingSoon": "Ба зудӣ",
+      "tabs": {
+        "overview": "Умумӣ",
+        "whatsapp": "WhatsApp",
+        "telegram": "Telegram",
+        "instagram": "Instagram",
+        "email": "Email"
+      }
     },
     "settingsAiUsage": {
       "title": "Истифодаи AI",
@@ -1452,6 +1608,11 @@
       "renewsOn": "Дарозмуддат то",
       "trialEndsOn": "Давраи озмоишӣ то",
       "canceledBanner": "Ин обуна дар охири давраи ҷорӣ бекор карда мешавад.",
+      "noActivePlan": {
+        "title": "Нақшаи фаъол нест",
+        "description": "Обунаи шумо бекор карда шуд ва функсияҳои пулакӣ дигар фаъол нестанд. Барои барқарор кардани дастрасӣ нақшаеро интихоб кунед.",
+        "cta": "Интихоби нақша"
+      },
       "featureKey": {
         "whatsapp_integration": "Пайвасти WhatsApp",
         "email_integration": "Пайвасти Email",
@@ -1569,6 +1730,8 @@
     },
     "commChannel": {
       "Whatsapp": "WhatsApp",
+      "Telegram": "Telegram",
+      "Instagram": "Instagram",
       "Email": "Email",
       "ManualNote": "Ёддошт",
       "PhoneCall": "Занг"
@@ -1654,7 +1817,8 @@
       "PaymentReceived": "Пардохт қабул шуд",
       "InviteAccepted": "Даъват қабул шуд",
       "RoleChanged": "Нақш тағйир ёфт",
-      "DealStageChanged": "Марҳилаи муомила тағйир ёфт"
+      "DealStageChanged": "Марҳилаи муомила тағйир ёфт",
+      "NewMessage": "Паёми нав"
     },
     "notificationChannel": {
       "InApp": "Дар барнома",

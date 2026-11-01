@@ -1,6 +1,7 @@
 import { isRejectedWithValue, type Middleware } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import {
+  aiPlanRequiredMessage,
   aiUnavailableMessage,
   integrationUnavailableMessage,
   messageForStatus,
@@ -40,6 +41,22 @@ const SILENT_ENDPOINTS = new Set([
 // - extend this set as more AI endpoints (F8) come online.
 const AI_DEGRADED_ENDPOINTS = new Set(["summarize"]);
 
+// Every ai.api.ts endpoint - all of /ai/* 403s when the company plan lacks
+// ai_features. The AI UI proactively hides itself behind useAiFeatureEnabled
+// (nav item, /ai page, AiSummaryBadge, composer stub), so a 403 reaching here
+// means either a race (plan just changed in another tab) or stale client
+// cache - show the specific "requires Pro plan" message rather than the
+// generic "you don't have permission" one, since the real cause here is the
+// company's plan, not the user's role/permissions.
+const AI_PLAN_GATED_ENDPOINTS = new Set([
+  "summarize",
+  "aiQuery",
+  "draftEmail",
+  "generateQuotation",
+  "getAiForecast",
+  "sendAssistantMessage",
+]);
+
 // Same idea for third-party integrations whose credentials aren't
 // configured in every environment - verified real 500 "MICROSOFT_CLIENT_ID/
 // SECRET not configured" from GET /email/connect/outlook.
@@ -51,7 +68,9 @@ export const errorToastMiddleware: Middleware = () => (next) => (action) => {
       .meta?.arg?.endpointName;
     const status = (action.payload as { status?: number | string })?.status;
 
-    if (endpointName && AI_DEGRADED_ENDPOINTS.has(endpointName)) {
+    if (endpointName && status === 403 && AI_PLAN_GATED_ENDPOINTS.has(endpointName)) {
+      toast.error(aiPlanRequiredMessage());
+    } else if (endpointName && AI_DEGRADED_ENDPOINTS.has(endpointName)) {
       toast.info(aiUnavailableMessage());
     } else if (endpointName && INTEGRATION_DEGRADED_ENDPOINTS.has(endpointName)) {
       toast.info(integrationUnavailableMessage());
