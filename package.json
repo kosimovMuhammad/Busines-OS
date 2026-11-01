@@ -7,7 +7,9 @@
     "dev": "next dev --experimental-https -p 5173",
     "build": "next build",
     "start": "next start -p 5173",
-    "lint": "eslint"
+    "lint": "eslint",
+    "e2e:login": "node e2e/login.mjs",
+    "e2e:qa": "playwright test e2e/qa-smoke.spec.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -36,6 +38,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

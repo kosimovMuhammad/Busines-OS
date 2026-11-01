@@ -33,6 +33,7 @@ const SILENT_ENDPOINTS = new Set([
   "getWhatsappSignupConfig",
   "completeWhatsappSignup",
   "reportWhatsappSignupEvent",
+  "traceWhatsappSignupStep",
   "retryWhatsappAccount",
   "sendEmail",
   "sendInstagramMessage",

@@ -124,7 +124,7 @@ export function WhatsappAccountsPanel() {
   const [disconnecting, setDisconnecting] = useState<WhatsappAccount | null>(null);
   const [issues, setIssues] = useState<string[]>([]);
 
-  const { connect, busy, ready, errorCode, clearError } = useWhatsAppSignup(locale, (result) => {
+  const { connect, busy, ready, unavailable, errorCode, clearError } = useWhatsAppSignup(locale, (result) => {
     setIssues(result.issues);
     if (result.issues.length === 0) toast.success(t("tab.connectedSuccess"));
   });
@@ -168,6 +168,16 @@ export function WhatsappAccountsPanel() {
             onDisconnect={() => setDisconnecting(account)}
           />
         ))
+      ) : unavailable ? (
+        <div className="flex items-start gap-3 rounded-2xl border border-border-subtle bg-surface p-4">
+          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-surface-elevated text-text-tertiary">
+            <MessageCircle className="size-4" />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-text-primary">{t("tab.comingSoonTitle")}</p>
+            <p className="text-xs text-text-tertiary">{t("tab.comingSoonDescription")}</p>
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col gap-4 rounded-2xl border border-border-subtle bg-surface p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">

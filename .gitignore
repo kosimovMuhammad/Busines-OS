@@ -48,3 +48,11 @@ skills-lock.json
 
 # stray nested build artifact
 /business-os-frontend/
+
+certificates
+
+# Playwright QA (auth state holds session cookies - never commit)
+/e2e/.auth/
+/e2e/report/
+/test-results/
+/playwright-report/

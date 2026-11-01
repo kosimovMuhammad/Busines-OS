@@ -76,6 +76,8 @@ export function useWhatsAppSignup(
   const [busy, setBusy] = useState(false);
   const [errorCode, setErrorCode] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  // Server says Embedded Signup is switched off (WHATSAPP_EMBEDDED_SIGNUP_ENABLED=false / not set up).
+  const [unavailable, setUnavailable] = useState(false);
 
   const [fetchConfig] = useLazyGetWhatsappSignupConfigQuery();
   const [completeSignup] = useCompleteWhatsappSignupMutation();
@@ -109,6 +111,7 @@ export function useWhatsAppSignup(
     try {
       const cfg = await fetchConfig(locale, false).unwrap();
       config.current = cfg;
+      setUnavailable(false);
       waTrace("config.fetched", {
         appId: cfg.appId,
         configurationId: cfg.configurationId,
@@ -125,6 +128,10 @@ export function useWhatsAppSignup(
       setReady(true);
     } catch (e) {
       waTrace("config.error", { message: e instanceof Error ? e.message : undefined, code: whatsappErrorCode(e) });
+      if (whatsappErrorCode(e) === "not_configured") {
+        setUnavailable(true);
+        return;
+      }
       setErrorCode(
         e instanceof Error && e.message === "sdk_load_failed" ? "sdk_load_failed" : whatsappErrorCode(e)
       );
@@ -148,7 +155,17 @@ export function useWhatsAppSignup(
       try {
         msg = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
       } catch {
-        waTrace("message.unparsable", { origin: event.origin, dataType: typeof event.data });
+        // Safe preview: truncated, with anything code/token/secret-like redacted.
+        const raw = typeof event.data === "string" ? event.data : "";
+        const preview = raw
+          .replace(/((?:code|token|access_token|secret|signed_request)["'=:\s]+)[^&"'\s,}]+/gi, "$1[redacted]")
+          .slice(0, 300);
+        waTrace("message.unparsable", {
+          origin: event.origin,
+          dataType: typeof event.data,
+          length: raw.length,
+          preview,
+        });
         return;
       }
       waTrace("message", {
@@ -220,6 +237,7 @@ export function useWhatsAppSignup(
         sessionEvent: session.current?.event ?? null,
         waitedMs: Date.now() - started,
       });
+      const hadSessionEvent = !!session.current;
       try {
         const result = await completeSignup({
           code,
@@ -229,8 +247,13 @@ export function useWhatsAppSignup(
         waTrace("complete.ok", { accountId: result.account?.id, issues: result.issues });
         onConnectedRef.current(result);
       } catch (e) {
-        waTrace("complete.error", { code: whatsappErrorCode(e), httpStatus: (e as any)?.status });
-        setErrorCode(whatsappErrorCode(e));
+        const errCode = whatsappErrorCode(e);
+        waTrace("complete.error", { code: errCode, httpStatus: (e as any)?.status });
+        // A code Meta refuses to exchange AND no WA_EMBEDDED_SIGNUP event = the popup took the
+        // plain "Continue as <user>" login path and never showed the WhatsApp screens.
+        setErrorCode(
+          errCode === "code_exchange_failed" && !hadSessionEvent ? "continue_as_not_supported" : errCode
+        );
       } finally {
         session.current = null;
         setBusyBoth(false);
@@ -282,6 +305,13 @@ export function useWhatsAppSignup(
           waTrace("fb.login.no-code-timeout", { busy: busyRef.current, eventHandled: eventHandled.current });
           if (!busyRef.current || eventHandled.current) return;
           setBusyBoth(false);
+          // Logged in (token-only authResponse) but no code and no signup event: Meta did not run
+          // the Embedded Signup flow for this config/app - not a user cancel.
+          if (response?.authResponse) {
+            setErrorCode("embedded_signup_not_started");
+            refreshConfig();
+            return;
+          }
           setErrorCode("cancelled");
           reportEvent({ event: "CANCEL" }).catch(() => {});
           refreshConfig();
@@ -291,5 +321,5 @@ export function useWhatsAppSignup(
     );
   }, [complete, reportEvent, refreshConfig, setBusyBoth]);
 
-  return { connect, busy, ready, errorCode, setErrorCode, clearError: () => setErrorCode(null) };
+  return { connect, busy, ready, unavailable, errorCode, setErrorCode, clearError: () => setErrorCode(null) };
 }
