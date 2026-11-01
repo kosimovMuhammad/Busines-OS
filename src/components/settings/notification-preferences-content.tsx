@@ -28,6 +28,7 @@ const TYPES: NotificationType[] = [
   "InviteAccepted",
   "RoleChanged",
   "DealStageChanged",
+  "NewMessage",
 ];
 
 const CHANNELS: NotificationChannel[] = ["InApp", "Email", "WhatsApp"];

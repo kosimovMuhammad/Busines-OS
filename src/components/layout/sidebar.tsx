@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronDown, ChevronLeft, ChevronRight, Layers, Menu, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useRole } from "@/lib/hooks/useRole";
+import { useAiFeatureEnabled } from "@/lib/hooks/useAiFeatureEnabled";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { navEntries, type NavGroup, type NavItem } from "./nav-config";
 import { filterNavEntries } from "./nav-filter";
@@ -15,6 +16,9 @@ function NavLink({ item, collapsed }: { item: NavItem; collapsed: boolean }) {
   const pathname = usePathname();
   const active = pathname.startsWith(item.href);
   const Icon = item.icon;
+  const aiEnabled = useAiFeatureEnabled();
+
+  if (item.requiresAiFeature && !aiEnabled) return null;
 
   return (
     <Link
@@ -248,9 +252,11 @@ export function MobileNav() {
     setExpandedGroups((prev) => ({ ...prev, [key]: !prev[key] }));
 
   // Close the drawer on navigation so it doesn't stay open over the new page.
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <>

@@ -20,17 +20,10 @@ type Messages = {
   passwordMismatch: string;
 };
 
-export function createLoginSchema(m: Pick<Messages, "invalidEmail" | "required">) {
+export function createLoginUnifiedSchema(m: Pick<Messages, "invalidEmail" | "required">) {
   return z.object({
     email: z.email(m.invalidEmail),
-    password: z.string().min(1, m.required),
-  });
-}
-
-export function createLoginCodeSchema(m: Pick<Messages, "invalidEmail" | "required">) {
-  return z.object({
-    email: z.email(m.invalidEmail),
-    code: z.string().regex(/^\d{6}$/, m.required),
+    secret: z.string().min(1, m.required),
   });
 }
 
@@ -91,8 +84,7 @@ export function createEmailChangeSchema(m: Pick<Messages, "invalidEmail">) {
   });
 }
 
-export type LoginFormValues = z.infer<ReturnType<typeof createLoginSchema>>;
-export type LoginCodeFormValues = z.infer<ReturnType<typeof createLoginCodeSchema>>;
+export type LoginUnifiedFormValues = z.infer<ReturnType<typeof createLoginUnifiedSchema>>;
 export type SetPasswordFormValues = z.infer<ReturnType<typeof createSetPasswordSchema>>;
 export type ChangePasswordFormValues = z.infer<ReturnType<typeof createChangePasswordSchema>>;
 export type RegisterFormValues = z.infer<ReturnType<typeof createRegisterSchema>>;

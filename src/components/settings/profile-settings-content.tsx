@@ -23,16 +23,14 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@/i18n/navigation";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { updateUser as setAuthUser } from "@/store/authSlice";
+import { useAppSelector } from "@/store/hooks";
 import {
-  usersApi,
   useChangePasswordMutation,
   useConfirmEmailChangeMutation,
   useGetMeQuery,
   useRequestEmailChangeMutation,
   useSetPasswordMutation,
-  useUpdateUserMutation,
+  useUpdateMeMutation,
 } from "@/lib/api/users.api";
 import { EditPhotoDialog } from "@/components/settings/edit-photo-dialog";
 import {
@@ -77,9 +75,9 @@ export function ProfileSettingsContent() {
           {isLoading ? (
             <Skeleton className="mt-4 h-40 w-full" />
           ) : hasPassword ? (
-            <ChangePasswordForm />
+            <ChangePasswordForm email={current?.email ?? ""} />
           ) : (
-            <SetPasswordForm />
+            <SetPasswordForm email={current?.email ?? ""} />
           )}
         </div>
       </div>
@@ -202,8 +200,7 @@ function AccountDetailsCard({ user }: { user: User }) {
 function NameField({ user }: { user: User }) {
   const t = useTranslations("pages.settingsProfile");
   const tCommon = useTranslations("common");
-  const dispatch = useAppDispatch();
-  const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const [updateMe, { isLoading }] = useUpdateMeMutation();
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(user.name);
 
@@ -219,9 +216,7 @@ function NameField({ user }: { user: User }) {
       return;
     }
     try {
-      const result = await updateUser({ id: user.id, body: { name: trimmed } }).unwrap();
-      dispatch(usersApi.util.upsertQueryData("getMe", undefined, result));
-      dispatch(setAuthUser(result));
+      await updateMe({ name: trimmed }).unwrap();
       toast.success(t("nameSaved"));
       setIsEditing(false);
     } catch {
@@ -425,7 +420,7 @@ function EmailChangeField({ user }: { user: User }) {
   );
 }
 
-function SetPasswordForm() {
+function SetPasswordForm({ email }: { email: string }) {
   const t = useTranslations("pages.settingsProfile");
   const tCommon = useTranslations("common");
   const tValidation = useTranslations("validation");
@@ -459,6 +454,7 @@ function SetPasswordForm() {
 
   return (
     <form className="mt-4 space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <input type="text" name="username" autoComplete="username" value={email} readOnly hidden />
       <p className="text-xs text-text-tertiary">{t("setHint")}</p>
 
       <div className="space-y-1.5">
@@ -512,7 +508,7 @@ function SetPasswordForm() {
   );
 }
 
-function ChangePasswordForm() {
+function ChangePasswordForm({ email }: { email: string }) {
   const t = useTranslations("pages.settingsProfile");
   const tCommon = useTranslations("common");
   const tValidation = useTranslations("validation");
@@ -550,6 +546,7 @@ function ChangePasswordForm() {
 
   return (
     <form className="mt-4 space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <input type="text" name="username" autoComplete="username" value={email} readOnly hidden />
       <div className="flex items-center gap-1.5 text-xs text-text-tertiary">
         <ShieldCheck className="size-3.5 text-accent-secondary" />
         {t("changeHint")}

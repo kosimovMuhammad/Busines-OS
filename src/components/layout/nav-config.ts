@@ -14,8 +14,6 @@ import {
   FileText,
   Gem,
   LayoutGrid,
-  Mail,
-  MessageCircle,
   MessagesSquare,
   Network,
   PackageSearch,
@@ -36,6 +34,8 @@ export type NavLabelKey =
   | "tasks"
   | "communications"
   | "whatsapp"
+  | "telegram"
+  | "instagram"
   | "email"
   | "invoicing"
   | "contracts"
@@ -49,6 +49,11 @@ export type NavItem = {
   href: string;
   labelKey: NavLabelKey;
   icon: LucideIcon;
+  // Plan-gated (ai_features), not role-gated - kept separate from the
+  // role-based ROLE_MODULE_MAP/filterNavEntries so a user who has the role
+  // to reach /ai but whose company plan lacks ai_features sees a locked
+  // state (upsell) rather than the item vanishing entirely.
+  requiresAiFeature?: boolean;
 };
 
 export type NavGroupLabelKey =
@@ -67,17 +72,6 @@ export type NavGroup = {
 export type NavEntry =
   | { kind: "link"; item: NavItem }
   | { kind: "group"; group: NavGroup };
-
-const communicationsGroup: NavGroup = {
-  key: "communications",
-  titleKey: "communicationsSection",
-  icon: MessagesSquare,
-  items: [
-    { href: "/communications", labelKey: "communications", icon: MessagesSquare },
-    { href: "/whatsapp", labelKey: "whatsapp", icon: MessageCircle },
-    { href: "/email", labelKey: "email", icon: Mail },
-  ],
-};
 
 const financeGroup: NavGroup = {
   key: "finance",
@@ -112,8 +106,8 @@ const insightsGroup: NavGroup = {
 
 export const navEntries: NavEntry[] = [
   { kind: "link", item: { href: "/dashboard", labelKey: "dashboard", icon: LayoutGrid } },
-  { kind: "group", group: communicationsGroup },
-  { kind: "link", item: { href: "/ai", labelKey: "aiAssistant", icon: Bot } },
+  { kind: "link", item: { href: "/communications", labelKey: "communications", icon: MessagesSquare } },
+  { kind: "link", item: { href: "/ai", labelKey: "aiAssistant", icon: Bot, requiresAiFeature: true } },
   { kind: "link", item: { href: "/contacts", labelKey: "contacts", icon: Contact } },
   { kind: "link", item: { href: "/deals", labelKey: "deals", icon: Gem } },
   { kind: "link", item: { href: "/tasks", labelKey: "tasks", icon: CircleCheck } },

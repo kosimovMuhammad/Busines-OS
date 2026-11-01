@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useLogoutMutation } from "@/lib/api/auth.api";
+import { baseApi } from "@/lib/api/baseApi";
 import { clearAuth } from "@/store/authSlice";
 import { useRouter } from "@/i18n/navigation";
 
@@ -28,6 +29,7 @@ export function UserMenu() {
       await logout().unwrap();
     } finally {
       dispatch(clearAuth());
+      dispatch(baseApi.util.resetApiState());
       router.push("/login");
     }
   };

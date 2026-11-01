@@ -40,6 +40,7 @@ import {
   useResendVerificationMutation,
   useVerifyEmailMutation,
 } from "@/lib/api/auth.api";
+import { baseApi } from "@/lib/api/baseApi";
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/authSlice";
 import { cn } from "@/lib/utils";
@@ -348,6 +349,7 @@ function VerifyEmailStep({ email }: { email: string }) {
   const onSubmit = async (values: VerifyCodeFormValues) => {
     try {
       const result = await verifyEmail({ email, code: values.code }).unwrap();
+      dispatch(baseApi.util.resetApiState());
       dispatch(setCredentials(result));
       router.push("/dashboard");
     } catch {
