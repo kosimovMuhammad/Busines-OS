@@ -1,6 +1,13 @@
 import { baseApi } from "./baseApi";
 import type { Notification, NotificationsQueryArgs, Paginated } from "@/types/api";
 
+// No SignalR push exists for notifications yet (unlike Communications, which
+// gets a "newCommunication" hub event - see realtime-provider.tsx), so the
+// unread count is kept fresh by polling. Pass this constant to every
+// useGetUnreadNotificationCountQuery call site so the interval is tuned (or
+// later replaced by a push-driven invalidation) in exactly one place.
+export const UNREAD_NOTIFICATION_COUNT_POLLING_INTERVAL_MS = 30_000;
+
 export const notificationsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getNotifications: builder.query<Paginated<Notification>, NotificationsQueryArgs>({
@@ -20,6 +27,10 @@ export const notificationsApi = baseApi.injectEndpoints({
     getUnreadNotificationCount: builder.query<{ count: number }, void>({
       query: () => "/notifications/unread-count",
       providesTags: [{ type: "Notifications", id: "COUNT" }],
+    }),
+    getNotificationById: builder.query<Notification, string>({
+      query: (id) => `/notifications/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "Notifications", id }],
     }),
     markNotificationRead: builder.mutation<void, string>({
       query: (id) => ({ url: `/notifications/${id}/read`, method: "PATCH" }),
@@ -49,6 +60,7 @@ export const {
   useGetNotificationsQuery,
   useGetUnreadNotificationsQuery,
   useGetUnreadNotificationCountQuery,
+  useGetNotificationByIdQuery,
   useMarkNotificationReadMutation,
   useMarkAllNotificationsReadMutation,
   useRemoveNotificationMutation,

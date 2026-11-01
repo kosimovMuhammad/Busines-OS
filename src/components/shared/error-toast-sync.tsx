@@ -13,6 +13,7 @@ export function ErrorToastSync() {
       conflict: t("conflict"),
       forbidden: t("forbidden"),
       aiUnavailable: t("aiUnavailable"),
+      aiPlanRequired: t("aiPlanRequired"),
       integrationUnavailable: t("integrationUnavailable"),
     });
   }, [t]);

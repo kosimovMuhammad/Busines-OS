@@ -6,6 +6,7 @@ import { useRefreshMutation } from "@/lib/api/auth.api";
 import { setCredentials, sessionCheckFailed } from "@/store/authSlice";
 import { useRouter } from "@/i18n/navigation";
 import { FullScreenLoading } from "./full-screen-loading";
+import { RealtimeProvider } from "./realtime-provider";
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
@@ -43,5 +44,5 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     return <FullScreenLoading />;
   }
 
-  return <>{children}</>;
+  return <RealtimeProvider>{children}</RealtimeProvider>;
 }
