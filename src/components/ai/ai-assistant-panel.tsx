@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Loader2, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,11 +44,12 @@ export function AiAssistantPanel() {
   // changes, so it can't feed a render-loop the way reading pollingInterval
   // off render-derived state could. Keep polling until the assistant's row
   // leaves "Pending" (Completed or Failed - see AiAssistantMessage).
-  useEffect(() => {
+  const [prevConversation, setPrevConversation] = useState(conversation);
+  if (conversation !== prevConversation) {
+    setPrevConversation(conversation);
     const last = conversation?.messages[conversation.messages.length - 1];
-    if (!last) return;
-    setAwaitingReply(last.role === "User" || last.status === "Pending");
-  }, [conversation]);
+    if (last) setAwaitingReply(last.role === "User" || last.status === "Pending");
+  }
 
   const handleSend = async () => {
     const text = message.trim();

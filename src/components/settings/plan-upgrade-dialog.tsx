@@ -23,10 +23,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
-  subscriptionApi,
+  useChangePlanMutation,
   useGetSubscriptionPlansQuery,
 } from "@/lib/api/subscription.api";
-import { useAppDispatch } from "@/store/hooks";
 import { formatCurrency } from "@/lib/utils";
 import type { BillingCycle } from "@/types/enums";
 import type { SubscriptionPlan } from "@/types/api";
@@ -83,12 +82,12 @@ export function PlanUpgradeDialog({
   const tCycle = useTranslations("enums.billingCycle");
   const tFeature = useTranslations("pages.settingsPlan.featureKey");
   const locale = useLocale();
-  const dispatch = useAppDispatch();
 
   const featureLabel = (key: string) =>
     KNOWN_FEATURE_KEYS.includes(key) ? tFeature(key) : key;
 
   const { data: plans, isLoading } = useGetSubscriptionPlansQuery();
+  const [changePlan] = useChangePlanMutation();
 
   const [billingCycle, setBillingCycle] = useState<BillingCycle>("Monthly");
   const [step, setStep] = useState<Step>("plans");
@@ -164,33 +163,28 @@ export function PlanUpgradeDialog({
     const digits = cardNumber.replace(/\D/g, "");
     const amount = billingCycle === "Monthly" ? selectedPlan.priceMonthly : selectedPlan.priceYearly;
 
-    window.setTimeout(() => {
-      const periodDays = billingCycle === "Monthly" ? 30 : 365;
-      dispatch(
-        subscriptionApi.util.updateQueryData("getSubscription", undefined, (draft) => {
-          draft.planId = selectedPlan.id;
-          draft.planName = selectedPlan.name;
-          draft.billingCycle = billingCycle;
-          draft.status = "Active";
-          draft.pendingPlanId = null;
-          draft.cancelAtPeriodEnd = false;
-          draft.trialEndsAt = null;
-          draft.currentPeriodStart = new Date().toISOString();
-          draft.currentPeriodEnd = new Date(
-            Date.now() + periodDays * 24 * 60 * 60 * 1000
-          ).toISOString();
-        })
-      );
-
-      setSuccessData({
-        planName: selectedPlan.name,
-        amount,
-        currency: selectedPlan.currency,
-        last4: digits.slice(-4),
-        transactionId: `TXN-${Date.now().toString(36).toUpperCase()}`,
-      });
-      setIsProcessing(false);
-      setStep("success");
+    // The setTimeout only simulates card-processing latency (no payment
+    // provider is wired up yet) - the plan change itself is a real call to
+    // POST /company/subscription/change-plan, which applies immediately and
+    // (via the Subscription/Company/CompanyFeatures tag invalidation on
+    // changePlan) refreshes getSubscription/getFeatures so gated UI like the
+    // AI nav item appears without a page reload.
+    window.setTimeout(async () => {
+      try {
+        await changePlan({ planId: selectedPlan.id, billingCycle }).unwrap();
+        setSuccessData({
+          planName: selectedPlan.name,
+          amount,
+          currency: selectedPlan.currency,
+          last4: digits.slice(-4),
+          transactionId: `TXN-${Date.now().toString(36).toUpperCase()}`,
+        });
+        setStep("success");
+      } catch {
+        // errorToastMiddleware surfaces the failure - stay on the payment step so the user can retry
+      } finally {
+        setIsProcessing(false);
+      }
     }, 1200);
   };
 

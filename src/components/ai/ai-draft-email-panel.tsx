@@ -16,7 +16,6 @@ import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import { useDraftEmailMutation, useGetDraftEmailResultQuery } from "@/lib/api/ai.api";
 import { usePollUntilReady } from "@/lib/hooks/usePolling";
 
-const NO_CONTACT = "__no_contact__";
 
 const inputClass =
   "w-full rounded-xl border border-border-subtle bg-background px-3.5 py-2 text-sm text-text-primary placeholder:text-text-tertiary focus:border-transparent focus:ring-2 focus:ring-border-glow focus:outline-none";
@@ -65,7 +64,7 @@ export function AiDraftEmailPanel() {
       subject: data.subject,
       body: data.body,
     });
-    router.push(`/email?${params.toString()}`);
+    router.push(`/communications?${params.toString()}`);
   };
 
   return (
@@ -75,8 +74,8 @@ export function AiDraftEmailPanel() {
           {t("contact")}
         </label>
         <Select
-          value={contactId || NO_CONTACT}
-          onValueChange={(value) => setContactId(value === NO_CONTACT || !value ? "" : value)}
+          value={contactId || null}
+          onValueChange={(value) => setContactId(value || "")}
         >
           <SelectTrigger id="ai-draft-contact" className="w-full">
             <SelectValue>
@@ -89,9 +88,6 @@ export function AiDraftEmailPanel() {
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={NO_CONTACT} disabled>
-              {t("selectContact")}
-            </SelectItem>
             {contactsPage?.data.map((c) => (
               <SelectItem key={c.id} value={c.id}>
                 {[c.firstName, c.lastName].filter(Boolean).join(" ")}

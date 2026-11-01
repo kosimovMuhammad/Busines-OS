@@ -2,6 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useGetFeaturesQuery } from "@/lib/api/company.api";
+import { AiUpgradeBanner } from "./ai-upgrade-banner";
 import { AiQueryPanel } from "./ai-query-panel";
 import { AiDraftEmailPanel } from "./ai-draft-email-panel";
 import { AiQuotationPanel } from "./ai-quotation-panel";
@@ -10,6 +13,10 @@ import { AiAssistantPanel } from "./ai-assistant-panel";
 
 export function AiContent() {
   const t = useTranslations("pages.ai.tabs");
+  const { data: features, isLoading } = useGetFeaturesQuery();
+
+  if (isLoading) return <Skeleton className="h-64 w-full" />;
+  if (!features?.ai_features) return <AiUpgradeBanner />;
 
   return (
     <Tabs defaultValue="query">

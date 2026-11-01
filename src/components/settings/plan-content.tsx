@@ -15,6 +15,7 @@ import { SubscriptionStatusBadge } from "./subscription-status-badge";
 import { PlanUpgradeDialog } from "./plan-upgrade-dialog";
 import { CancelSubscriptionDialog } from "./cancel-subscription-dialog";
 import { InvoiceHistoryTable } from "./invoice-history-table";
+import { NoActivePlanCard } from "./no-active-plan-card";
 
 const KNOWN_FEATURE_KEYS = [
   "whatsapp_integration",
@@ -86,76 +87,89 @@ export function PlanContent() {
   }
 
   const formatter = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
+  // Status flips straight to "Canceled" for both immediate cancels and a
+  // scheduled cancel that reached its period end - cancelAtPeriodEnd (still
+  // Active/Trialing until then) is the "still has access, will lapse" case,
+  // already handled by canceledBanner below. Once status is actually
+  // Canceled the company has no paid access, so the plan card and
+  // Pro-tier usage limits shouldn't linger as if still active.
+  const isCanceled = subscription.status === "Canceled";
 
   return (
     <div className="max-w-2xl space-y-4">
-      <div className="space-y-4 rounded-2xl border border-border-subtle bg-surface p-5">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-xs font-medium text-text-tertiary uppercase">{t("currentPlan")}</p>
-            <p className="mt-1 text-lg font-semibold text-text-primary">{subscription.planName}</p>
+      {isCanceled ? (
+        <NoActivePlanCard isOwner={isOwner} onChoosePlan={() => setUpgradeOpen(true)} />
+      ) : (
+        <div className="space-y-4 rounded-2xl border border-border-subtle bg-surface p-5">
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-xs font-medium text-text-tertiary uppercase">{t("currentPlan")}</p>
+              <p className="mt-1 text-lg font-semibold text-text-primary">{subscription.planName}</p>
+            </div>
+            <SubscriptionStatusBadge status={subscription.status} />
           </div>
-          <SubscriptionStatusBadge status={subscription.status} />
-        </div>
 
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div>
-            <p className="text-xs font-medium text-text-tertiary uppercase">{t("billingCycle")}</p>
-            <p className="mt-1 text-text-secondary">{tCycle(subscription.billingCycle)}</p>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div>
+              <p className="text-xs font-medium text-text-tertiary uppercase">{t("billingCycle")}</p>
+              <p className="mt-1 text-text-secondary">{tCycle(subscription.billingCycle)}</p>
+            </div>
+            <div>
+              <p className="text-xs font-medium text-text-tertiary uppercase">
+                {subscription.trialEndsAt ? t("trialEndsOn") : t("renewsOn")}
+              </p>
+              <p className="mt-1 text-text-secondary">
+                {formatter.format(
+                  new Date(subscription.trialEndsAt ?? subscription.currentPeriodEnd)
+                )}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-xs font-medium text-text-tertiary uppercase">
-              {subscription.trialEndsAt ? t("trialEndsOn") : t("renewsOn")}
+
+          {subscription.cancelAtPeriodEnd && (
+            <p className="rounded-xl bg-warning/10 px-3 py-2 text-sm text-warning">
+              {t("canceledBanner")}
             </p>
-            <p className="mt-1 text-text-secondary">
-              {formatter.format(
-                new Date(subscription.trialEndsAt ?? subscription.currentPeriodEnd)
-              )}
-            </p>
-          </div>
-        </div>
+          )}
 
-        {subscription.cancelAtPeriodEnd && (
-          <p className="rounded-xl bg-warning/10 px-3 py-2 text-sm text-warning">
-            {t("canceledBanner")}
-          </p>
-        )}
-
-        {isOwner ? (
-          <div className="flex flex-wrap gap-2">
-            <Button type="button" onClick={() => setUpgradeOpen(true)}>
-              {t("changePlan")}
-            </Button>
-            {!subscription.cancelAtPeriodEnd && (
-              <Button type="button" variant="outline" onClick={() => setCancelOpen(true)}>
-                {t("cancelSubscription")}
+          {isOwner ? (
+            <div className="flex flex-wrap gap-2">
+              <Button type="button" onClick={() => setUpgradeOpen(true)}>
+                {t("changePlan")}
               </Button>
-            )}
-          </div>
-        ) : (
-          <p className="text-xs text-text-tertiary">{t("adminReadOnly")}</p>
-        )}
-      </div>
+              {!subscription.cancelAtPeriodEnd && (
+                <Button type="button" variant="outline" onClick={() => setCancelOpen(true)}>
+                  {t("cancelSubscription")}
+                </Button>
+              )}
+            </div>
+          ) : (
+            <p className="text-xs text-text-tertiary">{t("adminReadOnly")}</p>
+          )}
+        </div>
+      )}
 
-      <div className="space-y-3 rounded-2xl border border-border-subtle bg-surface p-5">
-        <p className="text-sm font-semibold text-text-primary">{t("usage.title")}</p>
-        {isUsageLoading || !usage ? (
-          <Skeleton className="h-24 w-full" />
-        ) : (
-          <div className="space-y-3">
-            {usage.map((metric) => (
-              <UsageBar
-                key={metric.metricKey}
-                label={featureLabel(metric.metricKey)}
-                current={metric.currentValue}
-                limit={metric.limit}
-                isUnlimited={metric.isUnlimited}
-                unlimitedLabel={t("usage.unlimited")}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      {!isCanceled && (
+        <div className="space-y-3 rounded-2xl border border-border-subtle bg-surface p-5">
+          <p className="text-sm font-semibold text-text-primary">{t("usage.title")}</p>
+          {isUsageLoading || !usage ? (
+            <Skeleton className="h-24 w-full" />
+          ) : (
+            <div className="space-y-3">
+              {usage.map((metric) => (
+                <UsageBar
+                  key={metric.metricKey}
+                  label={featureLabel(metric.metricKey)}
+                  current={metric.currentValue}
+                  limit={metric.limit}
+                  isUnlimited={metric.isUnlimited}
+                  unlimitedLabel={t("usage.unlimited")}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="space-y-3 rounded-2xl border border-border-subtle bg-surface p-5">
         <p className="text-sm font-semibold text-text-primary">{t("features.title")}</p>

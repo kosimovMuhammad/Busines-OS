@@ -52,7 +52,7 @@ export const aiApi = baseApi.injectEndpoints({
     // Synchronous - POST but no job/polling envelope, per the feature spec
     // ("no polling needed"). Modeled as a query (not a mutation) since it
     // doesn't mutate server state, just like getForecast on analytics.api.ts.
-    getForecast: builder.query<AiForecastResult, AiForecastRequest | void>({
+    getAiForecast: builder.query<AiForecastResult, AiForecastRequest | void>({
       query: (body) => ({ url: "/ai/forecast", method: "POST", body: body ?? {} }),
       providesTags: ["AI"],
     }),
@@ -83,7 +83,7 @@ export const {
   useGetDraftEmailResultQuery,
   useGenerateQuotationMutation,
   useGetQuotationResultQuery,
-  useGetForecastQuery: useGetAiForecastQuery,
+  useGetAiForecastQuery,
   useSendAssistantMessageMutation,
   useGetAssistantConversationQuery,
   useGetAiUsageQuery,
