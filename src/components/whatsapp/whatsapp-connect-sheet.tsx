@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import {
   Sheet,
@@ -53,6 +54,7 @@ export function WhatsappConnectSheet({
         accessToken: accessToken.trim(),
         verifiedName: verifiedName.trim() || undefined,
       }).unwrap();
+      toast.success(t("success"));
       onOpenChange(false);
     } catch {
       // errorToastMiddleware already surfaces this via a toast

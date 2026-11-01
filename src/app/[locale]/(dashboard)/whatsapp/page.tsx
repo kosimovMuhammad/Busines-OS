@@ -1,16 +1,16 @@
-import { getTranslations } from "next-intl/server";
-import { PageHeader } from "@/components/layout/page-header";
-import { WhatsappContent } from "@/components/whatsapp/whatsapp-content";
-import { RouteGuard } from "@/components/guards/route-guard";
-import { getAllowedRoles } from "@/lib/permissions/constants";
+import { redirect } from "@/i18n/navigation";
 
-export default async function WhatsAppPage() {
-  const t = await getTranslations("pages.whatsapp");
-
-  return (
-    <RouteGuard roles={getAllowedRoles("whatsapp")}>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-      <WhatsappContent />
-    </RouteGuard>
-  );
+// Channel messaging now lives entirely on /communications; connecting/
+// managing a WhatsApp account moved to /settings/integrations. This route is
+// kept only so old bookmarks/links land somewhere useful instead of 404ing.
+export default async function WhatsAppPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const { locale } = await params;
+  const query = await searchParams;
+  redirect({ href: { pathname: "/settings/integrations", query }, locale });
 }

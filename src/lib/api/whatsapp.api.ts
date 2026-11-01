@@ -5,6 +5,7 @@ import type {
   SendPlatformWhatsAppTemplateRequest,
   SendPlatformWhatsAppTextRequest,
   SendWhatsappRequest,
+  UpdateWhatsappAccountRequest,
   WhatsAppSendResult,
   WhatsappAccount,
 } from "@/types/api";
@@ -26,6 +27,21 @@ export const whatsappApi = baseApi.injectEndpoints({
       ConnectWhatsappAccountRequest
     >({
       query: (body) => ({ url: "/whatsapp/accounts", method: "POST", body }),
+      invalidatesTags: [{ type: "WhatsApp", id: "LIST" }, "Company"],
+    }),
+    updateWhatsappAccount: builder.mutation<
+      WhatsappAccount,
+      { id: string; body: UpdateWhatsappAccountRequest }
+    >({
+      query: ({ id, body }) => ({ url: `/whatsapp/accounts/${id}`, method: "PATCH", body }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: "WhatsApp", id },
+        { type: "WhatsApp", id: "LIST" },
+        "Company",
+      ],
+    }),
+    deleteWhatsappAccount: builder.mutation<void, string>({
+      query: (id) => ({ url: `/whatsapp/accounts/${id}`, method: "DELETE" }),
       invalidatesTags: [{ type: "WhatsApp", id: "LIST" }, "Company"],
     }),
     sendWhatsappMessage: builder.mutation<Communication, SendWhatsappRequest>({
@@ -56,6 +72,8 @@ export const whatsappApi = baseApi.injectEndpoints({
 export const {
   useGetWhatsappAccountsQuery,
   useConnectWhatsappAccountMutation,
+  useUpdateWhatsappAccountMutation,
+  useDeleteWhatsappAccountMutation,
   useSendWhatsappMessageMutation,
   useSendPlatformWhatsAppTextMutation,
   useSendPlatformWhatsAppTemplateMutation,
