@@ -1,15 +1,13 @@
-import { getTranslations } from "next-intl/server";
-import { PageHeader } from "@/components/layout/page-header";
 import { CommunicationsContent } from "@/components/communications/communications-content";
 import { RouteGuard } from "@/components/guards/route-guard";
 import { getAllowedRoles } from "@/lib/permissions/constants";
 
+// Communications is a full-bleed, app-like view rather than a normal padded
+// page - CommunicationsContent handles its own back button and cancels the
+// dashboard layout's padding itself, so this stays a thin RouteGuard shell.
 export default async function CommunicationsPage() {
-  const t = await getTranslations("pages.communications");
-
   return (
     <RouteGuard roles={getAllowedRoles("communications")}>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
       <CommunicationsContent />
     </RouteGuard>
   );

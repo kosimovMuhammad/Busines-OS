@@ -1,16 +1,16 @@
-import { getTranslations } from "next-intl/server";
-import { PageHeader } from "@/components/layout/page-header";
-import { EmailContent } from "@/components/email/email-content";
-import { RouteGuard } from "@/components/guards/route-guard";
-import { getAllowedRoles } from "@/lib/permissions/constants";
+import { redirect } from "@/i18n/navigation";
 
-export default async function EmailPage() {
-  const t = await getTranslations("pages.email");
-
-  return (
-    <RouteGuard roles={getAllowedRoles("email")}>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-      <EmailContent />
-    </RouteGuard>
-  );
+// Email messaging now lives entirely on /communications; connecting Gmail/
+// Outlook moved to /settings/integrations. This route is kept only so old
+// bookmarks/links land somewhere useful instead of 404ing.
+export default async function EmailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const { locale } = await params;
+  const query = await searchParams;
+  redirect({ href: { pathname: "/settings/integrations", query }, locale });
 }

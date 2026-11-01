@@ -14,6 +14,8 @@ import type { CommChannel } from "@/types/enums";
 
 const CHANNEL_ICON: Record<CommChannel, typeof MessageSquareText> = {
   Whatsapp: MessageSquareText,
+  Telegram: MessageSquareText,
+  Instagram: MessageSquareText,
   Email: MessageSquareText,
   ManualNote: StickyNote,
   PhoneCall: MessageSquareText,

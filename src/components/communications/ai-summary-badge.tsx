@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Loader2, Sparkles } from "lucide-react";
 import { useGetSummaryQuery, useSummarizeMutation } from "@/lib/api/ai.api";
+import { useAiFeatureEnabled } from "@/lib/hooks/useAiFeatureEnabled";
 
 export function AiSummaryBadge({
   communicationId,
@@ -13,6 +14,7 @@ export function AiSummaryBadge({
   existingSummary: string | null;
 }) {
   const t = useTranslations("pages.communications");
+  const aiEnabled = useAiFeatureEnabled();
   const [triggered, setTriggered] = useState(false);
   const [summarize, { isLoading: isTriggering }] = useSummarizeMutation();
   const { data } = useGetSummaryQuery(communicationId, {
@@ -38,6 +40,8 @@ export function AiSummaryBadge({
       </p>
     );
   }
+
+  if (!aiEnabled) return null;
 
   return (
     <button
