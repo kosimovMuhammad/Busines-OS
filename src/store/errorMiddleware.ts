@@ -31,6 +31,7 @@ const SILENT_ENDPOINTS = new Set([
   "presignProfileMedia",
   "sendWhatsappMessage",
   "sendEmail",
+  "sendInstagramMessage",
   "sendPlatformWhatsAppText",
   "sendPlatformWhatsAppTemplate",
 ]);
@@ -62,6 +63,15 @@ const AI_PLAN_GATED_ENDPOINTS = new Set([
 // SECRET not configured" from GET /email/connect/outlook.
 const INTEGRATION_DEGRADED_ENDPOINTS = new Set(["connectOutlook"]);
 
+// Statuses an endpoint handles itself: 403 on the Instagram reads means the
+// company hasn't enabled the module (the panel shows an "enable module"
+// state instead), and 404 on disconnect means it was already disconnected.
+const SILENT_STATUSES: Record<string, (number | string)[]> = {
+  getInstagramAccounts: [403],
+  getInstagramConversationLinks: [403],
+  disconnectInstagramAccount: [404],
+};
+
 export const errorToastMiddleware: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
     const endpointName = (action as { meta?: { arg?: { endpointName?: string } } })
@@ -74,7 +84,11 @@ export const errorToastMiddleware: Middleware = () => (next) => (action) => {
       toast.info(aiUnavailableMessage());
     } else if (endpointName && INTEGRATION_DEGRADED_ENDPOINTS.has(endpointName)) {
       toast.info(integrationUnavailableMessage());
-    } else if (!(endpointName && SILENT_ENDPOINTS.has(endpointName)) && status !== 401) {
+    } else if (
+      !(endpointName && SILENT_ENDPOINTS.has(endpointName)) &&
+      !(endpointName && status !== undefined && SILENT_STATUSES[endpointName]?.includes(status)) &&
+      status !== 401
+    ) {
       toast.error(messageForStatus(status));
     }
   }

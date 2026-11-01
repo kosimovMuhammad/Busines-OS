@@ -78,11 +78,12 @@ export function IntegrationsContent() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Instagram's OAuth callback redirects back to this page (via the
-  // deprecated /instagram route forwarding its query string here) with
-  // ?status=... - jump straight to that tab instead of leaving the result
-  // buried under Overview.
-  const defaultTab = searchParams.get("status") ? "instagram" : "overview";
+  // Instagram's OAuth callback redirects to /instagram, which forwards its
+  // query string here (?connected=...&username=...&error=...&message=...) -
+  // jump straight to that tab instead of leaving the result buried under
+  // Overview.
+  const defaultTab =
+    searchParams.has("connected") || searchParams.has("error") ? "instagram" : "overview";
 
   return (
     <Tabs

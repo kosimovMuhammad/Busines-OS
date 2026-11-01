@@ -434,46 +434,33 @@
     "instagram": {
       "title": "Идоракунии Instagram",
       "subtitle": "Идоракунии марказонидашудаи паёмҳои шахсии Instagram-и шумо.",
-      "tabs": { "messages": "Паёмҳо", "accounts": "Ҳисобҳо", "conversationLinks": "Пайвастҳои гуфтугӯ" },
+      "tabs": {
+        "messages": "Паёмҳо",
+        "accounts": "Ҳисобҳо",
+        "conversationLinks": "Пайвастҳои гуфтугӯ"
+      },
       "selectContact": "Тамосро интихоб кунед",
       "selectContactHint": "Барои дидан ва фиристодани паёмҳои Instagram тамосро интихоб кунед.",
-      "connectAccount": "Пайваст кардани ҳисоби Instagram",
-      "accountsEmpty": "Ҳанӯз ҳеҷ ҳисоби Instagram пайваст нашудааст.",
       "status": {
-        "connected": "Пайваст аст",
+        "connected": "Пайваст шуд",
         "notConnected": "Пайваст нашудааст",
-        "hint": "Барои фиристодан ва қабули паёмҳои шахсӣ ҳисоби Instagram-ро пайваст кунед."
+        "hint": "Барои фиристодан ва гирифтани паёмҳои шахсӣ ҳисоби Instagram-ро пайваст кунед."
       },
       "accountRow": {
         "username": "Номи корбар",
         "active": "Фаъол",
         "inactive": "Ғайрифаъол",
-        "reconnectRequired": "Пайвасти дубора лозим аст",
-        "reconnect": "Пайвасти дубора",
-        "tokenExpires": "Токен анҷом меёбад"
-      },
-      "connectCallback": {
-        "success": "Ҳисоби Instagram пайваст шуд.",
-        "error": "Пайваст кардани ҳисоби Instagram муяссар нашуд. Лутфан аз нав кӯшиш кунед.",
-        "errorWithReason": "Пайваст кардани ҳисоби Instagram муяссар нашуд: {reason}"
-      },
-      "legacyConnect": {
-        "toggle": "Иловагӣ: пайваст кардани дастӣ",
-        "description": "Ба ҷои истифодаи пайвасти боло токени дастрасии мавҷудаи Instagram-ро гузоред.",
-        "openForm": "Кушодани шакли пайвасти дастӣ"
-      },
-      "connectSheet": {
-        "title": "Пайваст кардани ҳисоби Instagram",
-        "description": "Токени дастрасии Instagram-ро ворид кунед.",
-        "accessToken": "Токени дастрасӣ",
-        "save": "Пайваст кардан",
-        "success": "Ҳисоби Instagram пайваст шуд."
+        "tokenValidUntil": "Токен то {date} эътибор дорад",
+        "tokenExpired": "Мӯҳлати токен гузаштааст",
+        "reconnect": "Аз нав пайваст кардан",
+        "disconnect": "Ҷудо кардан"
       },
       "composer": {
         "placeholder": "Паём нависед...",
         "send": "Фиристодани паём",
         "badRequest": "Барои фиристодани паём ин тамос бояд гуфтугӯи Instagram-и пайвастшуда дошта бошад.",
-        "unavailable": "Фиристодани Instagram барои ин гуфтугӯ ҳанӯз дастрас нест. Баъдтар кӯшиш кунед."
+        "unavailable": "Фиристодани Instagram барои ин гуфтугӯ ҳанӯз дастрас нест. Баъдтар кӯшиш кунед.",
+        "coldOutreachHint": "Instagram иҷозат намедиҳад, ки аввал нависед - танҳо ба онҳое ҷавоб дода метавонед, ки аввал ба шумо навиштаанд."
       },
       "conversationLinks": {
         "unlinkedTab": "Пайваст нашуда",
@@ -481,7 +468,42 @@
         "linkButton": "Пайваст кардан ба тамос",
         "selectContactPlaceholder": "Тамосро интихоб кунед",
         "unknownName": "Номаълум",
-        "empty": "Ягон гуфтугӯи Instagram ёфт нашуд."
+        "empty": "Ягон гуфтугӯи Instagram ёфт нашуд.",
+        "heading": "Гуфтугӯҳои пайвастнашуда",
+        "description": "Одатан холӣ аст - тамосҳо аз паёмҳои воридотӣ худкор сохта мешаванд. Дар ҳолати зарурӣ гуфтугӯро дастӣ пайваст кунед."
+      },
+      "notConnected": {
+        "title": "Instagram-ро пайваст кунед",
+        "description": "Паёмҳои шахсии Instagram-ро мустақиман аз inbox-и худ гиред ва ҷавоб диҳед.",
+        "requirement": "Ҳисоби касбии Instagram (Business ё Creator) лозим аст. Профилҳои шахсиро пайваст кардан мумкин нест.",
+        "connect": "Пайваст кардани Instagram"
+      },
+      "expiry": {
+        "soon": "Дастрасӣ ба Instagram баъд аз {days, plural, other {# рӯз}} ба охир мерасад. Барои идомаи қабули паёмҳо аз нав пайваст кунед.",
+        "expired": "Мӯҳлати дастрасӣ ба Instagram гузаштааст. Барои идомаи қабули паёмҳо аз нав пайваст кунед.",
+        "inactive": "Пайвастшавӣ дигар фаъол нест. Барои идомаи қабули паёмҳо аз нав пайваст кунед."
+      },
+      "disconnectDialog": {
+        "title": "@{username} ҷудо карда шавад?",
+        "description": "Паёмҳо ва тамосҳои шумо нигоҳ дошта мешаванд. Танҳо пайвастшавӣ ба Instagram хориҷ мешавад ва шумо метавонед ҳар вақт аз нав пайваст кунед.",
+        "cancel": "Бекор кардан",
+        "confirm": "Ҷудо кардан",
+        "success": "Instagram ҷудо шуд."
+      },
+      "moduleDisabled": {
+        "title": "Модули Instagram фаъол нест",
+        "description": "Модули Instagram барои ширкати шумо фаъол нест. Аз маъмур хоҳиш кунед, ки онро фаъол кунад ва баргардед."
+      },
+      "callback": {
+        "connected": "@{username} пайваст шуд",
+        "connectedGeneric": "Instagram пайваст шуд.",
+        "cancelled": "Шумо пайвастшавиро бекор кардед.",
+        "invalidState": "Мӯҳлати дархости пайвастшавӣ гузашт. Лутфан аз нав оғоз кунед.",
+        "alreadyConnected": "Ин ҳисоби Instagram аллакай ба ширкати дигар пайваст аст.",
+        "providerError": "Instagram дархостро анҷом дода натавонист. Дубора кӯшиш кунед.",
+        "generic": "Instagram-ро пайваст кардан муяссар нашуд. Лутфан дубора кӯшиш кунед.",
+        "retry": "Дубора кӯшиш кардан",
+        "dismiss": "Пӯшидан"
       }
     },
     "email": {

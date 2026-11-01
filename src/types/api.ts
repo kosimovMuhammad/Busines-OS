@@ -929,15 +929,12 @@ export type LinkTelegramChatToContactRequest = {
 
 export type InstagramAccount = {
   id: string;
+  instagramBusinessAccountId: string;
   username: string;
   name?: string | null;
   isActive: boolean;
   tokenExpiresAt?: string | null;
   createdAt: string;
-};
-
-export type ConnectInstagramAccountRequest = {
-  accessToken: string;
 };
 
 export type InstagramConnectResponse = { url: string };

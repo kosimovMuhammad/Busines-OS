@@ -434,11 +434,13 @@
     "instagram": {
       "title": "Управление Instagram",
       "subtitle": "Централизованное управление личными сообщениями Instagram.",
-      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты", "conversationLinks": "Связи переписок" },
+      "tabs": {
+        "messages": "Сообщения",
+        "accounts": "Аккаунты",
+        "conversationLinks": "Связи переписок"
+      },
       "selectContact": "Выберите контакт",
       "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения Instagram.",
-      "connectAccount": "Подключить аккаунт Instagram",
-      "accountsEmpty": "Пока нет подключённых аккаунтов Instagram.",
       "status": {
         "connected": "Подключено",
         "notConnected": "Не подключено",
@@ -448,32 +450,17 @@
         "username": "Имя пользователя",
         "active": "Активен",
         "inactive": "Неактивен",
-        "reconnectRequired": "Требуется переподключение",
+        "tokenValidUntil": "Токен действителен до {date}",
+        "tokenExpired": "Токен истёк",
         "reconnect": "Переподключить",
-        "tokenExpires": "Токен истекает"
-      },
-      "connectCallback": {
-        "success": "Аккаунт Instagram подключён.",
-        "error": "Не удалось подключить аккаунт Instagram. Попробуйте ещё раз.",
-        "errorWithReason": "Не удалось подключить аккаунт Instagram: {reason}"
-      },
-      "legacyConnect": {
-        "toggle": "Дополнительно: подключить вручную",
-        "description": "Вставьте существующий токен доступа Instagram вместо использования подключения выше.",
-        "openForm": "Открыть форму ручного подключения"
-      },
-      "connectSheet": {
-        "title": "Подключить аккаунт Instagram",
-        "description": "Введите токен доступа Instagram.",
-        "accessToken": "Токен доступа",
-        "save": "Подключить",
-        "success": "Аккаунт Instagram подключён."
+        "disconnect": "Отключить"
       },
       "composer": {
         "placeholder": "Введите сообщение...",
         "send": "Отправить сообщение",
         "badRequest": "У этого контакта должна быть привязанная переписка Instagram, чтобы отправлять сообщения.",
-        "unavailable": "Отправка Instagram для этой переписки пока недоступна. Попробуйте позже."
+        "unavailable": "Отправка Instagram для этой переписки пока недоступна. Попробуйте позже.",
+        "coldOutreachHint": "Instagram не позволяет писать первыми - отвечать можно только тем, кто написал вам сам."
       },
       "conversationLinks": {
         "unlinkedTab": "Не привязаны",
@@ -481,7 +468,42 @@
         "linkButton": "Привязать к контакту",
         "selectContactPlaceholder": "Выберите контакт",
         "unknownName": "Неизвестно",
-        "empty": "Переписки Instagram не найдены."
+        "empty": "Переписки Instagram не найдены.",
+        "heading": "Несвязанные диалоги",
+        "description": "Обычно пусто - контакты создаются автоматически из входящих сообщений. При необходимости свяжите диалог вручную."
+      },
+      "notConnected": {
+        "title": "Подключите Instagram",
+        "description": "Получайте и отвечайте на личные сообщения Instagram прямо из своего inbox.",
+        "requirement": "Нужен профессиональный аккаунт Instagram (Business или Creator). Личные профили подключить нельзя.",
+        "connect": "Подключить Instagram"
+      },
+      "expiry": {
+        "soon": "Доступ к Instagram истекает через {days, plural, one {# день} few {# дня} many {# дней} other {# дня}}. Переподключите аккаунт, чтобы продолжать получать сообщения.",
+        "expired": "Доступ к Instagram истёк. Переподключите аккаунт, чтобы продолжать получать сообщения.",
+        "inactive": "Подключение больше не активно. Переподключите аккаунт, чтобы продолжать получать сообщения."
+      },
+      "disconnectDialog": {
+        "title": "Отключить @{username}?",
+        "description": "Ваши сообщения и контакты сохранятся. Удалится только связь с Instagram, и вы можете подключиться снова в любой момент.",
+        "cancel": "Отмена",
+        "confirm": "Отключить",
+        "success": "Instagram отключён."
+      },
+      "moduleDisabled": {
+        "title": "Модуль Instagram не включён",
+        "description": "Модуль Instagram не включён для вашей компании. Попросите администратора включить его и вернитесь."
+      },
+      "callback": {
+        "connected": "Подключён @{username}",
+        "connectedGeneric": "Instagram подключён.",
+        "cancelled": "Вы отменили подключение.",
+        "invalidState": "Срок запроса на подключение истёк. Начните заново.",
+        "alreadyConnected": "Этот аккаунт Instagram уже подключён к другой компании.",
+        "providerError": "Instagram не смог завершить запрос. Попробуйте ещё раз.",
+        "generic": "Не удалось подключить Instagram. Попробуйте ещё раз.",
+        "retry": "Повторить",
+        "dismiss": "Закрыть"
       }
     },
     "email": {

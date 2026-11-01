@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
 import { useGetContactsQuery } from "@/lib/api/contacts.api";
 import {
+  useGetInstagramAccountsQuery,
   useGetInstagramConversationLinksQuery,
   useLinkInstagramConversationToContactMutation,
 } from "@/lib/api/instagram.api";
@@ -83,8 +84,17 @@ export function InstagramConversationLinksPanel() {
     onlyUnlinked: true,
   });
   const { data: allLinks, isLoading: isLoadingAll } = useGetInstagramConversationLinksQuery();
+  const { error: accountsError } = useGetInstagramAccountsQuery();
+
+  // Module not enabled (403): the accounts panel already explains it.
+  if ((accountsError as { status?: number } | undefined)?.status === 403) return null;
 
   return (
+    <section className="space-y-3">
+    <div>
+      <h3 className="text-sm font-medium text-text-primary">{t("heading")}</h3>
+      <p className="text-xs text-text-tertiary">{t("description")}</p>
+    </div>
     <Tabs defaultValue="unlinked">
       <TabsList>
         <TabsTrigger value="unlinked">{t("unlinkedTab")}</TabsTrigger>
@@ -127,5 +137,6 @@ export function InstagramConversationLinksPanel() {
         )}
       </TabsContent>
     </Tabs>
+    </section>
   );
 }

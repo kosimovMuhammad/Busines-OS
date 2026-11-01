@@ -434,11 +434,13 @@
     "instagram": {
       "title": "Instagram Management",
       "subtitle": "Centralized control for your Instagram direct messaging.",
-      "tabs": { "messages": "Messages", "accounts": "Accounts", "conversationLinks": "Conversation Links" },
+      "tabs": {
+        "messages": "Messages",
+        "accounts": "Accounts",
+        "conversationLinks": "Conversation Links"
+      },
       "selectContact": "Select a contact",
       "selectContactHint": "Select a contact to view and send Instagram messages.",
-      "connectAccount": "Connect Instagram Account",
-      "accountsEmpty": "No Instagram accounts connected yet.",
       "status": {
         "connected": "Connected",
         "notConnected": "Not connected",
@@ -448,32 +450,17 @@
         "username": "Username",
         "active": "Active",
         "inactive": "Inactive",
-        "reconnectRequired": "Reconnect required",
+        "tokenValidUntil": "Token valid until {date}",
+        "tokenExpired": "Token expired",
         "reconnect": "Reconnect",
-        "tokenExpires": "Token expires"
-      },
-      "connectCallback": {
-        "success": "Instagram account connected.",
-        "error": "Couldn't connect your Instagram account. Please try again.",
-        "errorWithReason": "Couldn't connect your Instagram account: {reason}"
-      },
-      "legacyConnect": {
-        "toggle": "Advanced: connect manually",
-        "description": "Paste an existing Instagram access token instead of using the connect flow above.",
-        "openForm": "Open manual connect form"
-      },
-      "connectSheet": {
-        "title": "Connect Instagram Account",
-        "description": "Enter your Instagram access token.",
-        "accessToken": "Access token",
-        "save": "Connect",
-        "success": "Instagram account connected."
+        "disconnect": "Disconnect"
       },
       "composer": {
         "placeholder": "Type a message...",
         "send": "Send message",
         "badRequest": "This contact needs a linked Instagram conversation before you can send messages.",
-        "unavailable": "Instagram sending isn't available yet for this conversation. Check back soon."
+        "unavailable": "Instagram sending isn't available yet for this conversation. Check back soon.",
+        "coldOutreachHint": "Instagram doesn't allow cold outreach - you can only reply to people who messaged you first."
       },
       "conversationLinks": {
         "unlinkedTab": "Unlinked",
@@ -481,7 +468,42 @@
         "linkButton": "Link to Contact",
         "selectContactPlaceholder": "Select a contact",
         "unknownName": "Unknown",
-        "empty": "No Instagram conversations found."
+        "empty": "No Instagram conversations found.",
+        "heading": "Unlinked conversations",
+        "description": "Usually empty - contacts are created automatically from incoming messages. Link a conversation manually if needed."
+      },
+      "notConnected": {
+        "title": "Connect your Instagram",
+        "description": "Receive and reply to Instagram direct messages right from your inbox.",
+        "requirement": "An Instagram Professional account (Business or Creator) is required. Personal profiles can't be connected.",
+        "connect": "Connect Instagram"
+      },
+      "expiry": {
+        "soon": "Your Instagram access expires in {days, plural, one {# day} other {# days}}. Reconnect to keep receiving messages.",
+        "expired": "Your Instagram access has expired. Reconnect to keep receiving messages.",
+        "inactive": "This connection is no longer active. Reconnect to keep receiving messages."
+      },
+      "disconnectDialog": {
+        "title": "Disconnect @{username}?",
+        "description": "Your messages and contacts are kept. Only the connection to Instagram is removed, and you can reconnect any time.",
+        "cancel": "Cancel",
+        "confirm": "Disconnect",
+        "success": "Instagram disconnected."
+      },
+      "moduleDisabled": {
+        "title": "Instagram module is not enabled",
+        "description": "The Instagram module isn't enabled for your company. Ask an administrator to enable it, then come back."
+      },
+      "callback": {
+        "connected": "Connected @{username}",
+        "connectedGeneric": "Instagram connected.",
+        "cancelled": "You cancelled the connection.",
+        "invalidState": "The connection request expired. Please start again.",
+        "alreadyConnected": "This Instagram account is already connected to another company.",
+        "providerError": "Instagram couldn't complete the request. Try again.",
+        "generic": "Couldn't connect Instagram. Please try again.",
+        "retry": "Try again",
+        "dismiss": "Dismiss"
       }
     },
     "email": {

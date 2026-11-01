@@ -1,7 +1,6 @@
 import { baseApi } from "./baseApi";
 import type {
   Communication,
-  ConnectInstagramAccountRequest,
   InstagramAccount,
   InstagramConnectResponse,
   InstagramConversationLink,
@@ -21,21 +20,24 @@ export const instagramApi = baseApi.injectEndpoints({
             ]
           : [{ type: "Instagram" as const, id: "LIST" }],
     }),
-    // OAuth consent URL - the backend generates and tracks the `state`
-    // itself, so this is a plain GET, not a mutation. Instagram then
-    // redirects the browser straight to the backend callback, which
-    // redirects back here with ?status=success|error - there is no
-    // frontend callback route to invalidate tags from, so the accounts
-    // panel refetches manually when it sees that query param.
-    getInstagramConnectUrl: builder.query<InstagramConnectResponse, void>({
-      query: () => "/instagram/connect",
+    // OAuth consent URL - the backend generates and tracks the one-time
+    // `state` itself, so this is a plain GET, but it must never be served
+    // from cache. `locale` tells the backend which /{locale}/instagram path
+    // to redirect back to. After the callback the browser lands on
+    // /{locale}/instagram?connected=...; the accounts panel reads those
+    // params and refetches by hand (no frontend callback route to hook).
+    getInstagramConnectUrl: builder.query<InstagramConnectResponse, string>({
+      query: (locale) => ({ url: "/instagram/connect", params: { locale } }),
+      keepUnusedDataFor: 0,
     }),
-    connectInstagramAccount: builder.mutation<
-      InstagramAccount,
-      ConnectInstagramAccountRequest
-    >({
-      query: (body) => ({ url: "/instagram/accounts", method: "POST", body }),
-      invalidatesTags: [{ type: "Instagram", id: "LIST" }, "Company"],
+    // 404 = already disconnected elsewhere; treat as success so the list
+    // refetches either way.
+    disconnectInstagramAccount: builder.mutation<void, string>({
+      query: (id) => ({ url: `/instagram/accounts/${id}`, method: "DELETE" }),
+      invalidatesTags: (_result, error) =>
+        !error || error.status === 404
+          ? [{ type: "Instagram" as const, id: "LIST" }, "Company"]
+          : [],
     }),
     sendInstagramMessage: builder.mutation<Communication, SendInstagramRequest>({
       query: (body) => ({ url: "/instagram/send", method: "POST", body }),
@@ -71,7 +73,7 @@ export const instagramApi = baseApi.injectEndpoints({
 export const {
   useGetInstagramAccountsQuery,
   useLazyGetInstagramConnectUrlQuery,
-  useConnectInstagramAccountMutation,
+  useDisconnectInstagramAccountMutation,
   useSendInstagramMessageMutation,
   useGetInstagramConversationLinksQuery,
   useLinkInstagramConversationToContactMutation,

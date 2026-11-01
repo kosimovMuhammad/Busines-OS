@@ -14,6 +14,20 @@ import { cn } from "@/lib/utils";
 import { CHANNEL_ICON } from "./channel-visuals";
 import type { Contact } from "@/types/api";
 
+// ASP.NET ProblemDetails / plain { message } / bare string bodies.
+function extractErrorMessage(err: unknown): string | null {
+  const data = (err as { data?: unknown })?.data;
+  if (typeof data === "string") return data.trim() || null;
+  if (data && typeof data === "object") {
+    const d = data as Record<string, unknown>;
+    for (const key of ["message", "detail", "error", "title"]) {
+      const v = d[key];
+      if (typeof v === "string" && v.trim()) return v;
+    }
+  }
+  return null;
+}
+
 type ComposerChannel = "ManualNote" | "Whatsapp" | "Telegram" | "Instagram" | "Email";
 
 const SEND_NAMESPACE: Partial<Record<ComposerChannel, string>> = {
@@ -50,6 +64,7 @@ export function ChannelComposer({
   const [activeTab, setActiveTab] = useState<ComposerChannel>("ManualNote");
   const [content, setContent] = useState("");
   const [guidance, setGuidance] = useState<"badRequest" | "unavailable" | null>(null);
+  const [guidanceDetail, setGuidanceDetail] = useState<string | null>(null);
 
   const [createNote, { isLoading: isNoteLoading }] = useCreateNoteMutation();
   const [sendWhatsapp, { isLoading: isWhatsappLoading }] = useSendWhatsappMessageMutation();
@@ -65,11 +80,13 @@ export function ChannelComposer({
     }
     setActiveTab(tab);
     setGuidance(null);
+    setGuidanceDetail(null);
   };
 
   const handleSubmit = async () => {
     if (!content.trim()) return;
     setGuidance(null);
+    setGuidanceDetail(null);
     try {
       if (activeTab === "ManualNote") {
         await createNote({ contactId: contact.id, content: content.trim() }).unwrap();
@@ -85,6 +102,9 @@ export function ChannelComposer({
     } catch (err) {
       const status = (err as { status?: number })?.status;
       setGuidance(status === 400 ? "badRequest" : "unavailable");
+      // Instagram 400s carry a specific reason (e.g. the contact hasn't
+      // messaged first) - show the backend's own message inline.
+      if (activeTab === "Instagram" && status === 400) setGuidanceDetail(extractErrorMessage(err));
     }
   };
 
@@ -135,8 +155,12 @@ export function ChannelComposer({
       {guidance && namespace && (
         <div className="mb-3 flex items-start gap-2 rounded-xl border border-warning/30 bg-warning/10 p-3 text-xs text-warning">
           <TriangleAlert className="mt-0.5 size-3.5 shrink-0" />
-          <span>{t(`${namespace}.${guidance}`)}</span>
+          <span>{guidanceDetail ?? t(`${namespace}.${guidance}`)}</span>
         </div>
+      )}
+
+      {activeTab === "Instagram" && (
+        <p className="mb-3 text-xs text-text-tertiary">{t("pages.instagram.composer.coldOutreachHint")}</p>
       )}
 
       {/* Composer box */}
