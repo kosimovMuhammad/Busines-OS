@@ -15,8 +15,8 @@ import { EmptyState } from "@/components/shared/empty-state";
 import { formatCurrency } from "@/lib/utils";
 import { TrendingUp } from "lucide-react";
 
-function monthLabel(month: string, locale: string) {
-  const [year, m] = month.split("-").map(Number);
+function monthLabel(period: string, locale: string) {
+  const [year, m] = period.split("-").map(Number);
   return new Intl.DateTimeFormat(locale, { month: "short" }).format(
     new Date(year, (m ?? 1) - 1, 1)
   );
@@ -28,9 +28,9 @@ export function RevenueChart() {
   const { data, isLoading } = useGetRevenueAnalyticsQuery();
 
   const currency = "TJS";
-  const points = (data?.byMonth ?? []).map((p) => ({
+  const points = (data?.revenueByMonth ?? []).map((p) => ({
     ...p,
-    label: monthLabel(p.month, locale),
+    label: monthLabel(p.period, locale),
   }));
 
   return (
@@ -78,7 +78,7 @@ export function RevenueChart() {
               />
               <Area
                 type="monotone"
-                dataKey="value"
+                dataKey="revenue"
                 stroke="var(--chart-1)"
                 strokeWidth={2}
                 fill="url(#revenueFill)"

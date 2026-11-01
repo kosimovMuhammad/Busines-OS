@@ -60,7 +60,7 @@ export function PipelineBreakdown() {
           <p className="mt-4 text-xs font-medium tracking-wide text-text-tertiary uppercase">
             {t("total")}
           </p>
-          <p className="text-2xl font-semibold text-text-primary">{total}</p>
+          <p className="text-2xl font-semibold text-text-primary tabular-nums">{total}</p>
 
           <ul className="mt-4 space-y-3">
             {rows.map((row) => (
@@ -71,7 +71,7 @@ export function PipelineBreakdown() {
                   aria-hidden
                 />
                 <span className="flex-1 text-text-primary">{tStage(row.stage)}</span>
-                <span className="text-text-secondary">{row.count}</span>
+                <span className="text-text-secondary tabular-nums">{row.count}</span>
               </li>
             ))}
           </ul>

@@ -26,15 +26,15 @@ export function ForecastCard() {
       ) : (
         <>
           <div className="mt-3 flex items-baseline gap-3">
-            <p className="text-2xl font-semibold tracking-tight">
-              {formatCurrency(data.estimatedRevenue, "TJS", locale)}
+            <p className="text-2xl font-semibold tracking-tight tabular-nums">
+              {formatCurrency(data.weightedForecast30Days, "TJS", locale)}
             </p>
-            <span className="rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium">
+            <span className="rounded-full bg-white/15 px-2 py-0.5 text-xs font-medium tabular-nums">
               {t("confidence")}{" "}
               {Math.round(Number.isFinite(data.confidencePercentage) ? data.confidencePercentage : 0)}%
             </span>
           </div>
-          <p className="mt-2 text-sm text-white/85">{data.summary}</p>
+          <p className="mt-2 text-sm text-white/85">{t("summary")}</p>
         </>
       )}
     </div>

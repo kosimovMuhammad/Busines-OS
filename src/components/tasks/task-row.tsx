@@ -21,14 +21,9 @@ import { MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Task } from "@/types/api";
 import type { TaskStatus } from "@/types/enums";
 
-const STATUS_ORDER: TaskStatus[] = ["Todo", "InProgress", "Completed", "Archived"];
+import { format, isToday, isPast, startOfToday } from "date-fns";
 
-const PRIORITY_CLASS: Record<Task["priority"], string> = {
-  Low: "bg-surface-elevated text-text-tertiary",
-  Medium: "bg-warning/10 text-warning",
-  High: "bg-danger/10 text-danger",
-  Urgent: "bg-danger/20 text-danger",
-};
+const STATUS_ORDER: TaskStatus[] = ["Todo", "InProgress", "Completed", "Archived"];
 
 export function TaskRow({
   task,
@@ -55,82 +50,73 @@ export function TaskRow({
   const [updateStatus] = useUpdateTaskStatusMutation();
   const canMutate = useCanMutate();
 
-  const dueDate = task.dueDate
-    ? new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" }).format(
-        new Date(task.dueDate)
-      )
-    : null;
+  const TODAY_START = startOfToday();
+  const dueDateObj = task.dueDate ? new Date(task.dueDate) : null;
+  const overdue = dueDateObj ? dueDateObj < TODAY_START : false;
+  const today = dueDateObj ? isToday(dueDateObj) : false;
+
+  const priorityColor =
+    task.priority === "Urgent" || task.priority === "High"
+      ? "bg-danger"
+      : task.priority === "Medium"
+        ? "bg-warning"
+        : "bg-transparent";
+
+  let formattedDate = "";
+  if (dueDateObj) {
+    if (overdue) {
+      formattedDate = format(dueDateObj, "MMM d");
+    } else if (today) {
+      formattedDate = format(dueDateObj, "HH:mm");
+    } else {
+      formattedDate = format(dueDateObj, "MMM d");
+    }
+  }
+
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-border-subtle bg-surface p-3">
-      <button
-        type="button"
-        onClick={() => (isActiveTimer ? stopTimer(task.id) : startTimer(task.id))}
-        disabled={!canMutate || isStarting || isStopping || (hasOtherActiveTimer && !isActiveTimer)}
-        className={cn(
-          "flex size-8 shrink-0 items-center justify-center rounded-full transition-colors disabled:opacity-30",
-          isActiveTimer
-            ? "bg-danger/10 text-danger hover:bg-danger/20"
-            : "bg-surface-elevated text-text-tertiary hover:text-text-primary"
-        )}
-        aria-label={isActiveTimer ? t("stopTimer") : t("startTimer")}
-      >
-        {isActiveTimer ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
-      </button>
+    <div className="group flex items-center gap-4 hover:bg-surface-elevated/30 p-3 transition-colors cursor-pointer" onClick={onOpen}>
+      <div className="flex items-center gap-3 w-[400px] shrink-0" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          onClick={() => updateStatus({ id: task.id, status: task.status === "Completed" ? "Todo" : "Completed" })}
+          disabled={!canMutate}
+          className="flex size-4 shrink-0 items-center justify-center rounded-[3px] border border-border-strong hover:border-text-primary transition-colors disabled:opacity-50"
+          aria-label={tStatus(task.status)}
+        >
+          {task.status === "Completed" && <div className="size-2 bg-text-primary rounded-[1px]" />}
+        </button>
 
-      <button type="button" onClick={onOpen} className="min-w-0 flex-1 text-left">
-        <p className="truncate text-sm font-medium text-text-primary">{task.title}</p>
-        <div className="mt-0.5 flex items-center gap-2 text-xs text-text-tertiary">
-          {dueDate && <span>{dueDate}</span>}
-          {task.assignee && <span>· {task.assignee.name}</span>}
+        <div className={cn("h-3.5 w-1 rounded-full", priorityColor)} />
+
+        <div className="min-w-0 flex-1 text-left">
+          <p className={cn("truncate text-sm font-medium text-text-primary", task.status === "Completed" && "line-through text-text-tertiary")}>
+            {task.title}
+          </p>
         </div>
-      </button>
+      </div>
 
-      <span
-        className={cn(
-          "shrink-0 rounded-full px-2 py-0.5 text-xs font-medium",
-          PRIORITY_CLASS[task.priority]
-        )}
-      >
-        {tPriority(task.priority)}
-      </span>
+      <div className="flex flex-1 items-center justify-end gap-6">
+        <div className="hidden md:flex text-sm text-text-tertiary w-[200px] justify-end truncate">
+          {task.contactId ? "Client Contact" : task.dealId ? "Related Deal" : ""}
+        </div>
+        
+        <div className={cn("text-[13px] w-[80px] text-right font-medium", overdue ? "text-danger" : "text-text-tertiary")}>
+          {formattedDate}
+        </div>
 
-      <Select
-        value={task.status}
-        onValueChange={(value) =>
-          value && value !== task.status && updateStatus({ id: task.id, status: value as TaskStatus })
-        }
-      >
-        <SelectTrigger size="sm" className="w-36" disabled={!canMutate}>
-          <SelectValue>{(value: string) => tStatus(value as TaskStatus)}</SelectValue>
-        </SelectTrigger>
-        <SelectContent>
-          {STATUS_ORDER.map((s) => (
-            <SelectItem key={s} value={s}>
-              {tStatus(s)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <PermissionGuard roles={MUTATION_ALLOWED_ROLES}>
-        <button
-          type="button"
-          onClick={onEdit}
-          className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-surface-elevated hover:text-text-primary"
-          aria-label={t("edit")}
-        >
-          <Pencil className="size-3.5" />
-        </button>
-        <button
-          type="button"
-          onClick={onDelete}
-          className="flex size-7 shrink-0 items-center justify-center rounded-md text-text-tertiary transition-colors hover:bg-danger/10 hover:text-danger"
-          aria-label={t("delete")}
-        >
-          <Trash2 className="size-3.5" />
-        </button>
-      </PermissionGuard>
+        <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-surface-elevated text-[10px] font-semibold text-text-secondary uppercase tracking-wider">
+          {task.assignee ? getInitials(task.assignee.name) : "—"}
+        </div>
+      </div>
     </div>
   );
 }

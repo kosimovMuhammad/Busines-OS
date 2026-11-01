@@ -52,7 +52,7 @@ export function ActivityFeed() {
           <EmptyState icon={Activity} title={t("empty")} />
         </div>
       ) : (
-        <ul className="mt-4 space-y-4">
+        <ul className="scrollbar-thin mt-4 max-h-48 space-y-4 overflow-y-auto">
           {data.map((item, i) => {
             const Icon = TYPE_ICON[item.type] ?? Activity;
             const typeLabel = KNOWN_TYPES.has(item.type)

@@ -33,7 +33,6 @@ import type { Contact, Deal } from "@/types/api";
 import type { DealStage } from "@/types/enums";
 
 const UNASSIGNED = "__unassigned__";
-const NO_CONTACT = "__no_contact__";
 const STAGES: DealStage[] = [
   "Lead",
   "Qualified",
@@ -51,12 +50,16 @@ export function DealFormSheet({
   onOpenChange,
   deal,
   contacts,
+  defaultStage,
+  defaultContactId,
   onDelete,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   deal: Deal | null;
   contacts: Contact[];
+  defaultStage?: DealStage;
+  defaultContactId?: string;
   onDelete?: () => void;
 }) {
   const t = useTranslations("pages.deals.form");
@@ -92,15 +95,15 @@ export function DealFormSheet({
     if (!open) return;
     reset({
       title: deal?.title ?? "",
-      contactId: deal?.contactId ?? "",
+      contactId: deal?.contactId ?? defaultContactId ?? "",
       value: deal ? String(deal.value) : "",
       currency: deal?.currency ?? "TJS",
-      stage: deal?.stage ?? "Lead",
+      stage: deal?.stage ?? defaultStage ?? "Lead",
       probability: deal?.probability != null ? String(deal.probability) : "",
       expectedCloseDate: deal?.expectedCloseDate?.slice(0, 10) ?? "",
       ownerId: deal?.ownerId ?? "",
     });
-  }, [open, deal, reset]);
+  }, [open, deal, defaultStage, defaultContactId, reset]);
 
   const contactId = watch("contactId");
   const stage = watch("stage");
@@ -163,9 +166,9 @@ export function DealFormSheet({
               {t("contact")}
             </label>
             <Select
-              value={contactId || NO_CONTACT}
+              value={contactId || null}
               onValueChange={(value) =>
-                setValue("contactId", value === NO_CONTACT || !value ? "" : value)
+                setValue("contactId", value || "")
               }
             >
               <SelectTrigger id="deal-contact" className="w-full">
@@ -179,9 +182,6 @@ export function DealFormSheet({
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={NO_CONTACT} disabled>
-                  {t("selectContact")}
-                </SelectItem>
                 {contacts.map((c) => (
                   <SelectItem key={c.id} value={c.id}>
                     {[c.firstName, c.lastName].filter(Boolean).join(" ")}

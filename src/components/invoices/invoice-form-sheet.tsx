@@ -28,7 +28,6 @@ import { useCanMutate } from "@/lib/hooks/usePermissions";
 import { INVOICE_MUTATION_ALLOWED_ROLES } from "@/lib/permissions/constants";
 import type { Invoice } from "@/types/api";
 
-const NO_CONTACT = "__no_contact__";
 const NONE = "__none__";
 
 const inputClass =
@@ -121,9 +120,9 @@ export function InvoiceFormSheet({
               {t("contact")}
             </label>
             <Select
-              value={contactId || NO_CONTACT}
+              value={contactId || null}
               onValueChange={(value) =>
-                setValue("contactId", value === NO_CONTACT || !value ? "" : value)
+                setValue("contactId", value || "")
               }
             >
               <SelectTrigger id="invoice-contact" className="w-full">
@@ -137,9 +136,6 @@ export function InvoiceFormSheet({
                 </SelectValue>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={NO_CONTACT} disabled>
-                  {t("selectContact")}
-                </SelectItem>
                 {contactsPage?.data.map((c) => (
                   <SelectItem key={c.id} value={c.id}>
                     {[c.firstName, c.lastName].filter(Boolean).join(" ")}

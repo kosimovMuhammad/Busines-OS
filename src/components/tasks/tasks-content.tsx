@@ -53,6 +53,10 @@ export function TasksContent() {
           setSheetOpen(true);
         }}
         onDelete={setDeletingTask}
+        onCreate={() => {
+          setEditingTask(null);
+          setSheetOpen(true);
+        }}
       />
 
       <TaskFormSheet open={sheetOpen} onOpenChange={setSheetOpen} task={editingTask} />
