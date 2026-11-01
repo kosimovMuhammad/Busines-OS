@@ -10,7 +10,7 @@
       "integrationUnavailable": "Эта интеграция ещё не настроена. Попробуйте позже."
     },
     "logout": "Выйти",
-  "profile": "Профиль",
+    "profile": "Профиль",
     "restrictedAccess": "У вас нет доступа к этому разделу.",
     "passwordNudge": {
       "message": "Вы ещё не задали пароль. Задайте его в настройках, чтобы входить и по паролю.",
@@ -334,7 +334,10 @@
     "whatsapp": {
       "title": "Управление WhatsApp",
       "subtitle": "Централизованное управление бизнес-мессенджером.",
-      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты" },
+      "tabs": {
+        "messages": "Сообщения",
+        "accounts": "Аккаунты"
+      },
       "selectContact": "Выберите контакт",
       "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения WhatsApp.",
       "connectAccount": "Подключить аккаунт",
@@ -343,33 +346,6 @@
         "connected": "Подключено",
         "notConnected": "Не подключено",
         "hint": "Подключите аккаунт WhatsApp Business, чтобы отправлять и получать сообщения."
-      },
-      "accountRow": {
-        "phoneNumberId": "ID номера телефона",
-        "wabaId": "ID WABA",
-        "unnamed": "Аккаунт без имени",
-        "active": "Активен",
-        "disconnected": "Отключён",
-        "connectedOn": "Подключён",
-        "actions": "Действия с аккаунтом",
-        "editName": "Изменить имя",
-        "disconnectAction": "Отключить"
-      },
-      "connectSheet": {
-        "title": "Подключить аккаунт WhatsApp",
-        "description": "Введите учётные данные Meta WhatsApp Business API.",
-        "phoneNumberId": "ID номера телефона",
-        "wabaId": "ID WhatsApp Business Account",
-        "accessToken": "Токен доступа",
-        "verifiedName": "Подтверждённое имя (необязательно)",
-        "save": "Подключить",
-        "success": "Аккаунт WhatsApp подключён."
-      },
-      "editSheet": {
-        "title": "Изменить имя аккаунта",
-        "verifiedNameLabel": "Подтверждённое имя",
-        "save": "Сохранить",
-        "success": "Имя аккаунта обновлено."
       },
       "disconnectDialog": {
         "title": "Отключить аккаунт WhatsApp?",
@@ -383,12 +359,71 @@
         "send": "Отправить сообщение",
         "badRequest": "У этого контакта должен быть номер телефона, а у компании — подключённый аккаунт WhatsApp, чтобы отправлять сообщения.",
         "unavailable": "Отправка WhatsApp для этого номера пока недоступна. Попробуйте позже."
+      },
+      "signup": {
+        "tab": {
+          "title": "WhatsApp",
+          "description": "Подключите номер WhatsApp, чтобы получать и отправлять сообщения клиентам из Business OS.",
+          "notConnected": "WhatsApp не подключён.",
+          "connect": "Подключить WhatsApp",
+          "connecting": "Подключение…",
+          "connectHint": "Откроется окно Meta. Войдите через Facebook, введите номер и подтвердите его кодом.",
+          "connectedTitle": "Подключено",
+          "number": "Номер",
+          "verifiedName": "Название бизнеса",
+          "connectedAt": "Подключено",
+          "disconnect": "Отключить",
+          "disconnectTitle": "Отключить WhatsApp?",
+          "disconnectBody": "Вы перестанете получать сообщения WhatsApp здесь. История сообщений сохранится. Подключить номер можно снова.",
+          "disconnectConfirm": "Отключить",
+          "cancel": "Отмена",
+          "needsAttentionTitle": "Требуется действие",
+          "needsAttentionBody": "Номер сохранён, но один из шагов настройки не завершён.",
+          "retry": "Повторить настройку",
+          "retrying": "Повтор…",
+          "connectedSuccess": "WhatsApp подключён.",
+          "coexistenceBadge": "Приложение Business (Coexistence)",
+          "coexistenceNote": "Вы можете и дальше пользоваться приложением WhatsApp Business на телефоне с этим номером.",
+          "historyNote": "Импорт старых чатов и контактов для этого подключения пока недоступен."
+        },
+        "errors": {
+          "cancelled": "Подключение отменено.",
+          "number_not_eligible": "Этот номер пока не подходит. Поактивнее пользуйтесь приложением WhatsApp Business и повторите позже.",
+          "region_not_supported": "Эта функция недоступна для номеров из этого региона.",
+          "business_app_update_required": "Обновите приложение WhatsApp Business до последней версии и повторите.",
+          "number_not_on_business_app": "Этот номер не зарегистрирован в приложении WhatsApp Business.",
+          "number_already_registered": "Номер уже подключён в другом месте. Отключите его там, подождите около 15 минут и повторите.",
+          "already_shared_with_partner": "Этот аккаунт WhatsApp Business уже передан другому партнёру.",
+          "marketing_messages_unsupported": "Этот аккаунт использует маркетинговые сообщения — для такого подключения это не поддерживается.",
+          "already_connected": "Этот номер уже подключён к другой компании.",
+          "invalid_state": "Запрос устарел. Начните заново.",
+          "invalid_session": "WhatsApp вернул неожиданный результат. Попробуйте ещё раз.",
+          "unsupported_flow": "WhatsApp вернул неожиданный результат. Попробуйте ещё раз.",
+          "code_exchange_failed": "Время входа истекло. Попробуйте ещё раз.",
+          "invalid_token": "WhatsApp отклонил доступ. Подключитесь заново.",
+          "no_waba_access": "Аккаунт WhatsApp Business не был предоставлен. Повторите и разрешите доступ.",
+          "asset_mismatch": "Аккаунт WhatsApp Business не был предоставлен. Повторите и разрешите доступ.",
+          "no_phone_number": "Номер телефона не был добавлен.",
+          "ambiguous_phone_number": "Предоставлено несколько номеров, выберите один.",
+          "register_failed": "Сохранено, но регистрация в WhatsApp не удалась. Нажмите «Повторить».",
+          "register_rate_limited": "WhatsApp ограничивает число попыток регистрации. Подождите несколько часов и повторите.",
+          "subscribe_failed": "Сохранено, но подписка на вебхуки не удалась. Нажмите «Повторить».",
+          "not_configured": "Подключение WhatsApp не настроено на сервере.",
+          "provider_error": "WhatsApp отклонил запрос. Попробуйте ещё раз.",
+          "unknown": "WhatsApp отклонил запрос. Попробуйте ещё раз.",
+          "sdk_load_failed": "Не удалось загрузить вход через Facebook. Отключите блокировщики и повторите.",
+          "popup_blocked": "Окно входа заблокировано. Разрешите всплывающие окна для этого сайта и повторите."
+        }
       }
     },
     "telegram": {
       "title": "Управление Telegram",
       "subtitle": "Централизованное управление сообщениями Telegram-бота.",
-      "tabs": { "messages": "Сообщения", "accounts": "Аккаунты", "chatLinks": "Связи чатов" },
+      "tabs": {
+        "messages": "Сообщения",
+        "accounts": "Аккаунты",
+        "chatLinks": "Связи чатов"
+      },
       "selectContact": "Выберите контакт",
       "selectContactHint": "Выберите контакт, чтобы просматривать и отправлять сообщения Telegram.",
       "connectAccount": "Подключить бота",
@@ -509,7 +544,10 @@
     "email": {
       "title": "Почта",
       "subtitle": "Подключите и отправляйте письма из своего ящика",
-      "tabs": { "messages": "Сообщения", "connections": "Подключения" },
+      "tabs": {
+        "messages": "Сообщения",
+        "connections": "Подключения"
+      },
       "allContacts": "Все контакты",
       "compose": "Написать",
       "connections": {
@@ -531,7 +569,13 @@
     "ai": {
       "title": "AI-ассистент",
       "subtitle": "Задавайте вопросы, создавайте письма и коммерческие предложения",
-      "tabs": { "query": "Вопрос", "draftEmail": "Черновик письма", "quotation": "Предложение", "forecast": "Прогноз", "assistant": "Ассистент" },
+      "tabs": {
+        "query": "Вопрос",
+        "draftEmail": "Черновик письма",
+        "quotation": "Предложение",
+        "forecast": "Прогноз",
+        "assistant": "Ассистент"
+      },
       "query": {
         "empty": "Задайте вопрос о контактах, сделках или доходе.",
         "placeholder": "Покажи клиентов, которые не отвечали 14 дней...",
@@ -802,7 +846,11 @@
         "columnValue": "Сумма"
       },
       "revenue": {
-        "groupBy": { "day": "День", "week": "Неделя", "month": "Месяц" },
+        "groupBy": {
+          "day": "День",
+          "week": "Неделя",
+          "month": "Месяц"
+        },
         "totalRevenue": "Общий доход",
         "vsPrevious": "{value} к предыдущему периоду",
         "forecasted": "Прогноз",

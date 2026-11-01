@@ -10,7 +10,7 @@
       "integrationUnavailable": "This integration isn't set up yet. Try again later."
     },
     "logout": "Log out",
-  "profile": "Profile",
+    "profile": "Profile",
     "restrictedAccess": "You don't have access to this section.",
     "passwordNudge": {
       "message": "You haven't set a password yet. Set one in Settings to enable password login.",
@@ -334,7 +334,10 @@
     "whatsapp": {
       "title": "WhatsApp Management",
       "subtitle": "Centralized control for your business messaging infrastructure.",
-      "tabs": { "messages": "Messages", "accounts": "Accounts" },
+      "tabs": {
+        "messages": "Messages",
+        "accounts": "Accounts"
+      },
       "selectContact": "Select a contact",
       "selectContactHint": "Select a contact to view and send WhatsApp messages.",
       "connectAccount": "Connect Account",
@@ -343,33 +346,6 @@
         "connected": "Connected",
         "notConnected": "Not connected",
         "hint": "Connect a WhatsApp Business account to send and receive messages."
-      },
-      "accountRow": {
-        "phoneNumberId": "Phone number ID",
-        "wabaId": "WABA ID",
-        "unnamed": "Unnamed account",
-        "active": "Active",
-        "disconnected": "Disconnected",
-        "connectedOn": "Connected on",
-        "actions": "Account actions",
-        "editName": "Edit name",
-        "disconnectAction": "Disconnect"
-      },
-      "connectSheet": {
-        "title": "Connect WhatsApp Account",
-        "description": "Enter your Meta WhatsApp Business API credentials.",
-        "phoneNumberId": "Phone number ID",
-        "wabaId": "WhatsApp Business Account ID",
-        "accessToken": "Access token",
-        "verifiedName": "Verified name (optional)",
-        "save": "Connect",
-        "success": "WhatsApp account connected."
-      },
-      "editSheet": {
-        "title": "Edit account name",
-        "verifiedNameLabel": "Verified name",
-        "save": "Save",
-        "success": "Account name updated."
       },
       "disconnectDialog": {
         "title": "Disconnect WhatsApp account?",
@@ -383,12 +359,71 @@
         "send": "Send message",
         "badRequest": "This contact needs a phone number and a connected WhatsApp account before you can send messages.",
         "unavailable": "WhatsApp sending isn't available yet for this number. Check back soon."
+      },
+      "signup": {
+        "tab": {
+          "title": "WhatsApp",
+          "description": "Connect your WhatsApp number to receive and send customer messages from Business OS.",
+          "notConnected": "WhatsApp is not connected.",
+          "connect": "Connect WhatsApp",
+          "connecting": "Connecting…",
+          "connectHint": "A Meta window will open. Log in with Facebook, enter your number and confirm it with the code.",
+          "connectedTitle": "Connected",
+          "number": "Number",
+          "verifiedName": "Business name",
+          "connectedAt": "Connected on",
+          "disconnect": "Disconnect",
+          "disconnectTitle": "Disconnect WhatsApp?",
+          "disconnectBody": "You will stop receiving WhatsApp messages here. Message history is kept. You can connect again later.",
+          "disconnectConfirm": "Disconnect",
+          "cancel": "Cancel",
+          "needsAttentionTitle": "Action needed",
+          "needsAttentionBody": "The number is saved, but a setup step did not finish.",
+          "retry": "Retry setup",
+          "retrying": "Retrying…",
+          "connectedSuccess": "WhatsApp connected.",
+          "coexistenceBadge": "Business app (Coexistence)",
+          "coexistenceNote": "You can keep using the WhatsApp Business app on your phone with this number.",
+          "historyNote": "Importing old chats and contacts is not available for this connection yet."
+        },
+        "errors": {
+          "cancelled": "Connection was cancelled.",
+          "number_not_eligible": "This number isn't eligible yet. Use the WhatsApp Business app more actively and try again later.",
+          "region_not_supported": "This feature is unavailable for numbers from this region.",
+          "business_app_update_required": "Update the WhatsApp Business app to the latest version and try again.",
+          "number_not_on_business_app": "This number isn't registered in the WhatsApp Business app.",
+          "number_already_registered": "This number is registered elsewhere. Disconnect it there, wait about 15 minutes and try again.",
+          "already_shared_with_partner": "This WhatsApp Business account is already shared with another partner.",
+          "marketing_messages_unsupported": "This account uses marketing messages, which isn't supported for this connection.",
+          "already_connected": "This number is already connected to another company.",
+          "invalid_state": "The request expired. Please start again.",
+          "invalid_session": "WhatsApp returned an unexpected result. Please try again.",
+          "unsupported_flow": "WhatsApp returned an unexpected result. Please try again.",
+          "code_exchange_failed": "The sign-in timed out. Please try again.",
+          "invalid_token": "WhatsApp rejected the access. Please connect again.",
+          "no_waba_access": "No WhatsApp Business account was shared. Please try again and grant access.",
+          "asset_mismatch": "No WhatsApp Business account was shared. Please try again and grant access.",
+          "no_phone_number": "No phone number was added.",
+          "ambiguous_phone_number": "Several numbers were shared; select one.",
+          "register_failed": "Saved, but registration with WhatsApp failed. Press Retry.",
+          "register_rate_limited": "WhatsApp limits registration attempts. Wait a few hours and retry.",
+          "subscribe_failed": "Saved, but webhook subscription failed. Press Retry.",
+          "not_configured": "WhatsApp onboarding isn't configured on the server.",
+          "provider_error": "WhatsApp rejected the request. Please try again.",
+          "unknown": "WhatsApp rejected the request. Please try again.",
+          "sdk_load_failed": "Could not load the Facebook sign-in. Disable blockers and try again.",
+          "popup_blocked": "The sign-in window was blocked. Allow pop-ups for this site and try again."
+        }
       }
     },
     "telegram": {
       "title": "Telegram Management",
       "subtitle": "Centralized control for your Telegram bot messaging.",
-      "tabs": { "messages": "Messages", "accounts": "Accounts", "chatLinks": "Chat Links" },
+      "tabs": {
+        "messages": "Messages",
+        "accounts": "Accounts",
+        "chatLinks": "Chat Links"
+      },
       "selectContact": "Select a contact",
       "selectContactHint": "Select a contact to view and send Telegram messages.",
       "connectAccount": "Connect Bot",
@@ -509,7 +544,10 @@
     "email": {
       "title": "Email",
       "subtitle": "Connect and send from your inbox",
-      "tabs": { "messages": "Messages", "connections": "Connections" },
+      "tabs": {
+        "messages": "Messages",
+        "connections": "Connections"
+      },
       "allContacts": "All Contacts",
       "compose": "Compose",
       "connections": {
@@ -531,7 +569,13 @@
     "ai": {
       "title": "AI Assistant",
       "subtitle": "Ask questions, draft emails, generate quotations",
-      "tabs": { "query": "Ask", "draftEmail": "Draft Email", "quotation": "Quotation", "forecast": "Forecast", "assistant": "Assistant" },
+      "tabs": {
+        "query": "Ask",
+        "draftEmail": "Draft Email",
+        "quotation": "Quotation",
+        "forecast": "Forecast",
+        "assistant": "Assistant"
+      },
       "query": {
         "empty": "Ask a question about your contacts, deals, or revenue.",
         "placeholder": "Show clients who haven't replied in 14 days...",
@@ -802,7 +846,11 @@
         "columnValue": "Value"
       },
       "revenue": {
-        "groupBy": { "day": "Day", "week": "Week", "month": "Month" },
+        "groupBy": {
+          "day": "Day",
+          "week": "Week",
+          "month": "Month"
+        },
         "totalRevenue": "Total Revenue",
         "vsPrevious": "{value} vs previous period",
         "forecasted": "Forecasted",

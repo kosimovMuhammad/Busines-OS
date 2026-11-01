@@ -853,20 +853,50 @@ export type WhatsappAccount = {
   phoneNumberId: string;
   wabaId: string;
   verifiedName: string | null;
+  displayPhoneNumber: string | null;
   isActive: boolean;
+  isOnBizApp: boolean;
+  connectionStatus: "Active" | "NeedsAttention";
+  historySyncStatus: string;
+  onboardedAt: string | null;
+  tokenExpiresAt: string | null;
   createdAt: string;
 };
 
-export type ConnectWhatsappAccountRequest = {
-  phoneNumberId: string;
-  wabaId: string;
-  accessToken: string;
-  verifiedName?: string;
+export type WhatsappSignupConfig = {
+  appId: string;
+  configurationId: string;
+  graphVersion: string;
+  signupVersion: string;
+  state: string;
 };
 
-export type UpdateWhatsappAccountRequest = {
-  verifiedName?: string;
-  isActive?: boolean;
+export type WhatsappSignupSession = {
+  event?: string;
+  phoneNumberId?: string;
+  wabaId?: string;
+  messagingAccountIds?: string[];
+  businessId?: string;
+  isOnBizApp?: boolean;
+};
+
+export type CompleteWhatsappSignupRequest = {
+  code: string;
+  state: string;
+  session?: WhatsappSignupSession;
+};
+
+export type WhatsappClientEventRequest = {
+  event: "CANCEL" | "ERROR";
+  currentStep?: string;
+  errorCode?: string;
+  errorMessage?: string;
+  sessionId?: string;
+};
+
+export type WhatsappConnectResult = {
+  account: WhatsappAccount;
+  issues: string[];
 };
 
 export type SendWhatsappRequest = {

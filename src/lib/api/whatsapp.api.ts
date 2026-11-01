@@ -1,11 +1,13 @@
 import { baseApi } from "./baseApi";
 import type {
   Communication,
-  ConnectWhatsappAccountRequest,
+  CompleteWhatsappSignupRequest,
   SendPlatformWhatsAppTemplateRequest,
   SendPlatformWhatsAppTextRequest,
   SendWhatsappRequest,
-  UpdateWhatsappAccountRequest,
+  WhatsappClientEventRequest,
+  WhatsappConnectResult,
+  WhatsappSignupConfig,
   WhatsAppSendResult,
   WhatsappAccount,
 } from "@/types/api";
@@ -22,23 +24,24 @@ export const whatsappApi = baseApi.injectEndpoints({
             ]
           : [{ type: "WhatsApp" as const, id: "LIST" }],
     }),
-    connectWhatsappAccount: builder.mutation<
-      WhatsappAccount,
-      ConnectWhatsappAccountRequest
-    >({
-      query: (body) => ({ url: "/whatsapp/accounts", method: "POST", body }),
+    // State is single-purpose and expires in 10 min, so never serve a cached copy.
+    getWhatsappSignupConfig: builder.query<WhatsappSignupConfig, string>({
+      query: (locale) => `/whatsapp/embedded-signup/config?locale=${encodeURIComponent(locale)}`,
+      keepUnusedDataFor: 0,
+    }),
+    completeWhatsappSignup: builder.mutation<WhatsappConnectResult, CompleteWhatsappSignupRequest>({
+      query: (body) => ({ url: "/whatsapp/embedded-signup/complete", method: "POST", body }),
       invalidatesTags: [{ type: "WhatsApp", id: "LIST" }, "Company"],
     }),
-    updateWhatsappAccount: builder.mutation<
-      WhatsappAccount,
-      { id: string; body: UpdateWhatsappAccountRequest }
+    reportWhatsappSignupEvent: builder.mutation<
+      { code: string; message: string },
+      WhatsappClientEventRequest
     >({
-      query: ({ id, body }) => ({ url: `/whatsapp/accounts/${id}`, method: "PATCH", body }),
-      invalidatesTags: (_result, _error, { id }) => [
-        { type: "WhatsApp", id },
-        { type: "WhatsApp", id: "LIST" },
-        "Company",
-      ],
+      query: (body) => ({ url: "/whatsapp/embedded-signup/client-event", method: "POST", body }),
+    }),
+    retryWhatsappAccount: builder.mutation<WhatsappConnectResult, string>({
+      query: (id) => ({ url: `/whatsapp/accounts/${id}/retry`, method: "POST" }),
+      invalidatesTags: [{ type: "WhatsApp", id: "LIST" }, "Company"],
     }),
     deleteWhatsappAccount: builder.mutation<void, string>({
       query: (id) => ({ url: `/whatsapp/accounts/${id}`, method: "DELETE" }),
@@ -71,8 +74,10 @@ export const whatsappApi = baseApi.injectEndpoints({
 
 export const {
   useGetWhatsappAccountsQuery,
-  useConnectWhatsappAccountMutation,
-  useUpdateWhatsappAccountMutation,
+  useLazyGetWhatsappSignupConfigQuery,
+  useCompleteWhatsappSignupMutation,
+  useReportWhatsappSignupEventMutation,
+  useRetryWhatsappAccountMutation,
   useDeleteWhatsappAccountMutation,
   useSendWhatsappMessageMutation,
   useSendPlatformWhatsAppTextMutation,

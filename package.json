@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "predev": "kill-port 5173",
-    "dev": "next dev -p 5173",
+    "dev": "next dev --experimental-https -p 5173",
     "build": "next build",
     "start": "next start -p 5173",
     "lint": "eslint"
