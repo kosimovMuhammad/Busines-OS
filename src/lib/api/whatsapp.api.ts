@@ -39,6 +39,10 @@ export const whatsappApi = baseApi.injectEndpoints({
     >({
       query: (body) => ({ url: "/whatsapp/embedded-signup/client-event", method: "POST", body }),
     }),
+    // Development-only step trace; the backend returns 404 outside Development.
+    traceWhatsappSignupStep: builder.mutation<void, { step: string; data?: Record<string, unknown> }>({
+      query: (body) => ({ url: "/whatsapp/embedded-signup/debug", method: "POST", body }),
+    }),
     retryWhatsappAccount: builder.mutation<WhatsappConnectResult, string>({
       query: (id) => ({ url: `/whatsapp/accounts/${id}/retry`, method: "POST" }),
       invalidatesTags: [{ type: "WhatsApp", id: "LIST" }, "Company"],
@@ -77,6 +81,7 @@ export const {
   useLazyGetWhatsappSignupConfigQuery,
   useCompleteWhatsappSignupMutation,
   useReportWhatsappSignupEventMutation,
+  useTraceWhatsappSignupStepMutation,
   useRetryWhatsappAccountMutation,
   useDeleteWhatsappAccountMutation,
   useSendWhatsappMessageMutation,

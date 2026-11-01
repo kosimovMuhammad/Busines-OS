@@ -5,7 +5,9 @@ import {
   useCompleteWhatsappSignupMutation,
   useLazyGetWhatsappSignupConfigQuery,
   useReportWhatsappSignupEventMutation,
+  useTraceWhatsappSignupStepMutation,
 } from "@/lib/api/whatsapp.api";
+import { setWaTraceSink, waKeys, waTrace } from "@/lib/whatsapp-trace";
 import type {
   WhatsappConnectResult,
   WhatsappSignupConfig,
@@ -35,15 +37,18 @@ function loadSdk(config: WhatsappSignupConfig): Promise<void> {
   if (sdkPromise) return sdkPromise;
   sdkPromise = new Promise<void>((resolve, reject) => {
     const init = () => {
+      waTrace("sdk.init", { appId: config.appId, version: config.graphVersion });
       window.FB.init({
         appId: config.appId,
         autoLogAppEvents: true,
         xfbml: true,
         version: config.graphVersion,
       });
+      waTrace("sdk.loaded");
       resolve();
     };
     if (window.FB) {
+      waTrace("sdk.already-present");
       init();
       return;
     }
@@ -54,6 +59,7 @@ function loadSdk(config: WhatsappSignupConfig): Promise<void> {
     script.defer = true;
     script.crossOrigin = "anonymous";
     script.onerror = () => {
+      waTrace("sdk.load-error", { url: SDK_URL });
       sdkPromise = null;
       script.remove();
       reject(new Error("sdk_load_failed"));
@@ -74,6 +80,13 @@ export function useWhatsAppSignup(
   const [fetchConfig] = useLazyGetWhatsappSignupConfigQuery();
   const [completeSignup] = useCompleteWhatsappSignupMutation();
   const [reportEvent] = useReportWhatsappSignupEventMutation();
+  const [traceStep] = useTraceWhatsappSignupStepMutation();
+  useEffect(() => {
+    setWaTraceSink((step, data) => {
+      traceStep({ step, data }).catch(() => {});
+    });
+    return () => setWaTraceSink(null);
+  }, [traceStep]);
 
   const config = useRef<WhatsappSignupConfig | null>(null);
   const session = useRef<WhatsappSignupSession | null>(null);
@@ -96,12 +109,22 @@ export function useWhatsAppSignup(
     try {
       const cfg = await fetchConfig(locale, false).unwrap();
       config.current = cfg;
+      waTrace("config.fetched", {
+        appId: cfg.appId,
+        configurationId: cfg.configurationId,
+        graphVersion: cfg.graphVersion,
+        signupVersion: cfg.signupVersion,
+        statePresent: !!cfg.state,
+        locale,
+        origin: window.location.origin,
+      });
       if (!sdkReady.current) {
         await loadSdk(cfg);
         sdkReady.current = true;
       }
       setReady(true);
     } catch (e) {
+      waTrace("config.error", { message: e instanceof Error ? e.message : undefined, code: whatsappErrorCode(e) });
       setErrorCode(
         e instanceof Error && e.message === "sdk_load_failed" ? "sdk_load_failed" : whatsappErrorCode(e)
       );
@@ -125,14 +148,28 @@ export function useWhatsAppSignup(
       try {
         msg = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
       } catch {
+        waTrace("message.unparsable", { origin: event.origin, dataType: typeof event.data });
         return;
       }
+      waTrace("message", {
+        origin: event.origin,
+        type: msg?.type,
+        event: msg?.event,
+        dataKeys: waKeys(msg?.data),
+        step: msg?.data?.current_step,
+        errorCode: msg?.data?.error_code,
+        sessionId: msg?.data?.session_id,
+        phoneNumberIdPresent: !!msg?.data?.phone_number_id,
+        wabaIdPresent: !!msg?.data?.waba_id,
+        isOnBizApp: msg?.data?.is_on_biz_app,
+      });
       if (msg?.type !== "WA_EMBEDDED_SIGNUP") return;
       const d = msg.data ?? {};
 
       if (msg.event === "CANCEL" || msg.event === "ERROR") {
         session.current = null;
         eventHandled.current = true;
+        waTrace("client-event.report", { event: msg.event, step: d.current_step, errorCode: d.error_code });
         reportEvent({
           event: msg.event,
           currentStep: d.current_step,
@@ -142,8 +179,14 @@ export function useWhatsAppSignup(
         })
           .unwrap()
           .then(
-            (r) => setErrorCode(r.code),
-            () => setErrorCode(msg.event === "CANCEL" ? "cancelled" : "unknown")
+            (r) => {
+              waTrace("client-event.result", { code: r.code });
+              setErrorCode(r.code);
+            },
+            () => {
+              waTrace("client-event.failed");
+              setErrorCode(msg.event === "CANCEL" ? "cancelled" : "unknown");
+            }
           )
           .finally(() => {
             setBusyBoth(false);
@@ -172,14 +215,21 @@ export function useWhatsAppSignup(
       while (!session.current && Date.now() - started < SESSION_EVENT_GRACE_MS) {
         await new Promise((r) => setTimeout(r, 100));
       }
+      waTrace("complete.request", {
+        codePresent: true,
+        sessionEvent: session.current?.event ?? null,
+        waitedMs: Date.now() - started,
+      });
       try {
         const result = await completeSignup({
           code,
           state: cfg.state,
           session: session.current ?? undefined,
         }).unwrap();
+        waTrace("complete.ok", { accountId: result.account?.id, issues: result.issues });
         onConnectedRef.current(result);
       } catch (e) {
+        waTrace("complete.error", { code: whatsappErrorCode(e), httpStatus: (e as any)?.status });
         setErrorCode(whatsappErrorCode(e));
       } finally {
         session.current = null;
@@ -194,6 +244,7 @@ export function useWhatsAppSignup(
   const connect = useCallback(() => {
     const cfg = config.current;
     if (!cfg || !window.FB) {
+      waTrace("connect.blocked", { configLoaded: !!cfg, sdkPresent: !!window.FB });
       setErrorCode("sdk_load_failed");
       return;
     }
@@ -202,9 +253,25 @@ export function useWhatsAppSignup(
     session.current = null;
     eventHandled.current = false;
 
+    const loginOptions = {
+      config_id: cfg.configurationId,
+      response_type: "code",
+      override_default_response_type: true,
+      // v5: WhatsApp Business app onboarding (Coexistence) is on by default.
+      extras: { setup: {}, version: cfg.signupVersion },
+    };
+    waTrace("fb.login.call", { options: loginOptions });
+
     window.FB.login(
       (response: any) => {
         const code = response?.authResponse?.code;
+        waTrace("fb.login.response", {
+          status: response?.status ?? null,
+          hasAuthResponse: !!response?.authResponse,
+          authResponseKeys: waKeys(response?.authResponse),
+          codePresent: !!code,
+          responseKeys: waKeys(response),
+        });
         if (code) {
           complete(code, cfg);
           return;
@@ -212,6 +279,7 @@ export function useWhatsAppSignup(
         // Closed/denied without a code. A CANCEL/ERROR event normally reports
         // itself and clears busy; otherwise report a plain cancel after a short wait.
         setTimeout(() => {
+          waTrace("fb.login.no-code-timeout", { busy: busyRef.current, eventHandled: eventHandled.current });
           if (!busyRef.current || eventHandled.current) return;
           setBusyBoth(false);
           setErrorCode("cancelled");
@@ -219,13 +287,7 @@ export function useWhatsAppSignup(
           refreshConfig();
         }, 1500);
       },
-      {
-        config_id: cfg.configurationId,
-        response_type: "code",
-        override_default_response_type: true,
-        // v5: WhatsApp Business app onboarding (Coexistence) is on by default.
-        extras: { setup: {}, version: cfg.signupVersion },
-      }
+      loginOptions
     );
   }, [complete, reportEvent, refreshConfig, setBusyBoth]);
 
